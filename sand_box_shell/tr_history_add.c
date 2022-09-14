@@ -11,12 +11,10 @@ int main()
 	{
 	//prompt the user for input with the message below
 	a = readline("minishel tester $> ");
-	//saved it to a
+	//saved it to a then adding it to history
+	add_history(a);
 	//then print it back to the user 
 	printf("%s\n", a);
-	// printf("\n%d\n", rl_on_new_line());
-	rl_on_new_line();
-	// printf("x = %d\n", x);
 	free(a);
 	}
 }
