@@ -13,17 +13,18 @@ int main()
 	pid = fork();
 	if (pid == 0)
 	{
+		printf("Child process id = %d\n", getpid());
 		n = 1;
-		execve(env, "cat", "file.txt");
 	}
 	else
 	{
-		n = 51;
+		n = 6;
 		//waiting for the child process to finish 
 		//execution first
-		wait(NULL);
+		int w = wait(NULL);
+		printf("Wait return value = %d\n", w);
 	}
-	while (i < 50)
+	while (i < 5)
 	{
 		printf("%d ", n + i);
 		i++;
