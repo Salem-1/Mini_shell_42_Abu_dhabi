@@ -12,23 +12,23 @@ int main()
 	pid2 = fork();
 	if (pid1 == 0 && pid2 == 0)
 	{
-		printf("Inside grand child process, getpid(pid) = %d\n",
-		getpid());
+		printf("Inside grand child process, getpid(pid) = %d, pid1 = %d, pid2 = %d\n",
+		getpid(), pid1, pid2);
 	}
 	else if (pid1 == 0 && pid2 != 0)
 	{
-		printf("Inside Child process who is now parent, getpid(pid) = %d\n",
-		getpid());
+		printf("Inside Child process who is now parent,  getpid(pid) = %d, pid1 = %d, pid2 = %d\n",
+		getpid(), pid1, pid2);
 	}
 	else if (pid1 != 0 && pid2 == 0)
 	{
-		printf("Inside legitimate child process, getpid(pid) = %d\n",
-		getpid());
+		printf("Inside legitimate child process,  getpid(pid) = %d, pid1 = %d, pid2 = %d\n",
+		getpid(), pid1, pid2);
 	}
 	else if (pid1 != 0 && pid2 != 0)
 	{
-		printf("Inside Ana Baba Yala process, getpid(pid) = %d\n",
-		getpid());
+		printf("Inside Ana Baba Yala process,  getpid(pid) = %d, pid1 = %d, pid2 = %d\n",
+		getpid(), pid1, pid2);
 	}
 
 }
