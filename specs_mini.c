@@ -92,7 +92,13 @@ allowed functions:
 ttyslot:
 -------
 Get the tty number of the terminal that controls the proceeses.
-
+#include <unistd.h>
+#include <stdio.h>
+int main ()
+{
+	int a = ttyslot();
+	printf("%d tty is the terminal that controls our process\n", a);
+}
 Declaration:
 -----------
   int
