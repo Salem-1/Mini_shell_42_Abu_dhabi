@@ -1,5 +1,5 @@
 NAME = minishell
-SRC = main.c executing/execute_one_command.c
+SRC = main.c executing/execute_one_command.c parsing/parsing_one_command.c
 
 CFLAGS = -Wall -Wextra -Werror -g3
 CC = gcc
