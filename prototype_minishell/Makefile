@@ -1,8 +1,10 @@
 NAME = minishell
-SRC = main.c executing/execute_one_command.c parsing/parsing_one_command.c
+SRC = main.c executing/execute_one_command.c parsing/parsing_one_command.c parsing/parsing_utils_1.c \
+test_files/vis.c
+CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3 \
+		
 
-CFLAGS = -Wall -Wextra -Werror -g3
-CC = gcc
+CC = gcc 
 OBJ = $(SRC:.c=.o)
 LIBS = ./libft/libft.a
 
@@ -10,12 +12,14 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/.
-	$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
+	$(CC) -L/usr/local/opt/readline/lib -lreadline  $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
 
 
 
 clean:
 	@rm -f *.o
+	@rm -f parsing/*.o
+	@rm -f executing/*.o
 	@make clean -C libft/.
 	
 

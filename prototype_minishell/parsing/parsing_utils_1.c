@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/20 09:24:24 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/21 11:41:02 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-//check for empty and spaces only cmds not to execute or add to his
-
-int	main(int argc, char **argv, char **envp)
+void	free_split(char **splited)
 {
-	char	*cmd;
+	int	i;
 
-	// printf("Bism Ellah Elrahman Elraheem");
-	cmd = NULL;
-	if (argc > 1 && argv)
-	{
-		printf("Error!\n./minishell  cannot take arguments\n");
-		return (0);
-	}
-	while (1)
-	{
-		cmd = readline("minishel $> ");
-		if (cmd )
-		{
-			// add_history(cmd); // the argv will be env later inshalla
-			execute_one_cmd(cmd, envp);
-			free(cmd);
-		}
-	}
+	i = -1;
+	while (splited[++i])
+		free(splited[i]);
+	free(splited);
+}
+
+size_t	length_of_larger_string(char *str1, char *str2)
+{
+	if (ft_strlen(str1) > ft_strlen(str2))
+		return (ft_strlen(str1));
+	else
+		return (ft_strlen(str2));
 }
