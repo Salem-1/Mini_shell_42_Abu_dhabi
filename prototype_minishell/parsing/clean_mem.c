@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   clean_mem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 09:58:02 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/22 21:53:08 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/09/22 21:20:46 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	free_cmd(t_parsed_command	*t)
 {
-	t_list	*tmp;
+	int	i;
 
-	if (!new)
-		return ;
-	if (*lst == NULL)
+	i = 0;
+	while (t->splitted_cmd[i])
 	{
-		*lst = new;
-		return ;
+		free(t->splitted_cmd[i++]);
 	}
-	tmp = *lst;
-	while (tmp->next)
-	{
-		tmp = tmp->next;
-	}
-	tmp->next = new;
+	free(t);
 }

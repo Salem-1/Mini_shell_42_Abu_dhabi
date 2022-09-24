@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 09:58:02 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/22 21:53:08 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/09/22 21:21:06 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/09/22 21:21:24 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	free_split(char **splited)
 {
-	t_list	*tmp;
+	int	i;
 
-	if (!new)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	tmp = *lst;
-	while (tmp->next)
-	{
-		tmp = tmp->next;
-	}
-	tmp->next = new;
+	i = -1;
+	while (splited[++i])
+		free(splited[i]);
+	free(splited);
 }

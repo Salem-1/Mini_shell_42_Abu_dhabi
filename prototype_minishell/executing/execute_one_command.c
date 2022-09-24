@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/21 11:46:53 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/23 08:01:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ printf the fount PATH=/////.
 printf the searching the path
 printf when found or not
 */
-void execute_one_cmd(char *command, char **envp)
+void	execute_one_cmd(char *command, t_list *t_env)
 {
 	struct t_parsed_command	*t;
 	int						pid;
 
-	t = parse_one_cmd(command, envp);
+	t = parse_one_cmd(command);
 	if (!t)
 		return ;
 	pid = fork();
@@ -32,8 +32,8 @@ void execute_one_cmd(char *command, char **envp)
 		perror("fork");
 	if (pid  == 0)
 	{
-		visualize_cmd(t);
-		just_execve(t, envp);
+		// visualize_cmd(t);
+		just_execve(t, t_env);
 	}
 	else
 	{
@@ -42,56 +42,54 @@ void execute_one_cmd(char *command, char **envp)
 	free_cmd(t);
 }
 
-void	visualize_cmd(struct t_parsed_command *t)
+void	just_execve(struct t_parsed_command	*t, t_list *t_env)
 {
-	int	i;
+	char	**envp;
+	char	*old_path;
 
-	i = 0;
-	if (!t)
-		return ;
-	printf("%s ", t->cmd);
-	while (t->args[i])
+	old_path = NULL;
+	envp = NULL;
+	envp = join_env(t_env);
+	// visualize_cmd(t);
+	// vis_split(envp);
+	if (t->path != 'a')
 	{
-		printf("%s ", t->args[i]);
-		i++;
+		old_path = t->cmd;
+		t->cmd = search_path_for_bin(t->cmd, t_env);
 	}
-	printf("\n");
+	if (execve(t->cmd, t->args, envp) == -1)
+	{
+		printf("minishell: %s: command not found\n", old_path);
+		// free(old_path);
+	}
 }
 
-char	*search_path_for_bin(char *split_command_0, char **envp)
+char	*search_path_for_bin(char *split_command_0, t_list *t_env)
 {
 	char	**pathes;
 	char	*searched_path;
+	char	*add_slash;
 	int		i;
 
 	i = -1;
 	searched_path = NULL;
-	pathes = get_path(envp);
+	add_slash = NULL;
+	pathes = get_path(t_env);
 	if (!pathes)
 		return (NULL);
 	while (pathes[++i])
 	{
-		searched_path = ft_strjoin(pathes[i], split_command_0);
+		add_slash = ft_strjoin(pathes[i], "/");
+		searched_path = ft_strjoin(add_slash, split_command_0);
+		// printf("searched path  = %s\n", searched_path);
+		free(add_slash);
 		if (access(searched_path, X_OK) == 0)
 		{
 			free_split(pathes);
 			return (searched_path);
 		}
-		else
-			perror("access");
 	}
 	free(searched_path);
 	free_split(pathes);
 	return (NULL);
-}
-
-void	just_execve(struct t_parsed_command	*t, char **envp)
-{
-	if (t->path != 'a')
-		t->cmd = search_path_for_bin(t->cmd, envp);
-	if (execve(t->cmd, t->args, NULL) == -1)
-	{
-		printf("minishell: %s: command not found\n", t->cmd);
-		perror("execve");
-	}
 }

@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 09:58:02 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/22 21:53:08 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/09/23 07:51:32 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/09/23 07:51:40 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_isspace(const char *c)
 {
-	t_list	*tmp;
-
-	if (!new)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	tmp = *lst;
-	while (tmp->next)
-	{
-		tmp = tmp->next;
-	}
-	tmp->next = new;
+	if ((*c >= 9 && *c <= 13) || *c == 32)
+		return (1);
+	else
+		return (0);
 }

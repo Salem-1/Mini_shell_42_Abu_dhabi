@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:41:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/08/29 17:42:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/23 07:51:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@
 # include <unistd.h>   
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <stdio.h>
 
 typedef struct s_list
 {
 	void			*content;
-	int				index;
+	char			**key_val;
 	struct s_list	*next;
 }	t_list;
 
-t_list	*ft_lstnew(void *content);
+t_list	*ft_lstnew(char **content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
@@ -68,4 +69,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	free_split(char **splited);
+char	*env_strjoin(char *tmp, char *reader, size_t counter);
+int		ft_isspace(const char *c);
 #endif

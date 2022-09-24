@@ -1,6 +1,7 @@
 NAME = minishell
 SRC = main.c executing/execute_one_command.c parsing/parsing_one_command.c parsing/parsing_utils_1.c \
-test_files/vis.c
+	  parsing/clean_mem.c  parsing/parse_env.c \
+      test_files/vis.c 
 CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3 \
 		
 
@@ -17,15 +18,15 @@ $(NAME): $(OBJ)
 
 
 clean:
-	@rm -f *.o
+	@make clean -C libft/.
 	@rm -f parsing/*.o
 	@rm -f executing/*.o
-	@make clean -C libft/.
+	@rm -f *.o
 	
 
 
 fclean: clean 
-	@rm -f $(NAME) 
 	@rm -f libft/libft.a
+	@rm -f $(NAME) 
 	
 re: fclean all
