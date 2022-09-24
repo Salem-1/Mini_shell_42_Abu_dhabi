@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 06:49:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/23 06:52:23 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 06:36:03 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 char	*env_strjoin(char *tmp, char *reader, size_t counter)
 {
 	char	*new;
-	size_t		i;
-	size_t		j;
+	size_t	i;
+	size_t	j;
 	size_t	reader_len;
 
 	new = NULL;

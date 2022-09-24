@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:09:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/22 21:58:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 06:29:15 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	vis_list(t_list **env)
 	printf("visualizing the envs\n");
 	while (tmp)
 	{
-		printf("%s=%s\n", tmp->key_val[0],tmp->key_val[1]);
+		printf("%s=%s\n", tmp->key_val[0], tmp->key_val[1]);
 		tmp = tmp->next;
 	}
 }

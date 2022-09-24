@@ -6,16 +6,16 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:54:37 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/23 07:43:04 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 06:28:27 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*parse_env(char **envp, t_list		*head)
+t_list	*parse_env(char **envp, t_list *head)
 {
 	t_list		*tmp_node;
-	int				i;
+	int			i;
 
 	i = 0;
 	head = NULL;
@@ -26,10 +26,8 @@ t_list	*parse_env(char **envp, t_list		*head)
 	{
 		tmp_node = ft_lstnew((char **)ft_split(envp[i], '='));
 		ft_lstadd_back(&head, tmp_node);
-		// printf("%s=%s\n", (head)->key_val[0], (head)->key_val[1]);
 		i++;
 	}
-	// vis_list(&head);
 	return (head);
 }
 
@@ -41,7 +39,7 @@ char	**join_env(t_list *t_env)
 
 	tmp = t_env;
 	tmp_join = NULL;
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
 		tmp_join = env_strjoin(tmp_join, tmp->key_val[0],
 				ft_strlen(tmp_join) + ft_strlen(tmp->key_val[0]));

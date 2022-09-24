@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/23 07:44:58 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 13:17:44 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 char	*search_list(t_list *t_env, char *needle)
 {
 	t_list	*tmp;
-	char	*value;
 	size_t	len;
 
-	value = NULL;
 	tmp = t_env;
 	if (!t_env || !needle)
 		return (NULL);
@@ -40,4 +38,11 @@ size_t	length_of_larger_string(char *str1, char *str2)
 		return (ft_strlen(str1));
 	else
 		return (ft_strlen(str2));
+}
+
+int	is_piped(char *cmd)
+{
+	if (ft_strchr(cmd, '|') != NULL)
+		return (1);
+	return (0);
 }

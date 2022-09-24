@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   exec_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 07:51:32 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/24 06:29:34 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/09/24 06:51:40 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/09/24 09:19:11 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-int	ft_isspace(const char *c)
+void	execution_operations(char *cmd, t_list *t_env)
 {
-	if ((*c >= 9 && *c <= 13) || *c == 32)
-		return (1);
-	else
-		return (0);
+	if (cmd && cmd_not_empty(cmd))
+	{
+		add_history(cmd);
+		if (is_piped(cmd))
+			exec_with_pipe(cmd, t_env);
+		else
+			execute_one_cmd(cmd, t_env);
+		free(cmd);
+	}
 }

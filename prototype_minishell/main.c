@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/23 07:56:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 13:46:58 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,6 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		cmd = readline("minishel $> ");
-		if (cmd && cmd_not_empty(cmd))
-		{
-			add_history(cmd);
-			execute_one_cmd(cmd, t_env);
-			free(cmd);
-		}
+		execution_operations(cmd, t_env);
 	}
-}
-
-int	cmd_not_empty(char *cmd)
-{
-	int	i;
-
-	i = 0;
-	if (!cmd)
-		return (0);
-	while (cmd[i])
-	{
-		if (!ft_isspace(&cmd[i]))
-			return (1);
-		i++;
-	}
-	return (0);
 }

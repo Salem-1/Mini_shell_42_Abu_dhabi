@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/23 06:32:54 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 13:17:15 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 t_parsed_command	*parse_one_cmd(char *command)
 {
 	t_parsed_command	*t;
-	char					**split_command;
+	char				**split_command;
 
-	t = malloc(sizeof( t_parsed_command));
+	t = malloc(sizeof(t_parsed_command));
 	if (!t)
-		return NULL;
+		return (NULL);
 	split_command = ft_split(command, ' ');
 	if (!split_command)
 	{
@@ -37,15 +37,28 @@ t_parsed_command	*parse_one_cmd(char *command)
 	return (t);
 }
 
-char **get_path(t_list *t_env)
+char	**get_path(t_list *t_env)
 {
 	char	**split_pathes;
 	char	*bins_path;
-	int		i;
 
-	i = 0;
 	bins_path = search_list(t_env, "PATH");
-	// printf("bins in Path is = %s\n", bins_path);
 	split_pathes = ft_split(bins_path, ':');
 	return (split_pathes);
+}
+
+int	cmd_not_empty(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (!cmd)
+		return (0);
+	while (cmd[i])
+	{
+		if (!ft_isspace(&cmd[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

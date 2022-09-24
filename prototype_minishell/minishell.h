@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/23 07:56:11 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 13:57:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <editline/readline.h>
+// # include <editline.h>
 
 typedef struct t_parsed_command
 {
@@ -30,7 +30,14 @@ typedef struct t_parsed_command
 	char	**env;
 	char	**splitted_cmd;
 	char	path;
+	int		index;
 }	t_parsed_command;
+
+typedef struct t_pipes
+{
+	t_parsed_command	**single_cmd;
+	int					npipes;
+}	t_pipes;
 
 t_parsed_command	*parse_one_cmd(char *command);
 t_list				*parse_env(char **envp, t_list *head);
@@ -43,7 +50,11 @@ char				*search_list(t_list *env, char *needle);
 char				*search_path_for_bin(char *split_command_0,t_list *env);
 char				**join_env(t_list *t_env);
 int					cmd_not_empty(char *cmd);
-
+int					is_piped(char *cmd);
+void				execution_operations(char *cmd, t_list *t_env);
+void				exec_with_pipe(char *cmd, t_list *env);
+t_pipes				*parsing_piped_cmd(char *cmd);
+void				flush_pipes(t_pipes	*t);
 //testing functions, delete before submission
 void				vis_split(char **arr);
 void				vis_list(t_list **env);

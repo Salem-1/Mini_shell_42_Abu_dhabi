@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 22:09:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/05/16 16:58:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 06:33:54 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == (char)c)
-		{
 			return (&*(char *)(s + i));
-		}
 		i++;
 	}
 	if (s[i] == c)

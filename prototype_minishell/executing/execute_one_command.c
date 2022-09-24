@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/23 08:01:04 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 13:55:05 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@ void	execute_one_cmd(char *command, t_list *t_env)
 {
 	struct t_parsed_command	*t;
 	int						pid;
-
 	t = parse_one_cmd(command);
 	if (!t)
 		return ;
 	pid = fork();
 	if (pid == -1)
 		perror("fork");
-	if (pid  == 0)
+	if (pid == 0)
 	{
-		// visualize_cmd(t);
 		just_execve(t, t_env);
 	}
 	else
@@ -42,7 +40,7 @@ void	execute_one_cmd(char *command, t_list *t_env)
 	free_cmd(t);
 }
 
-void	just_execve(struct t_parsed_command	*t, t_list *t_env)
+void	just_execve(struct t_parsed_command *t, t_list *t_env)
 {
 	char	**envp;
 	char	*old_path;
@@ -50,8 +48,6 @@ void	just_execve(struct t_parsed_command	*t, t_list *t_env)
 	old_path = NULL;
 	envp = NULL;
 	envp = join_env(t_env);
-	// visualize_cmd(t);
-	// vis_split(envp);
 	if (t->path != 'a')
 	{
 		old_path = t->cmd;
@@ -60,7 +56,6 @@ void	just_execve(struct t_parsed_command	*t, t_list *t_env)
 	if (execve(t->cmd, t->args, envp) == -1)
 	{
 		printf("minishell: %s: command not found\n", old_path);
-		// free(old_path);
 	}
 }
 
@@ -81,7 +76,6 @@ char	*search_path_for_bin(char *split_command_0, t_list *t_env)
 	{
 		add_slash = ft_strjoin(pathes[i], "/");
 		searched_path = ft_strjoin(add_slash, split_command_0);
-		// printf("searched path  = %s\n", searched_path);
 		free(add_slash);
 		if (access(searched_path, X_OK) == 0)
 		{
