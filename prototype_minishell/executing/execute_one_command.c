@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 04:34:50 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/25 16:32:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	execute_one_cmd(char *command, t_list *t_env)
 {
 	struct t_parsed_command	*t;
 	int						pid;
+
 	t = parse_one_cmd(command);
 	if (!t)
 		return ;
@@ -43,19 +44,22 @@ void	execute_one_cmd(char *command, t_list *t_env)
 void	just_execve(struct t_parsed_command *t, t_list *t_env)
 {
 	char	**envp;
-	char	*old_path;
+	char	*old_cmd;
 
-	old_path = NULL;
+	old_cmd = NULL;
 	envp = NULL;
 	envp = join_env(t_env);
-	if (t->path != 'a')
+	if (is_in_our_executable(t, t_env))
+		return ;
+	else if (t->path == 'r')
 	{
-		old_path = t->cmd;
+		old_cmd = t->cmd;
 		t->cmd = search_path_for_bin(t->cmd, t_env);
 	}
-	if (execve(t->cmd, t->args, envp) == -1)
+	if (!t->cmd || (execve(t->cmd, t->args, envp) == -1))
 	{
-		printf("minishell: %s: command not found\n", old_path);
+		printf("minishell: %s: command not found\n", old_cmd);
+		return ;
 	}
 }
 

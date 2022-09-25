@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_mem.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 07:27:38 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/09/25 11:11:08 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/09/25 16:40:09 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	free_cmd(t_parsed_command	*t)
+void	exec_env(t_list **env)
 {
-	int	i;
-
-	i = 0;
-	while (t->splitted_cmd[i])
-	{
-		free(t->splitted_cmd[i++]);
-	}
-	free(t);
+	vis_list(env);
 }
 
-void	flush_pipes(t_pipes	*t)
+void	exec_pwd(t_list *env)
 {
-	int	i;
+	char	*current_path;
 
-	i = 0;
-	while (t->single_cmd[i])
-	{
-		if (t->single_cmd[i])
-			free_cmd(t->single_cmd[i]);
-		i++;
-	}
-	if (t->single_cmd)
-		free(t->single_cmd);
-	if (t)
-		free(t);
+	current_path = search_list(env, "PWD");
+	printf("%s\n", current_path);
 }

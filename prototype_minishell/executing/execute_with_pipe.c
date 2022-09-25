@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 07:26:11 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/24 19:45:27 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/25 10:04:31 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	exec_with_pipe(char *cmd, t_list *env)
 	t = parsing_piped_cmd(cmd);
 	if (pipe(fd) == -1)
 		perror("pipe");
-
 	pid = fork();
 	if (pid == 0)
 		exec_to_out(fd, t, env);
@@ -38,7 +37,7 @@ void	exec_with_pipe(char *cmd, t_list *env)
 	if (pid2 == 0)
 		exec_to_in(fd, t, env);
 	close(fd[0]);
-	close(fd[1]);
+	// close(fd[1]);
 	wait(NULL);
 	wait(NULL);
 	flush_pipes(t);

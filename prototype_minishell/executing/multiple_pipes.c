@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 04:22:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/25 08:56:41 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 			}
 			close_files(fd, t->npipes);
 			just_execve(t->single_cmd[i], env);
+			return ;
 		}
 		i++;
 	}
 	close_files(fd, t->npipes);
+	i = 0;
 	while (i < t->npipes)
 	{
 		wait(NULL);
@@ -84,7 +86,7 @@ void	close_files(int **fd, int npipes)
 	int	i;
 
 	i = 0;
-	while (i < npipes)
+	while (i < npipes )
 	{
 		close(fd[i][0]);
 		close(fd[i][1]);
