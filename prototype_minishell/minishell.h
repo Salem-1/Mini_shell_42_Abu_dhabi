@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/24 13:57:12 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/25 04:06:28 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ void				execution_operations(char *cmd, t_list *t_env);
 void				exec_with_pipe(char *cmd, t_list *env);
 t_pipes				*parsing_piped_cmd(char *cmd);
 void				flush_pipes(t_pipes	*t);
+void				exec_to_out(int fd[2], t_pipes *t, t_list *env);
+void				exec_to_in(int fd[2], t_pipes *t, t_list *env);
+void				close_files(int **fd, int npipes);
+int					**open_pipes(int n, int **fd);
+void				exec_multiple_pipes(char *cmd, t_list *env);
 //testing functions, delete before submission
 void				vis_split(char **arr);
 void				vis_list(t_list **env);

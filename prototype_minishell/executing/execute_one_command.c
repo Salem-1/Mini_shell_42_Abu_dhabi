@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/24 13:55:05 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/25 04:34:50 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ char	*search_path_for_bin(char *split_command_0, t_list *t_env)
 		free(add_slash);
 		if (access(searched_path, X_OK) == 0)
 		{
-			free_split(pathes);
+			free_split((void **)pathes);
 			return (searched_path);
 		}
 	}
 	free(searched_path);
-	free_split(pathes);
+	free_split((void **)pathes);
 	return (NULL);
 }

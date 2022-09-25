@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 07:26:11 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/24 13:50:53 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/24 19:45:27 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,36 +22,43 @@
 	// char *cmd2[] = {"/usr/bin/grep", "CPU", NULL};
 void	exec_with_pipe(char *cmd, t_list *env)
 {
-	t_pipes	*t;
-	int		fd[2];
-	pid_t	pid;
-	int		pid2;
+	static t_pipes	*t;
+	int				fd[2];
+	int				pid;
+	int				pid2;
 
 	t = parsing_piped_cmd(cmd);
 	if (pipe(fd) == -1)
 		perror("pipe");
+
 	pid = fork();
 	if (pid == 0)
-	{
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[0]);
-		close(fd[1]);
-		just_execve(t->single_cmd[0], env);
-	}
+		exec_to_out(fd, t, env);
 	pid2 = fork();
 	if (pid2 == 0)
-	{
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[1]);
-		close(fd[0]);
-		just_execve(t->single_cmd[1], env);
-	}
+		exec_to_in(fd, t, env);
 	close(fd[0]);
 	close(fd[1]);
 	wait(NULL);
 	wait(NULL);
 	flush_pipes(t);
 	return ;
+}
+
+void	exec_to_out(int fd[2], t_pipes *t, t_list *env)
+{
+	dup2(fd[1], STDOUT_FILENO);
+	close(fd[0]);
+	close(fd[1]);
+	just_execve(t->single_cmd[0], env);
+}
+
+void	exec_to_in(int fd[2], t_pipes *t, t_list *env)
+{
+	dup2(fd[0], STDIN_FILENO);
+	close(fd[1]);
+	close(fd[0]);
+	just_execve(t->single_cmd[1], env);
 }
 	// printf("Execution inside exec with pipes under construction\n");
 	// int i = 0;

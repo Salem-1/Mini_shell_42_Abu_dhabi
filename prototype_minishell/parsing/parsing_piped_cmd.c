@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/24 13:59:07 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/25 04:54:32 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ t_pipes	*parsing_piped_cmd(char *cmd)
 	t = malloc(sizeof(t_pipes) * 1);
 	if (!t)
 		return (NULL);
-	t->single_cmd = malloc(sizeof (t_parsed_command *) * i + 1);
+	t->single_cmd = malloc(sizeof (t_parsed_command *) * i);
 	if (!t->single_cmd)
 		return (NULL);
-	t->npipes = i;
 	i = 0;
 	while (cmd_arr[i])
 	{	
@@ -39,5 +38,6 @@ t_pipes	*parsing_piped_cmd(char *cmd)
 		i++;
 	}
 	t->single_cmd[i] = NULL;
+	t->npipes = i;
 	return (t);
 }
