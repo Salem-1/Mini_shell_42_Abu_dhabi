@@ -1,0 +1,101 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/09/27 11:06:22 by ahsalem          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../minishell.h"
+//if the exported var has an export value, and 
+//export not assigning new value, then do noting
+
+//remember to search for the var and replace it with  new 
+void	exec_export(struct t_parsed_command *t, t_list **env)
+{
+	int		i;
+	t_list	*tmp;
+
+	i = 1;
+	tmp = NULL;
+	while (t->args[i])
+	{
+		if (valid_export_arg(t->args[i]))
+		{
+			tmp = parsed_exp_arg(t->args[i], env, tmp);
+			if (tmp)
+				ft_lstadd_back(env, tmp);
+		}
+		else
+			raise_export_error(t->args[i]);
+		i++;
+	}
+	if (t->args[1] == NULL)
+		vis_list(env, 'x');
+}
+
+t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp)
+{
+	char	**exp_item;
+	int		m_size;
+
+	exp_item = NULL;
+	m_size = find_msize(cmd);
+	if (ft_strnchr(cmd, '=') == -1)
+	{
+		if (is_repeated(cmd, env))
+			return (NULL);
+		else
+		{
+			exp_item = malloc(sizeof(char *) * m_size);
+			if (!exp_item)
+				return (NULL);
+			exp_item[0] = ft_strdup(cmd);
+		}
+	}
+	else
+	{
+		// exp_item = fill_export_with_key_val_variable(cmd, *env, tmp);
+		printf("will handle a=3 later inshalla\n");
+	}
+	exp_item[m_size - 1] = NULL;
+	tmp = fill_new_export_node(tmp, exp_item, m_size);
+	return (tmp);
+}
+
+t_list	*fill_new_export_node(t_list *tmp, char **exp_item, int m_size)
+{
+	char	flag;
+
+	flag = 'x';
+	tmp = ft_lstnew(exp_item);
+	if (m_size == 2)
+		tmp->flag = &flag;
+	else
+	{
+		flag = 'v';
+		tmp->flag = &flag;
+	}
+	return (tmp);
+}
+//set the last exit, if succeessful it's 0,
+//  if not make 127 for command not found
+//126 permission denied, CTR-C 130, exit code of wait
+//check the exit code of the builtins
+//last minishelll inside wait() ==-1 no schild to wait upon CTR-c
+
+
+/*
+export specs:
+if var with no value:
+	-if not there Add var export list
+	-if var is repeated do nothing
+if var has value:
+	-if exists update the value
+	-else add the var=vlaue to env list
+
+*/

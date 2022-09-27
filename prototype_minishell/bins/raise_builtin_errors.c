@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   raise_builtin_errors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 08:13:35 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/26 12:29:39 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/09/27 10:17:24 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/09/27 10:17:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-t_list	*ft_lstnew(char **content)
+void	raise_export_error(char *cmd)
 {
-	t_list	*new;
-
-	new = malloc(sizeof(t_list) * 1);
-	if (!new)
-		return (NULL);
-	new->content = NULL;
-	new->key_val = content;
-	new->flag = NULL;
-	new->next = NULL;
-	return (new);
+	printf("minishell: export: `%s': not a valid identifier\n", cmd);
+	printf("remember to set the exit code (1) later inshalla\n");
 }

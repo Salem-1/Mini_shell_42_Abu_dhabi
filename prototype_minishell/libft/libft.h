@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:41:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 04:03:38 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/26 12:15:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_list
 {
 	void			*content;
 	char			**key_val;
+	char			*flag;
 	struct s_list	*next;
 }	t_list;
 
@@ -72,4 +73,5 @@ void	ft_putnbr_fd(int n, int fd);
 void	free_split(void **splited);
 char	*env_strjoin(char *tmp, char *reader, size_t counter);
 int		ft_isspace(const char *c);
+int		ft_strnchr(const char *s, int c);
 #endif

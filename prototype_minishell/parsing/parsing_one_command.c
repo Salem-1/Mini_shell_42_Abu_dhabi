@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/24 13:17:15 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/27 10:03:53 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**get_path(t_list *t_env)
 	char	**split_pathes;
 	char	*bins_path;
 
-	bins_path = search_list(t_env, "PATH");
+	bins_path = search_list(t_env, "PATH", 'p');
 	split_pathes = ft_split(bins_path, ':');
 	return (split_pathes);
 }

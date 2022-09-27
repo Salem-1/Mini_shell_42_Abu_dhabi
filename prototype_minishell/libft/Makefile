@@ -8,7 +8,7 @@ SOURCES = \
 	ft_itoa.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	ft_strmapi.c ft_striteri.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_env_str_join.c ft_isspace.c\
-	gnl/get_next_line.c  gnl/get_next_line_utils.c ft_free_split.c
+	gnl/get_next_line.c  gnl/get_next_line_utils.c ft_free_split.c ft_strnchr.c
 	
 OBJECTS = $(SOURCES:.c=.o)
 BOBJECTS = $(BSOURCES:.c=.o)

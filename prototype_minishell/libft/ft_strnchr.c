@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_strnchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 08:13:35 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/26 12:29:39 by ahsalem          ###   ########.fr       */
+/*   Created: 2022/05/16 12:27:16 by ahsalem           #+#    #+#             */
+/*   Updated: 2022/09/26 12:14:50 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(char **content)
+int	ft_strnchr(const char *s, int c)
 {
-	t_list	*new;
+	size_t	i;
 
-	new = malloc(sizeof(t_list) * 1);
-	if (!new)
-		return (NULL);
-	new->content = NULL;
-	new->key_val = content;
-	new->flag = NULL;
-	new->next = NULL;
-	return (new);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (i);
+		i++;
+	}
+	return (-1);
 }

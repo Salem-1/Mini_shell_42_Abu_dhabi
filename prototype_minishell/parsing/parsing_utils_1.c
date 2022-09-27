@@ -6,13 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/24 13:17:44 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/27 10:02:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*search_list(t_list *t_env, char *needle)
+char	*search_list(t_list *t_env, char *needle, char flag)
 {
 	t_list	*tmp;
 	size_t	len;
@@ -25,7 +25,10 @@ char	*search_list(t_list *t_env, char *needle)
 		len = length_of_larger_string(tmp->key_val[0], needle);
 		if (!ft_strncmp(tmp->key_val[0], needle, len))
 		{
-			return (tmp->key_val[1]);
+			if (flag == 'p')
+				return (tmp->key_val[1]);
+			else
+				return ("the var exists");
 		}
 		tmp = tmp->next;
 	}

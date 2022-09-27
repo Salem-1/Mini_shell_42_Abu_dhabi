@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 08:56:41 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/26 09:49:27 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 	int				**fd;
 	int				pid;
 	int				i;
+	int				forwait;
 
 	fd = NULL;
 	t = parsing_piped_cmd(cmd);
@@ -48,7 +49,8 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 	i = 0;
 	while (i < t->npipes)
 	{
-		wait(NULL);
+		wait(&forwait);
+		printf("The watied status exit code is %d\n", WEXITSTATUS(forwait));
 		i++;
 	}
 	return ;

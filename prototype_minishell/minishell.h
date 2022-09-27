@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 16:39:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/27 11:07:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-
 
 typedef struct t_parsed_command
 {
@@ -44,7 +43,7 @@ t_parsed_command	*parse_one_cmd(char *command);
 t_list				*parse_env(char **envp, t_list *head);
 char				**get_path(t_list *env);
 size_t				length_of_larger_string(char *str1, char *str2);
-char				*search_list(t_list *env, char *needle);
+char				*search_list(t_list *t_env, char *needle, char flag);
 char				**join_env(t_list *t_env);
 int					cmd_not_empty(char *cmd);
 int					is_piped(char *cmd);
@@ -64,15 +63,23 @@ void				close_files(int **fd, int npipes);
 int					**open_pipes(int n, int **fd);
 void				exec_multiple_pipes(char *cmd, t_list *env);
 void				exec_our_cmd(t_parsed_command *t, t_list *env);
-int					is_in_our_executable(struct t_parsed_command *t, t_list *env);
+int					is_in_our_executable(struct t_parsed_command *t
+						, t_list *env);
 
 //Executables
+t_list				*fill_new_export_node(t_list *tmp,
+						char **exp_item, int m_size);
+t_list				*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp);
+int					is_repeated(char *cmd, t_list **env);
 void				exec_our_cmd(struct t_parsed_command *t, t_list *env);
 void				exec_env(t_list **env);
 void				exec_pwd(t_list *env);
-
+void				exec_export(struct t_parsed_command *t, t_list **env);
+int					valid_export_arg(char *str);
+int					find_msize(char *cmd);
+void				raise_export_error(char *cmd);
 //testing functions, delete before submission
 void				vis_split(char **arr);
-void				vis_list(t_list **env);
+void				vis_list(t_list **env, char is_env_or_exp);
 void				visualize_cmd(t_parsed_command *t);
 #endif

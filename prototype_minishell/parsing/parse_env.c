@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:54:37 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/24 06:28:27 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/25 19:32:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,21 @@ t_list	*parse_env(char **envp, t_list *head)
 {
 	t_list		*tmp_node;
 	int			i;
+	char		*flag;
 
+	flag = malloc(sizeof(char) * 1);
+	*flag = 'v';
 	i = 0;
 	head = NULL;
 	if (!envp)
 		return (NULL);
 	head = ft_lstnew((char **)ft_split(envp[i], '='));
+	head->flag = flag;
 	while (envp[i])
 	{
 		tmp_node = ft_lstnew((char **)ft_split(envp[i], '='));
+		tmp_node->flag = flag;
+		
 		ft_lstadd_back(&head, tmp_node);
 		i++;
 	}
@@ -53,3 +59,5 @@ char	**join_env(t_list *t_env)
 	free(tmp_join);
 	return (envp);
 }
+
+// printf("tmp content = %s\n", (char *)(tmp_node)->content);

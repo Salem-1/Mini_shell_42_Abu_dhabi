@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:21:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 16:37:24 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/26 09:20:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	is_in_our_executable(struct t_parsed_command *t, t_list *env)
 {
 	size_t	len;
-	char	*our_execs[2]= {"env", "pwd"};
+	char	*our_execs[3]= {"env", "pwd", "export"};
 	int		i;
 
 	i = 0;
-	while (i < 2)
+	while (i < 3)
 	{
 		len = length_of_larger_string(t->cmd, our_execs[i]);
 		if (!strncmp(t->cmd, our_execs[i], len))
@@ -42,5 +42,7 @@ void	exec_our_cmd(struct t_parsed_command *t, t_list *env)
 	len = length_of_larger_string(t->cmd, "pwd");
 	if (!strncmp(t->cmd, "pwd", len))
 		exec_pwd(env);
-	
+	len = length_of_larger_string(t->cmd, "export");
+	if (!strncmp(t->cmd, "export", len))
+		exec_export(t, &env);
 }
