@@ -20,6 +20,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	ar rcs  $(NAME) $(OBJECTS)
+	clear
 	
 
 .c.o:

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/27 10:03:53 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/28 09:53:46 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ t_parsed_command	*parse_one_cmd(char *command)
 	if (split_command[0][0] == '/')
 		t->path = 'a';
 	else
+	{
+		if (split_command[0][0] == '.')
+			printf("rmember to handle ./executables inshalla\n");
 		t->path = 'r';
+	}
 	t->args = split_command;
 	t->env = NULL;
 	t->splitted_cmd = split_command;
