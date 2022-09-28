@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/27 11:07:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/28 07:41:00 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ int					is_in_our_executable(struct t_parsed_command *t
 //Executables
 t_list				*fill_new_export_node(t_list *tmp,
 						char **exp_item, int m_size);
+char				**fill_export_with_key_val_variables(char *cmd,
+						t_list *env, t_list *tmp, char **exp_item);
+char				**fill_export_with_key_only(char **exp_item,
+						int m_size, char *cmd);
 t_list				*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp);
 int					is_repeated(char *cmd, t_list **env);
 void				exec_our_cmd(struct t_parsed_command *t, t_list *env);
@@ -78,6 +82,13 @@ void				exec_export(struct t_parsed_command *t, t_list **env);
 int					valid_export_arg(char *str);
 int					find_msize(char *cmd);
 void				raise_export_error(char *cmd);
+void				exec_unset(struct t_parsed_command *t, t_list **env, int i);
+t_list				*search_env(t_list *t_env, char *env_variable, char flag);
+void				clear_var(t_list *delete_me, t_list **env);
+
+
+void				exec_cd(struct t_parsed_command *t, t_list **env);	
+void				exec_exit(struct t_parsed_command *t, t_list **env);	
 //testing functions, delete before submission
 void				vis_split(char **arr);
 void				vis_list(t_list **env, char is_env_or_exp);

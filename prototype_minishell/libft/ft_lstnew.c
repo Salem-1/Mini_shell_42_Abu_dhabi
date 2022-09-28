@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 08:13:35 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/26 12:29:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/27 16:34:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*ft_lstnew(char **content)
 		return (NULL);
 	new->content = NULL;
 	new->key_val = content;
-	new->flag = NULL;
+	new->flag = 'v';
 	new->next = NULL;
 	return (new);
 }

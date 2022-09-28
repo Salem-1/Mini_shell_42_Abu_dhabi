@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:09:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/26 13:05:50 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/27 16:38:20 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void	vis_list(t_list **env, char is_env_or_exp)
 	{
 		if (is_env_or_exp == 'x')
 		{
-			if (*(tmp)->flag == 'v')
+			if ((tmp)->flag == 'v')
 				printf("declare -x %s=\"%s\"\n", tmp->key_val[0], tmp->key_val[1]);
 			else
 				printf("declare -x %s\n", tmp->key_val[0]);
 
 		}
-		else if (*(tmp)->flag == 'v')
+		else if (((tmp)->flag) == 'v')
 			printf("%s=%s\n", tmp->key_val[0], tmp->key_val[1]);
 		tmp = tmp->next;
 	}

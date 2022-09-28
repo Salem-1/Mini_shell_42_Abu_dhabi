@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:41:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/26 12:15:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/28 07:45:03 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ typedef struct s_list
 {
 	void			*content;
 	char			**key_val;
-	char			*flag;
+	char			flag;
 	struct s_list	*next;
 }	t_list;
 
+void	del(void *content);
 t_list	*ft_lstnew(char **content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
