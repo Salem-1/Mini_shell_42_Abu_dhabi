@@ -85,7 +85,7 @@ void				raise_export_error(char *cmd);
 void				exec_unset(struct t_parsed_command *t, t_list **env, int i);
 t_list				*search_env(t_list *t_env, char *env_variable, char flag);
 void				clear_var(t_list *delete_me, t_list **env);
-
+void				unset_error(char *env_variable);
 
 void				exec_cd(struct t_parsed_command *t, t_list **env);	
 void				exec_exit(struct t_parsed_command *t, t_list **env);	

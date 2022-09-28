@@ -60,6 +60,11 @@ t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp)
 		return (NULL);
 	exp_item[m_size - 1] = NULL;
 	tmp = fill_new_export_node(tmp, exp_item, m_size);
+	if (is_repeated(exp_item[0], &env))
+	{
+		t->args[1] = exp_item[0];
+		exec_unset(t, env, 1);
+	}
 	return (tmp);
 }
 
@@ -91,18 +96,13 @@ char	**fill_export_with_key_val_variables(char *cmd,
 	exp_item[0] = ft_substr(cmd,0,  equal_location);
 	exp_item[1] = ft_substr(cmd, equal_location + 1,
 			ft_strlen(cmd) - equal_location);
-	if (is_repeated(exp_item[0], &env))
-	{
-		//unset(exp_item[0])
-		//that's it , then your export
-		printf("will handle the repeated value later inshalla\n");
-		printf("Inshalla will use the unset then add normally\n");
-	}
 	return (exp_item);
 }
 
 t_list	*fill_new_export_node(t_list *tmp, char **exp_item, int m_size)
 {
+	t_list *existing_var;
+
 	tmp = ft_lstnew(exp_item);
 	if (m_size == 2)
 		tmp->flag = 'x';
