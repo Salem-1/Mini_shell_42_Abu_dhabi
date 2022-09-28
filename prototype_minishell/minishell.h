@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/28 18:43:26 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/28 19:04:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ char				**fill_export_with_key_val_variables(char *cmd,
 						t_list *env, t_list *tmp, char **exp_item);
 char				**fill_export_with_key_only(char **exp_item,
 						int m_size, char *cmd);
-t_list				*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp);
+t_list				*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp,
+						struct t_parsed_command *t);
 int					is_repeated(char *cmd, t_list **env);
 void				exec_our_cmd(struct t_parsed_command *t, t_list *env);
 void				exec_env(t_list **env);
@@ -85,7 +86,7 @@ void				raise_export_error(char *cmd);
 void				exec_unset(struct t_parsed_command *t, t_list **env, int i);
 t_list				*search_env(t_list *t_env, char *env_variable, char flag);
 void				clear_var(t_list *delete_me, t_list **env);
-
+void				unset_error(char *env_variable);
 
 void				exec_cd(struct t_parsed_command *t, t_list **env);	
 void				exec_exit(struct t_parsed_command *t, t_list **env);	

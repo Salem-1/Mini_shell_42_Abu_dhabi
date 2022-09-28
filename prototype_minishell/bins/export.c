@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/27 19:16:37 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/28 19:08:41 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	exec_export(struct t_parsed_command *t, t_list **env)
 	{
 		if (valid_export_arg(t->args[i]))
 		{
-			tmp = parsed_exp_arg(t->args[i], env, tmp);
+			tmp = parsed_exp_arg(t->args[i], env, tmp, t);
 			if (tmp)
 				ft_lstadd_back(env, tmp);
 		}
@@ -40,7 +40,7 @@ void	exec_export(struct t_parsed_command *t, t_list **env)
 		vis_list(env, 'x');
 }
 
-t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp)
+t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_command *t)
 {
 	char	**exp_item;
 	int		m_size;
@@ -60,6 +60,11 @@ t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp)
 		return (NULL);
 	exp_item[m_size - 1] = NULL;
 	tmp = fill_new_export_node(tmp, exp_item, m_size);
+	if (is_repeated(exp_item[0], env))
+	{
+		t->args[1] = ft_strdup(exp_item[0]);
+		exec_unset(t, env, 1);
+	}
 	return (tmp);
 }
 
@@ -79,6 +84,7 @@ char	**fill_export_with_key_val_variables(char *cmd,
 	int	equal_location;
 
 	(void)tmp;
+	(void)env;
 	equal_location = ft_strnchr(cmd, '=');
 	if (equal_location == -1)
 	{
@@ -91,13 +97,6 @@ char	**fill_export_with_key_val_variables(char *cmd,
 	exp_item[0] = ft_substr(cmd,0,  equal_location);
 	exp_item[1] = ft_substr(cmd, equal_location + 1,
 			ft_strlen(cmd) - equal_location);
-	if (is_repeated(exp_item[0], &env))
-	{
-		//unset(exp_item[0])
-		//that's it , then your export
-		printf("will handle the repeated value later inshalla\n");
-		printf("Inshalla will use the unset then add normally\n");
-	}
 	return (exp_item);
 }
 

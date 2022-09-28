@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:21:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/28 08:19:24 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/28 06:44:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void	exec_our_cmd(struct t_parsed_command *t, t_list *env)
 	if (!strncmp(t->cmd, "cd", len))
 		exec_cd(t, &env);
 	len = length_of_larger_string(t->cmd, "exit");
-	if (!strncmp(t->cmd, "exit", len))
+	if (!strncmp(t->cmd, "cd", len))
 		exec_exit(t, &env);
 }
