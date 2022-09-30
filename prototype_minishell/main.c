@@ -6,13 +6,14 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 08:19:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/30 11:37:54 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 //check for empty and spaces only cmds not to execute or add to his
+int		exit_shell = 0;
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -30,6 +31,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		cmd = readline("minishel $> ");
-		execution_operations(cmd, t_env);
+		if (execution_operations(cmd, t_env, exit_shell) == 1)
+			return (0);
 	}
 }

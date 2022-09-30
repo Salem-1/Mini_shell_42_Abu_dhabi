@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 16:32:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/30 11:37:28 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,20 @@ printf the fount PATH=/////.
 printf the searching the path
 printf when found or not
 */
-void	execute_one_cmd(char *command, t_list *t_env)
+int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 {
 	struct t_parsed_command	*t;
 	int						pid;
-
+	int						len;
 	t = parse_one_cmd(command);
 	if (!t)
-		return ;
+		return (0);
+	len = length_of_larger_string(t->cmd, "exit");
+	if (!t->args[1] && !ft_strncmp(t->cmd, "exit", len))
+	{
+		exec_exit(t, exit_shell);
+		return (1);
+	}
 	pid = fork();
 	if (pid == -1)
 		perror("fork");
@@ -36,9 +42,11 @@ void	execute_one_cmd(char *command, t_list *t_env)
 	}
 	else
 	{
+		if (t->cmd)
+			free_cmd(t);
 		wait(NULL);
 	}
-	free_cmd(t);
+	return (0);
 }
 
 void	just_execve(struct t_parsed_command *t, t_list *t_env)

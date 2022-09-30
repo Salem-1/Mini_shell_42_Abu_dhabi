@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/28 19:04:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/30 20:10:01 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ t_pipes				*parsing_piped_cmd(char *cmd);
 void				flush_pipes(t_pipes	*t);
 
 //Exection
-void				execute_one_cmd(char *command, t_list *t_env);
+int					execute_one_cmd(char *command, t_list *t_env,
+						int exit_shell);
 void				free_cmd(t_parsed_command *t);
 char				*search_path_for_bin(char *split_command_0,t_list *env);
 void				just_execve(t_parsed_command	*t, t_list *t_env);
-void				execution_operations(char *cmd, t_list *t_env);
+int					execution_operations(char *cmd, t_list *t_env,
+						int exit_shell);
 void				exec_with_pipe(char *cmd, t_list *env);
 void				exec_to_out(int fd[2], t_pipes *t, t_list *env);
 void				exec_to_in(int fd[2], t_pipes *t, t_list *env);
@@ -78,7 +80,7 @@ t_list				*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp,
 int					is_repeated(char *cmd, t_list **env);
 void				exec_our_cmd(struct t_parsed_command *t, t_list *env);
 void				exec_env(t_list **env);
-void				exec_pwd(t_list *env);
+void				exec_pwd();
 void				exec_export(struct t_parsed_command *t, t_list **env);
 int					valid_export_arg(char *str);
 int					find_msize(char *cmd);
@@ -87,9 +89,12 @@ void				exec_unset(struct t_parsed_command *t, t_list **env, int i);
 t_list				*search_env(t_list *t_env, char *env_variable, char flag);
 void				clear_var(t_list *delete_me, t_list **env);
 void				unset_error(char *env_variable);
-
-void				exec_cd(struct t_parsed_command *t, t_list **env);	
-void				exec_exit(struct t_parsed_command *t, t_list **env);	
+void				exec_cd(struct t_parsed_command *t, t_list **env);
+void				cd_error(char *error_path, char flag);
+void				exec_local_export(char *local_var, t_list **env, char flag);
+void				exec_echo(struct t_parsed_command *t);
+void				exec_exit(struct t_parsed_command *t, int exit_shell);
+int					tedous_n(struct t_parsed_command *t);
 //testing functions, delete before submission
 void				vis_split(char **arr);
 void				vis_list(t_list **env, char is_env_or_exp);

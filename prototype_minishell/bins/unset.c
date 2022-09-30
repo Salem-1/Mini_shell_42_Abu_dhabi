@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 09:39:54 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/28 18:55:01 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/30 20:22:44 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,15 @@
 //unset: b=4: invalid parameter name
 //with exit code 1
 //printf("trying to remove (%s) var node\n", delete_me->key_val[0]);
-
+//unset for multible variables not cleaning the env
 void	exec_unset(struct t_parsed_command *t, t_list **env,int i)
 {
 	t_list	*tmp;
 
 	tmp = NULL;
-	//check for the var validity, through error if invalid
-	// printf("inside unset for the %d time\n", i);
 	if (!t->args[i])
 		return ;
 	tmp = search_env(*env, t->args[i], 'c');
-	// printf("Insde unset executable\n");
-	// printf("Trying to clear the var (%s)\n", tmp->key_val[0]);
 	if (!tmp)
 		exec_unset(t, env, i + 1);
 	clear_var(tmp, env);
@@ -105,8 +101,11 @@ int	valid_export_arg(char *str)
 	i = 1;
 	if (!str)
 		return (0);
-	if (!ft_isalpha(str[0]))
+	if (!(ft_isalpha(str[0]) || str[0] == '_'))
+	{
+		printf("throw an error (%s)\n", str);
 		return (0);
+	}
 	while (str[i])
 	{
 		if (str[i] == '=')

@@ -16,7 +16,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C libft/.
 	$(CC)  $(CFLAGS)  $(OBJ) -L/usr/local/opt/readline/lib -lreadline $(LIBS) -o $(NAME)
-	
+	clear
 
 
 clean:
