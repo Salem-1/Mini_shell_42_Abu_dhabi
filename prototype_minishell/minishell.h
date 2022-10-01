@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/30 20:10:01 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/01 08:07:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-
+# include <signal.h>
 typedef struct t_parsed_command
 {
 	char	*cmd;
@@ -95,8 +95,11 @@ void				exec_local_export(char *local_var, t_list **env, char flag);
 void				exec_echo(struct t_parsed_command *t);
 void				exec_exit(struct t_parsed_command *t, int exit_shell);
 int					tedous_n(struct t_parsed_command *t);
-//testing functions, delete before submission
-void				vis_split(char **arr);
 void				vis_list(t_list **env, char is_env_or_exp);
+//signals handling
+void					handle_signals(int sig);
+
+//testing functions,
+void				vis_split(char **arr);
 void				visualize_cmd(t_parsed_command *t);
 #endif

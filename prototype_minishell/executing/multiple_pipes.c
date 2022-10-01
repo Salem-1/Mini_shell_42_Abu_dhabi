@@ -6,12 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/26 09:49:27 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/09/30 21:29:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//t->npipes is number of pipes + 1 just for sake of simplicity
 void	exec_multiple_pipes(char *cmd, t_list *env)
 {
 	static t_pipes	*t;
@@ -25,6 +26,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 	i = 0;
 	pid = 0;
 	fd = open_pipes(t->npipes, fd);
+	printf("Number of pipes (%d)\n", t->npipes);
 	while (i < t->npipes)
 	{
 		pid = fork();

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/30 11:37:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/01 08:46:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,28 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env)
 	envp = NULL;
 	envp = join_env(t_env);
 	if (is_in_our_executable(t, t_env))
+	{
+		exec_exit(t, 0);
 		return ;
+	}
 	else if (t->path == 'r')
 	{
 		old_cmd = t->cmd;
 		t->cmd = search_path_for_bin(t->cmd, t_env);
 	}
-	if (!t->cmd || (execve(t->cmd, t->args, envp) == -1))
+	if (!t->cmd)
 	{
 		printf("minishell: %s: command not found\n", old_cmd);
+		exec_exit(t, 0);
 		return ;
 	}
+	else
+	{
+		if (execve(t->cmd, t->args, envp) == -1)
+			printf("execve failed, will throw an error later insahlla\n");
+		perror("execve");
+	}
+	exec_exit(t, 0);
 }
 
 char	*search_path_for_bin(char *split_command_0, t_list *t_env)

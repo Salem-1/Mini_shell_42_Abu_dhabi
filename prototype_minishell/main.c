@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/30 11:37:54 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/01 08:48:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ int		exit_shell = 0;
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*cmd;
-	t_list	*t_env;
+	struct sigaction	sa;
+	char				*cmd;
+	t_list				*t_env;
 
+	sa.sa_handler = &handle_signals;
 	cmd = NULL;
 	t_env = NULL;
 	if ((argc > 1 && argv) || (!envp))
@@ -28,10 +30,31 @@ int	main(int argc, char **argv, char **envp)
 		return (0);
 	}
 	t_env = parse_env(envp, t_env);
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sa, NULL);
 	while (1)
 	{
 		cmd = readline("minishel $> ");
+		if (cmd == NULL)
+			return (0);
 		if (execution_operations(cmd, t_env, exit_shell) == 1)
 			return (0);
 	}
+}
+
+void	handle_signals(int sig)
+{
+	if (sig == SIGINT)
+	{
+		rl_replace_line("", 0);
+		printf("\n");
+		rl_on_new_line ();
+		rl_redisplay();
+		// rl_clear_history();
+	}
+	else if (sig == SIGQUIT)
+	{
+		;
+	}
+
 }
