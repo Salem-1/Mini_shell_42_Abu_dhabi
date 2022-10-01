@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/01 08:07:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/01 13:24:32 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
 # include <signal.h>
 typedef struct t_parsed_command
 {
+	char	before_sep;
 	char	*cmd;
 	char	**args;
 	char	**env;
 	char	**splitted_cmd;
+	char	after_sep;
 	char	path;
 	int		index;
 }	t_parsed_command;
@@ -64,11 +66,14 @@ void				exec_to_in(int fd[2], t_pipes *t, t_list *env);
 void				close_files(int **fd, int npipes);
 int					**open_pipes(int n, int **fd);
 void				exec_multiple_pipes(char *cmd, t_list *env);
-void				exec_our_cmd(t_parsed_command *t, t_list *env);
-int					is_in_our_executable(struct t_parsed_command *t
-						, t_list *env);
+void				close_files_and_wait(int **fd, struct t_pipes	*t);
+void				piping_and_redirections(int i,
+						int **fd, struct t_pipes *t, t_list *env);
 
 //Executables
+int					is_in_our_executable(struct t_parsed_command *t
+						, t_list *env);
+void				exec_our_cmd(t_parsed_command *t, t_list *env);
 t_list				*fill_new_export_node(t_list *tmp,
 						char **exp_item, int m_size);
 char				**fill_export_with_key_val_variables(char *cmd,

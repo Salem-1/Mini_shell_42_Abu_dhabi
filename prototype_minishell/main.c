@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/01 08:48:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/01 09:01:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,15 @@ void	handle_signals(int sig)
 		rl_on_new_line ();
 		rl_redisplay();
 		// rl_clear_history();
+		
 	}
 	else if (sig == SIGQUIT)
 	{
-		;
+		//printf("minishel $> ");
+		printf( "%c[K", ESC );
+		rl_on_new_line ();
+		rl_redisplay();
+		//rl_replace_line("", 0);
 	}
 
 }
