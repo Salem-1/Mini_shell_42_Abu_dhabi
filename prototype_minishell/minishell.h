@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/01 13:24:32 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/03 17:09:46 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ int					cmd_not_empty(char *cmd);
 int					is_piped(char *cmd);
 t_pipes				*parsing_piped_cmd(char *cmd);
 void				flush_pipes(t_pipes	*t);
+char				**ft_cmd_split(char *raw_cmd);
+t_list				*cmd_smasher(char *cmd, t_list **head);
 
-//Exection
+//Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
 void				free_cmd(t_parsed_command *t);

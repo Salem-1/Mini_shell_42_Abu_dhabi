@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/27 10:02:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/01 13:31:01 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,3 @@ size_t	length_of_larger_string(char *str1, char *str2)
 		return (ft_strlen(str2));
 }
 
-int	is_piped(char *cmd)
-{
-	if (ft_strchr(cmd, '|') != NULL)
-		return (1);
-	return (0);
-}

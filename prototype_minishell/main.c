@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/01 09:01:12 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/03 19:53:07 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int	main(int argc, char **argv, char **envp)
 	struct sigaction	sa;
 	char				*cmd;
 	t_list				*t_env;
+	t_list				*tmp;
 
 	sa.sa_handler = &handle_signals;
 	cmd = NULL;
 	t_env = NULL;
+	tmp = NULL;
 	if ((argc > 1 && argv) || (!envp))
 	{
 		printf("Error!\n./minishell  cannot take arguments\n");
@@ -34,11 +36,15 @@ int	main(int argc, char **argv, char **envp)
 	sigaction(SIGQUIT, &sa, NULL);
 	while (1)
 	{
-		cmd = readline("minishel $> ");
+		cmd = readline("minishell $> ");
 		if (cmd == NULL)
 			return (0);
+		// tmp = cmd_smasher(cmd, &tmp);
+		printf("visualizing the cmd\n");
+		printf("visualization finished\n");
 		if (execution_operations(cmd, t_env, exit_shell) == 1)
 			return (0);
+		// free_split((void **)tmp);
 	}
 }
 
@@ -51,7 +57,6 @@ void	handle_signals(int sig)
 		rl_on_new_line ();
 		rl_redisplay();
 		// rl_clear_history();
-		
 	}
 	else if (sig == SIGQUIT)
 	{

@@ -6,12 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 06:51:40 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/30 21:42:11 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/03 16:03:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//remembre to lower the cmd before go into execution operations
 int	execution_operations(char *cmd, t_list *t_env, int exit_shell)
 {
 	int	exec_success;

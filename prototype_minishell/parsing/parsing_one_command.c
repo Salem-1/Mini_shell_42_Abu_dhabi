@@ -6,12 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/30 19:16:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/01 13:25:43 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 //remember to check for the bash buffer size
 t_parsed_command	*parse_one_cmd(char *command)

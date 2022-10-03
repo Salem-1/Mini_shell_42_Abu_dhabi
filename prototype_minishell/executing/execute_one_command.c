@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/01 08:46:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/03 17:28:43 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 	}
 	else
 	{
-		if (t->cmd)
+		if (t)
 			free_cmd(t);
 		wait(NULL);
 	}

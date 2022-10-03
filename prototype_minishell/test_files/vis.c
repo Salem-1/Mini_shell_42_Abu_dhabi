@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:09:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/27 16:38:20 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/01 20:27:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	vis_split(char **arr)
 		printf("It's a null array <%s>\n", arr[0]);
 	while (arr[i] != NULL)
 	{
-		printf("is valied %d  %s\n",valid_export_arg(arr[i]), arr[i]);
+		printf("%s\n",arr[i]);
 		i++;
 	}
 }
