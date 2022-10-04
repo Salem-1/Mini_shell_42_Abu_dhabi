@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/03 17:20:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/04 06:10:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,82 @@
 
 t_list	*cmd_smasher(char *cmd, t_list **head)
 {
-	t_list	*tmp;
-	int		i;
+	smash_kit *s;
 
-	i = 0;
-	tmp = *head;
+	s = NULL;
+	s = init_smash_kit(s, head);
+	while (cmd[s->i])
+	{
+		if (cmd_classifier(s, cmd, head) == '"')
+		{
+			double_qoute_smach(s, cmd, s->tmp, head);
+		}
+		else if (cmd_classifier(s, cmd, head) == '\'')
+			single_qoute_smach(s, cmd, s->tmp, head);
+		else
+			spaces_smash(s, cmd, s->tmp, head);
+		s->i++;
+	}
+	vis_smached_cmd(head);
+	free(s);
+	return (*head);
+}
+
+char	cmd_classifier(smash_kit *s, char *cmd, t_list **head)
+{
+	int	i;
+
+	i = s->i;
+	if (s->flag != 'i')
+		return (s->flag);
 	while (cmd[i])
 	{
-		printf("hello from the other side %c\n", cmd[i]);
-		i++;
+		if (is_redirection(s, cmd, head, i) || cmd[i] == ' ')
+		{
+			i++;
+			continue ;
+		}
+		else if (cmd[i] == '"')
+		{
+			s->flag = '"';
+		}
+		else if (cmd[i] == '\'')
+			s->flag = '\'';		
+		else
+			s->flag = 's';
+		s->start = i;
+		s->i = i + 1;
+		return (s->flag);
 	}
-	return (tmp);
+	return (s->flag);
 }
+
+/*
+	s->flag = i for initial stage
+*/
+smash_kit	*init_smash_kit(smash_kit *s, t_list **head)
+{
+	s = malloc(sizeof(smash_kit) * 1);
+	if (!s)
+		return (NULL);
+	s->start = 0;
+	s->end  = 0;
+	s->i = 0;
+	s->tmp = *head;
+	s->flag = 'i';
+	return (s);
+}
+
+t_list	*fill_cmd_node(char *arg, char type)
+{
+	t_list *new_node;
+
+	new_node = ft_lstnew(NULL);
+	new_node->content = (void *)arg;
+	new_node->flag = type;
+	return (new_node);
+}
+
 /*
 typedef struct s_list
 {

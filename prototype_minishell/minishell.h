@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/03 17:09:46 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/04 06:02:22 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ typedef struct t_parsed_command
 	int		index;
 }	t_parsed_command;
 
+typedef struct smashing_kit
+{
+	t_list	*tmp;
+	int		i;
+	int		start;
+	int		end;
+	char	flag;
+}	smash_kit;
+
 typedef struct t_pipes
 {
 	t_parsed_command	**single_cmd;
@@ -53,7 +62,16 @@ t_pipes				*parsing_piped_cmd(char *cmd);
 void				flush_pipes(t_pipes	*t);
 char				**ft_cmd_split(char *raw_cmd);
 t_list				*cmd_smasher(char *cmd, t_list **head);
-
+t_list				*fill_cmd_node(char *arg, char type);
+void				spaces_smash(smash_kit *s, char *cmd, t_list *tmp,
+						t_list **head);
+char				cmd_classifier(smash_kit *s, char *cmd, t_list **head);
+smash_kit			*init_smash_kit(smash_kit *s, t_list **head);
+void				double_qoute_smach(smash_kit *s, char *cmd,
+						t_list *tmp, t_list **head);
+void				single_qoute_smach(smash_kit *s, char *cmd,
+						t_list *tmp, t_list **head);
+int					is_redirection(smash_kit *s,char *cmd, t_list **head, int i);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
@@ -71,7 +89,6 @@ void				exec_multiple_pipes(char *cmd, t_list *env);
 void				close_files_and_wait(int **fd, struct t_pipes	*t);
 void				piping_and_redirections(int i,
 						int **fd, struct t_pipes *t, t_list *env);
-
 //Executables
 int					is_in_our_executable(struct t_parsed_command *t
 						, t_list *env);
@@ -109,4 +126,5 @@ void					handle_signals(int sig);
 //testing functions,
 void				vis_split(char **arr);
 void				visualize_cmd(t_parsed_command *t);
+void				vis_smached_cmd(t_list **head);
 #endif
