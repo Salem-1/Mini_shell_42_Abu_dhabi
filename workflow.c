@@ -21,11 +21,17 @@ export:
 usage:
 Save variables to the envirnment 
 cases:
-export x=1    saves x=1 as variable 
+export x=1    saves x=1 as variable in export and env
 export x =1   error
 export x= 1   error 
-export        Display environment varibales in specific format 
+export        Display export varibales in specific format,
+		 which include all environment variables + declared variables without value 
+		 for example:
+declare -x COLORTERM="truecolor"
+
+if the variable has a value it save it and assign it to the environment variables
 export x      save x in the export list, but not displayed when calling env 
+if x exists and has value, it do nothing
 export x=1 y=2 z=3   save x, y and z (can take many arguments),
 			take it as string then split,
 			save it 

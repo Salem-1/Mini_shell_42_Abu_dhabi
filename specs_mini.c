@@ -11,7 +11,7 @@ Mininshell specs:
 4-  Maximum one global variable
 5-  Not interpret:
     	a)Unclosed quotes "																																
-		b)special characters that are not required by the subject as  \  ;
+		b)special characters that are not required by the subject as;
 6-  Handle ' which should prevent the shell from interpreting the metacharachters in 
 the qouted sequence
 7-  Handle " which sould prevent the shell form interpreting the metacharachters 
@@ -39,8 +39,9 @@ executed foreground pipeline.
 		c) cd with only relative or absoloute path
 		d) export with no options
 		e) unset with no options
-		f) env with no options or arguments
+		f) env with no options or arguments (done)
 		g) exit with no options
+		i) pwd                              (done)
 
 
 
@@ -54,22 +55,37 @@ Questions:
 	minishell$>
 	C:\Windows>
 2-  How to display a prompt when waiting new command?
+Use the readline.
 3-  What is bash terminal working history?
+add_history() keeps track of all commands.
 4-  How to have one?
+add_history() keeps track of all commands.
 5-  How to search for commands in relative and absoloute path?
+Take the command and search for it in the PATH pathes using access()
 6-  How to execute variables in relative and absoloute path?
+Absoulout use access on spot, for relative  take the command and search for it in the PATH pathes using access()
 7-  What are special characters in Bash terminal?
 8-  What is the use of '' singel quote in bash terminal?
+Doesn't execute the $ or ? variable expansion'.
 9-  What are metacharachters?
 10- How do bash handle single quotes with metacharachters?
+
 11- How doe bash handle double qoutes with metacharachters?
+It expands the $VARIABLE
 12- Behavior of double quotes along with the $ dollar sign?
+It expands the $VARIABLE
+
 13- What do > do?
+Redirect output to file.
 14- What do < do?
+Take input from a file.
 15- What do >> do?
+Append to a file
 16- What do << do?
+Heredock, takes a dilemiter allows you to write input till you type the delimeter it exit
 17- Dig deep in the behavior of pipes | 
 18- What are environment variables, and what are their uses?
+variables in the bash terminal that can be used anywhere in your session with all your porgrams
 19- What is the use of $  '?' ?
 20- What is  $ expansion to exit status means?
 21- What is executed foreground pipeline, what is the pipeline, and what is meant by
@@ -79,9 +95,6 @@ foreground?
 24- What do the CTR-D & CTR-/ signals do
 25- What is the behavior of echo, echo -n, cd with relative and absoloute path, export with no options, 
 usent with no options env with no options or arguments, exit with no options?
-
-
-
 
 allowed functions:
 -------------------
@@ -191,7 +204,7 @@ example:
 int main ()
 {
 	char	buf[4096];
-	char *new;
+	char	*new;
 	size_t	size = 200;
 
 	//malloc with the maximum path size in linux according to the BSD Library functoin manual 
@@ -598,13 +611,13 @@ I don't know how to retriev the history's logs yet.
 
 /*---------------------------------------------------*/
 rl_on_new_line:
-int rl_on_new_line (void)
 Tell the update functions that we have
 moved onto a new (empty) line, usually after ouputting a 
 newline.
 ?????????
 
-rl_replace_line  
+int rl_on_new_line (void)
+rl_replace_line(const char *text, int clear_undo);
 rl_clear_history
 rl_redisplay
 
@@ -865,9 +878,9 @@ tgetent
 tgetflag
 tgetnum
 tgetstr
-tgoto
+tgoto;
 tputs:
-All this family used to put cursus in specific place in the terminal,
+All this family used to put cursor in specific place in the terminal,
 which I believe will have no use in the program.
 
 Below is an example that I don't understand. ':

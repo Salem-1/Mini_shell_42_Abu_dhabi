@@ -1,0 +1,11 @@
+Failure cases:
+-------------
+-export evnironment variable as follows
+PATH_OF_DARKNESS=~/
+compile with 
+valgrind --track-fds=yes --leak-check=full ./minishell 2> analyze_errors
+-/Users/ahsalem/projects/minishell
+-unset PWD then pwd (null) when called, use the getcwd()
+-unset USER LOGNAME SSH_AUTH_SOCK HOME SHELL __CF_USER_TEXT_ENCODING TMPDIR XPC_SERVICE_NAME XPC_FLAGS SHLVL ORIGINAL_XDG_CURRENT_DESKTOP TERM_PROGRAM TERM_PROGRAM_VERSION LANG COLORTERM
+-other signals should be added to history
+-echo when removing the path 
