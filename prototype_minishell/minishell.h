@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/05 13:57:12 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/05 16:38:06 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+
 typedef struct t_parsed_command
 {
 	char	before_sep;
@@ -34,6 +35,12 @@ typedef struct t_parsed_command
 	int		index;
 }	t_parsed_command;
 
+typedef struct t_pipes
+{
+	t_parsed_command	**single_cmd;
+	int					npipes;
+}	t_pipes;
+
 typedef struct smashing_kit
 {
 	t_list	*tmp;
@@ -43,11 +50,6 @@ typedef struct smashing_kit
 	char	flag;
 }	smash_kit;
 
-typedef struct t_pipes
-{
-	t_parsed_command	**single_cmd;
-	int					npipes;
-}	t_pipes;
 
 //Parsing
 t_parsed_command	*parse_one_cmd(char *command);

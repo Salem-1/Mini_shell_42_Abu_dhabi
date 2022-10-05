@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:09:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/04 15:39:01 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/05 15:23:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	visualize_cmd(t_parsed_command *t)
 	i = 0;
 	if (!t)
 		return ;
-	printf("%s ", t->cmd);
+	printf("cmd :%s \nagrs: ", t->cmd);
 	while (t->args[i])
 	{
 		printf("%s ", t->args[i]);
