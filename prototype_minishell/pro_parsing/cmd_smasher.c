@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/05 11:52:01 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/05 13:46:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ t_list	*cmd_smasher(char *cmd, t_list **head)
 	s = init_smash_kit(s, head);
 	while (cmd[s->i])
 	{
-		if (cmd_classifier(s, cmd, head) == 'r')
+		if (cmd_classifier(s, cmd) == 'r')
 		{
-			printf("cmd[i]  = (%c) \n", cmd[s->start]);
-			is_redirection(s, cmd, head, s->start);
+			printf("inside classifire the cmd[%d] = (%c)\n", s->i, cmd[s->i]);
+			fill_redirection(s, cmd, head, s->i);
 		}
-		else if (cmd_classifier(s, cmd, head) == '\'')
+		else if (cmd_classifier(s, cmd) == '\'')
 			single_qoute_smach(s, cmd, s->tmp, head);
-		else if (cmd_classifier(s, cmd, head) == '"')
-			double_qoute_smach(s, cmd, s->tmp, head);
+		else if (cmd_classifier(s, cmd) == '"')
+			double_qoute_smash(s, cmd, s->tmp, head);
 		else
 			spaces_smash(s, cmd, s->tmp, head);
 		s->i++;
@@ -38,13 +38,11 @@ t_list	*cmd_smasher(char *cmd, t_list **head)
 	return (*head);
 }
 
-char	cmd_classifier(smash_kit *s, char *cmd, t_list **head)
+char	cmd_classifier(smash_kit *s, char *cmd)
 {
 	int	i;
 
-	(void)head;
 	i = s->i;
-	printf("inside classifire the cmd[%d] = (%c)\n", i, cmd[i]);
 	if (s->flag != 'i')
 		return (s->flag);
 	while (cmd[i])
@@ -63,7 +61,7 @@ char	cmd_classifier(smash_kit *s, char *cmd, t_list **head)
 		else
 			s->flag = 's';
 		s->start = i;
-		s->i = i + 1;
+		// s->i = i + 1;
 		return (s->flag);
 	}
 	return (s->flag);

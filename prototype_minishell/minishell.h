@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/05 11:27:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/05 13:57:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,18 @@ t_list				*cmd_smasher(char *cmd, t_list **head);
 t_list				*fill_cmd_node(char *arg, char type);
 void				spaces_smash(smash_kit *s, char *cmd, t_list *tmp,
 						t_list **head);
-char				cmd_classifier(smash_kit *s, char *cmd, t_list **head);
+char				cmd_classifier(smash_kit *s, char *cmd);
 smash_kit			*init_smash_kit(smash_kit *s, t_list **head);
-void				double_qoute_smach(smash_kit *s, char *cmd,
+void				double_qoute_smash(smash_kit *s, char *cmd,
 						t_list *tmp, t_list **head);
 void				single_qoute_smach(smash_kit *s, char *cmd,
 						t_list *tmp, t_list **head);
-int					is_redirection(smash_kit *s,char *cmd,
+int					fill_redirection(smash_kit *s, char *cmd,
 						t_list **head, int i);
 int					check_redirection(char *cmd, int i);
+void				fill_append(smash_kit *s, char *cmd, int i);
+void				fill_in_out_app_hered(smash_kit *s,
+						char *cmd, t_list **head, int i);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
