@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   smach_redirections.c                               :+:      :+:    :+:   */
+/*   smash_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/05 14:33:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/06 19:05:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	fill_redirection(smash_kit *s,char *cmd, t_list **head, int i)
+int	fill_redirection(t_smash_kit *s,char *cmd, t_list **head, int i)
 {
 	if (cmd[i] == '|')
 	{
@@ -32,7 +32,7 @@ int	check_redirection(char *cmd, int i)
 	return (0);
 }
 
-void	fill_in_out_app_hered(smash_kit *s,char *cmd, t_list **head, int i)
+void	fill_in_out_app_hered(t_smash_kit *s,char *cmd, t_list **head, int i)
 {
 	if (cmd[i] == '>' )
 	{

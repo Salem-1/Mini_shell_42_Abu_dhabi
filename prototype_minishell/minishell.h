@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/05 16:38:06 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/06 15:08:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct t_pipes
 {
 	t_parsed_command	**single_cmd;
 	int					npipes;
+	struct t_pipes		*next;
 }	t_pipes;
 
 typedef struct smashing_kit
@@ -48,10 +49,10 @@ typedef struct smashing_kit
 	int		start;
 	int		end;
 	char	flag;
-}	smash_kit;
-
+}	t_smash_kit;
 
 //Parsing
+t_parsed_command	*init_one_cmd(t_parsed_command *one_cmd);
 t_parsed_command	*parse_one_cmd(char *command);
 t_list				*parse_env(char **envp, t_list *head);
 char				**get_path(t_list *env);
@@ -65,20 +66,21 @@ void				flush_pipes(t_pipes	*t);
 char				**ft_cmd_split(char *raw_cmd);
 t_list				*cmd_smasher(char *cmd, t_list **head);
 t_list				*fill_cmd_node(char *arg, char type);
-void				spaces_smash(smash_kit *s, char *cmd, t_list *tmp,
+void				spaces_smash(t_smash_kit *s, char *cmd, t_list *tmp,
 						t_list **head);
-char				cmd_classifier(smash_kit *s, char *cmd);
-smash_kit			*init_smash_kit(smash_kit *s, t_list **head);
-void				double_qoute_smash(smash_kit *s, char *cmd,
+char				cmd_classifier(t_smash_kit *s, char *cmd);
+t_smash_kit			*init_smash_kit(t_smash_kit *s, t_list **head);
+void				double_qoute_smash(t_smash_kit *s, char *cmd,
 						t_list *tmp, t_list **head);
-void				single_qoute_smach(smash_kit *s, char *cmd,
+void				single_qoute_smach(t_smash_kit *s, char *cmd,
 						t_list *tmp, t_list **head);
-int					fill_redirection(smash_kit *s, char *cmd,
+int					fill_redirection(t_smash_kit *s, char *cmd,
 						t_list **head, int i);
 int					check_redirection(char *cmd, int i);
-void				fill_append(smash_kit *s, char *cmd, int i);
-void				fill_in_out_app_hered(smash_kit *s,
+void				fill_append(t_smash_kit *s, char *cmd, int i);
+void				fill_in_out_app_hered(t_smash_kit *s,
 						char *cmd, t_list **head, int i);
+int					count_cmds(t_list *cmd);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);

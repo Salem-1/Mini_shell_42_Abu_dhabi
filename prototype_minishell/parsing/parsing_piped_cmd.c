@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/01 13:54:01 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/06 17:07:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,78 @@
 //TODO free all the malloced staff after pipes inshalla
 //do function to parse the pipe, return pipe count ant splitted piped cmd
 
-//modify this to handle other sep operations like > < >> <<
-//mdoify the split to ignore what is inside the "" and ''
+//check the single cmd for errors like / > < ;
+
+t_pipes	*parsing_piped_cmd(char *cmd)
+{
+	t_list				*smashed_cmd;
+	t_pipes				*t;
+	int					n_cmds;
+
+	t = NULL;
+	n_cmds = 0;
+	smashed_cmd = cmd_smasher(cmd, &smashed_cmd);
+	n_cmds = count_cmds(smashed_cmd);
+	printf("n_cmds = %d\n", n_cmds);
+	smashed_cmd = NULL;
+	// ft_lstclear(&smashed_cmd, del);
+	return (t);
+}
+
+int	count_cmds(t_list *cmd)
+{
+	t_list	*tmp;
+	int		n;
+
+	n = 1;
+	tmp = cmd;
+	while(tmp)
+	{
+		printf("flag = %c arg = ~%s~,\n", tmp->flag, (char *)tmp->content);
+		if (tmp->flag != 'c')
+			n++;
+		tmp = tmp->next;
+	}
+	return (n);
+	
+}
+
+/*
+t_pipes	*parsing_piped_cmd(char *cmd)
+{
+	t_parsed_command	*one_cmd;
+	t_pipes				*t;
+	t_list				*smashed_cmd;
+	int					i;
+
+	i = 0;
+	t = NULL;
+	smashed_cmd = cmd_smasher(cmd, &smashed_cmd);
+	init_one_cmd(one_cmd);
+	one_cmd->before_sep = '\0';
+	while(smashed_cmd)
+	{
+		printf("New parsing in progress");
+		smashed_cmd = smashed_cmd->next;
+	exit(1);
+	}
+	return (t);
+}
+
+void	init_one_cmd(t_parsed_command *one_cmd)
+{
+	one_cmd->before_sep = '\0';
+	one_cmd->cmd = NULL;
+	one_cmd->args = NULL;
+	one_cmd->env = NULL;
+	one_cmd->splitted_cmd = NULL;
+	one_cmd->after_sep = '\0';
+	one_cmd->path = '\0';
+	one_cmd->index = 0;
+	return (one_cmd);
+}
+*/
+/*
 t_pipes	*parsing_piped_cmd(char *cmd)
 {
 	t_pipes	*t;
@@ -44,7 +114,7 @@ t_pipes	*parsing_piped_cmd(char *cmd)
 	t->npipes = i;
 	return (t);
 }
-
+*/
 //waiting for the magical function to ignore what is inside the "" and ''
 int	is_piped(char *cmd)
 {

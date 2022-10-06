@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/05 14:32:04 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/06 20:44:37 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*cmd_smasher(char *cmd, t_list **head)
 {
-	smash_kit	*s;
+	t_smash_kit	*s;
 
 	s = NULL;
 	s = init_smash_kit(s, head);
@@ -22,7 +22,7 @@ t_list	*cmd_smasher(char *cmd, t_list **head)
 	{
 		if (cmd_classifier(s, cmd) == 'r')
 		{
-			printf("inside classifire the cmd[%d] = (%c)\n", s->i, cmd[s->i]);
+			printf("redirection smasher cmd[%d] = (%c)\n", s->i, cmd[s->i]);
 			fill_redirection(s, cmd, head, s->i);
 		}
 		else if (cmd_classifier(s, cmd) == '\'')
@@ -38,7 +38,7 @@ t_list	*cmd_smasher(char *cmd, t_list **head)
 	return (*head);
 }
 
-char	cmd_classifier(smash_kit *s, char *cmd)
+char	cmd_classifier(t_smash_kit *s, char *cmd)
 {
 	int	i;
 
@@ -73,9 +73,9 @@ char	cmd_classifier(smash_kit *s, char *cmd)
 			= g give
 			= t take
 */
-smash_kit	*init_smash_kit(smash_kit *s, t_list **head)
+t_smash_kit	*init_smash_kit(t_smash_kit *s, t_list **head)
 {
-	s = malloc(sizeof(smash_kit) * 1);
+	s = malloc(sizeof(t_smash_kit) * 1);
 	if (!s)
 		return (NULL);
 	s->start = 0;

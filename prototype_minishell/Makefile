@@ -1,5 +1,5 @@
 NAME = minishell
-SRC = main.c executing/execute_one_command.c executing/exec_init.c executing/execute_with_pipe.c  executing/our_exec_operations.c\
+SRC = main.c executing/execute_one_command.c executing/exec_init.c   executing/our_exec_operations.c\
 	  parsing/parsing_one_command.c parsing/parsing_utils_1.c executing/multiple_pipes.c\
 	  parsing/clean_mem.c  parsing/parse_env.c parsing/parsing_piped_cmd.c \
 	  pro_parsing/cmd_smasher.c pro_parsing/classify_cmd.c pro_parsing/smash_redirections.c\

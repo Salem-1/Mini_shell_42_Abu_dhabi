@@ -6,31 +6,26 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/05 15:22:32 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/06 19:09:16 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//check for empty and spaces only cmds not to execute or add to his
-int		exit_shell = 0;
-
 int	main(int argc, char **argv, char **envp)
 {
 	struct sigaction	sa;
+	int					exit_shell;
 	char				*cmd;
 	t_list				*t_env;
-	t_list				*tmp;
+	t_pipes				*test;
 
+	exit_shell = 0;
 	sa.sa_handler = &handle_signals;
 	cmd = NULL;
 	t_env = NULL;
-	tmp = NULL;
 	if ((argc > 1 && argv) || (!envp))
-	{
-		printf("Error!\n./minishell  cannot take arguments\n");
 		return (0);
-	}
 	t_env = parse_env(envp, t_env);
 	sigaction(SIGINT, &sa, NULL);
 	sigaction(SIGQUIT, &sa, NULL);
@@ -39,11 +34,9 @@ int	main(int argc, char **argv, char **envp)
 		cmd = readline("minishell $> ");
 		if (cmd == NULL)
 			return (0);
-		tmp = cmd_smasher(cmd, &tmp);
-		
-		if (execution_operations(cmd, t_env, exit_shell) == 1)
-			return (0);
-		ft_lstclear(&tmp, del);
+		test = parsing_piped_cmd(cmd);
+		// if (execution_operations(cmd, t_env, exit_shell) == 1)
+		// 	return (0);
 	}
 }
 
@@ -55,15 +48,12 @@ void	handle_signals(int sig)
 		printf("\n");
 		rl_on_new_line ();
 		rl_redisplay();
-		// rl_clear_history();
 	}
 	else if (sig == SIGQUIT)
 	{
-		//printf("minishel $> ");
 		printf( "%c[K", ESC );
 		rl_on_new_line ();
 		rl_redisplay();
-		//rl_replace_line("", 0);
 	}
 
 }

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/01 11:27:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/06 15:09:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 
 	fd = NULL;
 	t = parsing_piped_cmd(cmd);
+	if (!t)
+		return ;
 	i = 0;
 	pid = 0;
 	fd = open_pipes(t->npipes, fd);
