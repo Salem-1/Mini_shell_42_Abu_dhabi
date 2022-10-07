@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/06 15:09:52 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/07 11:34:19 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 		return ;
 	i = 0;
 	pid = 0;
+	visualized_piped_cmd(t);
 	fd = open_pipes(t->npipes, fd);
+	printf(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<\n");
 	while (i < t->npipes)
 	{
 		pid = fork();
@@ -43,6 +45,8 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 
 void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 {
+	if (t->npipes == 1)
+		just_execve(t->single_cmd[i], env);
 	if (i == 0)
 		dup2(fd[i][1], STDOUT_FILENO);
 	else if (i == t->npipes -1)
@@ -66,6 +70,7 @@ void	close_files_and_wait(int **fd, struct t_pipes	*t)
 	while (i < t->npipes)
 	{
 		wait(&forwait);
+		printf(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<\n");
 		printf("The waited status exit code is %d\n", WEXITSTATUS(forwait));
 		i++;
 	}

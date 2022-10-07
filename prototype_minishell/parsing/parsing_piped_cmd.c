@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/06 17:07:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/07 19:10:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,108 @@ t_pipes	*parsing_piped_cmd(char *cmd)
 	t_list				*smashed_cmd;
 	t_pipes				*t;
 	int					n_cmds;
+	int					i;
 
+	i = 0;
 	t = NULL;
 	n_cmds = 0;
+	smashed_cmd = NULL;
 	smashed_cmd = cmd_smasher(cmd, &smashed_cmd);
 	n_cmds = count_cmds(smashed_cmd);
-	printf("n_cmds = %d\n", n_cmds);
-	smashed_cmd = NULL;
-	// ft_lstclear(&smashed_cmd, del);
+	t = init_t_struct(t, n_cmds);
+	fill_cmd(smashed_cmd, t, -1);
+	while (smashed_cmd)
+	{
+		printf("round %d\n", i);
+		smashed_cmd  = fill_cmd(smashed_cmd, t, i);
+		printf("i = %d  ", i);
+		// visualize_cmd(t->single_cmd[i]);
+		if (smashed_cmd)
+			smashed_cmd = smashed_cmd->next;
+		else
+			break ;
+		i++;
+	}
 	return (t);
 }
 
-int	count_cmds(t_list *cmd)
+t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 {
-	t_list	*tmp;
-	int		n;
+	int		n_args;
+	int		local_i;
 
-	n = 1;
-	tmp = cmd;
-	while(tmp)
+	local_i = 0;
+	if (i == -1)
 	{
-		printf("flag = %c arg = ~%s~,\n", tmp->flag, (char *)tmp->content);
-		if (tmp->flag != 'c')
-			n++;
+		t->single_cmd[0] = malloc(sizeof(t_parsed_command) * 1);
+		t->single_cmd[0]->before_sep = '\0';
+		return (smashed_cmd);
+	}
+	n_args = count_args_in_cmd(smashed_cmd);
+	printf("n_args = %d\n", n_args);
+	if (i > 0)
+	{
+		t->single_cmd[i] = malloc(sizeof(t_parsed_command) * 1);
+		t->single_cmd[i]->before_sep = t->single_cmd[i - 1]->after_sep;
+	}
+	t->single_cmd[i]->args = malloc(sizeof(char *) * n_args + 1);
+	while (smashed_cmd)
+	{
+		if (smashed_cmd->flag == '\0')
+		{
+			printf("I don't have such null flags\n");
+			return (NULL);
+		}
+		if (smashed_cmd->flag == 'c')
+		{
+			t->single_cmd[i]->args[local_i++] = (char *)smashed_cmd->content;
+		}
+		else
+		{
+			t->single_cmd[i]->after_sep = smashed_cmd->flag;
+			break ;
+		}
+		smashed_cmd = smashed_cmd->next;
+	}
+	t->single_cmd[i]->args[local_i] = NULL;
+	t->single_cmd[i]->cmd = t->single_cmd[i]->args[0];
+	t->single_cmd[i]->path = decide_rel_or_abs_path(t->single_cmd[i]->cmd);
+	if (!smashed_cmd)
+		t->single_cmd[i]->after_sep = '\0';
+	return (smashed_cmd);
+}
+
+char	decide_rel_or_abs_path(char *cmd)
+{
+	char	decision;
+
+	if (cmd[0] == '/')
+		decision = 'a';
+	else
+		decision = 'r';
+	return (decision);
+}
+
+int	count_args_in_cmd(t_list *smashed_cmd)
+{
+	int		i;
+	t_list	*tmp;
+
+	i = 0;
+	tmp = smashed_cmd;
+	if (!tmp)
+		return (0);
+	while (tmp->flag != 'c')
+		tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->flag == 'c')
+			i++;
+		else
+			return (i);
 		tmp = tmp->next;
 	}
-	return (n);
-	
+	return (i);
 }
 
 /*
@@ -116,19 +191,3 @@ t_pipes	*parsing_piped_cmd(char *cmd)
 }
 */
 //waiting for the magical function to ignore what is inside the "" and ''
-int	is_piped(char *cmd)
-{
-	static char *separeators[5] = {"|", ">", "<", "<<", ">>"};
-	int			i;
-	int			len_cmd;
-
-	i = 0;
-	len_cmd = ft_strlen(cmd);
-	while (i < 5)
-	{
-		if (ft_strnstr(cmd, separeators[i], len_cmd) != NULL)
-			return (1);
-		i++;
-	}
-	return (0);
-}

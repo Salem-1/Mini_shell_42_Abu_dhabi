@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/06 19:09:16 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/07 00:49:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char **argv, char **envp)
 	int					exit_shell;
 	char				*cmd;
 	t_list				*t_env;
-	t_pipes				*test;
 
 	exit_shell = 0;
 	sa.sa_handler = &handle_signals;
@@ -34,9 +33,8 @@ int	main(int argc, char **argv, char **envp)
 		cmd = readline("minishell $> ");
 		if (cmd == NULL)
 			return (0);
-		test = parsing_piped_cmd(cmd);
-		// if (execution_operations(cmd, t_env, exit_shell) == 1)
-		// 	return (0);
+		if (execution_operations(cmd, t_env, exit_shell) == 1)
+			return (0);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:09:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/05 15:23:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/07 11:38:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,18 @@ void	visualize_cmd(t_parsed_command *t)
 	i = 0;
 	if (!t)
 		return ;
-	printf("cmd :%s \nagrs: ", t->cmd);
+	printf("Visualizing cmd.........\n");
+	printf("cmd :%s  \npath is ~%c~   |\nagrs: ", t->cmd, t->path);
+	printf("sep_before = ~%c~ | sep after = ~%c~ \nagrs: ",
+		t->before_sep, t->after_sep);
+	printf("\n-------------------------\n");
 	while (t->args[i])
 	{
 		printf("%s ", t->args[i]);
 		i++;
 	}
+	printf("\n-------------------------\n");
+	printf("Cmd visualization end.........\n");
 	printf("\n");
 }
 
@@ -53,4 +59,18 @@ void	vis_smached_cmd(t_list **head)
 		printf("~%s~\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
+}
+
+void	visualized_piped_cmd(t_pipes *t)
+{
+	int	i;
+
+	i = 0;
+	printf("\nVisualizing piped cmd............\n");
+	while (i < t->npipes)
+	{
+		visualize_cmd(t->single_cmd[i]);
+		i++;
+	}
+	printf("End visualizing piped cmd............\n");
 }

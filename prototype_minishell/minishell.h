@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/06 15:08:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/07 11:33:36 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct t_pipes
 {
 	t_parsed_command	**single_cmd;
 	int					npipes;
-	struct t_pipes		*next;
 }	t_pipes;
 
 typedef struct smashing_kit
@@ -81,6 +80,11 @@ void				fill_append(t_smash_kit *s, char *cmd, int i);
 void				fill_in_out_app_hered(t_smash_kit *s,
 						char *cmd, t_list **head, int i);
 int					count_cmds(t_list *cmd);
+t_pipes				*init_t_struct(t_pipes *t,int n_cmds);
+t_list				*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i);
+int					count_args_in_cmd(t_list *smashed_cmd);
+char				decide_rel_or_abs_path(char *cmd);
+void				visualized_piped_cmd(t_pipes *t);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
