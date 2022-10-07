@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/07 11:34:19 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/08 00:31:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 	printf(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<\n");
 	while (i < t->npipes)
 	{
+		if (t->single_cmd[i]->before_sep == 'g')
+		{
+			i++;
+			continue ;
+		}
 		pid = fork();
 		if (pid == 0)
 		{
@@ -45,15 +50,26 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 
 void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 {
+	int	w_end;
+	int	r_end;
+
+	w_end = fd[i][1];
+	r_end = STDIN_FILENO;
 	if (t->npipes == 1)
 		just_execve(t->single_cmd[i], env);
+	if (t->single_cmd[i]->after_sep == 'g')
+	{
+		w_end = open(t->single_cmd[i + 1]->cmd, O_CREAT | O_WRONLY, 0644);
+		if (w_end == -1)
+			perror("open");
+	}
 	if (i == 0)
-		dup2(fd[i][1], STDOUT_FILENO);
+		dup2(w_end, STDOUT_FILENO);
 	else if (i == t->npipes -1)
 		dup2(fd[i -1][0], STDIN_FILENO);
 	else
 	{
-		dup2(fd[i][1], STDOUT_FILENO);
+		dup2(w_end, STDOUT_FILENO);
 		dup2(fd[i -1][0], STDIN_FILENO);
 	}
 	close_files(fd, t->npipes);
