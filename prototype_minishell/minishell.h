@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/07 11:33:36 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/08 18:32:11 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ t_list				*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i);
 int					count_args_in_cmd(t_list *smashed_cmd);
 char				decide_rel_or_abs_path(char *cmd);
 void				visualized_piped_cmd(t_pipes *t);
+int					count_outliar_redire(t_list *tmp);
+void				fill_outliar_redirected_cmd(
+						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
+void				fill_redirec_outliar_cmd_hard_coded(
+						t_pipes *t, int *i, t_list *smashed_cmd);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
@@ -100,7 +105,7 @@ void				close_files(int **fd, int npipes);
 int					**open_pipes(int n, int **fd);
 void				exec_multiple_pipes(char *cmd, t_list *env);
 void				close_files_and_wait(int **fd, struct t_pipes	*t);
-void				piping_and_redirections(int i,
+void				piping_and_redirections(int *i,
 						int **fd, struct t_pipes *t, t_list *env);
 //Executables
 int					is_in_our_executable(struct t_parsed_command *t

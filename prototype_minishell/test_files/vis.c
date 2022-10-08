@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:09:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/07 11:38:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/08 13:30:40 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	visualized_piped_cmd(t_pipes *t)
 
 	i = 0;
 	printf("\nVisualizing piped cmd............\n");
+	printf("\nnpipes = %d\n", t->npipes);
 	while (i < t->npipes)
 	{
 		visualize_cmd(t->single_cmd[i]);

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/08 00:31:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/08 18:36:16 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 		pid = fork();
 		if (pid == 0)
 		{
-			piping_and_redirections(i, fd, t, env);
+			piping_and_redirections(&i, fd, t, env);
 			return ;
 		}
 		i++;
@@ -48,32 +48,47 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 	return ;
 }
 
-void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
+void	piping_and_redirections(int *i, int **fd, struct t_pipes *t, t_list *env)
 {
-	int	w_end;
-	int	r_end;
-
-	w_end = fd[i][1];
-	r_end = STDIN_FILENO;
 	if (t->npipes == 1)
-		just_execve(t->single_cmd[i], env);
-	if (t->single_cmd[i]->after_sep == 'g')
 	{
-		w_end = open(t->single_cmd[i + 1]->cmd, O_CREAT | O_WRONLY, 0644);
-		if (w_end == -1)
+		just_execve(t->single_cmd[*i], env);
+	}
+	//this is a separet function for redirections
+	if (t->single_cmd[*i]->after_sep == 'g')
+	{
+		fd[*i][1] = open(t->single_cmd[*i + 1]->cmd,
+				O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (fd[*i][1] == -1)
 			perror("open");
 	}
-	if (i == 0)
-		dup2(w_end, STDOUT_FILENO);
-	else if (i == t->npipes -1)
-		dup2(fd[i -1][0], STDIN_FILENO);
+	else if (t->single_cmd[*i]->after_sep == 'a')
+	{
+		fd[*i][1] = open(t->single_cmd[*i + 1]->cmd,
+				O_CREAT | O_APPEND |O_WRONLY, 0644);
+		if (fd[*i][1] == -1)
+			perror("open");
+	}
+	else if (t->single_cmd[*i]->after_sep == 't')
+	{
+		fd[*i -1][0]  = open(t->single_cmd[*i + 1]->cmd, O_RDONLY);
+		if (fd[*i -1][0] == -1)
+			perror("open");
+	}
+	//function ends
+	if (*i == 0)
+		dup2(fd[*i][1], STDOUT_FILENO);
+	else if (*i == t->npipes -1)
+		dup2(fd[*i -1][0], STDIN_FILENO);
 	else
 	{
-		dup2(w_end, STDOUT_FILENO);
-		dup2(fd[i -1][0], STDIN_FILENO);
+		dup2(fd[*i][1], STDOUT_FILENO);
+		dup2(fd[*i -1][0], STDIN_FILENO);
 	}
 	close_files(fd, t->npipes);
-	just_execve(t->single_cmd[i], env);
+	if (t->single_cmd[*i]->before_sep == 't')
+		return ;
+	just_execve(t->single_cmd[*i], env);
 }
 
 void	close_files_and_wait(int **fd, struct t_pipes	*t)

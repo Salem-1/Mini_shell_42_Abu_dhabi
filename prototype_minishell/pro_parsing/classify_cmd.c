@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/07 20:25:19 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/08 13:47:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	spaces_smash(t_smash_kit *s, char *cmd, t_list *tmp, t_list **head)
 		|| !cmd[s->i + 1])
 	{
 		s->end = s->i;
+		//apply the expansion function before filling that 
+		//takes checks the $ then expand it 
+		//free old string then save the new string instead
 		tmp = fill_cmd_node(ft_substr(cmd, s->start,s->end - s->start + 1)
 				, 'c');
 		ft_lstadd_back(head, tmp);
@@ -41,9 +44,12 @@ void	double_qoute_smash(t_smash_kit *s, char *cmd, t_list *tmp,
 		return ;
 	if (cmd[s->i] == '"')
 	{
+		//make outliar function to check the word write after the double quote
 		s->end = s->i ;
 		tmp = fill_cmd_node(ft_substr(cmd, s->start + 1,
 					s->end - s->start -1 ), 'c');
+		//apply the expansion function inside the fillnode to 
+		//join the new string with expanded values
 		ft_lstadd_back(head, tmp);
 		s->end = 0;
 		s->flag = 'i';
