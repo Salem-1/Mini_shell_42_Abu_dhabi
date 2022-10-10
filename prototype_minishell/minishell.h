@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/08 18:32:11 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/10 06:49:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,18 @@ void				fill_append(t_smash_kit *s, char *cmd, int i);
 void				fill_in_out_app_hered(t_smash_kit *s,
 						char *cmd, t_list **head, int i);
 int					count_cmds(t_list *cmd);
-t_pipes				*init_t_struct(t_pipes *t,int n_cmds);
+t_pipes				*init_t_struct(t_pipes *t,int n_cmds, t_list *smashed_cmd);
 t_list				*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i);
 int					count_args_in_cmd(t_list *smashed_cmd);
 char				decide_rel_or_abs_path(char *cmd);
 void				visualized_piped_cmd(t_pipes *t);
-int					count_outliar_redire(t_list *tmp);
+int					count_outliar_redire(t_list *tmp, int i);
 void				fill_outliar_redirected_cmd(
 						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
 void				fill_redirec_outliar_cmd_hard_coded(
 						t_pipes *t, int *i, t_list *smashed_cmd);
+void				fill_outliar_input(
+						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
@@ -105,8 +107,14 @@ void				close_files(int **fd, int npipes);
 int					**open_pipes(int n, int **fd);
 void				exec_multiple_pipes(char *cmd, t_list *env);
 void				close_files_and_wait(int **fd, struct t_pipes	*t);
-void				piping_and_redirections(int *i,
-						int **fd, struct t_pipes *t, t_list *env);
+void				piping_and_redirections(
+						int i, int **fd, struct t_pipes *t, t_list *env);
+void				case_input_file_cat(
+						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
+void				case_input_file_cat_otherfiles(
+						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
+void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
+
 //Executables
 int					is_in_our_executable(struct t_parsed_command *t
 						, t_list *env);
@@ -122,7 +130,7 @@ t_list				*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp,
 int					is_repeated(char *cmd, t_list **env);
 void				exec_our_cmd(struct t_parsed_command *t, t_list *env);
 void				exec_env(t_list **env);
-void				exec_pwd();
+void				exec_pwd(void);
 void				exec_export(struct t_parsed_command *t, t_list **env);
 int					valid_export_arg(char *str);
 int					find_msize(char *cmd);
@@ -138,6 +146,8 @@ void				exec_echo(struct t_parsed_command *t);
 void				exec_exit(struct t_parsed_command *t, int exit_shell);
 int					tedous_n(struct t_parsed_command *t);
 void				vis_list(t_list **env, char is_env_or_exp);
+void				output_append_execution(t_pipes *t, int **fd, int i);
+void				input_execution(t_pipes *t, int **fd, int i);
 //signals handling
 void					handle_signals(int sig);
 

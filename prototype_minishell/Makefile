@@ -5,7 +5,7 @@ SRC = main.c executing/execute_one_command.c executing/exec_init.c   executing/o
 	  pro_parsing/cmd_smasher.c pro_parsing/classify_cmd.c pro_parsing/smash_redirections.c\
 	  bins/cd.c bins/echo.c bins/env_pwd.c  bins/exit.c bins/export.c  bins/unset.c bins/raise_builtin_errors.c \
 	  test_files/vis.c 
-CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3 \
+CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3
 		
 
 CC = gcc 
@@ -17,6 +17,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C libft/.
 	$(CC)  $(CFLAGS)  $(OBJ) -L/usr/local/opt/readline/lib -lreadline $(LIBS) -o $(NAME)
+	cp minishell ../sand_box_shell/.
 	clear
 
 

@@ -1,2 +1,2 @@
-hi hello
+hi
 Remember to clean everything before exititng

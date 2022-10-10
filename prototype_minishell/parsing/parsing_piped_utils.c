@@ -6,54 +6,53 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 06:20:20 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/07 06:24:22 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/10 06:45:53 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	count_cmds(t_list *cmd)
+void	malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i)
+{
+	if (i == 0)
+	{
+		t->single_cmd[0] = malloc(sizeof(t_parsed_command) * 1);
+		t->single_cmd[0]->before_sep = '\0';
+	}
+	else if (i > 0)
+	{
+		t->single_cmd[i] = malloc(sizeof(t_parsed_command) * 1);
+		t->single_cmd[i]->before_sep = t->single_cmd[i - 1]->after_sep;
+	}
+	else
+		printf("This is a bug in malloc_single_cmd, i = %d\n", i);
+}
+
+//expand this one to include the take and heredoc if needed
+//the i = -1 is potential error for segfualts check for it
+int	count_outliar_redire(t_list *cmd, int i)
 {
 	t_list	*tmp;
-	int		n;
 
-	n = 1;
+	printf("entering out count i = %d\n", i);
+	if (i < -1)
+		i = -1;
 	tmp = cmd;
-	while (tmp)
+	if (!tmp)
+		return (0);
+	if (tmp->flag == 'a' || tmp->flag == 'g' || tmp->flag == 't')
 	{
-		printf("flag = %c arg = ~%s~,\n", tmp->flag, (char *)tmp->content);
-		if (tmp->flag != 'c')
-			n++;
 		tmp = tmp->next;
-	}
-	return (n);
-}
-
-int	is_piped(char *cmd)
-{
-	static char	*separeators[5] = {"|", ">", "<", "<<", ">>"};
-	int			i;
-	int			len_cmd;
-
-	i = 0;
-	len_cmd = ft_strlen(cmd);
-	while (i < 5)
-	{
-		if (ft_strnstr(cmd, separeators[i], len_cmd) != NULL)
-			return (1);
-		i++;
+		while (tmp)
+		{
+			if (tmp->flag == 'c')
+				i++;
+			else
+				break ;
+			tmp = tmp->next;
+		}
+		printf("\nOutliar redirects cmds %d\n", i);
+		return (i);
 	}
 	return (0);
-}
-
-t_pipes	*init_t_struct(t_pipes *t,int n_cmds)
-{
-	t = malloc(sizeof(t_pipes) * 1);
-	if (!t)
-		return (NULL);
-	t->npipes = n_cmds;
-	t->single_cmd = malloc(sizeof(t_parsed_command *) * n_cmds + 1);
-	if (!t->single_cmd)
-		return (NULL);
-	return (t);
 }

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/25 07:27:38 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/10 06:40:05 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	free_cmd(t_parsed_command	*t)
 	i = 0;
 	while (t->splitted_cmd[i])
 	{
-		free(t->splitted_cmd[i++]);
+		free(t->splitted_cmd[i]);
+		i++;
 	}
+	free_split((void **)t->args);
 	free(t);
 }
 

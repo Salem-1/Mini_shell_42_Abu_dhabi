@@ -6,13 +6,14 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/05 16:37:07 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/10 05:58:27 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //remember to check for the bash buffer size
+
 t_parsed_command	*parse_one_cmd(char *command)
 {
 	t_parsed_command	*t;
@@ -59,6 +60,34 @@ int	cmd_not_empty(char *cmd)
 	while (cmd[i])
 	{
 		if (!ft_isspace(&cmd[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	decide_rel_or_abs_path(char *cmd)
+{
+	char	decision;
+
+	if (cmd[0] == '/')
+		decision = 'a';
+	else
+		decision = 'r';
+	return (decision);
+}
+
+int	is_piped(char *cmd)
+{
+	static char	*separeators[5] = {"|", ">", "<", "<<", ">>"};
+	int			i;
+	int			len_cmd;
+
+	i = 0;
+	len_cmd = ft_strlen(cmd);
+	while (i < 5)
+	{
+		if (ft_strnstr(cmd, separeators[i], len_cmd) != NULL)
 			return (1);
 		i++;
 	}

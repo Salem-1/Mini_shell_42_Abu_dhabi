@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:54:37 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/27 16:37:19 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/10 05:57:07 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ char	**join_env(t_list *t_env)
 	return (envp);
 }
 
-// printf("tmp content = %s\n", (char *)(tmp_node)->content);
