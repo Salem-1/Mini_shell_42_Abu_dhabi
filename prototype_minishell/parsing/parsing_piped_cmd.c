@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 06:48:46 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/10 08:16:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,17 @@ t_pipes	*parsing_piped_cmd(char *cmd)
 	return (t);
 }
 
+//norm = n_lines this fun - 1
 t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 {
 	int		n_args;
 	int		local_i;
 
-	local_i = 0;
-	n_args = count_args_in_cmd(smashed_cmd);
-	printf("Single_cmd n_args = %d\n", n_args);
-	malloc_single_cmd_in_t_piped_cmd(t, i);
-	t->single_cmd[i]->args = malloc(sizeof(char *) * n_args + 1);
+	n_args = init_fill_cmd(&local_i, &i, t, smashed_cmd);
 	while (smashed_cmd)
 	{
 		if (smashed_cmd->flag == '\0')
-		{
 			printf("I don't have such null flags\n");
-			return (NULL);
-		}
 		if (smashed_cmd->flag == 'c')
 			t->single_cmd[i]->args[local_i++] = (char *)smashed_cmd->content;
 		else
@@ -95,99 +89,27 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 		}
 		smashed_cmd = smashed_cmd->next;
 	}
-	t->single_cmd[i]->args[local_i] = NULL;
-	printf("Am I seg here 1\n");
-	t->single_cmd[i]->cmd = t->single_cmd[i]->args[0];
-	printf("Am I seg here 2 cmd = %s i = %d, local_i = %d \n", t->single_cmd[i]->cmd, i, local_i);
-	t->single_cmd[i]->path = decide_rel_or_abs_path(t->single_cmd[i]->cmd);
-	printf("Am I seg here 3\n");
-	if (!smashed_cmd)
-		t->single_cmd[i]->after_sep = '\0';
-	printf("Am I seg here 4\n");
+	decide_rel_abs_fill_cmd_null_arg(smashed_cmd, t, i, local_i);
 	return (smashed_cmd);
 }
-/*
-	count args after the n_args
-	if at the begining
-	if 1 act normally
-	if 2 shuffle the order
-	if 3 ignore t and next c then fill the rest normally
-	if < in the middle and n_args > 1 then ignore < file
-	and join the command so 
-	cat < file.txt f2 f3 f4   will be
-	cat f2 f3 f4
-*/
 
-void	fill_outliar_input(t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
-{
-	int	after_red;
-	int	j;
-
-	if (t->single_cmd[*i]->before_sep == '\0')
-		after_red = count_outliar_redire(smashed_cmd, 0);
-	else
-		after_red = count_outliar_redire(smashed_cmd, -1);
-	if (after_red == 0)
-		return ;
-	j = 0;
-	t->single_cmd[*i + 1] = malloc(sizeof(t_parsed_command) * 1);
-	if (!t->single_cmd[*i + 1])
-		return ;
-	//fille the outliar cases for the first cmd
-	if (t->single_cmd[*i]->before_sep == '\0')
-	{
-		if (after_red == 2)
-			case_input_file_cat(smashed_cmd, t, i, local_i);
-		// else if (after_red > 2)
-		// 	case_input_file_cat_otherfiles(smashed_cmd, t, i, local_i);
-		
-		printf("###Calling case %s 1\n", t->single_cmd[*i]->cmd);
-		return ;
-	}
-}
 /*
-void	case_input_file_cat_otherfiles(t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
-{
-	smashed_cmd = smashed_cmd->next->next;
-	t->single_cmd[*i]->args = malloc(sizeof(char *) * after_red);
-	while ( smashed_cmd && j < after_red - 1)
-	{
-		if (smashed_cmd->flag == 'c')
-			t->single_cmd[*i]->args[j] = (char *)smashed_cmd->content;
-		else
-			break;
-		j++;
-		smashed_cmd = smashed_cmd->next;
-	}
-	if (smashed_cmd)
-	{
-		t->single_cmd[*i]->after_sep = smashed_cmd->flag;
-		smashed_cmd = smashed_cmd->next;
-	}
-	else
-		t->single_cmd[*i]->after_sep = '\0';
-	return ;
-}
-*/
-/*
-	convert 
-	< file.txt cat
-	to 
-	cat < file.txt
-*/
+Outliar cases:
 
-void	case_input_file_cat(t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
-{
-	t->single_cmd[*i]->after_sep = 't';
-	t->single_cmd[*i]->args = malloc(sizeof(char *) * 2);
-	t->single_cmd[*i]->args[0] =
-		(char *)smashed_cmd->next->next->content;
-	t->single_cmd[*i]->args[1] = NULL;
-	t->single_cmd[*i]->cmd = t->single_cmd[*i]->args[0];
-	fill_redirec_outliar_cmd_hard_coded(t, i, smashed_cmd);
-	smashed_cmd = smashed_cmd->next->next->next;
-	(*local_i) += 1;
-}
+Creates the file.txt and put the echo cmd output inside it
+	>file.txt echo is this going to be printed
+	cat file.txt
+	is this going to be printed
+	
+Create file.txt and put in it echo hello hi
+	echo hi > file.txt hello ho
+the fill_redirec_outliar_cmd_hard_coded() do the following
+	fill this part only  
+	> file.txt
+	
+which means it fills the next command with > file.txt
+before filling the current command okay
+*/
 
 void	fill_outliar_redirected_cmd(
 	t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
@@ -214,40 +136,14 @@ void	fill_outliar_redirected_cmd(
 		j++;
 	}
 }
-/*
-Outliar cases:
 
-Creates the file.txt and put the echo cmd output inside it
-	>file.txt echo is this going to be printed
-	cat file.txt
-	is this going to be printed
-	
-Create file.txt and put in it echo hello hi
-	echo hi > file.txt hello ho
-the fill_redirec_outliar_cmd_hard_coded() do the following
-	fill this part only  
-	> file.txt
-	
-which means it fills the next command with > file.txt
-before filling the current command okay
-*/
-
-void	fill_redirec_outliar_cmd_hard_coded(
-	t_pipes *t, int *i, t_list *smashed_cmd)
-{
-	t->single_cmd[*i + 1]->before_sep = smashed_cmd->flag;
-	t->single_cmd[*i + 1]->args = malloc(sizeof(char *) * 2);
-	if (!t->single_cmd[*i + 1]->args)
-		return ;
-	t->single_cmd[*i + 1]->args[0] = (char *)smashed_cmd->next->content;
-	t->single_cmd[*i + 1]->args[1] = NULL;
-	t->single_cmd[*i + 1]->cmd = (char *)smashed_cmd->next->content;
-}
 
 
 
 
 /*
+//Depricated function
+//Important to keep as example for filling t_pipes methodology
 t_pipes	*parsing_piped_cmd(char *cmd)
 {
 	t_parsed_command	*one_cmd;

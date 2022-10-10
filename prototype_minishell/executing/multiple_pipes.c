@@ -6,15 +6,17 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/09 16:36:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/10 18:55:25 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //t->npipes is number of pipes + 1 just for sake of simplicity
+
 void	exec_multiple_pipes(char *cmd, t_list *env)
-{	struct t_pipes	*t;
+{
+	struct t_pipes	*t;
 	int				**fd;
 	int				pid;
 	int				i;
@@ -43,11 +45,22 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 		}
 		if (t->single_cmd[i]->after_sep == 't')
 			i++;
+		//increment the i for the heredoc sake after finishing the heredoc inshalla
 		i++;
 	}
 	close_files_and_wait(fd, t);
 	return ;
 }
+
+//Inshalla
+//if there is heredoc after
+//hold on don't execute current command
+//use the command after the heredoc as delimiter
+//read in a loop till you hit the delimiter
+//read everything to the pipe end
+//after finishing dup the stin to the written pipe
+//write to the standard out put
+//test and celebrate
 
 void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 {
@@ -60,6 +73,15 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	if (t->single_cmd[i]->after_sep == 'g'
 		|| t->single_cmd[i]->after_sep == 'a')
 		output_append_execution(t, fd, i);
+	else if (t->single_cmd[i]->after_sep == 'h' || t->single_cmd[i]->before_sep == 'h')
+	{	
+		if (t->single_cmd[i]->before_sep == 'h')
+			exec_exit(t->single_cmd[i], 0);
+		lets_heredoc(fd, &i, t);
+		dup2(fd[i][0], STDIN_FILENO);
+		close_files(fd, t->npipes);
+		just_execve(t->single_cmd[i], env);
+	}
 	if (i == 0 )
 		dup2(fd[i][1], STDOUT_FILENO);
 	else if (i == t->npipes -1)
@@ -71,39 +93,6 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	}
 	close_files(fd, t->npipes);
 	just_execve(t->single_cmd[i], env);
-}
-
-void	output_append_execution(t_pipes *t, int **fd, int i)
-{
-	if (t->single_cmd[i]->after_sep == 'g')
-	{
-		close(fd[i][1]);
-		fd[i][1] = open(t->single_cmd[i + 1]->cmd,
-				O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (fd[i][1] == -1)
-			perror("open");
-	}
-	else if (t->single_cmd[i]->after_sep == 'a')
-	{
-		close(fd[i][i]);
-		fd[i][1] = open(t->single_cmd[i + 1]->cmd,
-				O_CREAT | O_APPEND |O_WRONLY, 0644);
-		if (fd[i][1] == -1)
-			perror("open");
-	}
-}
-
-void	input_execution(t_pipes *t, int **fd, int i)
-{
-	if (t->single_cmd[i]->after_sep == 't')
-	{
-		close(fd[i][0]);
-		fd[i][0] = open(t->single_cmd[i + 1]->cmd, O_RDONLY);
-		if (fd[i][0] == -1)
-			perror("open");
-		dup2(fd[i][0], STDIN_FILENO);
-		close_files(fd, t->npipes);
-	}
 }
 
 void	close_files_and_wait(int **fd, struct t_pipes	*t)

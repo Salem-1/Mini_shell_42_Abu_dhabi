@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 06:49:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/10 13:55:38 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,12 @@ void				fill_redirec_outliar_cmd_hard_coded(
 						t_pipes *t, int *i, t_list *smashed_cmd);
 void				fill_outliar_input(
 						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
+void				decide_rel_abs_fill_cmd_null_arg(
+						t_list *smashed_cmd, t_pipes *t, int i, int local_i);
+int					add_content_to_single_cmd_arg(t_parsed_command *single_cmd,
+						int *local_i, t_list *smashed_cmd);
+int				init_fill_cmd(int *local_i, int *i, t_pipes * t,
+						t_list *smashed_cmd);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
@@ -148,6 +154,10 @@ int					tedous_n(struct t_parsed_command *t);
 void				vis_list(t_list **env, char is_env_or_exp);
 void				output_append_execution(t_pipes *t, int **fd, int i);
 void				input_execution(t_pipes *t, int **fd, int i);
+//heredoc
+
+void				lets_heredoc(int **fd, int *i, struct t_pipes *t);
+
 //signals handling
 void					handle_signals(int sig);
 
