@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 13:55:38 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/11 09:40:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,9 @@ void				decide_rel_abs_fill_cmd_null_arg(
 						t_list *smashed_cmd, t_pipes *t, int i, int local_i);
 int					add_content_to_single_cmd_arg(t_parsed_command *single_cmd,
 						int *local_i, t_list *smashed_cmd);
-int				init_fill_cmd(int *local_i, int *i, t_pipes * t,
+int					init_fill_cmd(int *local_i, int *i, t_pipes * t,
 						t_list *smashed_cmd);
+char				*expand_var(t_smash_kit *s, char *cmd, char flag);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);

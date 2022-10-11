@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:41:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 15:11:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/10 19:22:27 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ void	free_split(void **splited);
 char	*env_strjoin(char *tmp, char *reader, size_t counter);
 int		ft_isspace(const char *c);
 int		ft_strnchr(const char *s, int c);
+void	ft_putstr(const char *s);
 #endif
