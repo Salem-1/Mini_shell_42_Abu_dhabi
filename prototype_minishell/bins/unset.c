@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 09:39:54 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/11 09:37:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/11 20:28:16 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	valid_export_arg(char *str)
 		return (0);
 	if (!(ft_isalpha(str[0]) || str[0] == '_'))
 	{
-		printf("throw an error (%s)\n", str);
+		printf("throw an error (%s) inside valid_export_error()\n", str);
 		return (0);
 	}
 	while (str[i])

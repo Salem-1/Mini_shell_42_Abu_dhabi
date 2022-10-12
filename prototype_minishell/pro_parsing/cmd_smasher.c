@@ -6,18 +6,18 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/07 20:17:24 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/11 17:53:05 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*cmd_smasher(char *cmd, t_list **head)
+t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env)
 {
 	t_smash_kit	*s;
 
 	s = NULL;
-	s = init_smash_kit(s, head);
+	s = init_smash_kit(s, head, env);
 	while (cmd[s->i])
 	{
 		if (cmd_classifier(s, cmd) == 'r')
@@ -73,7 +73,7 @@ char	cmd_classifier(t_smash_kit *s, char *cmd)
 			= g give
 			= t take
 */
-t_smash_kit	*init_smash_kit(t_smash_kit *s, t_list **head)
+t_smash_kit	*init_smash_kit(t_smash_kit *s, t_list **head, t_list *env)
 {
 	s = malloc(sizeof(t_smash_kit) * 1);
 	if (!s)
@@ -83,6 +83,7 @@ t_smash_kit	*init_smash_kit(t_smash_kit *s, t_list **head)
 	s->i = 0;
 	s->tmp = *head;
 	s->flag = 'i';
+	s->env = env;
 	return (s);
 }
 
