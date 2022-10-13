@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/13 21:43:20 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 01:05:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,18 +111,21 @@ void				decide_rel_abs_fill_cmd_null_arg(
 						t_list *smashed_cmd, t_pipes *t, int i, int local_i);
 int					add_content_to_single_cmd_arg(t_parsed_command *single_cmd,
 						int *local_i, t_list *smashed_cmd);
-int					init_fill_cmd(int *local_i, int *i, t_pipes * t,
+int					init_fill_cmd(int *local_i, int *i, t_pipes *t,
 						t_list *smashed_cmd);
 char				*expand_var(t_smash_kit *s, char *cmd, int *exit_status);
 int					get_end_of_var(char *var);
-char				*search_expanded_var(t_list *t_env, char *env_variable, int *exit_status);
-int					dollar_expan_operation_loop(
-						t_dollar_expansion_kit *e, t_smash_kit *s, int *exit_status);
+char				*search_expanded_var(t_list *t_env,
+						char *env_variable, int *exit_status);
+int					dollar_expan_operation_loop(t_dollar_expansion_kit *e,
+						t_smash_kit *s, int *exit_status);
+char				*handle_outliar_quote(
+						t_smash_kit *s, char flag, char *cmd, int *exit_status);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
 void				free_cmd(t_parsed_command *t);
-char				*search_path_for_bin(char *split_command_0,t_list *env);
+char				*search_path_for_bin(char *split_command_0, t_list *env);
 void				just_execve(t_parsed_command	*t, t_list *t_env);
 int					execution_operations(char *cmd, t_list *t_env,
 						int *exit_status);
@@ -133,7 +136,8 @@ void				close_files(int **fd, int npipes);
 int					**open_pipes(int n, int **fd);
 void				exec_multiple_pipes(
 						char *cmd, t_list *env, int *exit_status);
-void				close_files_and_wait(int **fd, struct t_pipes	*t, int *exit_status);
+void				close_files_and_wait(int **fd,
+						struct t_pipes	*t, int *exit_status);
 void				piping_and_redirections(
 						int i, int **fd, struct t_pipes *t, t_list *env);
 void				case_input_file_cat(

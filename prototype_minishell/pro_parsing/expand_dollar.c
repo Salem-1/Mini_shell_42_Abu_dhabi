@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:21:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/13 21:49:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 00:49:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	e.tmp = NULL;
 	e.end = 0;
 	e.new_arg = NULL;
-	e.smashed_arg = ft_substr(cmd, s->start, s->end - s->start + 1);
+	if (cmd[s->start] == '"')
+		e.smashed_arg = ft_substr(cmd,  s->start + 1, s->end - s->start -1);
+	else
+		e.smashed_arg = ft_substr(cmd, s->start, s->end - s->start + 1);
 	printf("smashed arg = %s\n", e.smashed_arg);
 	e.start = ft_strnchr(e.smashed_arg, '$');
 	printf("START = %d\n", e.start);
@@ -67,8 +70,8 @@ int	dollar_expan_operation_loop(
 	}
 	else
 	{
-		e->new_arg = ft_expand_strjoin(e->new_arg, ft_strdup("$"));
-		e->new_arg = ft_expand_strjoin(e->new_arg, e->var_key);
+		// e->new_arg = ft_expand_strjoin(e->new_arg, ft_strdup("$"));
+		// e->new_arg = ft_expand_strjoin(e->new_arg, e->var_key);
 	}
 	e->smashed_arg += e->start + e->end + 1; 
 	e->start = ft_strnchr(e->smashed_arg, '$');
