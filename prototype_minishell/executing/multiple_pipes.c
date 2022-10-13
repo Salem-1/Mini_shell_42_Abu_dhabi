@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/11 17:51:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/13 21:47:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //t->npipes is number of pipes + 1 just for sake of simplicity
 
-void	exec_multiple_pipes(char *cmd, t_list *env)
+void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 {
 	struct t_pipes	*t;
 	int				**fd;
@@ -22,7 +22,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 	int				i;
 
 	fd = NULL;
-	t = parsing_piped_cmd(cmd, env);
+	t = parsing_piped_cmd(cmd, env, exit_status);
 	if (!t)
 		return ;
 	i = 0;
@@ -48,7 +48,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env)
 		//increment the i for the heredoc sake after finishing the heredoc inshalla
 		i++;
 	}
-	close_files_and_wait(fd, t);
+	close_files_and_wait(fd, t, exit_status);
 	return ;
 }
 
@@ -95,7 +95,7 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	just_execve(t->single_cmd[i], env);
 }
 
-void	close_files_and_wait(int **fd, struct t_pipes	*t)
+void	close_files_and_wait(int **fd, struct t_pipes	*t, int *exit_satus)
 {
 	int	forwait;
 	int	i;
@@ -106,7 +106,8 @@ void	close_files_and_wait(int **fd, struct t_pipes	*t)
 	{
 		wait(&forwait);
 		printf(">>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<\n");
-		printf("The waited status exit code is %d\n", WEXITSTATUS(forwait));
+		*exit_satus = WEXITSTATUS(forwait);
+		printf("The waited status exit code is %d\n", *exit_satus);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/11 17:54:25 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/13 21:37:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@
  //test
  //one utils for the helper funtionss
 
-
-
-t_pipes	*parsing_piped_cmd(char *cmd, t_list *env)
+t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 {
 	t_list				*smashed_cmd;
 	t_pipes				*t;
@@ -44,7 +42,7 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env)
 	t = NULL;
 	n_cmds = 0;
 	smashed_cmd = NULL;
-	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env);
+	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env, exit_status);
 	n_cmds = count_cmds(smashed_cmd);
 	printf("n_cmds = %d\n", n_cmds);
 	t = init_t_struct(t, n_cmds, smashed_cmd);

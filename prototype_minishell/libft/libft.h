@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:41:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/12 08:23:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/13 13:20:31 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ char	*env_strjoin(char *tmp, char *reader, size_t counter);
 int		ft_isspace(const char *c);
 int		ft_strnchr(const char *s, int c);
 void	ft_putstr(const char *s);
-char	*expand_strjoin(char *tmp, char *reader);
+char	*ft_expand_strjoin(char *s1, char *s2);
 #endif

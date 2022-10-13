@@ -1,10 +1,18 @@
 NAME = minishell
-SRC = main.c executing/execute_one_command.c executing/redirections_exec.c executing/exec_init.c   executing/our_exec_operations.c\
-	  parsing/parsing_one_command.c parsing/parsing_utils_1.c executing/multiple_pipes.c\
-	  parsing/clean_mem.c  parsing/parse_env.c parsing/parsing_piped_cmd.c parsing/parsing_piped_utils.c parsing/outliar_redirect_parse.c\
-	  pro_parsing/cmd_smasher.c pro_parsing/classify_cmd.c pro_parsing/smash_redirections.c\
-	  bins/cd.c bins/echo.c bins/env_pwd.c  bins/exit.c bins/export.c  bins/unset.c bins/raise_builtin_errors.c \
-	  test_files/vis.c 
+SRC =	main.c \
+		executing/execute_one_command.c executing/redirections_exec.c executing/exec_init.c   executing/our_exec_operations.c\
+		parsing/parsing_one_command.c parsing/parsing_utils_1.c \
+		executing/multiple_pipes.c\
+		parsing/clean_mem.c  parsing/parse_env.c \
+		parsing/parsing_piped_cmd.c parsing/parsing_piped_utils.c\
+		parsing/outliar_redirect_parse.c\
+		pro_parsing/cmd_smasher.c pro_parsing/classify_cmd.c \
+		pro_parsing/smash_redirections.c\
+		pro_parsing/expand_dollar.c\
+		bins/cd.c bins/echo.c bins/env_pwd.c \
+		bins/exit.c bins/export.c  bins/unset.c \
+		bins/raise_builtin_errors.c \
+		test_files/vis.c 
 CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3
 		
 

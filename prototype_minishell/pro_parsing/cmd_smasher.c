@@ -6,13 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/11 17:53:05 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/13 21:37:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env)
+t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 {
 	t_smash_kit	*s;
 
@@ -28,9 +28,9 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env)
 		else if (cmd_classifier(s, cmd) == '\'')
 			single_qoute_smach(s, cmd, s->tmp, head);
 		else if (cmd_classifier(s, cmd) == '"')
-			double_qoute_smash(s, cmd, s->tmp, head);
+			double_qoute_smash(s, cmd, head, exit_status);
 		else
-			spaces_smash(s, cmd, s->tmp, head);
+			spaces_smash(s, cmd,  head, exit_status);
 		s->i++;
 	}
 	vis_smached_cmd(head);
