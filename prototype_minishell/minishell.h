@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 09:15:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 16:19:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,10 @@ void				exec_unset(struct t_parsed_command *t, t_list **env, int i);
 t_list				*search_env(t_list *t_env, char *env_variable, char flag);
 void				clear_var(t_list *delete_me, t_list **env);
 void				unset_error(char *env_variable);
-void				exec_cd(struct t_parsed_command *t, t_list **env);
+void				exec_cd(struct t_parsed_command *t,
+						t_list **env, t_pipes *all_cmds);
+void				fill_old_and_current_pwd(t_list **env,
+						char *old_path, char *current_path);
 void				cd_error(char *error_path, char flag);
 void				exec_local_export(char *local_var, t_list **env, char flag);
 void				exec_echo(struct t_parsed_command *t);

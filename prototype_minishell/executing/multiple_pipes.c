@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 07:39:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 18:36:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 			i++;
 			continue ;
 		}
+		// exec_export_unset_cd_in_parent(i, fd, t, env);
 		pid = fork();
 		if (pid == 0)
 		{
@@ -53,6 +54,11 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 	return ;
 }
 
+// void	exec_export_unset_cd_in_parent(
+// 		int i, int **fd, struct t_pipes *t, t_list *env)
+// {
+	
+// }
 //Inshalla
 //if there is heredoc after
 //hold on don't execute current command
