@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/13 20:50:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 09:06:46 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv, char **envp)
 {
 	struct sigaction	sa;
-	static int					exit_status;
+	static int			exit_status;
 	char				*cmd;
 	t_list				*t_env;
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **envp)
 		cmd = readline("minishell $> ");
 		if (cmd == NULL)
 			return (0);
-		if (execution_operations(cmd, t_env, &exit_status) == 1)
+		if (execution_operations(cmd, t_env, &exit_status) == 249)
 			return (0);
 	}
 }

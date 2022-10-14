@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 01:05:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 09:15:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_list				*fill_cmd_node(char *arg, char type);
 void				spaces_smash(t_smash_kit *s, char *cmd,
 						t_list **head, int *exit_status);
 char				cmd_classifier(t_smash_kit *s, char *cmd);
-t_smash_kit			*init_smash_kit(t_smash_kit *s, t_list **head, t_list *env);
+void				init_smash_kit(t_smash_kit *s, t_list **head, t_list *env);
 void				double_qoute_smash(t_smash_kit *s, char *cmd,
 						t_list **head, int *exit_status);
 void				single_qoute_smach(t_smash_kit *s, char *cmd,
@@ -126,7 +126,7 @@ int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
 void				free_cmd(t_parsed_command *t);
 char				*search_path_for_bin(char *split_command_0, t_list *env);
-void				just_execve(t_parsed_command	*t, t_list *t_env);
+void				just_execve(t_parsed_command	*t, t_list *t_env, struct t_pipes *all_cmds);
 int					execution_operations(char *cmd, t_list *t_env,
 						int *exit_status);
 void				exec_with_pipe(char *cmd, t_list *env);
@@ -148,8 +148,8 @@ void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
 
 //Executables
 int					is_in_our_executable(struct t_parsed_command *t
-						, t_list *env);
-void				exec_our_cmd(t_parsed_command *t, t_list *env);
+						, t_list *env, struct t_pipes *all_cmds);
+void				exec_our_cmd(t_parsed_command *t, t_list *env, struct t_pipes *all_cmds);
 t_list				*fill_new_export_node(t_list *tmp,
 						char **exp_item, int m_size);
 char				**fill_export_with_key_val_variables(char *cmd,
@@ -159,7 +159,7 @@ char				**fill_export_with_key_only(char **exp_item,
 t_list				*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp,
 						struct t_parsed_command *t);
 int					is_repeated(char *cmd, t_list **env);
-void				exec_our_cmd(struct t_parsed_command *t, t_list *env);
+// void				exec_our_cmd(struct t_parsed_command *t, t_list *env);
 void				exec_env(t_list **env);
 void				exec_pwd(void);
 void				exec_export(struct t_parsed_command *t, t_list **env);
@@ -174,7 +174,7 @@ void				exec_cd(struct t_parsed_command *t, t_list **env);
 void				cd_error(char *error_path, char flag);
 void				exec_local_export(char *local_var, t_list **env, char flag);
 void				exec_echo(struct t_parsed_command *t);
-void				exec_exit(struct t_parsed_command *t, int exit_shell);
+void				exec_exit(struct t_pipes *all_cmds, int exit_shell);
 int					tedous_n(struct t_parsed_command *t);
 void				vis_list(t_list **env, char is_env_or_exp);
 void				output_append_execution(t_pipes *t, int **fd, int i);

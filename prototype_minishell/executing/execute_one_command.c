@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 18:37:37 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 09:01:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ printf environment varibles (visualize)
 printf the fount PATH=/////.
 printf the searching the path
 printf when found or not
-*/
+// */
 int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 {
 	struct t_parsed_command	*t;
@@ -30,7 +30,7 @@ int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 	len = length_of_larger_string(t->cmd, "exit");
 	if (!t->args[1] && !ft_strncmp(t->cmd, "exit", len))
 	{
-		exec_exit(t, exit_shell);
+		exec_exit(NULL, exit_shell);
 		return (1);
 	}
 	pid = fork();
@@ -38,18 +38,14 @@ int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 		perror("fork");
 	if (pid == 0)
 	{
-		just_execve(t, t_env);
+		just_execve(t, t_env, NULL);
 	}
 	else
-	{
-		if (t)
-			free_cmd(t);
 		wait(NULL);
-	}
 	return (0);
 }
 
-void	just_execve(struct t_parsed_command *t, t_list *t_env)
+void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_cmds)
 {
 	char	**envp;
 	char	*old_cmd;
@@ -57,9 +53,9 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env)
 	old_cmd = NULL;
 	envp = NULL;
 	envp = join_env(t_env);
-	if (is_in_our_executable(t, t_env))
+	if (is_in_our_executable(t, t_env, all_cmds, 0))
 	{
-		exec_exit(t, 0);
+		exec_exit(all_cmds, 0);
 		return ;
 	}
 	else if (t->path == 'r')
@@ -70,7 +66,7 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env)
 	if (!t->cmd)
 	{
 		printf("minishell: %s: command not found\n", old_cmd);
-		exec_exit(t, 0);
+		exec_exit(all_cmds, 1);
 		return ;
 	}
 	else
@@ -79,7 +75,7 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env)
 			printf("execve failed, will throw an error later insahlla\n");
 		perror("execve");
 	}
-	exec_exit(t, 0);
+	exec_exit(all_cmds, 0);
 }
 
 char	*search_path_for_bin(char *split_command_0, t_list *t_env)

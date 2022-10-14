@@ -6,13 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:21:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/03 21:37:25 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 09:15:53 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	is_in_our_executable(struct t_parsed_command *t, t_list *env)
+int	is_in_our_executable(struct t_parsed_command *t, t_list *env, struct t_pipes *all_cmds)
 {
 	size_t	len;
 	char	*our_execs[7]= {"env", "pwd", "export", "unset", "cd", "exit", "echo"};
@@ -24,7 +24,7 @@ int	is_in_our_executable(struct t_parsed_command *t, t_list *env)
 		len = length_of_larger_string(t->cmd, our_execs[i]);
 		if (!ft_strncmp(t->cmd, our_execs[i], len))
 		{
-			exec_our_cmd(t, env);
+			exec_our_cmd(t, env, all_cmds);
 			return (1);
 		}
 		i++;
@@ -32,7 +32,8 @@ int	is_in_our_executable(struct t_parsed_command *t, t_list *env)
 	return (0);
 }
 
-void	exec_our_cmd(struct t_parsed_command *t, t_list *env)
+void	exec_our_cmd(struct t_parsed_command *t, t_list *env,
+			struct t_pipes *all_cmds)
 {
 	size_t	len;
 
@@ -53,7 +54,13 @@ void	exec_our_cmd(struct t_parsed_command *t, t_list *env)
 		exec_cd(t, &env);
 	len = length_of_larger_string(t->cmd, "echo");
 	if (!ft_strncmp(t->cmd, "echo", len))
+	{
+		printf("should execute echo\n");
 		exec_echo(t);
+	}
+	len = length_of_larger_string(t->cmd, "exit");
+	if (!ft_strncmp(t->cmd, "exit", len))
+		exec_exit(all_cmds, 249);
 }
 
 void	vis_list(t_list **env, char is_env_or_exp)

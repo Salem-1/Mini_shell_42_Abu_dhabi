@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 06:40:05 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 07:22:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	free_cmd(t_parsed_command	*t)
 		free(t->splitted_cmd[i]);
 		i++;
 	}
+	// free(t->splitted_cmd[i]);	i = 0;
 	free_split((void **)t->args);
 	free(t);
 }
@@ -37,6 +38,8 @@ void	flush_pipes(t_pipes	*t)
 			free_cmd(t->single_cmd[i]);
 		i++;
 	}
+	// if (t->single_cmd[i])
+	// 	free_cmd(t->single_cmd[i]);
 	if (t->single_cmd)
 		free(t->single_cmd);
 	if (t)

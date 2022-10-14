@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/13 21:37:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 07:12:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,26 @@
 
 t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 {
-	t_smash_kit	*s;
+	t_smash_kit	s;
 
-	s = NULL;
-	s = init_smash_kit(s, head, env);
-	while (cmd[s->i])
+	init_smash_kit(&s, head, env);
+	while (cmd[s.i])
 	{
-		if (cmd_classifier(s, cmd) == 'r')
+		if (cmd_classifier(&s, cmd) == 'r')
 		{
-			printf("redirection smasher cmd[%d] = (%c)\n", s->i, cmd[s->i]);
-			fill_redirection(s, cmd, head, s->i);
+			printf("redirection smasher cmd[%d] = (%c)\n", s.i, cmd[s.i]);
+			fill_redirection(&s, cmd, head, s.i);
 		}
-		else if (cmd_classifier(s, cmd) == '\'')
-			single_qoute_smach(s, cmd, s->tmp, head);
-		else if (cmd_classifier(s, cmd) == '"')
-			double_qoute_smash(s, cmd, head, exit_status);
+		else if (cmd_classifier(&s, cmd) == '\'')
+			single_qoute_smach(&s, cmd, s.tmp, head);
+		else if (cmd_classifier(&s, cmd) == '"')
+			double_qoute_smash(&s, cmd, head, exit_status);
 		else
-			spaces_smash(s, cmd,  head, exit_status);
-		s->i++;
+			spaces_smash(&s, cmd,  head, exit_status);
+		s.i++;
 	}
 	vis_smached_cmd(head);
-	free(s);
+	// free(s);
 	return (*head);
 }
 
@@ -73,18 +72,18 @@ char	cmd_classifier(t_smash_kit *s, char *cmd)
 			= g give
 			= t take
 */
-t_smash_kit	*init_smash_kit(t_smash_kit *s, t_list **head, t_list *env)
+void	init_smash_kit(t_smash_kit *s, t_list **head, t_list *env)
 {
-	s = malloc(sizeof(t_smash_kit) * 1);
-	if (!s)
-		return (NULL);
+	// s = malloc(sizeof(t_smash_kit) * 1);
+	// if (!s)
+	// 	return (NULL);
 	s->start = 0;
 	s->end  = 0;
 	s->i = 0;
 	s->tmp = *head;
 	s->flag = 'i';
 	s->env = env;
-	return (s);
+	// return (s);
 }
 
 t_list	*fill_cmd_node(char *arg, char type)

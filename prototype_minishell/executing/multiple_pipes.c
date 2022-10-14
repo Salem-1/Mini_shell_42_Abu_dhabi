@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/13 21:47:04 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/14 07:39:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 		i++;
 	}
 	close_files_and_wait(fd, t, exit_status);
+		// flush_pipes(t);
 	return ;
 }
 
@@ -68,7 +69,7 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	{
 		if (t->single_cmd[i]->after_sep == 't')
 			input_execution(t, fd, i);
-		just_execve(t->single_cmd[i], env);
+		just_execve(t->single_cmd[i], env, t);
 	}
 	if (t->single_cmd[i]->after_sep == 'g'
 		|| t->single_cmd[i]->after_sep == 'a')
@@ -76,11 +77,11 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	else if (t->single_cmd[i]->after_sep == 'h' || t->single_cmd[i]->before_sep == 'h')
 	{	
 		if (t->single_cmd[i]->before_sep == 'h')
-			exec_exit(t->single_cmd[i], 0);
+			exec_exit(t, 0);
 		lets_heredoc(fd, &i, t);
 		dup2(fd[i][0], STDIN_FILENO);
 		close_files(fd, t->npipes);
-		just_execve(t->single_cmd[i], env);
+		just_execve(t->single_cmd[i], env, t);
 	}
 	if (i == 0 )
 		dup2(fd[i][1], STDOUT_FILENO);
@@ -92,7 +93,7 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 		dup2(fd[i -1][0], STDIN_FILENO);
 	}
 	close_files(fd, t->npipes);
-	just_execve(t->single_cmd[i], env);
+	just_execve(t->single_cmd[i], env, t);
 }
 
 void	close_files_and_wait(int **fd, struct t_pipes	*t, int *exit_satus)
