@@ -6,13 +6,18 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 16:43:01 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 07:16:32 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds)
+/*
+	flag usage:
+	t     Throw an error
+	s     Silent the error
+*/
+void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int flag)
 {
 	char	*current_path;
 	char	*old_path;
@@ -20,6 +25,8 @@ void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds)
 
 	current_path = NULL;
 	old_path = NULL;
+	//replace all_cmds with flags to show errors inside children only
+	(void) all_cmds;
 	buff = malloc(sizeof(char) * 4089);
 	if (!buff)
 		return ;
@@ -28,18 +35,21 @@ void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds)
 	else if (t->args[2])
 	{
 		printf("is this error triggered\n");
-		cd_error(t->args[1], 'p');
+		if (flag == 't')
+			cd_error(t->args[1], 'p');
 		free(buff);
+		return ;
 	}
 	old_path = ft_strdup(getcwd(buff, 4089));
 	printf("changing directory = %s\n", t->args[1]);
 	if (chdir(t->args[1]) != 0)
 	{
 		printf("error in executing chdir, will kill this child\n");
-		cd_error(t->args[1], 'n');
+		if (flag == 't')
+			cd_error(t->args[1], 'n');
 		free(buff);
 		free(old_path);
-		exec_exit(all_cmds, 1);
+		return ;
 	}
 	// exec_local_export(current_path, env, 'o');
 	current_path = ft_strdup(getcwd(buff, 4089));
@@ -56,8 +66,8 @@ void	fill_old_and_current_pwd(
 	t_list	*old_node;
 	t_list	*current_node;
 
-	old_node = search_env(*env, "PWD", 'c');
-	current_node = search_env(*env, "OLDPWD", 'c');
+	old_node = search_env(*env, "PWD", 'c', 't');
+	current_node = search_env(*env, "OLDPWD", 'c', 't');
 	if (old_node)
 	{
 		free(old_node->key_val[1]);

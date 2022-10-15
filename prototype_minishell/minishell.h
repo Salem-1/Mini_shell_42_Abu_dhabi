@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 16:19:52 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 07:13:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,8 @@ int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
 void				free_cmd(t_parsed_command *t);
 char				*search_path_for_bin(char *split_command_0, t_list *env);
-void				just_execve(t_parsed_command	*t, t_list *t_env, struct t_pipes *all_cmds);
+void				just_execve(t_parsed_command *t,
+						t_list *t_env, struct t_pipes *all_cmds);
 int					execution_operations(char *cmd, t_list *t_env,
 						int *exit_status);
 void				exec_with_pipe(char *cmd, t_list *env);
@@ -145,7 +146,8 @@ void				case_input_file_cat(
 void				case_input_file_cat_otherfiles(
 						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
 void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
-
+void				exec_export_unset_cd_in_parent(
+						int i, struct t_pipes *t, t_list *env);
 //Executables
 int					is_in_our_executable(struct t_parsed_command *t
 						, t_list *env, struct t_pipes *all_cmds);
@@ -162,16 +164,19 @@ int					is_repeated(char *cmd, t_list **env);
 // void				exec_our_cmd(struct t_parsed_command *t, t_list *env);
 void				exec_env(t_list **env);
 void				exec_pwd(void);
-void				exec_export(struct t_parsed_command *t, t_list **env);
+void				exec_export(struct t_parsed_command *t,
+						t_list **env, int flag);
 int					valid_export_arg(char *str);
 int					find_msize(char *cmd);
 void				raise_export_error(char *cmd);
-void				exec_unset(struct t_parsed_command *t, t_list **env, int i);
-t_list				*search_env(t_list *t_env, char *env_variable, char flag);
-void				clear_var(t_list *delete_me, t_list **env);
+void				exec_unset(struct t_parsed_command *t, t_list **env,
+						int i, char flag);
+t_list				*search_env(t_list *t_env, char *env_variable,
+						char flag, int throw_error);
+void				clear_var(t_list *delete_me, t_list **env, int throw_error);
 void				unset_error(char *env_variable);
 void				exec_cd(struct t_parsed_command *t,
-						t_list **env, t_pipes *all_cmds);
+						t_list **env, t_pipes *all_cmds, int flag);
 void				fill_old_and_current_pwd(t_list **env,
 						char *old_path, char *current_path);
 void				cd_error(char *error_path, char flag);

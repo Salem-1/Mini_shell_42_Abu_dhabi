@@ -6,18 +6,18 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/29 10:35:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 07:19:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-//if the exported var has an export value, and 
-//export not assigning new value, then do noting
 
-//remember to search for the var and replace it with  new 
-
-//check export duplicates with value, then celebrate
-void	exec_export(struct t_parsed_command *t, t_list **env)
+/*
+	flags
+	t    throw an error
+	s    silent the error
+*/
+void	exec_export(struct t_parsed_command *t, t_list **env, int flag)
 {
 	int		i;
 	t_list	*tmp;
@@ -32,7 +32,7 @@ void	exec_export(struct t_parsed_command *t, t_list **env)
 			if (tmp)
 				ft_lstadd_back(env, tmp);
 		}
-		else
+		else if (flag == 't')
 			raise_export_error(t->args[i]);
 		i++;
 	}
@@ -63,7 +63,7 @@ t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_com
 	if (is_repeated(exp_item[0], env))
 	{
 		t->args[1] = ft_strdup(exp_item[0]);
-		exec_unset(t, env, 1);
+		exec_unset(t, env, 1, 't');
 	}
 	return (tmp);
 }

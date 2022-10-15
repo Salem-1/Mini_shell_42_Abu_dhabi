@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:21:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 15:01:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 07:32:25 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,16 @@ void	exec_our_cmd(struct t_parsed_command *t, t_list *env,
 		exec_pwd();
 	len = length_of_larger_string(t->cmd, "export");
 	if (!ft_strncmp(t->cmd, "export", len))
-		exec_export(t, &env);
+		exec_export(t, &env, 't');
 	len = length_of_larger_string(t->cmd, "unset");
 	if (!ft_strncmp(t->cmd, "unset", len))
-		exec_unset(t, &env, 1);
+		exec_unset(t, &env, 1, 't');
 	len = length_of_larger_string(t->cmd, "cd");
 	if (!ft_strncmp(t->cmd, "cd", len))
-		exec_cd(t, &env, all_cmds);
+		exec_cd(t, &env, all_cmds, 't');
 	len = length_of_larger_string(t->cmd, "echo");
 	if (!ft_strncmp(t->cmd, "echo", len))
-	{
-		printf("should execute echo\n");
 		exec_echo(t);
-	}
 	len = length_of_larger_string(t->cmd, "exit");
 	if (!ft_strncmp(t->cmd, "exit", len))
 		exec_exit(all_cmds, 0);

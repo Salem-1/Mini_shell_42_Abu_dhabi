@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 18:36:34 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 07:32:16 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 			i++;
 			continue ;
 		}
-		// exec_export_unset_cd_in_parent(i, fd, t, env);
+		exec_export_unset_cd_in_parent(i,  t, env);
 		pid = fork();
 		if (pid == 0)
 		{
@@ -54,20 +54,28 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 	return ;
 }
 
-// void	exec_export_unset_cd_in_parent(
-// 		int i, int **fd, struct t_pipes *t, t_list *env)
-// {
-	
-// }
-//Inshalla
-//if there is heredoc after
-//hold on don't execute current command
-//use the command after the heredoc as delimiter
-//read in a loop till you hit the delimiter
-//read everything to the pipe end
-//after finishing dup the stin to the written pipe
-//write to the standard out put
-//test and celebrate
+void	exec_export_unset_cd_in_parent(
+		int i,  struct t_pipes *t, t_list *env)
+{
+	int	redirec;
+
+	redirec = 0;
+	if (!t->single_cmd[i])
+		return ;
+	while (t->single_cmd[redirec] && redirec < t->npipes)
+	{
+		if (t->single_cmd[redirec]->after_sep == 'p'
+			|| t->single_cmd[redirec]->after_sep == 'p')
+			return ;
+		redirec++;
+	}
+	if (!ft_strncmp(t->single_cmd[i]->cmd, "cd", 3))
+		exec_cd(t->single_cmd[i], &env, t, 's');
+	else if (!ft_strncmp(t->single_cmd[i]->cmd, "export", 7))
+		exec_export(t->single_cmd[i], &env, 's');
+	else if (!ft_strncmp(t->single_cmd[i]->cmd, "unset", 6))
+		exec_unset(t->single_cmd[i], &env, 1, 's');
+}
 
 void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 {
