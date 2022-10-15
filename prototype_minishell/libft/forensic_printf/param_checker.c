@@ -6,11 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 19:53:17 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 08:32:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 08:55:24 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "forens_printf.h"
 
 static int	print_char(char c);
 static int	print_string(char *arg);
@@ -40,15 +40,15 @@ static int	print_string(char *arg)
 {
 	if (!arg)
 	{
-		write(2, "(null)", 6);
+		write(FD, "(null)", 6);
 		return (6);
 	}
-	ft_putstr_fd(arg, 2);
+	ft_putstr_fd(arg, FD);
 	return ((int)ft_strlen(arg));
 }
 
 static int	print_char(char c)
 {
-	write(2, &c, 1);
+	write(FD, &c, 1);
 	return (1);
 }

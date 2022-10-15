@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 09:06:46 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 10:40:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	main(int argc, char **argv, char **envp)
 	static int			exit_status;
 	char				*cmd;
 	t_list				*t_env;
-
+// forens_printf("hello from the forensic log");
+// err_printf("is this an error\n");
 	exit_status = 0;
 	sa.sa_handler = &handle_signals;
 	cmd = NULL;
@@ -55,3 +56,4 @@ void	handle_signals(int sig)
 	}
 
 }
+

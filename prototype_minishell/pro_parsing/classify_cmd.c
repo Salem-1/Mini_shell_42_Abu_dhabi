@@ -6,12 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 01:35:14 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 10:41:33 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 //remember to take the nulls
+//handle 'unclosed quote
 //remember to handle this case "he hello"ho 
 //remember to handle this case also 'how is is one sh'unk
 void	spaces_smash(t_smash_kit *s, char *cmd, t_list **head, int *exit_status)
@@ -69,11 +70,17 @@ char	*handle_outliar_quote(t_smash_kit *s, char flag, char *cmd, int *exit_statu
 	while (cmd[i] && (cmd[i] != ' ' || check_redirection(cmd, i)))
 	{
 		if (cmd[i] == flag)
-			printf("throw error in classifycmd will exit inshalla in a clean way\n");
+		{
+			s->parse_error_code = 2;
+			err_printf("throw error in classifycmd will exit inshalla in a clean way parse error_type 'p'\n");
+		}
 		i++;
 	}
 	if (i == 1)
+	{
+		forens_printf("no chars after quote\ninside outliar quotes, i = 1 error line 78\n");
 		return (NULL);
+	}
 	else
 	{
 		s->start = 0;

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 07:12:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 10:43:28 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 	{
 		if (cmd_classifier(&s, cmd) == 'r')
 		{
-			printf("redirection smasher cmd[%d] = (%c)\n", s.i, cmd[s.i]);
+		forens_printf("redirection smasher cmd[%d] = (%c)\n", s.i, cmd[s.i]);
 			fill_redirection(&s, cmd, head, s.i);
 		}
 		else if (cmd_classifier(&s, cmd) == '\'')
@@ -34,6 +34,8 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 	}
 	vis_smached_cmd(head);
 	// free(s);
+	if (s.parse_error_code != 0)
+		(*head)->flag = s.parse_error_code;
 	return (*head);
 }
 
@@ -83,6 +85,7 @@ void	init_smash_kit(t_smash_kit *s, t_list **head, t_list *env)
 	s->tmp = *head;
 	s->flag = 'i';
 	s->env = env;
+	s->parse_error_code = 0;
 	// return (s);
 }
 

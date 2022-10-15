@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 07:18:12 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 10:36:08 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	smashed_cmd = NULL;
 	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env, exit_status);
 	n_cmds = count_cmds(smashed_cmd);
-	printf("n_cmds = %d\n", n_cmds);
+forens_printf("n_cmds = %d\n", n_cmds);
 	t = init_t_struct(t, n_cmds, smashed_cmd);
 	malloc_single_cmd_in_t_piped_cmd(t, i);
 	while (smashed_cmd)
 	{
-		printf("round %d\n", i);
+	forens_printf("round %d\n", i);
 		smashed_cmd  = fill_cmd(smashed_cmd, t, i);
-		printf("i = %d  ", i);
+	forens_printf("i = %d  ", i);
 		if (smashed_cmd)
 			smashed_cmd = smashed_cmd->next;
 		else
@@ -72,7 +72,7 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 	while (smashed_cmd)
 	{
 		if (smashed_cmd->flag == '\0')
-			printf("I don't have such null flags\n");
+		forens_printf("I don't have such null flags\n");
 		if (smashed_cmd->flag == 'c')
 			t->single_cmd[i]->args[local_i++] = (char *)smashed_cmd->content;
 		else
@@ -157,7 +157,7 @@ t_pipes	*parsing_piped_cmd(char *cmd)
 	one_cmd->before_sep = '\0';
 	while(smashed_cmd)
 	{
-		printf("New parsing in progress");
+	forens_printf("New parsing in progress");
 		smashed_cmd = smashed_cmd->next;
 	exit(1);
 	}

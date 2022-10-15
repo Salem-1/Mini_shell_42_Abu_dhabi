@@ -1,83 +1,91 @@
 I would like to thank Gerard  for providing me with this amazing testing document
 Github : gkintana
 
->
->>
->>>
->>>>
->>>>>
->>>>>>>>>>>>>
+bash-3.2$ ls | echo hi > file.txt < cd
+bash: cd: No such file or directory
 
->|
->>|
->>>|
->>>>|
->>>>>|
->>>>>>>>>>>>>|
+	>
+	bash: syntax error near unexpected token `newline'
 
-|>
-|>|>|>|>|>|>|>|>
-|>>
-|>>|>>|>>|>>|>>
-|>>>
-|>>>>
-|> > > >>> > >> > >>
+	>>
+	bash: syntax error near unexpected token `newline'
+	
+	>>>
+	
+	>>>>
+	>>>>>
+	>>>>>>>>>>>>>
 
->||>
-> | | >
+	>|
+	>>|
+	>>>|
+	>>>>|
+	>>>>>|
+	>>>>>>>>>>>>>|
 
->|>
->>|>>
->|>>
->|>>>
->>>|>>>
->>>>|>>>>
+	|>
+	|>|>|>|>|>|>|>|>
+	|>>
+	|>>|>>|>>|>>|>>
+	|>>>
+	|>>>>
+	|> > > >>> > >> > >>
 
->ls
->>ls
->>>ls
->>>>ls
->>>>>ls
->>>>>>>ls
->>>>>>> ls
+	>||>
+	> | | >
 
->|ls
->>|ls
->>>|ls
->>>>|ls
+	>|>
+	>>|>>
+	>|>>
+	>|>>>
+	>>>|>>>
+	>>>>|>>>>
 
-"ls
-"           ls
-'ls
-'           ls
-"ls"
-'ls'
-"ls            "
-"           ls"
-"           ls            "
-'ls            '
-'           ls'
-'           ls            '
+	>ls
+	>>ls
+	>>>ls
+	>>>>ls
+	>>>>>ls
+	>>>>>>>ls
+	>>>>>>> ls
 
-"hello world"test" "
-"hello world"test" """asd
-"hello world"test" """ asd
-"hello world" test ""
-'asdasdsa ' a sd as
-"helloas d a ad  d sadda"2 as d a "asd" "asd" sad's'
-echo "helloas d a ad  n       d sadda"2                  as d a"asd" "asd" sad's'
+	>|ls
+	>>|ls
+	>>>|ls
+	>>>>|ls
 
-echo ./minishell >> 1 > 2>>file3 | grep 123
+	"ls
+	"           ls
+	'ls
+	'           ls
+	"ls"
+	'ls'
+	"ls            "
+	"           ls"
+	"           ls            "
+	'ls            '
+	'           ls'
+	'           ls            '
 
-65 5 464  5>> A>D>SA>>1
-"ASD"AS" "AS"D "A""
-"AS"D"AS"DAS"SDA"SD"" asda a d as
-     asDA >A>SD>DS>D Sasd 123 <ASDA<A<D<<D asd asd"123"123""ads  "asd"
-asdlasldsalasdladslasdlasd asdas das dsasdsd asdsd d sd d s ""asd asdas s
-asdlsd asdas das dsasdsd asdsd d sd d s  ""  asdas 123
+	"hello world"test" "
+	"hello world"test" """asd
+	"hello world"test" """ asd
+	"hello world" test ""
+	'asdasdsa ' a sd as
+	"helloas d a ad  d sadda"2 as d a "asd" "asd" sad's'
+	echo "helloas d a ad  n       d sadda"2                  as d a"asd" "asd" sad's'
 
-hello"test"
-hello"test"123
+	echo ./minishell >> 1 > 2>>file3 | grep 123
+
+	65 5 464  5>> A>D>SA>>1
+	"ASD"AS" "AS"D "A""
+	"AS"D"AS"DAS"SDA"SD"" asda a d as
+	     asDA >A>SD>DS>D Sasd 123 <ASDA<A<D<<D asd asd"123"123""ads  "asd"
+	asdlasldsalasdladslasdlasd asdas das dsasdsd asdsd d sd d s ""asd asdas s
+	asdlsd asdas das dsasdsd asdsd d sd d s  ""  asdas 123
+
+	hello"test"
+	hello"test"123
 hello "test"123
 hello"test" 123
 "hello"test" 123"123 123 123

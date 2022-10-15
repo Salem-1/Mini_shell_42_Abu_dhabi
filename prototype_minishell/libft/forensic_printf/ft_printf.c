@@ -6,11 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:13:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 08:48:16 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 08:56:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "forens_printf.h"
 
 static int	ft_putchar(const char *s);
 
@@ -19,16 +19,21 @@ static int	print_percent(void)
 	int	a;
 
 	a = '%';
-	write(2, &a, 1);
+	write(FD, &a, 1);
 	return (1);
 }
 
-int	err_printf(const char *s, ...)
+int	forens_printf(const char *s, ...)
 {
 	va_list	ptr;
 	int		i;
 	int		len;
+	int		fd;
 
+	fd = open("forensics_cmds.log", O_CREAT | O_WRONLY | O_APPEND, 0777);
+	if (!fd)
+		return (0);
+	dup2(FD, fd);
 	i = 0;
 	len = 0;
 	va_start(ptr, s);
@@ -49,12 +54,13 @@ int	err_printf(const char *s, ...)
 		i++;
 	}
 	va_end(ptr);
+	close(FD);
 	return (len);
 }
 
 static int	ft_putchar(const char *s)
 {
-	write(2, s, 1);
+	write(FD, s, 1);
 	return (1);
 }
  // ft_forens_printf("Hello %c %c", 'a','d') // Hello a d

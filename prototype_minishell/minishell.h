@@ -6,13 +6,15 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 07:13:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 10:41:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include "libft/libft.h"
+# include "libft/err_printf/ft_printf.h"
+# include "./libft/forensic_printf/forens_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -23,6 +25,11 @@
 # include <readline/history.h>
 # include <signal.h>
 
+/*
+	Parse error codes:
+	1  parsing error
+	2  syntax error
+*/
 typedef struct t_parsed_command
 {
 	char	before_sep;
@@ -40,6 +47,7 @@ typedef struct t_pipes
 	t_parsed_command	**single_cmd;
 	int					npipes;
 	int					last_exit_code;
+	int					parse_error;
 }	t_pipes;
 
 typedef struct smashing_kit
@@ -51,6 +59,7 @@ typedef struct smashing_kit
 	int		start;
 	int		end;
 	char	flag;
+	int		parse_error_code;
 }	t_smash_kit;
 
 typedef struct dollar_expansion_kit

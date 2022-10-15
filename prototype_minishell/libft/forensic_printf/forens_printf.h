@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   forens_printf.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:17:52 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 08:48:16 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 08:49:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FORENS_PRINTF_H
+# define FORENS_PRINTF_H
 # include "../libft.h"
 # include <stdarg.h>
 
-int		err_printf(const char *s, ...);
+# define FD 3
+
+int		forens_printf(const char *s, ...);
 int		param_checker(const char *s, void *arg);
 int		print_int(int n);
 int		print_digit(signed int n);
