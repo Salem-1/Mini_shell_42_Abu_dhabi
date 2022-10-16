@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 10:41:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 14:21:38 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ char				**fill_export_with_key_only(char **exp_item,
 t_list				*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp,
 						struct t_parsed_command *t);
 int					is_repeated(char *cmd, t_list **env);
-// void				exec_our_cmd(struct t_parsed_command *t, t_list *env);
+
 void				exec_env(t_list **env);
 void				exec_pwd(void);
 void				exec_export(struct t_parsed_command *t,
@@ -196,8 +196,11 @@ int					tedous_n(struct t_parsed_command *t);
 void				vis_list(t_list **env, char is_env_or_exp);
 void				output_append_execution(t_pipes *t, int **fd, int i);
 void				input_execution(t_pipes *t, int **fd, int i);
+//Handling erros
+void				throw_parser_error(t_pipes *t, int * exit_status);
+void				fill_errored_pipe(
+						t_pipes *t, int error, t_list *smashed_cmd);
 //heredoc
-
 void				lets_heredoc(int **fd, int *i, struct t_pipes *t);
 
 //signals handling

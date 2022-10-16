@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:09:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/08 13:30:40 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 11:54:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	vis_split(char **arr)
 
 	i = 0;
 	if (!arr)
-		printf("It's a null array <%s>\n", arr[0]);
+	forens_printf("It's a null array <%s>\n", arr[0]);
 	while (arr[i] != NULL)
 	{
-		printf("%s\n",arr[i]);
+	forens_printf("%s\n",arr[i]);
 		i++;
 	}
 }
@@ -33,19 +33,19 @@ void	visualize_cmd(t_parsed_command *t)
 	i = 0;
 	if (!t)
 		return ;
-	printf("Visualizing cmd.........\n");
-	printf("cmd :%s  \npath is ~%c~   |\nagrs: ", t->cmd, t->path);
-	printf("sep_before = ~%c~ | sep after = ~%c~ \nagrs: ",
+forens_printf("Visualizing cmd.........\n");
+forens_printf("cmd :%s  \npath is ~%c~   |\nagrs: ", t->cmd, t->path);
+forens_printf("sep_before = ~%c~ | sep after = ~%c~ \nagrs: ",
 		t->before_sep, t->after_sep);
-	printf("\n-------------------------\n");
+forens_printf("\n-------------------------\n");
 	while (t->args[i])
 	{
-		printf("%s ", t->args[i]);
+	forens_printf("%s ", t->args[i]);
 		i++;
 	}
-	printf("\n-------------------------\n");
-	printf("Cmd visualization end.........\n");
-	printf("\n");
+forens_printf("\n-------------------------\n");
+forens_printf("Cmd visualization end.........\n");
+forens_printf("\n");
 }
 
 		// printf("tmp content = %s\n", (tmp)->flag);
@@ -56,7 +56,7 @@ void	vis_smached_cmd(t_list **head)
 	tmp = *head;
 	while (tmp)
 	{
-		printf("~%s~\n", (char *)tmp->content);
+	forens_printf("~%s~\n", (char *)tmp->content);
 		tmp = tmp->next;
 	}
 }
@@ -66,12 +66,13 @@ void	visualized_piped_cmd(t_pipes *t)
 	int	i;
 
 	i = 0;
-	printf("\nVisualizing piped cmd............\n");
-	printf("\nnpipes = %d\n", t->npipes);
+forens_printf("\nVisualizing piped cmd............\n");
+forens_printf("\nnpipes = %d\n", t->npipes);
 	while (i < t->npipes)
 	{
 		visualize_cmd(t->single_cmd[i]);
 		i++;
 	}
-	printf("End visualizing piped cmd............\n");
+forens_printf("End visualizing piped cmd............\n");
 }
+

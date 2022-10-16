@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 07:53:14 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 08:26:11 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 11:42:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*specials(unsigned int n, int flag);
 static char	*str_result(unsigned int pow, char *result,
 				unsigned int n, int flag);
 
-char	*ft_itoh(unsigned int n, int flag)
+char	*fft_itoh(unsigned int n, int flag)
 {
 	unsigned int	i;
 	char			*result;

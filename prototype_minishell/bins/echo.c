@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 14:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/14 09:12:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 12:44:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	exec_echo(struct t_parsed_command *t)
 {
 	char	nl;
 	int		i;
-			printf("inside echo our cmd, t->cmd = ~%s~\n", t->cmd);
-
+forens_printf("inside echo our cmd, t->cmd = ~%s~\n", t->cmd);
 	i = tedous_n(t);
 	nl = '\n';
 	if (i != 1)
@@ -47,7 +46,7 @@ int	tedous_n(struct t_parsed_command *t)
 			return (i);
 		while (t->args[i][j])
 		{
-			if(t->args[i][j] != 'n')
+			if (t->args[i][j] != 'n')
 				return (i);
 			j++;
 		}

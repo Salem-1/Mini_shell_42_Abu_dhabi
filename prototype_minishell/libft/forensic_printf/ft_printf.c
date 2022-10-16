@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:13:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 08:56:59 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 20:50:33 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	forens_printf(const char *s, ...)
 			if (s[i] == '%')
 				len += (print_percent());
 			else
-				len += param_checker(&s[i], va_arg(ptr, void *));
+				len += fparam_checker(&s[i], va_arg(ptr, void *));
 		}
 		else
 			len += ft_putchar(&s[i]);

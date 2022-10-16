@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 10:41:33 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 14:31:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ char	*handle_outliar_quote(t_smash_kit *s, char flag, char *cmd, int *exit_statu
 		if (cmd[i] == flag)
 		{
 			s->parse_error_code = 2;
-			err_printf("throw error in classifycmd will exit inshalla in a clean way parse error_type 'p'\n");
+forens_printf("throw error in classifycmd will exit inshalla in a clean way parse error_type 'p'\n");
 		}
 		i++;
 	}
 	if (i == 1)
 	{
-		forens_printf("no chars after quote\ninside outliar quotes, i = 1 error line 78\n");
+forens_printf("no chars after quote\ninside outliar quotes, i = 1 error line 78\n");
 		return (NULL);
 	}
 	else

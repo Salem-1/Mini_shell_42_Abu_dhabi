@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 20:55:01 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 08:30:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 11:42:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char			*specials(unsigned int n);
 static char			*str_result(unsigned int pow,
 						unsigned int i, char *result, unsigned int n);
 
-char	*ft_unsigned_itoa(unsigned int n)
+char	*fft_unsigned_itoa(unsigned int n)
 {
 	unsigned int	i;
 	char			*result;

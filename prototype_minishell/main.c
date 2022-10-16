@@ -6,11 +6,12 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 10:40:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 12:57:41 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+# include <time.h>
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -18,8 +19,10 @@ int	main(int argc, char **argv, char **envp)
 	static int			exit_status;
 	char				*cmd;
 	t_list				*t_env;
-// forens_printf("hello from the forensic log");
-// err_printf("is this an error\n");
+	
+time_t t = time(NULL);
+forens_printf("-----------------------------------------------------------\n");
+forens_printf("Session start: %s\n\n\n", ctime(&t));
 	exit_status = 0;
 	sa.sa_handler = &handle_signals;
 	cmd = NULL;
@@ -34,6 +37,7 @@ int	main(int argc, char **argv, char **envp)
 		cmd = readline("minishell $> ");
 		if (cmd == NULL)
 			return (0);
+forens_printf("%s\n\n", cmd);
 		if (execution_operations(cmd, t_env, &exit_status) == 249)
 			return (0);
 	}

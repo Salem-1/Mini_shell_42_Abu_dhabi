@@ -12,6 +12,7 @@ SRC =	main.c \
 		bins/cd.c bins/echo.c bins/env_pwd.c \
 		bins/exit.c bins/export.c  bins/unset.c \
 		bins/raise_builtin_errors.c \
+		erro_handle/parse_error.c \
 		test_files/vis.c 
 CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3
 		

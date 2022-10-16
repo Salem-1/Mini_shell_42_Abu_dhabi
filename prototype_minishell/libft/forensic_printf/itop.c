@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 07:53:14 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 08:10:01 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 11:43:09 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char				*specials(unsigned long n, int flag);
 static char				*str_result(unsigned long pow, char *result,
 							unsigned long n, int flag);
 
-char	*ft_itop(unsigned long n, int flag)
+char	*fft_itop(unsigned long n, int flag)
 {
 	unsigned long	i;
 	char			*result;

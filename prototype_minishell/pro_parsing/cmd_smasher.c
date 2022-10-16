@@ -6,12 +6,16 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 10:43:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/16 20:19:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+/*
+	if there is parser error
+	will fill the first flag with parser error code, 
+	check if there is an error if the flag value less than 30
+*/
 t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 {
 	t_smash_kit	s;

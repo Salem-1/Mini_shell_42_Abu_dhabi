@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 06:25:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/16 11:23:32 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ int	count_cmds(t_list *cmd)
 {
 	t_list	*tmp;
 	int		n;
-
+	forens_printf("inside count cmds\n");
 	n = 1;
 	tmp = cmd;
 	while (tmp)
 	{
-		printf("flag = %c arg = ~%s~,\n", tmp->flag, (char *)tmp->content);
+		forens_printf("flag = %c arg = ~%s~,\n", tmp->flag, (char *)tmp->content);
 		if (tmp->flag != 'c')
 			n++;
 		tmp = tmp->next;
@@ -84,17 +84,3 @@ int	count_cmds(t_list *cmd)
 	return (n);
 }
 
-t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd)
-{
-	t = malloc(sizeof(t_pipes) * 1);
-	if (!t)
-		return (NULL);
-	t->npipes = n_cmds;
-	if (smashed_cmd->flag != 'c' && n_cmds == 1)
-		t->single_cmd = malloc(sizeof(t_parsed_command *) * n_cmds + 2);
-	else
-		t->single_cmd = malloc(sizeof(t_parsed_command *) * n_cmds + 1);
-	if (!t->single_cmd)
-		return (NULL);
-	return (t);
-}

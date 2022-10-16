@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   param_checker.c                                    :+:      :+:    :+:   */
+/*   fparam_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 19:53:17 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 08:55:24 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/15 11:31:24 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 static int	print_char(char c);
 static int	print_string(char *arg);
 
-int	param_checker(const char *s, void *arg)
+int	fparam_checker(const char *s, void *arg)
 {
 	if (*s == 'c')
 		return (print_char((char)arg));
 	else if (*s == 'i')
-		return (print_int((int)arg));
+		return (fprint_int((int)arg));
 	else if (*s == 'd')
-		return (print_digit((signed int)arg));
+		return (fprint_digit((signed int)arg));
 	else if (*s == 's')
 		return (print_string((char *)arg));
 	else if (*s == 'u')
-		return (print_unsigned((unsigned int)arg));
+		return (fprint_unsigned((unsigned int)arg));
 	else if (*s == 'x')
-		return (print_hex((unsigned int)arg, 0));
+		return (fprint_hex((unsigned int)arg, 0));
 	else if (*s == 'X')
-		return (print_hex((unsigned int)arg, 1));
+		return (fprint_hex((unsigned int)arg, 1));
 	else if (*s == 'p')
-		return (print_ptr((unsigned long )arg, 2));
+		return (fprint_ptr((unsigned long )arg, 2));
 	return (0);
 }
 
@@ -43,7 +43,7 @@ static int	print_string(char *arg)
 		write(FD, "(null)", 6);
 		return (6);
 	}
-	ft_putstr_fd(arg, FD);
+	flocal_ft_putstr_fd(arg, FD);
 	return ((int)ft_strlen(arg));
 }
 
@@ -51,4 +51,16 @@ static int	print_char(char c)
 {
 	write(FD, &c, 1);
 	return (1);
+}
+
+void	flocal_ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
 }

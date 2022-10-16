@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 10:36:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/16 20:51:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,56 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	smashed_cmd = NULL;
 	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env, exit_status);
 	n_cmds = count_cmds(smashed_cmd);
+forens_printf("\nparing_piped_cmd:\n----------\n");
 forens_printf("n_cmds = %d\n", n_cmds);
 	t = init_t_struct(t, n_cmds, smashed_cmd);
+	if (t->parse_error != 0)
+		return (t);
 	malloc_single_cmd_in_t_piped_cmd(t, i);
 	while (smashed_cmd)
 	{
-	forens_printf("round %d\n", i);
+forens_printf("round %d\n", i);
 		smashed_cmd  = fill_cmd(smashed_cmd, t, i);
-	forens_printf("i = %d  ", i);
+forens_printf("i = %d  ", i);
 		if (smashed_cmd)
 			smashed_cmd = smashed_cmd->next;
 		else
 			break ;
 		i++;
 	}
-	ft_lstclear(&smashed_cmd, del);
+	if (smashed_cmd)
+		ft_lstclear(&smashed_cmd, del);
 	return (t);
 }
 
-//norm = n_lines this fun - 1
+t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd)
+{
+	forens_printf("inititalizing t_pipes\n");
+	t = malloc(sizeof(t_pipes) * 1);
+	if (!t)
+		return (NULL);
+	t->parse_error = 0;
+	if (smashed_cmd->flag < 30)
+	{
+		forens_printf("filling erro with local code %d\n", (int)smashed_cmd->flag);
+		// if (smashed_cmd->flag == 1)
+			fill_errored_pipe(t, 1, smashed_cmd);
+		// else if (smashed_cmd->flag == 2)
+		// 	;
+	forens_printf("inititalization end with error %d\n", (int)smashed_cmd->flag);
+		return (t);
+	}
+	t->npipes = n_cmds;
+	if (smashed_cmd->flag != 'c' && n_cmds == 1)
+		t->single_cmd = malloc(sizeof(t_parsed_command *) * n_cmds + 2);
+	else
+		t->single_cmd = malloc(sizeof(t_parsed_command *) * n_cmds + 1);
+	if (!t->single_cmd)
+		return (NULL);
+	forens_printf("inititalization t_pipe success\n");
+	return (t);
+}
+
 t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 {
 	int		n_args;
@@ -110,31 +141,6 @@ which means it fills the next command with > file.txt
 before filling the current command okay
 */
 
-void	fill_outliar_redirected_cmd(
-	t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
-{
-	int	after_red;
-	int	j;
-
-	after_red = 0;
-	j = 0;
-	after_red = count_outliar_redire(smashed_cmd, -1);
-	if (after_red <= 0)
-		return ;
-	t->single_cmd[*i + 1] = malloc(sizeof(t_parsed_command) * 1);
-	if (!t->single_cmd[*i + 1])
-		return ;
-	fill_redirec_outliar_cmd_hard_coded(t, i, smashed_cmd);
-	smashed_cmd = smashed_cmd->next;
-	while (j < after_red)
-	{
-		smashed_cmd = smashed_cmd->next;
-		if (!smashed_cmd || smashed_cmd->flag != 'c')
-			break ;
-		t->single_cmd[*i]->args[(*local_i)++] = (char *)smashed_cmd->content;
-		j++;
-	}
-}
 
 
 

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 07:32:16 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/16 17:16:24 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 	int				**fd;
 	int				pid;
 	int				i;
-
+forens_printf("Inside exec_multiple_pipes \n");
 	fd = NULL;
 	t = parsing_piped_cmd(cmd, env, exit_status);
 	if (!t)
 		return ;
+	if (t->parse_error != 0)
+	{
+		forens_printf("Throwing parsing errorr, t->parse_error = %d\n", t->parse_error);
+		throw_parser_error(t, exit_status);
+		return ;
+	}
+	forens_printf("\nt->parse_error = %d\n", t->parse_error);
 	i = 0;
 	pid = 0;
 	visualized_piped_cmd(t);
 	fd = open_pipes(t->npipes, fd);
-	printf(">>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<\n");
 	while (i < t->npipes)
 	{
 		if (t->single_cmd[i]->before_sep == 'g')
@@ -83,12 +89,15 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	{
 		if (t->single_cmd[i]->after_sep == 't')
 			input_execution(t, fd, i);
+		else
+			close_files(fd, t->npipes);
 		just_execve(t->single_cmd[i], env, t);
 	}
 	if (t->single_cmd[i]->after_sep == 'g'
 		|| t->single_cmd[i]->after_sep == 'a')
 		output_append_execution(t, fd, i);
-	else if (t->single_cmd[i]->after_sep == 'h' || t->single_cmd[i]->before_sep == 'h')
+	else if (t->single_cmd[i]->after_sep == 'h'
+			|| t->single_cmd[i]->before_sep == 'h')
 	{	
 		if (t->single_cmd[i]->before_sep == 'h')
 			exec_exit(t, 0);
@@ -120,17 +129,19 @@ void	close_files_and_wait(int **fd, struct t_pipes	*t, int *exit_satus)
 	while (i < t->npipes)
 	{
 		wait(&forwait);
-		printf(">>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<\n");
 		*exit_satus = WEXITSTATUS(forwait);
-		printf("The waited status exit code is %d\n", *exit_satus);
+		forens_printf("cmd %d exection end exit status %d\n", i, *exit_satus);
 		i++;
 	}
+	forens_printf("\n------------------------------------------\n");
+	forens_printf("------------------------------------------\n");
+	forens_printf("------------------------------------------\n");
+	forens_printf("------------------------------------------\n\n\n");
 }
 
 int	**open_pipes(int n, int **fd)
 {
 	int	i;
-
 	i = 0;
 	fd = malloc(sizeof(int *) * n);
 	if (!fd)
@@ -165,5 +176,4 @@ void	close_files(int **fd, int npipes)
 		close(fd[i][1]);
 		i++;
 	}
-	// free_split((void **)fd);
 }
