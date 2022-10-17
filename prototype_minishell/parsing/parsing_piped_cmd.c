@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 08:21:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 10:09:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,11 @@ t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd)
 
 t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 {
-	int		n_args;
+	// int		n_args;
 	int		local_i;
 
-	n_args = init_fill_cmd(&local_i, &i, t, smashed_cmd);
+	// n_args = init_fill_cmd(&local_i, &i, t, smashed_cmd);
+	init_fill_cmd(&local_i, &i, t, smashed_cmd);
 	while (smashed_cmd)
 	{
 		if (smashed_cmd->flag == '\0')
@@ -104,6 +105,8 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 				fill_outliar_redirected_cmd(smashed_cmd, t, &i, &local_i);
 			else if (smashed_cmd->flag == 't')
 				fill_outliar_input(smashed_cmd, t, &i, &local_i);
+			else if (smashed_cmd->flag == 'h')
+				// fill_outliar_heredoc(smashed_cmd, t, &i, &local_i); // under construction
 			if (!smashed_cmd)
 				return (smashed_cmd);
 			t->single_cmd[i]->after_sep = smashed_cmd->flag;
@@ -111,6 +114,7 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 		}
 		smashed_cmd = smashed_cmd->next;
 	}
+forens_printf("decide_rel_abs_fill_cmd_null_arg i = %d, local_i = %d\n", i, local_i);
 	decide_rel_abs_fill_cmd_null_arg(smashed_cmd, t, i, local_i);
 	return (smashed_cmd);
 }

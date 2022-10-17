@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 07:16:32 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 10:58:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int f
 		t->args[1] = ft_strdup(search_list(*env, ft_strdup("HOME"), 'p'));
 	else if (t->args[2])
 	{
-		printf("is this error triggered\n");
+		forens_printf("is this error triggered\n");
 		if (flag == 't')
 			cd_error(t->args[1], 'p');
 		free(buff);
 		return ;
 	}
 	old_path = ft_strdup(getcwd(buff, 4089));
-	printf("changing directory = %s\n", t->args[1]);
+	forens_printf("changing directory = %s\n", t->args[1]);
 	if (chdir(t->args[1]) != 0)
 	{
-		printf("error in executing chdir, will kill this child\n");
+		forens_printf("error in executing chdir, will kill this child\n");
 		if (flag == 't')
 			cd_error(t->args[1], 'n');
 		free(buff);
@@ -53,9 +53,9 @@ void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int f
 	}
 	// exec_local_export(current_path, env, 'o');
 	current_path = ft_strdup(getcwd(buff, 4089));
-	printf("OLDPWD=%s\nPWD=%s\n", old_path, current_path);
+	forens_printf("OLDPWD=%s\nPWD=%s\n", old_path, current_path);
 	fill_old_and_current_pwd(env, old_path, current_path);
-	// printf("cd is under maintainance for solving local exporting issues\n");
+	// forens_printf("cd is under maintainance for solving local exporting issues\n");
 	// exec_local_export(current_path, env, 'c');
 	free(buff);
 }
@@ -83,13 +83,13 @@ void	cd_error(char *error_path, char flag)
 {
 	if (flag == 'p')
 	{
-		printf("cd: string not in pwd: %s\n", error_path);
-		printf("remeber to set the exit code to 1\n");
+		forens_printf("cd: string not in pwd: %s\n", error_path);
+		forens_printf("remeber to set the exit code to 1\n");
 	}
 	else
 	{
-		printf("bash: cd: %s: No such file or directory\n", error_path);
-		printf("remeber to set the exit code to 1\n");
+		forens_printf("bash: cd: %s: No such file or directory\n", error_path);
+		forens_printf("remeber to set the exit code to 1\n");
 	}
 }
 

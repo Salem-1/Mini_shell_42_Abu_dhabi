@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:09:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 11:54:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 10:54:11 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	visualize_cmd(t_parsed_command *t)
 	i = 0;
 	if (!t)
 		return ;
+
+
 forens_printf("Visualizing cmd.........\n");
 forens_printf("cmd :%s  \npath is ~%c~   |\nagrs: ", t->cmd, t->path);
 forens_printf("sep_before = ~%c~ | sep after = ~%c~ \nagrs: ",
@@ -70,7 +72,10 @@ forens_printf("\nVisualizing piped cmd............\n");
 forens_printf("\nnpipes = %d\n", t->npipes);
 	while (i < t->npipes)
 	{
-		visualize_cmd(t->single_cmd[i]);
+		if (t->single_cmd[i]->cmd)
+			visualize_cmd(t->single_cmd[i]);
+		else
+			forens_printf("cmd and args are NULLS\n");
 		i++;
 	}
 forens_printf("End visualizing piped cmd............\n");

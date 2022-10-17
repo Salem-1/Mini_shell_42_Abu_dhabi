@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:11:01 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/16 11:27:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 09:59:28 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	fill_outliar_input(
 		t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
 {
 	int	after_red;
-	int	j;
+	// int	j;
 
 	if (t->single_cmd[*i]->before_sep == '\0')
 		after_red = count_outliar_redire(smashed_cmd, 0);
@@ -36,7 +36,7 @@ void	fill_outliar_input(
 		after_red = count_outliar_redire(smashed_cmd, -1);
 	if (after_red == 0)
 		return ;
-	j = 0;
+	// j = 0;
 	t->single_cmd[*i + 1] = malloc(sizeof(t_parsed_command) * 1);
 	if (!t->single_cmd[*i + 1])
 		return ;
@@ -60,7 +60,6 @@ void	fill_outliar_input(
 	to 
 	cat < file.txt
 */
-
 void	case_input_file_cat(
 	t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
 {
@@ -72,6 +71,72 @@ void	case_input_file_cat(
 	fill_redirec_outliar_cmd_hard_coded(t, i, smashed_cmd);
 	smashed_cmd = smashed_cmd->next->next->next;
 	(*local_i) += 1;
+}
+
+void	fill_outliar_redirected_cmd(
+	t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
+{
+	int	after_red;
+	int	j;
+
+	after_red = 0;
+	j = 0;
+	after_red = count_outliar_redire(smashed_cmd, -1);
+	if (after_red <= 0)
+		return ;
+	t->single_cmd[*i + 1] = malloc(sizeof(t_parsed_command) * 1);
+	if (!t->single_cmd[*i + 1])
+		return ;
+	fill_redirec_outliar_cmd_hard_coded(t, i, smashed_cmd);
+	smashed_cmd = smashed_cmd->next;
+	while (j < after_red)
+	{
+		smashed_cmd = smashed_cmd->next;
+		if (!smashed_cmd || smashed_cmd->flag != 'c')
+			break ;
+		t->single_cmd[*i]->args[(*local_i)++] = (char *)smashed_cmd->content;
+		j++;
+	}
+}
+
+int	count_outliar_redire(t_list *cmd, int i)
+{
+	t_list	*tmp;
+
+forens_printf("entering out count_outliar_redire i = %d, ? i == -1 ok:error\n", i);
+	if (i < -1)
+		i = -1;
+	tmp = cmd;
+	if (!tmp)
+		return (0);
+	// if (tmp->flag == 'a' || tmp->flag == 'g' || tmp->flag == 't'|| tmp->flag == 'h')
+	if (tmp->flag == 'a' || tmp->flag == 'g' || tmp->flag == 't')
+	{
+		tmp = tmp->next;
+		while (tmp)
+		{
+			if (tmp->flag == 'c')
+				i++;
+			else
+				break ;
+			tmp = tmp->next;
+		}
+	forens_printf("\nOutliar redirects cmds %d\n", i);
+		return (i);
+	}
+	return (0);
+}
+
+void	fill_redirec_outliar_cmd_hard_coded(
+	t_pipes *t, int *i, t_list *smashed_cmd)
+{
+	t->single_cmd[*i + 1]->before_sep = smashed_cmd->flag;
+	t->single_cmd[*i + 1]->args = malloc(sizeof(char *) * 2);
+	if (!t->single_cmd[*i + 1]->args)
+		return ;
+	t->single_cmd[*i + 1]->args[0] = (char *)smashed_cmd->next->content;
+	t->single_cmd[*i + 1]->args[1] = NULL;
+	t->single_cmd[*i + 1]->cmd = (char *)smashed_cmd->next->content;
 }
 
 /*
@@ -104,69 +169,3 @@ void	case_input_file_cat_otherfiles(t_list *smashed_cmd, t_pipes *t, int *i, int
 	return ;
 }
 */
-
-void	fill_redirec_outliar_cmd_hard_coded(
-	t_pipes *t, int *i, t_list *smashed_cmd)
-{
-	t->single_cmd[*i + 1]->before_sep = smashed_cmd->flag;
-	t->single_cmd[*i + 1]->args = malloc(sizeof(char *) * 2);
-	if (!t->single_cmd[*i + 1]->args)
-		return ;
-	t->single_cmd[*i + 1]->args[0] = (char *)smashed_cmd->next->content;
-	t->single_cmd[*i + 1]->args[1] = NULL;
-	t->single_cmd[*i + 1]->cmd = (char *)smashed_cmd->next->content;
-}
-
-int	count_outliar_redire(t_list *cmd, int i)
-{
-	t_list	*tmp;
-
-forens_printf("entering out count i = %d\n", i);
-	if (i < -1)
-		i = -1;
-	tmp = cmd;
-	if (!tmp)
-		return (0);
-	// if (tmp->flag == 'a' || tmp->flag == 'g' || tmp->flag == 't'|| tmp->flag == 'h')
-	if (tmp->flag == 'a' || tmp->flag == 'g' || tmp->flag == 't')
-	{
-		tmp = tmp->next;
-		while (tmp)
-		{
-			if (tmp->flag == 'c')
-				i++;
-			else
-				break ;
-			tmp = tmp->next;
-		}
-	forens_printf("\nOutliar redirects cmds %d\n", i);
-		return (i);
-	}
-	return (0);
-}
-
-void	fill_outliar_redirected_cmd(
-	t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
-{
-	int	after_red;
-	int	j;
-
-	after_red = 0;
-	j = 0;
-	after_red = count_outliar_redire(smashed_cmd, -1);
-	if (after_red <= 0)
-		return ;
-	t->single_cmd[*i + 1] = malloc(sizeof(t_parsed_command) * 1);
-	if (!t->single_cmd[*i + 1])
-		return ;
-	fill_redirec_outliar_cmd_hard_coded(t, i, smashed_cmd);
-	smashed_cmd = smashed_cmd->next;
-	while (j < after_red)
-	{
-		smashed_cmd = smashed_cmd->next;
-		if (!smashed_cmd || smashed_cmd->flag != 'c')
-			break ;
-		t->single_cmd[*i]->args[(*local_i)++] = (char *)smashed_cmd->content;
-		j++;
-	}
-}

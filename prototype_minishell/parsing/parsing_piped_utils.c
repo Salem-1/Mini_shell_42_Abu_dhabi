@@ -6,12 +6,16 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 06:20:20 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 11:46:41 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 10:35:09 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/*
+	I created this function to fill the before sep in first-
+	single_cmd with null
+*/
 void	malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i)
 {
 	if (t->parse_error != 0)
@@ -37,10 +41,12 @@ void	malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i)
 void	decide_rel_abs_fill_cmd_null_arg(
 		t_list *smashed_cmd, t_pipes *t, int i, int local_i)
 {
-	t->single_cmd[i]->cmd = t->single_cmd[i]->args[0];
-	t->single_cmd[i]->path = decide_rel_or_abs_path(t->single_cmd[i]->cmd);
-	t->single_cmd[i]->args[local_i] = NULL;
-forens_printf("Am I seg here 2 cmd = %s i = %d, local_i = %d \n", t->single_cmd[i]->cmd, i, local_i);
+	if (local_i != 0)
+	{
+		t->single_cmd[i]->cmd = t->single_cmd[i]->args[0];
+		t->single_cmd[i]->path = decide_rel_or_abs_path(t->single_cmd[i]->cmd);
+		t->single_cmd[i]->args[local_i] = NULL;
+	}
 	if (!smashed_cmd)
 		t->single_cmd[i]->after_sep = '\0';
 }

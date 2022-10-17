@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/16 16:44:33 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 11:23:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_
 	old_cmd = NULL;
 	envp = NULL;
 	envp = join_env(t_env);
+	if (!t->cmd)
+		exec_exit(all_cmds, 0);
 	if (is_in_our_executable(t, t_env, all_cmds))
 	{
 		exec_exit(all_cmds, 0);

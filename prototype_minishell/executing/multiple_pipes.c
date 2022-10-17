@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/16 17:16:24 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 11:30:31 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ forens_printf("Inside exec_multiple_pipes \n");
 	i = 0;
 	pid = 0;
 	visualized_piped_cmd(t);
+	forens_printf("opening %d pipes\n", t->npipes);
 	fd = open_pipes(t->npipes, fd);
+	//remeber to check for the null cmd 
 	while (i < t->npipes)
 	{
-		if (t->single_cmd[i]->before_sep == 'g')
+		if (t->single_cmd[i]->before_sep == 'g' || t->single_cmd[i]->before_sep == 'a')
 		{
 			i++;
 			continue ;
@@ -66,7 +68,7 @@ void	exec_export_unset_cd_in_parent(
 	int	redirec;
 
 	redirec = 0;
-	if (!t->single_cmd[i])
+	if (!t->single_cmd[i] || !t->single_cmd[i]->cmd)
 		return ;
 	while (t->single_cmd[redirec] && redirec < t->npipes)
 	{

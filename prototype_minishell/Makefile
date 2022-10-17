@@ -14,8 +14,7 @@ SRC =	main.c \
 		bins/raise_builtin_errors.c \
 		erro_handle/parse_error.c \
 		test_files/vis.c 
-CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3
-		
+CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3		
 
 CC = gcc 
 OBJ = $(SRC:.c=.o)
@@ -48,10 +47,12 @@ clean:
 
 
 fclean: clean 
-	@rm -f libft/libft.a
-	@rm -f libft/libftprintf.a
-	@rm -f libft/err_printf/err_printf.a
-	@rm -f libft/forens_printf.a
+	@make fclean -C libft/.
+	@make fclean -C libft/err_printf/.
+	@make fclean -C ./libft/forensic_printf/.
 	@rm -f $(NAME) 
 	
 re: fclean all
+
+test:
+	valgrind --leak-check=full --show-leak-kinds=all ./minishell
