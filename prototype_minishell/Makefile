@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3
 
 CC = gcc 
 OBJ = $(SRC:.c=.o)
-LIBS = ./libft/libft.a ./libft/err_printf/err_printf.a ./libft/forensic_printf/forens_printf.a
+LIBS =  ./libft/err_printf/err_printf.a ./libft/forensic_printf/forens_printf.a ./libft/libft.a
 
 # LIBS = ./libft/libft.a ./libft/err_printf/err_printf.a 
 
@@ -29,7 +29,6 @@ $(NAME): $(OBJ)
 	make -C libft/err_printf/.
 	make -C libft/forensic_printf/.
 	$(CC)  $(CFLAGS)  $(OBJ) -L/usr/local/opt/readline/lib -lreadline $(LIBS) -o $(NAME)
-	cp minishell ../sand_box_shell/.
 	clear
 
 
@@ -41,6 +40,7 @@ clean:
 	@rm -f executing/*.o
 	@rm -f test_files/*.o
 	@rm -f bins/*.o
+	@rm -f erro_handle/*.o
 	@rm -f pro_parsing/*.o
 	@rm -f *.o
 	

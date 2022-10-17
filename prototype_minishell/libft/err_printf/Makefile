@@ -1,13 +1,13 @@
 NAME	=	err_printf.a
 SRC	=	ft_printf.c param_checker.c  polymorophic_itoa.c unsigned.c signed.c itoh.c ../ft_itoa.c \
 		../ft_strlcpy.c ../ft_strlen.c ../ft_putstr.c ../ft_strdup.c itop.c
-CFLAGS = -Wall -Wextra -Werror
-# CFLAGS = -Wall -Wextra 
+# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra 
 CC = gcc
 OBJ	=	$(SRC:.c=.o)
 
 $(NAME):	$(OBJ)
-	ar -rcs $(NAME) $(OBJ)
+	ar -rcs $(NAME) $(OBJ) 
 
 all: $(NAME)
 

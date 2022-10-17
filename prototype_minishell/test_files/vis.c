@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:09:44 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 10:54:11 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 15:31:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void	vis_smached_cmd(t_list **head)
 	t_list	*tmp;
 
 	tmp = *head;
+	if (tmp->flag < 30)
+	{
+		 forens_printf("Will not visualize cmd this is an errored one\n");
+	}
 	while (tmp)
 	{
 	forens_printf("~%s~\n", (char *)tmp->content);

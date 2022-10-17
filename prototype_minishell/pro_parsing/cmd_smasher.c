@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/16 20:19:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 15:30:00 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 			double_qoute_smash(&s, cmd, head, exit_status);
 		else
 			spaces_smash(&s, cmd,  head, exit_status);
+		if (s.parse_error_code != 0)
+			break ;
 		s.i++;
 	}
-	vis_smached_cmd(head);
 	// free(s);
 	if (s.parse_error_code != 0)
 		(*head)->flag = s.parse_error_code;
+	vis_smached_cmd(head);
 	return (*head);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 10:58:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/18 00:38:28 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int f
 	if (!buff)
 		return ;
 	if (!t->args[1])
+	{
+		forens_printf("home path = %s\n", t->args[1]);
 		t->args[1] = ft_strdup(search_list(*env, ft_strdup("HOME"), 'p'));
+		forens_printf("home path = %s\n", t->args[1]);
+	}
 	else if (t->args[2])
 	{
 		forens_printf("is this error triggered\n");
@@ -79,16 +83,18 @@ void	fill_old_and_current_pwd(
 		current_node->key_val[1] = current_path;
 	}
 }
+
+
 void	cd_error(char *error_path, char flag)
 {
 	if (flag == 'p')
 	{
-		forens_printf("cd: string not in pwd: %s\n", error_path);
+		err_printf("cd: string not in pwd: %s\n", error_path);
 		forens_printf("remeber to set the exit code to 1\n");
 	}
 	else
 	{
-		forens_printf("bash: cd: %s: No such file or directory\n", error_path);
+		err_printf("bash: cd: %s: No such file or directory\n", error_path);
 		forens_printf("remeber to set the exit code to 1\n");
 	}
 }

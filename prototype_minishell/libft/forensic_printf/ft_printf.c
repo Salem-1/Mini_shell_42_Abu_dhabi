@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:13:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 20:50:33 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/18 00:28:15 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	forens_printf(const char *s, ...)
 	int		fd;
 
 	fd = open("forensics_cmds.log", O_CREAT | O_WRONLY | O_APPEND, 0777);
-	if (!fd)
+	if (fd == -1)
 		return (0);
 	dup2(FD, fd);
 	i = 0;
