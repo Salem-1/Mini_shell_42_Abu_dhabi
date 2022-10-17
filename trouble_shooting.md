@@ -94,3 +94,7 @@ hi lslsls
 	remember to check the bash maximum buff size for handling large lines
 	exit dont exit
 	and other builtins are mulfunctioned
+
+15th Oct:
+    cat main.c | grep ah 
+    give an infinite loop or opened file            ------------------> I doubt the t_pipes filling part caused of throw parse error

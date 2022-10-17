@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 14:21:38 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 08:08:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,9 @@ int					dollar_expan_operation_loop(t_dollar_expansion_kit *e,
 						t_smash_kit *s, int *exit_status);
 char				*handle_outliar_quote(
 						t_smash_kit *s, char flag, char *cmd, int *exit_status);
+int				scan_cmd_for_parsing_errors(
+						t_list *smashed_cmd);
+int					is_r_flag(char flag);
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);

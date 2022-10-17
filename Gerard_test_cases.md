@@ -3,7 +3,12 @@ Github : gkintana
 
 bash-3.2$ ls | echo hi > file.txt < cd
 bash: cd: No such file or directory
-
+    > echo
+    echo "
+    echo '
+    '
+    ''
+    ""
 	>
 	bash: syntax error near unexpected token `newline'
 

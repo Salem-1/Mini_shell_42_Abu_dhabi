@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/16 20:51:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 08:21:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,9 @@
 //do function to parse the pipe, return pipe count ant splitted piped cmd
 
 //check the single cmd for errors like / > < ;
-
+//make fuction to scan the smashed list for the silly syntax and parsing errors
 //Inshalla in the morning
 //use strdup to fill the cmds then free the smashe_cmd linked list before returning 
-
-//refractor this file to be as follows
- //one file for normal cmds without redirections
- //test
- //one for pipes with all cases and I mean all cases okay?
- //test
- //one for output and append redirections only , deal?
- //test
- //one for input only, am I clear
- //test
- //one utils for the helper funtionss
 
 t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 {
@@ -44,6 +33,7 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	smashed_cmd = NULL;
 	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env, exit_status);
 	n_cmds = count_cmds(smashed_cmd);
+	
 forens_printf("\nparing_piped_cmd:\n----------\n");
 forens_printf("n_cmds = %d\n", n_cmds);
 	t = init_t_struct(t, n_cmds, smashed_cmd);
@@ -72,14 +62,16 @@ t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd)
 	t = malloc(sizeof(t_pipes) * 1);
 	if (!t)
 		return (NULL);
-	t->parse_error = 0;
-	if (smashed_cmd->flag < 30)
+	t->parse_error = scan_cmd_for_parsing_errors(smashed_cmd);
+	if (smashed_cmd->flag < 30 || t->parse_error != 0)
 	{
 		forens_printf("filling erro with local code %d\n", (int)smashed_cmd->flag);
-		// if (smashed_cmd->flag == 1)
+		if (smashed_cmd->flag == 2 || t->parse_error == 2)
+			fill_errored_pipe(t, 2, smashed_cmd);
+		else if (smashed_cmd->flag == 1 || t->parse_error == 1)
 			fill_errored_pipe(t, 1, smashed_cmd);
-		// else if (smashed_cmd->flag == 2)
-		// 	;
+		else if (smashed_cmd->flag == 3 || t->parse_error == 3)
+			fill_errored_pipe(t, 3, smashed_cmd);
 	forens_printf("inititalization end with error %d\n", (int)smashed_cmd->flag);
 		return (t);
 	}
