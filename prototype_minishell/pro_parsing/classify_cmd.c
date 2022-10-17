@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 14:31:12 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/17 14:44:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,16 @@ void	double_qoute_smash(t_smash_kit *s, char *cmd,
 			t_list **head, int *exit_status)
 {
 	char	*smashed_arg;
-
+	forens_printf("check for double quote <%c>\n", cmd[s->i]);
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
-	if (!cmd[s->i])
+	if (cmd[s->i] != '"' && !cmd[s->i + 1])
+	{
+		forens_printf("Unclose \" double quote, throwing an error\n");
+		s->parse_error_code = 2;
 		return ;
+	}
 	if (cmd[s->i] == '"')
 	{
 		s->end = s->i;
@@ -102,9 +106,12 @@ void	single_qoute_smach(t_smash_kit *s, char *cmd,
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
-	if (!cmd[s->i])
-		return ;
-	if (cmd[s->i] == '\'')
+	if (cmd[s->i] != '\'' && !cmd[s->i + 1])
+	{
+		forens_printf("Unclose ' single quote, throwing an error\n");
+		s->parse_error_code = 2;
+	}
+	if (cmd[s->i] == '\'' || !cmd[s->i])
 	{
 		s->end = s->i;
 		smashed_arg = ft_substr(cmd, s->start + 1, s->end - s->start -1 );
