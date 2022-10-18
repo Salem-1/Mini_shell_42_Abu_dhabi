@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 15:34:25 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/18 18:29:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	spaces_smash(t_smash_kit *s, char *cmd, t_list **head, int *exit_status)
 	smashed_arg = NULL;
 	if (!cmd[s->i])
 		return ;
+	if (cmd[s->i] == '"')
+		s->flag = '"';
+	else if (cmd[s->i] == '\'')
+		s->flag = '\'';
 	if (cmd[s->i] == ' ' && cmd[s->i + 1] && cmd[s->i + 1] != ' ')
 		s->start = s->i + 1;
 	else if (cmd[s->i] == ' ')

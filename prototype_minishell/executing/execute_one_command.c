@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 21:14:26 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/18 21:21:01 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_
 	else
 	{
 		if (execve(t->cmd, t->args, envp) == -1)
-			forens_printf("execve failed, will throw an error later insahlla\n");
 		perror("execve");
 	}
 	exec_exit(all_cmds, 0);

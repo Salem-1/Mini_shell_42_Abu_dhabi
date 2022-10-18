@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 00:28:52 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/18 21:22:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,17 @@ forens_printf("Inside exec_multiple_pipes \n");
 	i = 0;
 	pid = 0;
 	visualized_piped_cmd(t);
+	if_there_is_heredoc_fill_it(t, env);
 	forens_printf("opening %d pipes\n", t->npipes);
 	fd = open_pipes(t->npipes, fd);
 	//remeber to check for the null cmd 
 	while (i < t->npipes)
 	{
-		if (t->single_cmd[i]->before_sep == 'g' || t->single_cmd[i]->before_sep == 'a')
+		if (t->single_cmd[i]->after_sep == 'h')
+			i = skip_multiple_heredocs(t, i);
+		// forens_printf("after_heredoc checkpoint\n");
+		if (t->single_cmd[i]->before_sep == 'g'
+			|| t->single_cmd[i]->before_sep == 'a' || t->single_cmd[i]->before_sep == 'h' )
 		{
 			i++;
 			continue ;
@@ -54,7 +59,6 @@ forens_printf("Inside exec_multiple_pipes \n");
 		}
 		if (t->single_cmd[i]->after_sep == 't')
 			i++;
-		//increment the i for the heredoc sake after finishing the heredoc inshalla
 		i++;
 	}
 	close_files_and_wait(fd, t, exit_status);
@@ -98,14 +102,13 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	if (t->single_cmd[i]->after_sep == 'g'
 		|| t->single_cmd[i]->after_sep == 'a')
 		output_append_execution(t, fd, i);
-	else if (t->single_cmd[i]->after_sep == 'h'
-			|| t->single_cmd[i]->before_sep == 'h')
+	else if (t->single_cmd[i]->after_sep == 'h')
 	{	
-		if (t->single_cmd[i]->before_sep == 'h')
-			exec_exit(t, 0);
-		lets_heredoc(fd, &i, t);
+		write(fd[i][1], t->single_cmd[i + 1]->args[0],
+			ft_strlen(t->single_cmd[i + 1]->args[0]));
 		dup2(fd[i][0], STDIN_FILENO);
 		close_files(fd, t->npipes);
+		free(t->single_cmd[i + 1]->args[0]);
 		just_execve(t->single_cmd[i], env, t);
 	}
 	if (i == 0 )

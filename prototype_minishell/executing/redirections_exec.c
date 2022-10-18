@@ -6,38 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:39:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 18:51:15 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/18 18:54:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	lets_heredoc(int **fd, int *i, struct t_pipes *t)
-{
-	char	*line;
-	char	*delim;
-	size_t	len;
-
-	len = 0;
-	if (!t->single_cmd[*i + 1] || t->single_cmd[*i + 1]->cmd == NULL)
-		printf("throw heredoc error and exit\n");
-	delim = t->single_cmd[*i + 1]->cmd;
-
-	line = readline("heredoc> ");
-	len = length_of_larger_string(line, delim);
-	while (ft_strncmp(line, delim, len) != 0)
-	{
-		write(fd[*i][1], line, ft_strlen(line));
-		write(fd[*i][1], "\n", 1);
-		free(line);
-		line = readline("heredoc> ");
-		len = length_of_larger_string(line, delim);
-	}
-	free(line);
-
-	//do it's own execution algo
-	//hekaito hekaya
-}
 
 void	output_append_execution(t_pipes *t, int **fd, int i)
 {

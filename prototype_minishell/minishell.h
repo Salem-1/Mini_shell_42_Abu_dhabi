@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 08:08:26 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/18 21:00:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,12 @@ void				case_input_file_cat_otherfiles(
 void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
 void				exec_export_unset_cd_in_parent(
 						int i, struct t_pipes *t, t_list *env);
+//heredoc
+void				if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
+void				fill_heredoced_cmd(t_pipes *t, t_list *env, int i);
+void				lets_heredoc(t_pipes *t, t_list *env, int i);
+int					skip_multiple_heredocs(t_pipes *t, int i);
+
 //Executables
 int					is_in_our_executable(struct t_parsed_command *t
 						, t_list *env, struct t_pipes *all_cmds);
@@ -203,9 +209,6 @@ void				input_execution(t_pipes *t, int **fd, int i);
 void				throw_parser_error(t_pipes *t, int * exit_status);
 void				fill_errored_pipe(
 						t_pipes *t, int error, t_list *smashed_cmd);
-//heredoc
-void				lets_heredoc(int **fd, int *i, struct t_pipes *t);
-
 //signals handling
 void					handle_signals(int sig);
 

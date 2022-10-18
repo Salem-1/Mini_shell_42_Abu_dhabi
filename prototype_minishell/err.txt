@@ -34,6 +34,7 @@ minishell: ll: command not found
 minishell $> "l"s            should execute ls
 ls: cannot access '': No such file or directory 
 
+//this case is handled by changing the flag in the cmdsmasher
 echo l"s"       should execute ls
 
 cd green.txt  SHOULD THROW AN ERROR
