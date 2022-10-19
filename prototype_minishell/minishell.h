@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 21:00:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/19 11:36:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,12 @@ void				if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
 void				fill_heredoced_cmd(t_pipes *t, t_list *env, int i);
 void				lets_heredoc(t_pipes *t, t_list *env, int i);
 int					skip_multiple_heredocs(t_pipes *t, int i);
-
+char				*expand_heredoc_var(
+						t_smash_kit *s, char *cmd, int * exit_status);
+char				*expand_heredoc_var(
+						t_smash_kit *s, char *cmd, int * exit_status);
+void				init_s_for_heredoc(
+						t_smash_kit *s, char *filled_heredoc, t_list *env);
 //Executables
 int					is_in_our_executable(struct t_parsed_command *t
 						, t_list *env, struct t_pipes *all_cmds);

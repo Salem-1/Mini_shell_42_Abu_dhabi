@@ -38,3 +38,11 @@ ls: cannot access '': No such file or directory
 echo l"s"       should execute ls
 
 cd green.txt  SHOULD THROW AN ERROR
+
+
+export a="ls    -la"
+mkdir abc
+minishell $> cd abc
+bash: cd: abc: No such file or directory
+
+cd: string not in pwd: /Users/ahsalem (delete this error message )
