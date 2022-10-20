@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 07:19:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/20 07:41:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	**fill_export_with_key_val_variables(char *cmd,
 	equal_location = ft_strnchr(cmd, '=');
 	if (equal_location == -1)
 	{
-		printf("This should never be triggered\n");
+		err_printf("Inside export parsingThis should never be triggered\n");
 		return (NULL);
 	}
 	exp_item = malloc(sizeof(char *) * 3);
@@ -97,7 +97,43 @@ char	**fill_export_with_key_val_variables(char *cmd,
 	exp_item[0] = ft_substr(cmd,0,  equal_location);
 	exp_item[1] = ft_substr(cmd, equal_location + 1,
 			ft_strlen(cmd) - equal_location);
+	if (ft_strnchr(exp_item[1], '"') != -1 || ft_strnchr(exp_item[1], '\'') != -1)
+	{
+		if (ft_strnchr(exp_item[1], '"') < ft_strnchr(exp_item[1], '\'') || ft_strnchr(exp_item[1], '\'') == -1)
+			exp_item[1] = clean_export_var_from_quotes(exp_item[1], '"');
+		else
+			exp_item[1] = clean_export_var_from_quotes(exp_item[1], '\'');
+	}
+	forens_printf("exported val = ~%s~\n", exp_item[1]);
 	return (exp_item);
+}
+
+char	*clean_export_var_from_quotes(char *val, char quote)
+{
+	char	*new_arg;
+	char	*result;
+	int		i;
+
+	new_arg = NULL;
+	i = 0;
+	if (!strrchr(val, quote))
+		return (val);
+	if (val[i] == quote && val[i+ 1] == quote)
+	{
+		free(val);
+		return (ft_expand_strjoin(new_arg, ft_strdup("\0")));
+	}
+	else
+		new_arg = ft_strjoin(new_arg, strchr(val, quote) + 1);
+	while (new_arg[i])
+	{
+		if (new_arg[i] == quote)
+			break ;
+		i++;
+	}
+	result = ft_strjoin(ft_substr(new_arg, 0, i), &new_arg[i + 1]);
+	free(new_arg);
+	return (result);
 }
 
 t_list	*fill_new_export_node(t_list *tmp, char **exp_item, int m_size)

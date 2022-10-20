@@ -6,12 +6,13 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 11:05:21 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 21:21:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/20 11:39:27 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//remeber to throw erro for error
 void	throw_parser_error(t_pipes *t,int * exit_status)
 {
 	if (t->parse_error == 2)
@@ -28,6 +29,10 @@ void	throw_parser_error(t_pipes *t,int * exit_status)
 	}
 	*exit_status = 258;
 forens_printf("Exit with exit code %d\n", *exit_status);
+forens_printf("-------------------------------------------\n");
+forens_printf("-------------------------------------------\n");
+forens_printf("-------------------------------------------\n");
+forens_printf("-------------------------------------------\n");
 }
 
 /*

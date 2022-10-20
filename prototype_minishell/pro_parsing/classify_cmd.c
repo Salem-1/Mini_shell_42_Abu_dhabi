@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 18:29:12 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:49:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	double_qoute_smash(t_smash_kit *s, char *cmd,
 			t_list **head, int *exit_status)
 {
 	char	*smashed_arg;
-	forens_printf("check for double quote <%c>\n", cmd[s->i]);
+	
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
@@ -106,7 +106,7 @@ void	single_qoute_smach(t_smash_kit *s, char *cmd,
 		t_list *tmp, t_list **head)
 {
 	char	*smashed_arg;
-
+forens_printf("check for single quote <%c>\n", cmd[s->i]);
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;

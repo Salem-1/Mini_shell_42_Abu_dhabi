@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 21:22:26 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/20 12:09:41 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 	int				**fd;
 	int				pid;
 	int				i;
+
 forens_printf("Inside exec_multiple_pipes \n");
 	fd = NULL;
 	t = parsing_piped_cmd(cmd, env, exit_status);
@@ -38,18 +39,21 @@ forens_printf("Inside exec_multiple_pipes \n");
 	if_there_is_heredoc_fill_it(t, env);
 	forens_printf("opening %d pipes\n", t->npipes);
 	fd = open_pipes(t->npipes, fd);
-	//remeber to check for the null cmd 
+	//remeber to check for the null cmd
 	while (i < t->npipes)
 	{
+		forens_printf("Multiple_cmd line 45 Current cmd = %s\n", t->single_cmd[i]->cmd);
 		if (t->single_cmd[i]->after_sep == 'h')
 			i = skip_multiple_heredocs(t, i);
 		// forens_printf("after_heredoc checkpoint\n");
+		forens_printf("Multiple_cmd line 49 Current cmd = %s\n", t->single_cmd[i]->cmd);
 		if (t->single_cmd[i]->before_sep == 'g'
 			|| t->single_cmd[i]->before_sep == 'a' || t->single_cmd[i]->before_sep == 'h' )
 		{
 			i++;
 			continue ;
 		}
+		forens_printf("Multiple_cmd line 56 Current cmd = %s\n", t->single_cmd[i]->cmd);
 		exec_export_unset_cd_in_parent(i,  t, env);
 		pid = fork();
 		if (pid == 0)
@@ -77,7 +81,8 @@ void	exec_export_unset_cd_in_parent(
 	while (t->single_cmd[redirec] && redirec < t->npipes)
 	{
 		if (t->single_cmd[redirec]->after_sep == 'p'
-			|| t->single_cmd[redirec]->after_sep == 'p')
+			|| t->single_cmd[redirec]->after_sep == 'g'
+			|| t->single_cmd[redirec]->after_sep == 'a')
 			return ;
 		redirec++;
 	}

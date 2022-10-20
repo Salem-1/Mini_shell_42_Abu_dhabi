@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/19 11:36:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/20 07:36:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,7 @@ int					tedous_n(struct t_parsed_command *t);
 void				vis_list(t_list **env, char is_env_or_exp);
 void				output_append_execution(t_pipes *t, int **fd, int i);
 void				input_execution(t_pipes *t, int **fd, int i);
+char				*clean_export_var_from_quotes(char *val, char quote);
 //Handling erros
 void				throw_parser_error(t_pipes *t, int * exit_status);
 void				fill_errored_pipe(
