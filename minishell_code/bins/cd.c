@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 00:38:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 14:53:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int f
 	current_path = ft_strdup(getcwd(buff, 4089));
 	forens_printf("OLDPWD=%s\nPWD=%s\n", old_path, current_path);
 	fill_old_and_current_pwd(env, old_path, current_path);
-	// forens_printf("cd is under maintainance for solving local exporting issues\n");
 	// exec_local_export(current_path, env, 'c');
 	free(buff);
 }

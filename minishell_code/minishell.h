@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 10:29:15 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 14:48:53 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ void				case_input_file_cat_otherfiles(
 void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
 void				exec_exit_export_unset_cd_in_parent(
 						int *i, struct t_pipes *t, t_list *env);
+char				*ft_low(char *cmd);
 //heredoc
 void				if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
 void				fill_heredoced_cmd(t_pipes *t, t_list *env, int i);

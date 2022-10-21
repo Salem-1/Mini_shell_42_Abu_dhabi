@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 10:30:41 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 12:01:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	close_files_and_wait(int **fd, struct t_pipes	*t, int *exit_satus)
 		wait(&forwait);
 		*exit_satus = WEXITSTATUS(forwait);
 		// *exit_satus = WIFSIGNALED(forwait);
-		forens_printf("cmd %d exection end exit status %d\n", i, *exit_satus);
+forens_printf("in close files and wiat cmd %d execution end exit status %d\n", i, *exit_satus);
 		i++;
 	}
 	forens_printf("\n------------------------------------------\n");

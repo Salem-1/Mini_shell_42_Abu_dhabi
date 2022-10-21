@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 07:43:25 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 14:51:28 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_
 	else if (t->path == 'r')
 	{
 		old_cmd = t->cmd;
-		t->cmd = search_path_for_bin(t->cmd, t_env);
+		t->cmd = search_path_for_bin(ft_low(t->cmd), t_env);
 	}
 	if (!t->cmd)
 	{
@@ -73,10 +73,26 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_
 	}
 	else
 	{
-		execve(t->cmd, t->args, envp);
-		// perror("execve");;
+		if (execve(t->cmd, t->args, envp) == -1)
+		{
+			printf("minishell: %s: No such file or directory\n", t->cmd);
+			exec_exit(all_cmds, 127);
+		}
 	}
 	exec_exit(all_cmds, 0);
+}
+
+char	*ft_low(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		cmd[i] = ft_tolower(cmd[i]);
+		i++;
+	}
+	return (cmd);
 }
 
 char	*search_path_for_bin(char *split_command_0, t_list *t_env)

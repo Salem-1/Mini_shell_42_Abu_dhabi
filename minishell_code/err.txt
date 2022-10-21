@@ -10,47 +10,33 @@ case 4:
 -------
 clean export error messages
 export > file      shouldn't print
-(solved)
 
 case 1 : soloution, modify the exec_exit to take argument right from t and check for numebrs
 -------
 exit 5   let the exit take arguments
 exit add arguments
 
+./minishell any / consider as absoulte path
+
 case 7:
 ------
-./minishell any / consider as absoulte path
-minishell $> /minishell
+minishell $> /dsfsdf
 execve: No such file or directory
 minishell $> echo $?
 0
-case 2
-------
-ls > green.txt > blue.txt < blue.txt
+remember to set the exit code (1) later inshalla
 
 case 3:
 -------
 to lower for cmd
-emember to set the exit code (1) later inshalla
 
-case 5:   (Bilal)
--------
-ctr c twice shouldn't exit 
-cat <<hello | cat << green  should do the heredoc before execution
-cat << hello    then CTR C doesn't execute
-cat << hello    then CTR D execute
-cat + ctr D or + ctr c
+(solved)
 
-case 6:
+case 1:
 --------
-minishell $> chmod -w green.txt 
-minishell $> ls > green.txt    ls shouldn't execute
-econvert cmd not found to 127
-file not found exit code 1
+CMD more than max number of allowed char
 
-
-
-case 9:
+case 2:
 --------
 mkdir abc
 minishell $> cd abc
@@ -58,7 +44,7 @@ bash: cd: abc: No such file or directory
 cd green.txt  SHOULD THROW AN ERROR
 cd: string not in pwd: /Users/ahsalem (delete this error message )
 
-case 10:
+case 3:
 -------
 quotes should be deleted
 //this case is handled by changing the flag in the cmdsmasher
@@ -70,7 +56,7 @@ where the **** have a disappeared, also quotes should be deleted too
 echo a='ls'
 ='ls
 
-case 11:
+case 4:
 -------
 export a="ls    -la"
 ls -la should be considered as new command and being parsed accordingly
@@ -79,7 +65,30 @@ minishell $> $a
 minishell: ls -la: command not found
 minishell $> 
 
-
-case 12:
+case 5:
 -------
 > hi cat file2 file3
+
+case 6
+------
+ls > green.txt > blue.txt < blue.txt
+
+
+case 7:
+--------
+minishell $> chmod -w green.txt 
+minishell $> ls > green.txt    ls shouldn't execute
+econvert cmd not found to 127
+file not found exit code 1
+
+case 8:   (Bilal)
+-------
+ctr c twice shouldn't exit 
+cat <<hello | cat << green  should do the heredoc before execution
+cat << hello    then CTR C doesn't execute
+cat << hello    then CTR D execute
+cat + ctr D or + ctr c
+
+case 9:
+-------
+Mem clean
