@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 12:01:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 19:06:16 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ forens_printf("Inside exec_multiple_pipes \n");
 			continue ;
 		}
 		forens_printf("Multiple_cmd line 56 Current cmd = %s\n", t->single_cmd[i]->cmd);
-		exec_exit_export_unset_cd_in_parent(&i,  t, env);
+		exec_exit_export_unset_cd_in_parent(&i,  t, env, exit_status);
 		pid = fork();
 		if (pid == 0)
 		{

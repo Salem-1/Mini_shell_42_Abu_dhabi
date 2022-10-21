@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 14:53:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 19:14:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	t     Throw an error
 	s     Silent the error
 */
-void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int flag)
+int	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int flag)
 {
 	char	*current_path;
 	char	*old_path;
@@ -29,7 +29,7 @@ void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int f
 	(void) all_cmds;
 	buff = malloc(sizeof(char) * 4089);
 	if (!buff)
-		return ;
+		return (1);
 	if (!t->args[1])
 	{
 		forens_printf("home path = %s\n", t->args[1]);
@@ -40,27 +40,27 @@ void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int f
 	{
 		forens_printf("is this error triggered\n");
 		if (flag == 't')
-			cd_error(t->args[1], 'p');
+			cd_error(all_cmds, t->args[1], 'p');
 		free(buff);
-		return ;
+		return (1);
 	}
 	old_path = ft_strdup(getcwd(buff, 4089));
-	forens_printf("changing directory = %s\n", t->args[1]);
+	forens_printf("changing directory from %s\n", t->args[1]);
 	if (chdir(t->args[1]) != 0)
 	{
 		forens_printf("error in executing chdir, will kill this child\n");
 		if (flag == 't')
-			cd_error(t->args[1], 'n');
+			cd_error(all_cmds, t->args[1], 'n');
 		free(buff);
 		free(old_path);
-		return ;
+		return (1);
 	}
-	// exec_local_export(current_path, env, 'o');
+	forens_printf("cd executiong success\n");
 	current_path = ft_strdup(getcwd(buff, 4089));
-	forens_printf("OLDPWD=%s\nPWD=%s\n", old_path, current_path);
+	forens_printf("changing directory to %s\n", current_path);
 	fill_old_and_current_pwd(env, old_path, current_path);
-	// exec_local_export(current_path, env, 'c');
 	free(buff);
+	return (0);
 }
 
 void	fill_old_and_current_pwd(
@@ -83,20 +83,6 @@ void	fill_old_and_current_pwd(
 	}
 }
 
-
-void	cd_error(char *error_path, char flag)
-{
-	if (flag == 'p')
-	{
-		err_printf("cd: string not in pwd: %s\n", error_path);
-		forens_printf("remeber to set the exit code to 1\n");
-	}
-	else
-	{
-		err_printf("bash: cd: %s: No such file or directory\n", error_path);
-		forens_printf("remeber to set the exit code to 1\n");
-	}
-}
 
 //update old and new pwd
 //pass it to the exection function as outside handmade command

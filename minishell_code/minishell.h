@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 14:48:53 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 19:14:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void				case_input_file_cat_otherfiles(
 						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
 void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
 void				exec_exit_export_unset_cd_in_parent(
-						int *i, struct t_pipes *t, t_list *env);
+						int *i, struct t_pipes *t, t_list *env, int *exit_status);
 char				*ft_low(char *cmd);
 //heredoc
 void				if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
@@ -199,11 +199,11 @@ t_list				*search_env(t_list *t_env, char *env_variable,
 						char flag, int throw_error);
 void				clear_var(t_list *delete_me, t_list **env, int throw_error);
 void				unset_error(char *env_variable);
-void				exec_cd(struct t_parsed_command *t,
+int					exec_cd(struct t_parsed_command *t,
 						t_list **env, t_pipes *all_cmds, int flag);
 void				fill_old_and_current_pwd(t_list **env,
 						char *old_path, char *current_path);
-void				cd_error(char *error_path, char flag);
+void				cd_error(t_pipes *t, char *error_path, char flag);
 void				exec_local_export(char *local_var, t_list **env, char flag);
 void				exec_echo(struct t_parsed_command *t);
 void				exec_exit(struct t_pipes *all_cmds, int exit_shell);
@@ -222,6 +222,7 @@ int					exec_exit_in_child(t_parsed_command *single_cmd,
 void				throw_parser_error(t_pipes *t, int * exit_status);
 void				fill_errored_pipe(
 						t_pipes *t, int error, t_list *smashed_cmd);
+void				cd_exit_with_code(t_pipes *t);
 //signals handling
 void					handle_signals(int sig);
 

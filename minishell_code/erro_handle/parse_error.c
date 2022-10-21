@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 11:05:21 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 09:28:07 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 19:15:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,19 @@ forens_printf("-------------------------------------------\n");
 forens_printf("-------------------------------------------\n");
 }
 
+void	cd_exit_with_code(t_pipes *t)
+{
+	if (t->parse_error == 10)
+	{
+		//clean
+		exit (1);
+	}
+	else
+	{
+		//clean
+		exit(0);
+	}
+}
 /*
 	take car while flushing errod piped make it as simple as possible
 */
@@ -104,4 +117,19 @@ void	throw_error_in_exit(
 	t->parse_error = parse_error;
 	throw_parser_error(t, &convert_erro);
 	*exit_code = 255;
+}
+
+void	cd_error(t_pipes *t, char *error_path, char flag)
+{
+	if (flag == 'p')
+	{
+		err_printf("cd: string not in pwd: %s\n", error_path);
+		forens_printf("remeber to set the exit code to 1\n");
+	}
+	else
+	{
+		err_printf("bash: cd: %s: No such file or directory\n", error_path);
+		forens_printf("remeber to set the exit code to 1\n");
+	}
+	t->parse_error = 10;
 }

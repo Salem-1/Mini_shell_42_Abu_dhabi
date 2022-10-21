@@ -30,21 +30,23 @@ case 3:
 -------
 to lower for cmd
 
-(solved)
-
 case 1:
 --------
 CMD more than max number of allowed char
-
-case 2:
---------
+c
+ase 2:
+------
 mkdir abc
 minishell $> cd abc
 bash: cd: abc: No such file or directory
 cd green.txt  SHOULD THROW AN ERROR
 cd: string not in pwd: /Users/ahsalem (delete this error message )
 
-case 3:
+(solved)
+-------------------------------------------------------------------------
+
+
+case 1:
 -------
 quotes should be deleted
 //this case is handled by changing the flag in the cmdsmasher
@@ -56,7 +58,7 @@ where the **** have a disappeared, also quotes should be deleted too
 echo a='ls'
 ='ls
 
-case 4:
+case 2:
 -------
 export a="ls    -la"
 ls -la should be considered as new command and being parsed accordingly
@@ -65,23 +67,23 @@ minishell $> $a
 minishell: ls -la: command not found
 minishell $> 
 
-case 5:
+case 3:
 -------
 > hi cat file2 file3
 
-case 6
+case 4:
 ------
 ls > green.txt > blue.txt < blue.txt
 
 
-case 7:
+case 5:
 --------
 minishell $> chmod -w green.txt 
 minishell $> ls > green.txt    ls shouldn't execute
 econvert cmd not found to 127
 file not found exit code 1
 
-case 8:   (Bilal)
+case 6:   (Bilal)
 -------
 ctr c twice shouldn't exit 
 cat <<hello | cat << green  should do the heredoc before execution
@@ -89,6 +91,6 @@ cat << hello    then CTR C doesn't execute
 cat << hello    then CTR D execute
 cat + ctr D or + ctr c
 
-case 9:
+case 7:
 -------
 Mem clean
