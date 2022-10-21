@@ -15,7 +15,8 @@ SRC =	main.c \
 		bins/raise_builtin_errors.c \
 		erro_handle/parse_error.c \
 		test_files/vis.c 
-CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3		
+CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3 
+#-fsanitize=address -static-libasan -g
 
 CC = gcc 
 OBJ = $(SRC:.c=.o)

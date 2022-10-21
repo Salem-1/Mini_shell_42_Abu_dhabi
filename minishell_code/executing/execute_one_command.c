@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/20 16:47:15 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 07:43:25 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_
 	}
 	else
 	{
-		if (execve(t->cmd, t->args, envp) == -1)
-		;// perror("execve");;
+		execve(t->cmd, t->args, envp);
+		// perror("execve");;
 	}
 	exec_exit(all_cmds, 0);
 }

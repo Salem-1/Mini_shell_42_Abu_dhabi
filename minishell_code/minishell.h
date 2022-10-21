@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/20 07:36:26 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 10:29:15 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,8 @@ void				case_input_file_cat(
 void				case_input_file_cat_otherfiles(
 						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
 void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
-void				exec_export_unset_cd_in_parent(
-						int i, struct t_pipes *t, t_list *env);
+void				exec_exit_export_unset_cd_in_parent(
+						int *i, struct t_pipes *t, t_list *env);
 //heredoc
 void				if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
 void				fill_heredoced_cmd(t_pipes *t, t_list *env, int i);
@@ -211,6 +211,12 @@ void				vis_list(t_list **env, char is_env_or_exp);
 void				output_append_execution(t_pipes *t, int **fd, int i);
 void				input_execution(t_pipes *t, int **fd, int i);
 char				*clean_export_var_from_quotes(char *val, char quote);
+int					exec_exit_in_parent(int *i,  struct t_pipes *t);
+int					check_exit_arg(t_parsed_command *t);
+void				throw_error_in_exit(t_pipes *t, int *exit_code,
+						int error_code,int parse_error);
+int					exec_exit_in_child(t_parsed_command *single_cmd,
+						t_pipes *t, int exit_code);
 //Handling erros
 void				throw_parser_error(t_pipes *t, int * exit_status);
 void				fill_errored_pipe(

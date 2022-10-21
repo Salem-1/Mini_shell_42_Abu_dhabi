@@ -17,6 +17,13 @@ case 1 : soloution, modify the exec_exit to take argument right from t and check
 exit 5   let the exit take arguments
 exit add arguments
 
+case 7:
+------
+./minishell any / consider as absoulte path
+minishell $> /minishell
+execve: No such file or directory
+minishell $> echo $?
+0
 case 2
 ------
 ls > green.txt > blue.txt < blue.txt
@@ -41,13 +48,6 @@ minishell $> ls > green.txt    ls shouldn't execute
 econvert cmd not found to 127
 file not found exit code 1
 
-case 7:
-------
-./minishell any / consider as absoulte path
-minishell $> /minishell
-execve: No such file or directory
-minishell $> echo $?
-0
 
 
 case 9:

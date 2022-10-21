@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/20 16:58:14 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 10:30:41 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 forens_printf("Inside exec_multiple_pipes \n");
 	fd = NULL;
 	t = parsing_piped_cmd(cmd, env, exit_status);
+	//try cleanining all memory here 
+	//try exit here to check the memory leaks of the parsing 
+	//this is a good starting point
 	if (!t)
 		return ;
 	if (t->parse_error != 0)
@@ -45,7 +48,6 @@ forens_printf("Inside exec_multiple_pipes \n");
 		forens_printf("Multiple_cmd line 45 Current cmd = %s\n", t->single_cmd[i]->cmd);
 		if (t->single_cmd[i]->after_sep == 'h')
 			i = skip_multiple_heredocs(t, i);
-		// forens_printf("after_heredoc checkpoint\n");
 		forens_printf("Multiple_cmd line 49 Current cmd = %s\n", t->single_cmd[i]->cmd);
 		if (t->single_cmd[i]->before_sep == 'g'
 			|| t->single_cmd[i]->before_sep == 'a' || t->single_cmd[i]->before_sep == 'h' )
@@ -54,7 +56,7 @@ forens_printf("Inside exec_multiple_pipes \n");
 			continue ;
 		}
 		forens_printf("Multiple_cmd line 56 Current cmd = %s\n", t->single_cmd[i]->cmd);
-		exec_export_unset_cd_in_parent(i,  t, env);
+		exec_exit_export_unset_cd_in_parent(&i,  t, env);
 		pid = fork();
 		if (pid == 0)
 		{
@@ -70,29 +72,6 @@ forens_printf("Inside exec_multiple_pipes \n");
 	return ;
 }
 
-void	exec_export_unset_cd_in_parent(
-		int i,  struct t_pipes *t, t_list *env)
-{
-	int	redirec;
-
-	redirec = 0;
-	if (!t->single_cmd[i] || !t->single_cmd[i]->cmd)
-		return ;
-	while (t->single_cmd[redirec] && redirec < t->npipes)
-	{
-		if (t->single_cmd[redirec]->after_sep == 'p'
-			|| t->single_cmd[redirec]->after_sep == 'g'
-			|| t->single_cmd[redirec]->after_sep == 'a')
-			return ;
-		redirec++;
-	}
-	if (!ft_strncmp(t->single_cmd[i]->cmd, "cd", 3))
-		exec_cd(t->single_cmd[i], &env, t, 's');
-	else if (!ft_strncmp(t->single_cmd[i]->cmd, "export", 7))
-		exec_export(t->single_cmd[i], &env, 's');
-	else if (!ft_strncmp(t->single_cmd[i]->cmd, "unset", 6))
-		exec_unset(t->single_cmd[i], &env, 1, 's');
-}
 
 void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 {

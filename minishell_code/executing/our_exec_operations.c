@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:21:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 07:32:25 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 10:19:44 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exec_our_cmd(struct t_parsed_command *t, t_list *env,
 		exec_echo(t);
 	len = length_of_larger_string(t->cmd, "exit");
 	if (!ft_strncmp(t->cmd, "exit", len))
-		exec_exit(all_cmds, 0);
+		exec_exit_in_child(t, all_cmds, 0);
 }
 
 void	vis_list(t_list **env, char is_env_or_exp)
@@ -83,4 +83,30 @@ void	vis_list(t_list **env, char is_env_or_exp)
 			printf("%s=%s\n", tmp->key_val[0], tmp->key_val[1]);
 		tmp = tmp->next;
 	}
+}
+
+void	exec_exit_export_unset_cd_in_parent(
+		int *i,  struct t_pipes *t, t_list *env)
+{
+	int	redirec;
+
+	redirec = 0;
+	if (!t->single_cmd[*i] || !t->single_cmd[*i]->cmd)
+		return ;
+	while (t->single_cmd[redirec] && redirec < t->npipes)
+	{
+		if (t->single_cmd[redirec]->after_sep == 'p'
+			|| t->single_cmd[redirec]->after_sep == 'g'
+			|| t->single_cmd[redirec]->after_sep == 'a')
+			return ;
+		redirec++;
+	}
+	if (!ft_strncmp(t->single_cmd[*i]->cmd, "cd", 3))
+		exec_cd(t->single_cmd[*i], &env, t, 's');
+	else if (!ft_strncmp(t->single_cmd[*i]->cmd, "export", 7))
+		exec_export(t->single_cmd[*i], &env, 's');
+	else if (!ft_strncmp(t->single_cmd[*i]->cmd, "unset", 6))
+		exec_unset(t->single_cmd[*i], &env, 1, 's');
+	else if (!ft_strncmp(t->single_cmd[*i]->cmd, "exit", 5))
+		exec_exit_in_parent(i, t);
 }
