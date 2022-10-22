@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/22 15:27:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/22 20:51:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,17 +200,18 @@ int					is_repeated(char *cmd, t_list **env);
 
 void				exec_env(t_list **env);
 void				exec_pwd(void);
-void				exec_export(struct t_parsed_command *t,
+void				exec_export(t_pipes *all_cmds, struct t_parsed_command *t,
 						t_list **env, int flag);
-int					valid_export_arg(char *str);
+int					valid_export_arg(char *str, char flag);
 int					find_msize(char *cmd);
-void				raise_export_error(char *cmd);
-void				exec_unset(struct t_parsed_command *t, t_list **env,
+void				raise_export_error(t_pipes *t, char *cmd, char flag);
+int					exec_unset(struct t_parsed_command *t, t_list **env,
 						int i, char flag);
 t_list				*search_env(t_list *t_env, char *env_variable,
 						char flag, int throw_error);
 void				clear_var(t_list *delete_me, t_list **env, int throw_error);
-void				unset_error(char *env_variable);
+void				unset_error(char *env_variable,
+						int error_code, char throw, t_pipes *t);
 int					exec_cd(struct t_parsed_command *t,
 						t_list **env, t_pipes *all_cmds, int flag);
 void				fill_old_and_current_pwd(t_list **env,

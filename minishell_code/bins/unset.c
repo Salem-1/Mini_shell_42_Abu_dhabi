@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 09:39:54 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 07:31:07 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/22 20:52:05 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,29 @@
 	t    throw an error
 	s    silent the error
 */
-void	exec_unset(struct t_parsed_command *t, t_list **env,int i, char flag)
+int	exec_unset(struct t_parsed_command *t, t_list **env,int i, char flag)
 {
 	t_list	*tmp;
+	int		exit_code;
 
+	exit_code = 0;
 	tmp = NULL;
 	if (!t->args[i])
-		return ;
+		return (0);
 	while (t->args[i])
 	{
+		if (!valid_export_arg(t->args[i], 'u') || ft_strnchr(t->args[i], '=') != -1)
+		{
+			if (flag == 't')
+				unset_error(t->args[i], 0, 'n', NULL);
+			exit_code = 1;
+		}
 		tmp = search_env(*env, t->args[i], 'c', flag);
 		if (tmp)
 			clear_var(tmp, env, flag);
 		i++;
 	}
+	return (exit_code);
 }
 
 //The first condition for the case of the removed var is the first item
@@ -66,12 +75,12 @@ t_list	*search_env(t_list *t_env, char *env_variable, char flag, int throw_error
 	node_before = NULL;
 	if (!t_env || !env_variable)
 		return (NULL);
-	if (!valid_export_arg(env_variable) || find_msize(env_variable) != 2)
+	if (!valid_export_arg(env_variable, 'u') || find_msize(env_variable) != 2)
 	{
 		if (throw_error == 't')
 		{
 			throw_error = 's';
-			unset_error(env_variable);
+			// unset_error(env_variable);
 		}
 		return (NULL);
 	}
@@ -99,16 +108,21 @@ int	is_repeated(char *cmd, t_list **env)
 		return (0);
 }
 
-int	valid_export_arg(char *str)
+int	valid_export_arg(char *str, char flag)
 {
 	int	i;
 
 	i = 1;
+	flag++;
 	if (!str)
 		return (0);
 	if (!(ft_isalpha(str[0]) || str[0] == '_'))
 	{
-		printf("throw an error (%s) inside valid_export arg  ()\n", str);
+		// if (flag == 'e')
+		// 	err_printf("minishell: export: `%s': not a valid identifier\n", str);
+		// else
+		// 	err_printf("minishell: unset: `%s': not a valid identifier\n", str);
+
 		return (0);
 	}
 	while (str[i])

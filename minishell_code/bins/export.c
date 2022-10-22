@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/20 07:41:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/22 20:10:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	t    throw an error
 	s    silent the error
 */
-void	exec_export(struct t_parsed_command *t, t_list **env, int flag)
+void	exec_export(t_pipes *all_cmds, struct t_parsed_command *t, t_list **env, int flag)
 {
 	int		i;
 	t_list	*tmp;
@@ -26,18 +26,23 @@ void	exec_export(struct t_parsed_command *t, t_list **env, int flag)
 	tmp = NULL;
 	while (t->args[i])
 	{
-		if (valid_export_arg(t->args[i]))
+		if (valid_export_arg(t->args[i], 'e'))
 		{
 			tmp = parsed_exp_arg(t->args[i], env, tmp, t);
 			if (tmp)
 				ft_lstadd_back(env, tmp);
 		}
 		else if (flag == 't')
-			raise_export_error(t->args[i]);
+		{
+			//just print errors here
+			raise_export_error(all_cmds, t->args[i], 'v');
+		}
 		i++;
 	}
 	if (t->args[1] == NULL)
 		vis_list(env, 'x');
+	if (flag == 't' && all_cmds->parse_error == 30)
+		raise_export_error(all_cmds, t->args[i], 'e');
 }
 
 t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_command *t)
@@ -68,81 +73,42 @@ t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_com
 	return (tmp);
 }
 
-char	**fill_export_with_key_only(char **exp_item, int m_size, char *cmd)
-{
-	exp_item = malloc(sizeof(char *) * m_size);
-	if (!exp_item)
-		return (NULL);
-	exp_item[0] = ft_strdup(cmd);
-	return (exp_item);
-}
+//flag == 'c' return the searched node
+//flag == 'b' return the node before the searched node
+// t_list	*search_env_for_export(t_list *t_env, char *env_variable, char flag, int throw_error)
+// {
+// 	t_list	*tmp;
+// 	t_list	*node_before;
+// 	size_t	len;
 
-//test this befor deployment
-char	**fill_export_with_key_val_variables(char *cmd,
-			t_list *env,t_list *tmp, char **exp_item)
-{
-	int	equal_location;
-
-	(void)tmp;
-	(void)env;
-	equal_location = ft_strnchr(cmd, '=');
-	if (equal_location == -1)
-	{
-		err_printf("Inside export parsingThis should never be triggered\n");
-		return (NULL);
-	}
-	exp_item = malloc(sizeof(char *) * 3);
-	if (!exp_item)
-		return (NULL);
-	exp_item[0] = ft_substr(cmd,0,  equal_location);
-	exp_item[1] = ft_substr(cmd, equal_location + 1,
-			ft_strlen(cmd) - equal_location);
-	if (ft_strnchr(exp_item[1], '"') != -1 || ft_strnchr(exp_item[1], '\'') != -1)
-	{
-		if (ft_strnchr(exp_item[1], '"') < ft_strnchr(exp_item[1], '\'') || ft_strnchr(exp_item[1], '\'') == -1)
-			exp_item[1] = clean_export_var_from_quotes(exp_item[1], '"');
-		else
-			exp_item[1] = clean_export_var_from_quotes(exp_item[1], '\'');
-	}
-	forens_printf("exported val = ~%s~\n", exp_item[1]);
-	return (exp_item);
-}
-
-char	*clean_export_var_from_quotes(char *val, char quote)
-{
-	char	*new_arg;
-	char	*result;
-	int		i;
-
-	new_arg = NULL;
-	i = 0;
-	if (!strrchr(val, quote))
-		return (val);
-	if (val[i] == quote && val[i+ 1] == quote)
-	{
-		free(val);
-		return (ft_expand_strjoin(new_arg, ft_strdup("\0")));
-	}
-	else
-		new_arg = ft_strjoin(new_arg, strchr(val, quote) + 1);
-	while (new_arg[i])
-	{
-		if (new_arg[i] == quote)
-			break ;
-		i++;
-	}
-	result = ft_strjoin(ft_substr(new_arg, 0, i), &new_arg[i + 1]);
-	free(new_arg);
-	return (result);
-}
-
-t_list	*fill_new_export_node(t_list *tmp, char **exp_item, int m_size)
-{
-	tmp = ft_lstnew(exp_item);
-	if (m_size == 2)
-		tmp->flag = 'x';
-	return (tmp);
-}
+// 	tmp = t_env;
+// 	node_before = NULL;
+// 	if (!t_env || !env_variable)
+// 		return (NULL);
+// 	if (!valid_export_arg(env_variable, 'u') || find_msize(env_variable) != 2)
+// 	{
+// 		if (throw_error == 't')
+// 		{
+// 			throw_error = 's';
+// 			unset_error(env_variable);
+// 		}
+// 		return (NULL);
+// 	}
+// 	while (tmp)
+// 	{
+// 		len = length_of_larger_string(tmp->key_val[0], env_variable);
+// 		if (!ft_strncmp(tmp->key_val[0], env_variable, len))
+// 		{
+// 			if (flag == 'c')
+// 				return (tmp);
+// 			else
+// 				return (node_before);
+// 		}
+// 		node_before = tmp;
+// 		tmp = tmp->next;
+// 	}
+// 	return (NULL);
+// }
 //set the last exit, if succeessful it's 0,
 //  if not make 127 for command not found
 //126 permission denied, CTR-C 130, exit code of wait

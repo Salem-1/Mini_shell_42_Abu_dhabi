@@ -1,28 +1,23 @@
 case 1:
 -------
-minishell $> echo ""$PWD   bug with the start location of the first qoute, is 5, should be 6
-minishell: syntax error near unexpected token 
-
-case 2:
--------
 > hi cat file2 file3
 
-case 3:
+case 2:
 ------
 ls > green.txt > blue.txt < blue.txt
-
-case 4:
+cat trash | grep =          it hangs, I believe it's the forensic is the cause
+case 3:
 --------
 minishell $> chmod -w green.txt 
 minishell $> ls > green.txt    ls shouldn't execute
 econvert cmd not found to 127
 file not found exit code 1
 
-case 5:
+case 4:
 -------
 Mem clean
 
-case 6:  (Bilal)
+case 5:  (Bilal)
 -------
 ctr c twice shouldn't exit 
 cat <<hello | cat << green  should do the heredoc before execution
@@ -32,6 +27,14 @@ cat + ctr D or + ctr c
 
 (solved)
 -------------------------------------------------------------------------
+case 1:
+-------
+cd error
+
+export a#=3
+
+minishell $> echo ""$PWD   bug with the start location of the first qoute, is 5, should be 6
+minishell: syntax error near unexpected token 
 
 minishell $> unset PWD
 minishell $> unset HOME
