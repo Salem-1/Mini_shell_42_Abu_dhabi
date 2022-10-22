@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 19:14:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/22 15:27:00 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,23 @@ char				*search_expanded_var(t_list *t_env,
 						char *env_variable, int *exit_status);
 int					dollar_expan_operation_loop(t_dollar_expansion_kit *e,
 						t_smash_kit *s, int *exit_status);
-char				*handle_outliar_quote(
+char				*handle_outliar_remain_after_quote(
 						t_smash_kit *s, char flag, char *cmd, int *exit_status);
-int				scan_cmd_for_parsing_errors(
+int					scan_cmd_for_parsing_errors(
 						t_list *smashed_cmd);
 int					is_r_flag(char flag);
+//quotes handling
+char				*figure_out_end_of_quote_and_fill_arg(t_smash_kit *s,
+						char *cmd, char flag, int *exit_status);
+char				*fill_normal_quote_case(t_smash_kit *s,
+						char *cmd, char flag, int *exit_status);
+char				*fill_outliar_quote_by_split_expand(
+						t_smash_kit *s, char *cmd, char flag, int *exit_status);
+char				*outliar_double_with_expand(t_smash_kit *s,
+						char **splitted_arg, char *final_arg, int *exit_status);
+char				*outliar_single_fill(
+						char **splitted_arg, char *final_arg);
+
 //Execution
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);

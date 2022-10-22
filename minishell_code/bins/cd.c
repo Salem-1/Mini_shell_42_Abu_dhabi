@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 19:14:59 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/21 20:58:03 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	fill_old_and_current_pwd(
 		current_node->key_val[1] = current_path;
 	}
 }
-
 
 //update old and new pwd
 //pass it to the exection function as outside handmade command

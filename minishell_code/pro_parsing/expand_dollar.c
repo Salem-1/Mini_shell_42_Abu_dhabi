@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:21:53 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 12:36:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/22 13:05:14 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,17 @@ typedef struct dollar_expansion_kit
 char	*expand_var(t_smash_kit *s, char *cmd, int * exit_status)
 {
 	t_dollar_expansion_kit	e;
+
+	e.smashed_arg = cmd;
 forens_printf("analyzing expansion operations:\n");
 forens_printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	e.tmp = NULL;
 	e.end = 0;
 	e.new_arg = NULL;
-	if (cmd[s->start] == '"')
-		e.smashed_arg = ft_substr(cmd,  s->start + 1, s->end - s->start -1);
-	else
-		e.smashed_arg = ft_substr(cmd, s->start, s->end - s->start + 1);
+	// if (cmd[s->start] == '"')
+	// 	e.smashed_arg = ft_substr(cmd,  s->start + 1, s->end - s->start -1);
+	// else
+	// 	e.smashed_arg = ft_substr(cmd, s->start, s->end - s->start + 1);
 	forens_printf("smashed arg = %s\n", e.smashed_arg);
 	e.start = ft_strnchr(e.smashed_arg, '$');
 	forens_printf("START = %d\n", e.start);

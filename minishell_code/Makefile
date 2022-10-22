@@ -10,6 +10,7 @@ SRC =	main.c \
 		pro_parsing/cmd_smasher.c pro_parsing/classify_cmd.c \
 		pro_parsing/smash_redirections.c\
 		pro_parsing/expand_dollar.c\
+		pro_parsing/outliar_quotes.c\
 		bins/cd.c bins/echo.c bins/env_pwd.c \
 		bins/exit.c bins/export.c  bins/unset.c \
 		bins/raise_builtin_errors.c \
