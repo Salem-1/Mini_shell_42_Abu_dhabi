@@ -6,13 +6,23 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:11:01 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 09:59:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/23 14:17:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /*
+//check if this is the first node that has t  for this case:  < f cat f2 f3 f4 
+	then t-> n_pipes--, and rearrange the cmd to be:
+	sep before '\0'
+	cmd : cat
+	args : cat f2 f3 f4
+	sep after what is after f4
+
+smashed_cmd = smashed_cmd->next	
+---------
+
 	count args after the n_args
 	if at the begining
 	if 1 act normally
@@ -34,6 +44,7 @@ void	fill_outliar_input(
 		after_red = count_outliar_redire(smashed_cmd, 0);
 	else
 		after_red = count_outliar_redire(smashed_cmd, -1);
+	//this seem tp nbe parse error if < with no cmds
 	if (after_red == 0)
 		return ;
 	// j = 0;
@@ -48,7 +59,7 @@ void	fill_outliar_input(
 		// else if (after_red > 2)
 		// 	case_input_file_cat_otherfiles(smashed_cmd, t, i, local_i);
 		
-		forens_printf("###Calling case %s 1\n", t->single_cmd[*i]->cmd);
+		// forens_pr+intf("###Calling case %s 1\n", t->single_cmd[*i]->cmd);
 		return ;
 	}
 }
@@ -139,33 +150,33 @@ void	fill_redirec_outliar_cmd_hard_coded(
 	t->single_cmd[*i + 1]->cmd = (char *)smashed_cmd->next->content;
 }
 
-/*
-void	case_input_file_cat_otherfiles(t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
-{
-	int	after_red;
-	int	j;
+//t->npipes--
+// void	case_input_file_cat_otherfiles(t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
+// {
+// 	int	after_red;
+// 	int	j;
 
-	after_red = 0;
-	j = 0;
-	smashed_cmd = smashed_cmd->next->next;
-	t->single_cmd[*i]->args = malloc(sizeof(char *) * after_red);
-	while ( smashed_cmd && j < after_red - 1)
-	{
-		if (smashed_cmd->flag == 'c')
-			t->single_cmd[*i]->args[j] = (char *)smashed_cmd->content;
-		else
-			break;
-		j++;
-		(*local_i) += 1;
-		smashed_cmd = smashed_cmd->next;
-	}
-	if (smashed_cmd)
-	{
-		t->single_cmd[*i]->after_sep = smashed_cmd->flag;
-		smashed_cmd = smashed_cmd->next;
-	}
-	else
-		t->single_cmd[*i]->after_sep = '\0';
-	return ;
-}
-*/
+// 	after_red = 0;
+// 	j = 0;
+// 	smashed_cmd = smashed_cmd->next->next;
+// 	t->single_cmd[*i]->args = malloc(sizeof(char *) * after_red);
+// 	while ( smashed_cmd && j < after_red - 1)
+// 	{
+// 		if (smashed_cmd->flag == 'c')
+// 			t->single_cmd[*i]->args[j] = (char *)smashed_cmd->content;
+// 		else
+// 			break;
+// 		j++;
+// 		(*local_i) += 1;
+// 		smashed_cmd = smashed_cmd->next;
+// 	}
+// 	if (smashed_cmd)
+// 	{
+// 		t->single_cmd[*i]->after_sep = smashed_cmd->flag;
+// 		smashed_cmd = smashed_cmd->next;
+// 	}
+// 	else
+// 		t->single_cmd[*i]->after_sep = '\0';
+// 	return ;
+// }
+

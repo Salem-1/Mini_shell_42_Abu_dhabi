@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 10:09:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/23 18:34:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ forens_printf("i = %d  ", i);
 			break ;
 		i++;
 	}
+	parsing_laundry(t);
 	if (smashed_cmd)
 		ft_lstclear(&smashed_cmd, del);
 	return (t);

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/22 20:51:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/23 16:34:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ char				*handle_outliar_remain_after_quote(
 int					scan_cmd_for_parsing_errors(
 						t_list *smashed_cmd);
 int					is_r_flag(char flag);
+void				parsing_laundry(t_pipes *t);
+void				case_t_f1_cat_f2_f3_etc(t_pipes *t);
 //quotes handling
 char				*figure_out_end_of_quote_and_fill_arg(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);

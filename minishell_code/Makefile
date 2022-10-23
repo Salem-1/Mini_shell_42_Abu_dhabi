@@ -7,6 +7,7 @@ SRC =	main.c \
 		parsing/clean_mem.c  parsing/parse_env.c \
 		parsing/parsing_piped_cmd.c parsing/parsing_piped_utils.c\
 		parsing/outliar_redirect_parse.c\
+		parsing/cmd_laundary.c\
 		pro_parsing/cmd_smasher.c pro_parsing/classify_cmd.c \
 		pro_parsing/smash_redirections.c\
 		pro_parsing/expand_dollar.c\

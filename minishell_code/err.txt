@@ -1,19 +1,17 @@
-case 1:
--------
-> hi cat file2 file3
 
-case 2:
+case 1:
 ------
 ls > green.txt > blue.txt < blue.txt
 cat trash | grep =          it hangs, I believe it's the forensic is the cause
-case 3:
+
+case 2:
 --------
 minishell $> chmod -w green.txt 
 minishell $> ls > green.txt    ls shouldn't execute
 econvert cmd not found to 127
 file not found exit code 1
 
-case 4:
+case 3:
 -------
 Mem clean
 
@@ -29,7 +27,14 @@ cat + ctr D or + ctr c
 -------------------------------------------------------------------------
 case 1:
 -------
+minishell $> cat < f
+zsh: segmentation fault  ./minishell
+< file cat f2 f3
+
+case 1:
+-------
 cd error
+> hi cat file2 file3
 
 export a#=3
 
