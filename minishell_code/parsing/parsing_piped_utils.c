@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 06:20:20 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 10:35:09 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:35:02 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i)
 		t->single_cmd[i]->before_sep = t->single_cmd[i - 1]->after_sep;
 	}
 	else
-	forens_printf("This is a bug in malloc_single_cmd, i = %d\n", i);
+		;
+	//forens_printf("This is a bug in malloc_single_cmd, i = %d\n", i);
 }
 
 //expand this one to include the take and heredoc if needed
@@ -55,7 +56,7 @@ int	add_content_to_single_cmd_arg(t_parsed_command *single_cmd, int *local_i, t_
 {
 	if (smashed_cmd->flag == 'c')
 	{
-	forens_printf("I don't have such null flags\n");
+	//forens_printf("I don't have such null flags\n");
 		return (0);
 	}
 	else if (smashed_cmd->flag == '\0')
@@ -73,7 +74,7 @@ int	init_fill_cmd(int *local_i, int *i, t_pipes * t, t_list *smashed_cmd)
 	n_args = 0;
 	*local_i = 0;
 	n_args = count_args_in_cmd(smashed_cmd);
-forens_printf("Single_cmd n_args = %d\n", n_args);
+//forens_printf("Single_cmd n_args = %d\n", n_args);
 	malloc_single_cmd_in_t_piped_cmd(t, *i);
 	t->single_cmd[*i]->args = malloc(sizeof(char *) * n_args + 1);
 	return (n_args);

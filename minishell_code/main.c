@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 12:57:41 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 15:07:02 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ forens_printf("Session start: %s\n\n\n", ctime(&t));
 		cmd = readline("minishell $> ");
 		if (cmd == NULL)
 			return (0);
-forens_printf("%s\n\n", cmd);
+//forens_printf("%s\n\n", cmd);
 		if (execution_operations(cmd, t_env, &exit_status) == 249)
 			return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/22 06:43:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 	init_smash_kit(&s, head, env);
 	while (cmd[s.i])
 	{
-		forens_printf("Cmd smasher cmd[%d] = (%c), flag = <%c>, s.start = %d, s.end = %d\n", s.i, cmd[s.i], s.flag, s.start, s.end);
+		//forens_printf("Cmd smasher cmd[%d] = (%c), flag = <%c>, s.start = %d, s.end = %d\n", s.i, cmd[s.i], s.flag, s.start, s.end);
 		if (cmd_classifier(&s, cmd) == 'r')
 		{
 			fill_redirection(&s, cmd, head, s.i);

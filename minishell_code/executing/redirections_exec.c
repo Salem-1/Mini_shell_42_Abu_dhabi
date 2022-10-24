@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:39:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 18:54:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:41:15 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ void	output_append_execution(t_pipes *t, int **fd, int i)
 		if (fd[i][1] == -1)
 			perror("open");
 	}
+	/*
+	if (t->single_cmd[i + 1])
+		if (t->single_cmd[i + 1]->after_sep == 'g'
+			|| t->single_cmd[i + 1]->after_sep == 'a')
+		{
+			output_append_execution(t, fd, i + 1);
+		}
+	*/
 }
 
 void	input_execution(t_pipes *t, int **fd, int i)

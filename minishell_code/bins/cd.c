@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 20:58:03 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,32 @@ int	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int fl
 		return (1);
 	if (!t->args[1])
 	{
-		forens_printf("home path = %s\n", t->args[1]);
+		//forens_printf("home path = %s\n", t->args[1]);
 		t->args[1] = ft_strdup(search_list(*env, ft_strdup("HOME"), 'p'));
-		forens_printf("home path = %s\n", t->args[1]);
+		//forens_printf("home path = %s\n", t->args[1]);
 	}
 	else if (t->args[2])
 	{
-		forens_printf("is this error triggered\n");
+		//forens_printf("is this error triggered\n");
 		if (flag == 't')
 			cd_error(all_cmds, t->args[1], 'p');
 		free(buff);
 		return (1);
 	}
 	old_path = ft_strdup(getcwd(buff, 4089));
-	forens_printf("changing directory from %s\n", t->args[1]);
+	//forens_printf("changing directory from %s\n", t->args[1]);
 	if (chdir(t->args[1]) != 0)
 	{
-		forens_printf("error in executing chdir, will kill this child\n");
+		//forens_printf("error in executing chdir, will kill this child\n");
 		if (flag == 't')
 			cd_error(all_cmds, t->args[1], 'n');
 		free(buff);
 		free(old_path);
 		return (1);
 	}
-	forens_printf("cd executiong success\n");
+	//forens_printf("cd executiong success\n");
 	current_path = ft_strdup(getcwd(buff, 4089));
-	forens_printf("changing directory to %s\n", current_path);
+	//forens_printf("changing directory to %s\n", current_path);
 	fill_old_and_current_pwd(env, old_path, current_path);
 	free(buff);
 	return (0);

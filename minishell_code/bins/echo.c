@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 14:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 12:44:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	exec_echo(struct t_parsed_command *t)
 {
 	char	nl;
 	int		i;
-forens_printf("inside echo our cmd, t->cmd = ~%s~\n", t->cmd);
+// //forens_printf("inside echo our cmd, t->cmd = ~%s~\n", t->cmd);
 	i = tedous_n(t);
 	nl = '\n';
 	if (i != 1)

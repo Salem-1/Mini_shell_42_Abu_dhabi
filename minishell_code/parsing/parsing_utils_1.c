@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/16 11:23:32 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ int	count_cmds(t_list *cmd)
 {
 	t_list	*tmp;
 	int		n;
-	forens_printf("inside count cmds\n");
+	//forens_printf("inside count cmds\n");
 	n = 1;
 	tmp = cmd;
 	while (tmp)
 	{
-		forens_printf("flag = %c arg = ~%s~,\n", tmp->flag, (char *)tmp->content);
+		//forens_printf("flag = %c arg = ~%s~,\n", tmp->flag, (char *)tmp->content);
 		if (tmp->flag != 'c')
 			n++;
 		tmp = tmp->next;

@@ -14,7 +14,6 @@ green.txt
 hi
 libft
 main.c
-main.o
 minishell
 minishell.h
 parsing

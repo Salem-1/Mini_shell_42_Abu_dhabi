@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forens_printf.h                                    :+:      :+:    :+:   */
+/*   //forens_printf.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:17:52 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 00:27:20 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/23 18:41:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORENS_PRINTF_H
-# define FORENS_PRINTF_H
+#ifndef forens_printF_H
+# define forens_printF_H
 # include "../libft.h"
 # include <stdarg.h>
 

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/23 16:34:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 # include "libft/libft.h"
 # include "libft/err_printf/ft_printf.h"
-# include "./libft/forensic_printf/forens_printf.h"
+# include "./libft/forensic_printf///forens_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>

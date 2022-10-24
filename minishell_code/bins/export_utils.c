@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:38:13 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/22 18:40:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**fill_export_with_key_val_variables(char *cmd,
 		else
 			exp_item[1] = clean_export_var_from_quotes(exp_item[1], '\'');
 	}
-	forens_printf("exported val = ~%s~\n", exp_item[1]);
+	//forens_printf("exported val = ~%s~\n", exp_item[1]);
 	return (exp_item);
 }
 

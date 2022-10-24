@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:11:01 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/23 14:17:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	count_outliar_redire(t_list *cmd, int i)
 {
 	t_list	*tmp;
 
-forens_printf("entering out count_outliar_redire i = %d, ? i == -1 ok:error\n", i);
+//forens_printf("entering out count_outliar_redire i = %d, ? i == -1 ok:error\n", i);
 	if (i < -1)
 		i = -1;
 	tmp = cmd;
@@ -132,7 +132,7 @@ forens_printf("entering out count_outliar_redire i = %d, ? i == -1 ok:error\n", 
 				break ;
 			tmp = tmp->next;
 		}
-	forens_printf("\nOutliar redirects cmds %d\n", i);
+	//forens_printf("\nOutliar redirects cmds %d\n", i);
 		return (i);
 	}
 	return (0);

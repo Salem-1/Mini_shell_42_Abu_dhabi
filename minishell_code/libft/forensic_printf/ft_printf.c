@@ -6,11 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:13:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 00:28:15 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:32:15 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "forens_printf.h"
+#include "//forens_printf.h"
 
 static int	ft_putchar(const char *s);
 
@@ -63,4 +63,4 @@ static int	ft_putchar(const char *s)
 	write(FD, s, 1);
 	return (1);
 }
- // ft_forens_printf("Hello %c %c", 'a','d') // Hello a d
+ // ft_//forens_printf("Hello %c %c", 'a','d') // Hello a d

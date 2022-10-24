@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 11:05:21 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/22 17:33:43 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ void	throw_parser_error(t_pipes *t, int *exit_status)
 		err_printf("exit: fd: numeric argument required\n");
 		*exit_status = 255;
 	}
-forens_printf("Exit with exit code %d\n", *exit_status);
-forens_printf("-------------------------------------------\n");
-forens_printf("-------------------------------------------\n");
-forens_printf("-------------------------------------------\n");
-forens_printf("-------------------------------------------\n");
 }
 
 void	cd_exit_with_code(t_pipes *t)
@@ -92,7 +87,7 @@ int	scan_cmd_for_parsing_errors(t_list *smashed_cmd)
 					is_r_flag(current_flag) && is_r_flag(next_flag))))
 		{
 			smashed_cmd->flag = 2;
-forens_printf("Parsing error in repetitve or solo redirection\n");
+//forens_printf("Parsing error in repetitve or solo redirection\n");
 			return (2);
 		}
 		tmp = tmp->next;

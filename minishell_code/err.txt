@@ -1,7 +1,9 @@
 
 case 1:
 ------
+echo hi > f1 > f2 > f3
 ls > green.txt > blue.txt < blue.txt
+ls > green.txt < blue.txt < blue.txt
 cat trash | grep =          it hangs, I believe it's the forensic is the cause
 
 case 2:
@@ -25,6 +27,13 @@ cat + ctr D or + ctr c
 
 (solved)
 -------------------------------------------------------------------------
+case
+------
+unset PATH 
+ls                do nothing, and it should throw an error
+echo hi | grep h
+
+
 case 1:
 -------
 minishell $> cat < f

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:56:29 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/21 10:29:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	exec_exit(struct t_pipes *all_cmds, int exit_shell)
 	int		len;
 
 	args = all_cmds->single_cmd[0]->args;
-	forens_printf("should exit with code%d\n", exit_shell);
+	// //forens_printf("should exit with code%d\n", exit_shell);
 	// flush_pipes(all_cmds);
 	len = length_of_larger_string(args[0], "exit");
 	if (!all_cmds)
@@ -40,7 +40,7 @@ int	exec_exit_in_parent(int *i,  struct t_pipes *t)
 	int	exit_code;
 
 	exit_code = 1;
-	forens_printf("exec_exit_in parent :\n");
+	// //forens_printf("exec_exit_in parent :\n");
 	if (t->npipes > 1)
 		return (0);
 	if (t->single_cmd[*i]->args[1] == NULL)
@@ -55,7 +55,7 @@ int	exec_exit_in_parent(int *i,  struct t_pipes *t)
 			return (1);
 		}
 		exit_code = 3;
-		forens_printf("check_exit_arg:\n");
+		// //forens_printf("check_exit_arg:\n");
 		if (check_exit_arg(t->single_cmd[*i]))
 			throw_error_in_exit(t, &exit_code, 255, 3);
 		else
@@ -81,7 +81,7 @@ int	exec_exit_in_child(
 			exit(1);
 		}
 		exit_code = 3;
-		forens_printf("local_exit_ in childcheck_exit_arg:\n");
+		// //forens_printf("local_exit_ in childcheck_exit_arg:\n");
 		if (check_exit_arg(single_cmd)) 
 			throw_error_in_exit(t, &exit_code, 255, 3);
 		else
@@ -103,7 +103,7 @@ int	check_exit_arg(struct t_parsed_command *single_cmd)
 		k++;
 	while (arg[k])
 	{
-		forens_printf("check_exit_arg char =  %c\n", arg[k]);
+		// //forens_printf("check_exit_arg char =  %c\n", arg[k]);
 		if (!ft_isdigit(arg[k]))
 			return (1);
 		k++;

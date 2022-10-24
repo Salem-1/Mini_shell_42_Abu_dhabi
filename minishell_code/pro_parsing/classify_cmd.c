@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/22 15:51:32 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	spaces_smash(t_smash_kit *s, char *cmd, t_list **head, int *exit_status)
 	{
 		s->end = s->i;
 		smashed_arg = ft_substr(cmd, s->start, s->end - s->start + 1);
-forens_printf("space_smash, smashed_arg = %s, start = %d, end = %d\n", smashed_arg, s->start, s->end);
+//forens_printf("space_smash, smashed_arg = %s, start = %d, end = %d\n", smashed_arg, s->start, s->end);
 		smashed_arg = expand_var(s, smashed_arg, exit_status);
 		s->tmp = fill_cmd_node(smashed_arg, 'c');
 		ft_lstadd_back(head, s->tmp);
@@ -57,15 +57,15 @@ void	double_qoute_smash(t_smash_kit *s, char *cmd,
 		s->i++;
 	if (cmd[s->i] != '"' && !cmd[s->i + 1])
 	{
-		forens_printf("Unclose \" double quote, throwing an error\n");
+		//forens_printf("Unclose \" double quote, throwing an error\n");
 		s->parse_error_code = 2;
 	}
 	else if (cmd[s->i] == '"')
 	{
-		forens_printf("before cleaning arg = <%s>, start = %d i = %d\n", cmd, s->start, s->i);
+		//forens_printf("before cleaning arg = <%s>, start = %d i = %d\n", cmd, s->start, s->i);
 		smashed_arg = figure_out_end_of_quote_and_fill_arg(
 						s, cmd, '"', exit_status);
-		forens_printf("filling node with ~%s~\n", smashed_arg);
+		//forens_printf("filling node with ~%s~\n", smashed_arg);
 		s->tmp = fill_cmd_node(smashed_arg, 'c');
 		ft_lstadd_back(head, s->tmp);
 		s->end = 0;
@@ -82,22 +82,22 @@ void	single_qoute_smach(t_smash_kit *s, char *cmd,
 	int		exit_code;
 
 	exit_code = 0;
-forens_printf("check for single quote <%c>\n", cmd[s->i]);
+//forens_printf("check for single quote <%c>\n", cmd[s->i]);
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
 	if (cmd[s->i] != '\'' && !cmd[s->i + 1])
 	{
-		forens_printf("Unclose ' single quote, throwing an error\n");
+		//forens_printf("Unclose ' single quote, throwing an error\n");
 		s->parse_error_code = 2;
 		// return ;
 	}
 	if (cmd[s->i] == '\'' || ((cmd[s->i] != '\'' && !cmd[s->i + 1])))
 	{
-		forens_printf("before cleaning arg = <%s>, start = %d i = %d\n", cmd, s->start, s->i);
+		//forens_printf("before cleaning arg = <%s>, start = %d i = %d\n", cmd, s->start, s->i);
 		smashed_arg = figure_out_end_of_quote_and_fill_arg(
 						s, cmd, '\'', &exit_code);
-		forens_printf("filling node with ~%s~\n", smashed_arg);
+		//forens_printf("filling node with ~%s~\n", smashed_arg);
 		tmp = fill_cmd_node(smashed_arg,'c');
 		ft_lstadd_back(head, tmp);
 		s->end = 0;
