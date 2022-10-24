@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 16:41:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/24 22:03:01 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 	//remeber to check for the null cmd
 	while (i < t->npipes)
 	{
-		//forens_printf("Multiple_cmd line 45 Current cmd = %s\n", t->single_cmd[i]->cmd);
 		if (t->single_cmd[i]->after_sep == 'h')
 			i = skip_multiple_heredocs(t, i);
-		//forens_printf("Multiple_cmd line 49 Current cmd = %s\n", t->single_cmd[i]->cmd);
 		if (t->single_cmd[i]->before_sep == 'g'
-			|| t->single_cmd[i]->before_sep == 'a' || t->single_cmd[i]->before_sep == 'h' )
+			|| t->single_cmd[i]->before_sep == 'a'
+			|| t->single_cmd[i]->before_sep == 'h'
+			|| t->single_cmd[i]->before_sep == 't')
 		{
 			i++;
 			continue ;
@@ -83,14 +83,14 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	if (t->npipes == 1 || t->single_cmd[i]->after_sep == 't' )
 	{
 		if (t->single_cmd[i]->after_sep == 't')
-			input_execution(t, fd, i);
+			exec_to_take_operations(t, env, fd, i);
 		else
 			close_files(fd, t->npipes);
 		just_execve(t->single_cmd[i], env, t);
 	}
 	if (t->single_cmd[i]->after_sep == 'g'
 		|| t->single_cmd[i]->after_sep == 'a')
-		output_append_execution(t, fd, i);
+		exec_to_output_operations(t, env,fd, i);
 	else if (t->single_cmd[i]->after_sep == 'h')
 	{	
 		write(fd[i][1], t->single_cmd[i + 1]->args[0],
@@ -100,17 +100,8 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 		free(t->single_cmd[i + 1]->args[0]);
 		just_execve(t->single_cmd[i], env, t);
 	}
-	if (i == 0 )
-		dup2(fd[i][1], STDOUT_FILENO);
-	else if (i == t->npipes -1)
-		dup2(fd[i -1][0], STDIN_FILENO);
 	else
-	{
-		dup2(fd[i][1], STDOUT_FILENO);
-		dup2(fd[i -1][0], STDIN_FILENO);
-	}
-	close_files(fd, t->npipes);
-	just_execve(t->single_cmd[i], env, t);
+		execute_in_pipe(t, env, fd, i);
 }
 
 void	close_files_and_wait(int **fd, struct t_pipes	*t, int *exit_satus)

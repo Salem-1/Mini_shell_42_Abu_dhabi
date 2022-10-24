@@ -1,11 +1,4 @@
 
-case 1:
-------
-echo hi > f1 > f2 > f3
-ls > green.txt > blue.txt < blue.txt
-ls > green.txt < blue.txt < blue.txt
-cat trash | grep =          it hangs, I believe it's the forensic is the cause
-
 case 2:
 --------
 minishell $> chmod -w green.txt 
@@ -23,33 +16,44 @@ ctr c twice shouldn't exit
 cat <<hello | cat << green  should do the heredoc before execution
 cat << hello    then CTR C doesn't execute
 cat << hello    then CTR D execute
-cat + ctr D or + ctr c
+cat + ctr D or + ctr cc
+
 
 (solved)
 -------------------------------------------------------------------------
-case
+case 16:
+------
+minishell $> cat < f1 | LS            it print the content of f1 to the terminal while it shouldn't
+case 15:
+------
+echo hi > f1 > f2 > f3
+ls > green.txt > blue.txt < blue.txt
+ls > green.txt < blue.txt < blue.txt
+cat trash | grep =          it hangs, I believe it's the forensic is the cause
+
+case 14
 ------
 unset PATH 
 ls                do nothing, and it should throw an error
 echo hi | grep h
 
 
-case 1:
+case 13:
 -------
 minishell $> cat < f
 zsh: segmentation fault  ./minishell
 < file cat f2 f3
 
-case 1:
+case 12:
 -------
 cd error
 > hi cat file2 file3
-
 export a#=3
-
 minishell $> echo ""$PWD   bug with the start location of the first qoute, is 5, should be 6
 minishell: syntax error near unexpected token 
 
+case 11:
+--------
 minishell $> unset PWD
 minishell $> unset HOME
 minishell $> cd       
@@ -58,12 +62,14 @@ minishell $> ll | ll | ll
 cat <<hello <<hello
 minishell $> "l"s            should execute ls
 ls: cannot access '': No such file or directory 
-case 4:
+
+case 9:
 -------
 clean export error messages
 export > file      shouldn't print
 
-case 1 : soloution, modify the exec_exit to take argument right from t and check for numebrs
+case 8 :
+ soloution, modify the exec_exit to take argument right from t and check for numebrs
 -------
 exit 5   let the exit take arguments
 exit add arguments
@@ -78,16 +84,14 @@ minishell $> echo $?
 0
 remember to set the exit code (1) later inshalla
 
-case 3:
+case 6:
 -------
 to lower for cmd
 
-case 1:
+case 5:
 --------
 CMD more than max number of allowed char
-c
-
-ase 2:
+case 4:
 ------
 mkdir abc
 minishell $> cd abc
@@ -95,7 +99,7 @@ bash: cd: abc: No such file or directory
 cd green.txt  SHOULD THROW AN ERROR
 cd: string not in pwd: /Users/ahsalem (delete this error message )
 
-case 1:
+case 3:
 ------
 quotes should be deleted
 //this case is handled by changing the flag in the cmdsmasher
@@ -107,12 +111,14 @@ where the **** have a disappeared, also quotes should be deleted too
 echo a='ls'     should give a='ls'
 ='ls
 
+case 2:
+-------
 minishell $> export R#R@#R
 minishell: export: `R#R@#R': not a valid identifier
 remember to set the exit code (1) later inshalla
 
 
-case 2:
+case 1:
 -------
 export a="ls    -la"
 ls -la should be considered as new command and being parsed accordingly

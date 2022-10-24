@@ -1,6 +1,7 @@
 NAME = minishell
 SRC =	main.c \
 		executing/execute_one_command.c executing/redirections_exec.c executing/exec_init.c   executing/our_exec_operations.c\
+		executing/exec_in_pipe.c executing/exec_give_append.c executing/exec_intake_heredoc.c \
 		parsing/parsing_one_command.c parsing/parsing_utils_1.c \
 		executing/multiple_pipes.c\
 		executing/heredoc.c\
@@ -14,9 +15,10 @@ SRC =	main.c \
 		pro_parsing/outliar_quotes.c\
 		bins/cd.c bins/echo.c bins/env_pwd.c \
 		bins/exit.c bins/export.c  bins/unset.c \
-		bins/raise_builtin_errors.c \
 		bins/export_utils.c \
+		erro_handle/raise_builtin_errors.c \
 		erro_handle/parse_error.c \
+		erro_handle/pipes_redirect_errors.c \
 		test_files/vis.c 
 CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3 
 #-fsanitize=address -static-libasan -g

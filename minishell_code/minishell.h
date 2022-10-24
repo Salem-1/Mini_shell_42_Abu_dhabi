@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/25 03:15:44 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,9 @@ char				*outliar_single_fill(
 						char **splitted_arg, char *final_arg);
 
 //Execution
+int					exec_to_output_operations(t_pipes *t, t_list *env,int **fd, int i);
+int					exec_to_take_operations(t_pipes *t, t_list *env,int **fd, int i);
+int					execute_in_pipe(t_pipes *t, t_list *env,int **fd, int i);
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
 void				free_cmd(t_parsed_command *t);
@@ -224,8 +227,8 @@ void				exec_echo(struct t_parsed_command *t);
 void				exec_exit(struct t_pipes *all_cmds, int exit_shell);
 int					tedous_n(struct t_parsed_command *t);
 void				vis_list(t_list **env, char is_env_or_exp);
-void				output_append_execution(t_pipes *t, int **fd, int i);
-void				input_execution(t_pipes *t, int **fd, int i);
+int					output_append_execution(t_pipes *t, int i, int **fd);
+int					input_execution(t_pipes *t, t_list *env,int **fd, int i);
 char				*clean_export_var_from_quotes(char *val, char quote);
 int					exec_exit_in_parent(int *i,  struct t_pipes *t);
 int					check_exit_arg(t_parsed_command *t);
@@ -238,6 +241,7 @@ void				throw_parser_error(t_pipes *t, int * exit_status);
 void				fill_errored_pipe(
 						t_pipes *t, int error, t_list *smashed_cmd);
 void				cd_exit_with_code(t_pipes *t);
+void				pipes_and_redirect_errors(t_pipes *t, int i, int local_fd, int **fd);
 //signals handling
 void					handle_signals(int sig);
 
