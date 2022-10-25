@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 06:20:20 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 13:35:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/25 04:11:20 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i)
 		t->single_cmd[i]->before_sep = t->single_cmd[i - 1]->after_sep;
 	}
 	else
+	{
 		;
+	}
 	//forens_printf("This is a bug in malloc_single_cmd, i = %d\n", i);
 }
 

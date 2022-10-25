@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 03:15:44 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/25 20:18:02 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 # include "libft/libft.h"
 # include "libft/err_printf/ft_printf.h"
-# include "./libft/forensic_printf///forens_printf.h"
+# include "./libft/forensic_printf/forens_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -244,7 +244,7 @@ void				cd_exit_with_code(t_pipes *t);
 void				pipes_and_redirect_errors(t_pipes *t, int i, int local_fd, int **fd);
 //signals handling
 void					handle_signals(int sig);
-
+void					init_signals();
 //testing functions,
 void				vis_split(char **arr);
 void				visualize_cmd(t_parsed_command *t);

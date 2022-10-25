@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 22:03:01 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/25 04:17:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 //forens_printf("Inside exec_multiple_pipes \n");
 	fd = NULL;
 	t = parsing_piped_cmd(cmd, env, exit_status);
+	//break point to test memory leaks, if passed , then you are about to finish inshalla
+	// flush_pipes(t);
+	// exit(0);
 	//try cleanining all memory here 
 	//try exit here to check the memory leaks of the parsing 
 	//this is a good starting point

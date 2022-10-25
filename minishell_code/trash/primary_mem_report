@@ -1,0 +1,106 @@
+==73== Memcheck, a memory error detector
+==73== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==73== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==73== Command: ./minishell
+==73== 
+==73== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==73==    at 0x48E2166: __libc_sigaction (sigaction.c:58)
+==73==    by 0x109548: main (main.c:30)
+==73==  Address 0x1fff000268 is on thread 1's stack
+==73==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==73==  Uninitialised value was created by a stack allocation
+==73==    at 0x109491: main (main.c:17)
+==73== 
+==73== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==73==    at 0x48E2166: __libc_sigaction (sigaction.c:58)
+==73==    by 0x109548: main (main.c:30)
+==73==  Address 0x1fff000258 is on thread 1's stack
+==73==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==73==  Uninitialised value was created by a stack allocation
+==73==    at 0x109489: main (main.c:17)
+==73== 
+==73== Syscall param rt_sigaction(act->sa_mask) points to uninitialised byte(s)
+==73==    at 0x48E2166: __libc_sigaction (sigaction.c:58)
+==73==    by 0x109561: main (main.c:31)
+==73==  Address 0x1fff000268 is on thread 1's stack
+==73==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==73==  Uninitialised value was created by a stack allocation
+==73==    at 0x109491: main (main.c:17)
+==73== 
+==73== Syscall param rt_sigaction(act->sa_flags) points to uninitialised byte(s)
+==73==    at 0x48E2166: __libc_sigaction (sigaction.c:58)
+==73==    by 0x109561: main (main.c:31)
+==73==  Address 0x1fff000258 is on thread 1's stack
+==73==  in frame #0, created by __libc_sigaction (sigaction.c:43)
+==73==  Uninitialised value was created by a stack allocation
+==73==    at 0x109489: main (main.c:17)
+==73== 
+==73== 
+==73== FILE DESCRIPTORS: 3 open at exit.
+==73== Open file descriptor 2: /home/vscode/src/trash/primary_mem_report
+==73==    <inherited from parent>
+==73== 
+==73== Open file descriptor 1: /dev/pts/0
+==73==    <inherited from parent>
+==73== 
+==73== Open file descriptor 0: /dev/pts/0
+==73==    <inherited from parent>
+==73== 
+==73== 
+==73== HEAP SUMMARY:
+==73==     in use at exit: 204,977 bytes in 436 blocks
+==73==   total heap usage: 650 allocs, 214 frees, 222,207 bytes allocated
+==73== 
+==73== 24 bytes in 1 blocks are indirectly lost in loss record 12 of 63
+==73==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==73==    by 0x1123F9: ft_calloc (ft_calloc.c:19)
+==73==    by 0x111BA7: ft_split (ft_split.c:34)
+==73==    by 0x10B66B: parse_env (parse_env.c:24)
+==73==    by 0x109528: main (main.c:29)
+==73== 
+==73== 29 bytes in 2 blocks are indirectly lost in loss record 13 of 63
+==73==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==73==    by 0x1123F9: ft_calloc (ft_calloc.c:19)
+==73==    by 0x1119B3: ft_substr (ft_substr.c:23)
+==73==    by 0x111CA5: splitter_core (ft_split.c:54)
+==73==    by 0x111BE0: ft_split (ft_split.c:41)
+==73==    by 0x10B66B: parse_env (parse_env.c:24)
+==73==    by 0x109528: main (main.c:29)
+==73== 
+==73== 704 bytes in 22 blocks are indirectly lost in loss record 25 of 63
+==73==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==73==    by 0x111F9F: ft_lstnew (ft_lstnew.c:19)
+==73==    by 0x10B6A5: parse_env (parse_env.c:27)
+==73==    by 0x109528: main (main.c:29)
+==73== 
+==73== 1,568 bytes in 22 blocks are indirectly lost in loss record 35 of 63
+==73==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==73==    by 0x1123F9: ft_calloc (ft_calloc.c:19)
+==73==    by 0x111BA7: ft_split (ft_split.c:34)
+==73==    by 0x10B69D: parse_env (parse_env.c:27)
+==73==    by 0x109528: main (main.c:29)
+==73== 
+==73== 2,143 bytes in 174 blocks are indirectly lost in loss record 37 of 63
+==73==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==73==    by 0x1123F9: ft_calloc (ft_calloc.c:19)
+==73==    by 0x1119B3: ft_substr (ft_substr.c:23)
+==73==    by 0x111CA5: splitter_core (ft_split.c:54)
+==73==    by 0x111BE0: ft_split (ft_split.c:41)
+==73==    by 0x10B69D: parse_env (parse_env.c:27)
+==73==    by 0x109528: main (main.c:29)
+==73== 
+==73== 4,500 (32 direct, 4,468 indirect) bytes in 1 blocks are definitely lost in loss record 49 of 63
+==73==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==73==    by 0x111F9F: ft_lstnew (ft_lstnew.c:19)
+==73==    by 0x10B673: parse_env (parse_env.c:24)
+==73==    by 0x109528: main (main.c:29)
+==73== 
+==73== LEAK SUMMARY:
+==73==    definitely lost: 32 bytes in 1 blocks
+==73==    indirectly lost: 4,468 bytes in 221 blocks
+==73==      possibly lost: 0 bytes in 0 blocks
+==73==    still reachable: 0 bytes in 0 blocks
+==73==         suppressed: 200,477 bytes in 214 blocks
+==73== 
+==73== For lists of detected and suppressed errors, rerun with: -s
+==73== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 0 from 0)

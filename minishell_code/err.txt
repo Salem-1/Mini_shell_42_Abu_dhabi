@@ -1,11 +1,4 @@
 
-case 2:
---------
-minishell $> chmod -w green.txt 
-minishell $> ls > green.txt    ls shouldn't execute
-econvert cmd not found to 127
-file not found exit code 1
-
 case 3:
 -------
 Mem clean
@@ -21,6 +14,13 @@ cat + ctr D or + ctr cc
 
 (solved)
 -------------------------------------------------------------------------
+case 17:
+--------
+minishell $> chmod -w green.txt 
+minishell $> ls > green.txt    ls shouldn't execute
+econvert cmd not found to 127
+file not found exit code 1
+
 case 16:
 ------
 minishell $> cat < f1 | LS            it print the content of f1 to the terminal while it shouldn't

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 13:34:03 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/25 05:48:22 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,13 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	smashed_cmd = NULL;
 	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env, exit_status);
 	n_cmds = count_cmds(smashed_cmd);
-	
-//forens_printf("\nparing_piped_cmd:\n----------\n");
-//forens_printf("n_cmds = %d\n", n_cmds);
 	t = init_t_struct(t, n_cmds, smashed_cmd);
 	if (t->parse_error != 0)
 		return (t);
 	malloc_single_cmd_in_t_piped_cmd(t, i);
 	while (smashed_cmd)
 	{
-//forens_printf("round %d\n", i);
 		smashed_cmd  = fill_cmd(smashed_cmd, t, i);
-//forens_printf("i = %d  ", i);
 		if (smashed_cmd)
 			smashed_cmd = smashed_cmd->next;
 		else
@@ -59,21 +54,18 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 
 t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd)
 {
-	//forens_printf("inititalizing t_pipes\n");
 	t = malloc(sizeof(t_pipes) * 1);
 	if (!t)
 		return (NULL);
 	t->parse_error = scan_cmd_for_parsing_errors(smashed_cmd);
 	if (smashed_cmd->flag < 30 || t->parse_error != 0)
 	{
-		//forens_printf("filling erro with local code %d\n", (int)smashed_cmd->flag);
 		if (smashed_cmd->flag == 2 || t->parse_error == 2)
 			fill_errored_pipe(t, 2, smashed_cmd);
 		else if (smashed_cmd->flag == 1 || t->parse_error == 1)
 			fill_errored_pipe(t, 1, smashed_cmd);
 		else if (smashed_cmd->flag == 3 || t->parse_error == 3)
 			fill_errored_pipe(t, 3, smashed_cmd);
-	//forens_printf("inititalization end with error %d\n", (int)smashed_cmd->flag);
 		return (t);
 	}
 	t->npipes = n_cmds;
@@ -83,7 +75,6 @@ t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd)
 		t->single_cmd = malloc(sizeof(t_parsed_command *) * n_cmds + 1);
 	if (!t->single_cmd)
 		return (NULL);
-	//forens_printf("inititalization t_pipe success\n");
 	return (t);
 }
 
@@ -97,7 +88,9 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 	while (smashed_cmd)
 	{
 		if (smashed_cmd->flag == '\0')
+		{
 			;
+		}
 		//forens_printf("I don't have such null flags\n");
 		if (smashed_cmd->flag == 'c')
 			t->single_cmd[i]->args[local_i++] = (char *)smashed_cmd->content;
