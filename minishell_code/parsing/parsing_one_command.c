@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 15:17:34 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/26 14:10:43 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	decide_rel_or_abs_path(char *cmd)
 {
 	char	decision;
 
-	if (ft_strnchr(cmd, '/') != -1)
+	if (ft_strnchr(cmd, '/') != -1 || cmd[0] == '\0')
 		decision = 'a';
 	else
 		decision = 'r';

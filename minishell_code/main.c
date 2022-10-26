@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 22:07:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/25 22:34:00 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv, char **envp)
 		return (0);
 	init_signals();
 	t_env = parse_env(envp, t_env);
-
 	while (1)
 	{
 		cmd = readline("minishell $> ");

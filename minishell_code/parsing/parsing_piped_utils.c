@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 06:20:20 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 04:11:20 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/26 19:48:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,16 @@ void	malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i)
 {
 	if (t->parse_error != 0)
 		return ;
+	t->single_cmd[i] = malloc(sizeof(t_parsed_command));
+	if (!t->single_cmd[i])
+	{
+		err_printf("Failed to malloc t->single_cmd[%d]", i);
+		return ;
+	}
 	if (i == 0)
-	{
-		t->single_cmd[0] = malloc(sizeof(t_parsed_command) * 1);
 		t->single_cmd[0]->before_sep = '\0';
-	}
 	else if (i > 0)
-	{
-		t->single_cmd[i] = malloc(sizeof(t_parsed_command) * 1);
 		t->single_cmd[i]->before_sep = t->single_cmd[i - 1]->after_sep;
-	}
-	else
-	{
-		;
-	}
-	//forens_printf("This is a bug in malloc_single_cmd, i = %d\n", i);
 }
 
 //expand this one to include the take and heredoc if needed

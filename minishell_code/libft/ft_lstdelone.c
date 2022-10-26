@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:35:49 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/30 06:33:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/26 15:12:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 void	del(void *content)
 {
 	if (content)
-			free(content);
+		free(content);
 }

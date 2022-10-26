@@ -6,25 +6,16 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 22:08:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/26 19:57:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	free_cmd(t_parsed_command	*t)
+void	free_cmd(t_parsed_command	*single_cmd)
 {
-	int	i;
-
-	i = 0;
-	while (t->args[i])
-	{
-		free(t->args[i]);
-		i++;
-	}
-	// free(t->splitted_cmd[i]);	i = 0;
-	free_split((void **)t->args);
-	free(t);
+	free_split((void **)single_cmd->args);
+	free(single_cmd);
 }
 
 void	flush_pipes(t_pipes	*t)
@@ -32,20 +23,30 @@ void	flush_pipes(t_pipes	*t)
 	int	i;
 
 	i = 0;
-	while (t->single_cmd[i])
-	{
+	// while (t->single_cmd[i])
+	// {
 		free_cmd(t->single_cmd[i]);
 		i++;
-	}
-	// if (t->single_cmd[i])
-	// 	free_cmd(t->single_cmd[i]);
+	// }
+	clean_env(t->env);
 	if (t->single_cmd)
 		free(t->single_cmd);
 	if (t)
 		free(t);
 }
 
-// void	clear_env(t_list *env)
-// {
-	
-// }
+void	clean_env(t_list *env)
+{
+	if (!env)
+		return ;
+	ft_lstclear(&env, del);
+}
+
+void	freedom(char *cmd, t_list *env, t_list *smashed_cmd)
+{
+	if (cmd)
+		free(cmd);
+	clean_env(env);
+	clean_env(smashed_cmd);
+	exit(0);
+}

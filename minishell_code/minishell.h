@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 20:18:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/26 20:12:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct t_pipes
 	int					npipes;
 	int					last_exit_code;
 	int					parse_error;
+	t_list				*env;
 }	t_pipes;
 
 typedef struct smashing_kit
@@ -85,7 +86,7 @@ int					cmd_not_empty(char *cmd);
 int					is_piped(char *cmd);
 t_pipes				*parsing_piped_cmd(
 						char *cmd, t_list *env, int *exit_status);
-void				flush_pipes(t_pipes	*t);
+
 char				**ft_cmd_split(char *raw_cmd);
 t_list				*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status);
 t_list				*fill_cmd_node(char *arg, char type);
@@ -104,7 +105,7 @@ void				fill_append(t_smash_kit *s, char *cmd, int i);
 void				fill_in_out_app_hered(t_smash_kit *s,
 						char *cmd, t_list **head, int i);
 int					count_cmds(t_list *cmd);
-t_pipes				*init_t_struct(t_pipes *t,int n_cmds, t_list *smashed_cmd);
+t_pipes				*init_t_struct(t_pipes *t,int n_cmds, t_list *smashed_cmd, t_list *env);
 t_list				*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i);
 int					count_args_in_cmd(t_list *smashed_cmd);
 char				decide_rel_or_abs_path(char *cmd);
@@ -153,7 +154,6 @@ int					exec_to_take_operations(t_pipes *t, t_list *env,int **fd, int i);
 int					execute_in_pipe(t_pipes *t, t_list *env,int **fd, int i);
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
-void				free_cmd(t_parsed_command *t);
 char				*search_path_for_bin(char *split_command_0, t_list *env);
 void				just_execve(t_parsed_command *t,
 						t_list *t_env, struct t_pipes *all_cmds);
@@ -245,8 +245,19 @@ void				pipes_and_redirect_errors(t_pipes *t, int i, int local_fd, int **fd);
 //signals handling
 void					handle_signals(int sig);
 void					init_signals();
+
 //testing functions,
 void				vis_split(char **arr);
 void				visualize_cmd(t_parsed_command *t);
 void				vis_smached_cmd(t_list **head);
+//cleaning
+void				flush_pipes(t_pipes	*t);
+void				free_cmd(t_parsed_command *single_cmd);
+
+/*
+	Certified function through testing in real life scenarios
+*/
+void				freedom(char *cmd, t_list *env, t_list *smashed_cmd);
+void				clean_env(t_list *env);
+
 #endif

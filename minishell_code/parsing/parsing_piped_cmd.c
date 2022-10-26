@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 05:48:22 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/26 20:22:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	smashed_cmd = NULL;
 	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env, exit_status);
 	n_cmds = count_cmds(smashed_cmd);
-	t = init_t_struct(t, n_cmds, smashed_cmd);
+	t = init_t_struct(t, n_cmds, smashed_cmd, env);
 	if (t->parse_error != 0)
 		return (t);
-	malloc_single_cmd_in_t_piped_cmd(t, i);
+	// malloc_single_cmd_in_t_piped_cmd(t, i);
 	while (smashed_cmd)
 	{
+	 malloc_single_cmd_in_t_piped_cmd(t, i);
 		smashed_cmd  = fill_cmd(smashed_cmd, t, i);
 		if (smashed_cmd)
 			smashed_cmd = smashed_cmd->next;
@@ -46,17 +47,23 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 			break ;
 		i++;
 	}
+	//break point to test memleaks
+	// clean_env(smashed_cmd);
+	// flush_pipes(t);
+	// free(cmd);
+	// exit (0);
+	//break point end
 	parsing_laundry(t);
-	if (smashed_cmd)
-		ft_lstclear(&smashed_cmd, del);
+	clean_env(smashed_cmd);
 	return (t);
 }
 
-t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd)
+t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd, t_list *env)
 {
 	t = malloc(sizeof(t_pipes) * 1);
 	if (!t)
 		return (NULL);
+	t->env = env;
 	t->parse_error = scan_cmd_for_parsing_errors(smashed_cmd);
 	if (smashed_cmd->flag < 30 || t->parse_error != 0)
 	{

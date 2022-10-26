@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:53:28 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 03:18:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/27 01:29:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ int	output_append_execution(t_pipes *t, int i, int **fd)
 	return (i);
 }
 
+/*
+execve down here execute the command before the redirection
+regardless it was in pipe or not
+*/
+
 int	exec_to_output_operations(t_pipes *t, t_list *env,int **fd, int i)
 {
 	int	local_fd;
-
 	local_fd = output_append_execution(t, i, fd) - 1;
 	if (t->single_cmd[local_fd]->after_sep == 'g')
 			local_fd = open(t->single_cmd[local_fd + 1]->cmd,
@@ -51,6 +55,10 @@ int	exec_to_output_operations(t_pipes *t, t_list *env,int **fd, int i)
 		perror("dup2");
 	if (local_fd == -1)
 		pipes_and_redirect_errors(t, local_fd + 1, local_fd, fd);
+	if (t->single_cmd[i]->before_sep == 'p')
+	{
+		dup2(fd[i - 1][0], STDIN_FILENO);
+	}
 	close(local_fd);
 	close_files(fd, t->npipes);
 	just_execve(t->single_cmd[i], env, t);
