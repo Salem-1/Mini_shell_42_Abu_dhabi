@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/26 20:22:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/28 01:46:33 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	t_pipes				*t;
 	int					n_cmds;
 	int					i;
+	t_list				*smashed_head;
 
 	i = 0;
 	t = NULL;
 	n_cmds = 0;
 	smashed_cmd = NULL;
 	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env, exit_status);
+	smashed_head = smashed_cmd;
 	n_cmds = count_cmds(smashed_cmd);
 	t = init_t_struct(t, n_cmds, smashed_cmd, env);
 	if (t->parse_error != 0)
@@ -39,7 +41,6 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	// malloc_single_cmd_in_t_piped_cmd(t, i);
 	while (smashed_cmd)
 	{
-	 malloc_single_cmd_in_t_piped_cmd(t, i);
 		smashed_cmd  = fill_cmd(smashed_cmd, t, i);
 		if (smashed_cmd)
 			smashed_cmd = smashed_cmd->next;
@@ -47,22 +48,22 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 			break ;
 		i++;
 	}
-	//break point to test memleaks
-	// clean_env(smashed_cmd);
-	// flush_pipes(t);
-	// free(cmd);
-	// exit (0);
-	//break point end
+	forens_printf("filling t finished\n");
+	t->single_cmd[i + 1] = NULL;
 	parsing_laundry(t);
-	clean_env(smashed_cmd);
+	forens_printf("laundry t finished\n");
+	clean_env(smashed_head);
+	free(cmd);
+	forens_printf("returning t\n");
 	return (t);
 }
 
 t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd, t_list *env)
 {
-	t = malloc(sizeof(t_pipes) * 1);
+	t = calloc(sizeof(t_pipes), 1);
 	if (!t)
 		return (NULL);
+	t->fd = NULL;
 	t->env = env;
 	t->parse_error = scan_cmd_for_parsing_errors(smashed_cmd);
 	if (smashed_cmd->flag < 30 || t->parse_error != 0)
@@ -77,9 +78,9 @@ t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd, t_list *env)
 	}
 	t->npipes = n_cmds;
 	if (smashed_cmd->flag != 'c' && n_cmds == 1)
-		t->single_cmd = malloc(sizeof(t_parsed_command *) * n_cmds + 2);
+		t->single_cmd = calloc(sizeof(t_parsed_command *), n_cmds + 2);
 	else
-		t->single_cmd = malloc(sizeof(t_parsed_command *) * n_cmds + 1);
+		t->single_cmd = calloc(sizeof(t_parsed_command *), n_cmds + 1);
 	if (!t->single_cmd)
 		return (NULL);
 	return (t);
@@ -94,13 +95,8 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 	init_fill_cmd(&local_i, &i, t, smashed_cmd);
 	while (smashed_cmd)
 	{
-		if (smashed_cmd->flag == '\0')
-		{
-			;
-		}
-		//forens_printf("I don't have such null flags\n");
 		if (smashed_cmd->flag == 'c')
-			t->single_cmd[i]->args[local_i++] = (char *)smashed_cmd->content;
+			t->single_cmd[i]->args[local_i++] = ft_strdup((char *)smashed_cmd->content);
 		else
 		{
 			if (smashed_cmd->flag == 'g' || smashed_cmd->flag == 'a')
@@ -108,9 +104,8 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 			else if (smashed_cmd->flag == 't')
 				fill_outliar_input(smashed_cmd, t, &i, &local_i);
 			else if (smashed_cmd->flag == 'h')
-				// fill_outliar_heredoc(smashed_cmd, t, &i, &local_i); // under construction
-			if (!smashed_cmd)
-				return (smashed_cmd);
+				if (!smashed_cmd)
+					return (smashed_cmd);
 			t->single_cmd[i]->after_sep = smashed_cmd->flag;
 			break ;
 		}

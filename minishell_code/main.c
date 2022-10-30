@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 22:34:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:35:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	main(int argc, char **argv, char **envp)
 {
+	forens_printf("----------------------------------------------\n\n\n\n");
 	static int			exit_status;
 	char				*cmd;
 	t_list				*t_env;
@@ -29,8 +30,8 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		cmd = readline("minishell $> ");
-		if (cmd == NULL)
-			return (0);
+		// if (cmd == NULL)
+		// 	return (exit_status);
 		if (execution_operations(cmd, t_env, &exit_status) == 249)
 			return (0);
 	}

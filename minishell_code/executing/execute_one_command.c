@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 15:18:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:27:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_
 		exec_exit(all_cmds, 0);
 	if (is_in_our_executable(t, t_env, all_cmds))
 	{
+		free_split((void **)envp);
+		
 		exec_exit(all_cmds, 0);
 		return ;
 	}

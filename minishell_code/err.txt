@@ -2,7 +2,281 @@ case 1:
 -------
 Mem clean
 
-echo hi | grep h > tetfile 
+//shouldn't sigfualt here
+""echo" " 
+ls" "
+
+//print command not found
+minishell $> ""
+minishell $> " "
+
+//should print file2 no such file or direct.	
+minishell $> cat < file < fle2
+minishell: file: No such file or directory
+
+//using unset alot missing up your path
+//also unsetting the path shouldn't affect the builtins
+minishell $> unset HOME SHELL LaunchInstanceID __CF_USER_TEXT_ENCODING XPC_SERVICE_NAME SSH_AUTH_SOCK XPC_FLAGS LOGNAME TMPDIR PWD OLDPWD GIT_ASKPASS TERM PATH HOME SHELL USER
+minishell $> ls
+
+(high priority *************************)
+minishell $> unset HOME SHELL LaunchInstanceID __CF_USER_TEXT_ENCODING XPC_SERVICE_NAME SSH_AUTH_SOCK XPC_FLAGS LOGNAME TMPDIR PWD OLDPWD GIT_ASKPASS TERM PATH HOME SHELL USER
+minishell $> ls
+minishell $> ls
+minishell $> ls
+minishell $> l;s
+minishell $> ls
+minishell $> l;s
+minishell $> ls
+minishell $> ls
+minishell $> echo 
+minishell $> echo sdfghjfhdgrs
+minishell $> vb
+minishell $> gf
+minishell $> gdbxfhncg
+minishell $> gf
+nminishell $> n
+minishell $> 
+minishell $> 
+minishell $> 
+minishell $> 
+minishell $> unset PATH
+[1]    560 segmentation fault  ./minishell
+
+
+//should expand the $PWD
+minishell $> cat << $PWD
+heredoc> PWD
+heredoc> $PWD
+
+//revise the heredoc for the segfault
+minishell $> cat << $PWD
+heredoc> PWD
+heredoc> $PWD
+heredoc> ^C
+heredoc> ^C
+heredoc> ^C
+heredoc> ^C
+heredoc> [1]    1065 segmentation fault  ./minishell
+
+
+//should execute the unset and other builtins with >> < >
+minishell $> unset >> l
+minishell $> unset PATH >> l
+minishell $> ls
+1                       executing               minishell
+2                       export                  minishell.h
+Makefile                file                    mkdir
+a                       forensics_cmds.log      mv
+abcdefg'hij'klmno       kftygh                  parsing
+b                       l                       pro_parsing
+badfile                 libft                   r
+bak                     lllll                   readline.supp
+bins                    lpwd                    t
+c                       ls                      test.c
+e                       ls"                     test_files
+echo                    ls2"                    test_wc
+env                     main.c                  trash
+err.txt                 main.o                  y
+erro_handle             mem_check.sh
+minishell $> export m=4 >> l
+minishell $> echo $m
+minishell $> cd > SSS
+minishell $> exit >> l
+// should exit minishell
+minishell $> exit << l
+heredoc> trgdh
+heredoc> ersrd\
+heredoc> l
+
+//just fix the segfault and the exit code
+minishell $> exit hjh
+minishell: exit: numeric argument required 
+[1]    1042 segmentation fault  ./minishell
+
+minishell $> cat l
+
+// return 127 instead of 0, same with CTR D, should exit with 127"last exit code"
+minishell $> kjhbdbgfl
+minishell: kjhbdbgfl: command not found
+minishell $> exit
+[DOCKER]➜  src echo $?
+0
+
+//multiple arguments with export and silent the unset error in export
+minishell $> export AA=AA BB=BB
+minishell: unset: `BB=BB': not a valid identifier
+minishell: unset: `BB=BB': not a valid identifier
+
+//This isn't syntax error by any mean
+minishell $> export AA="<"
+minishell: syntax error near unexpected token 
+[1]    321 segmentation fault  ./minishell
+minishell $> export AA="|"
+minishell: syntax error near unexpected token 
+[1]    328 segmentation fault  ./minishell
+
+
+//some shitty characters inside the code below
+minishell $> ^N
+minishell: : command not found
+minishell $> 
+gfhjk
+minishell: 
+gfhjk: command not found
+minishell $> ^Dfhdg
+minishell: fhdg: command not found
+
+//don't handle this, just make sure you don't sigfault
+minishell $> mkdir lllll
+minishell $> cd lllll
+minishell $> mkdir llll
+minishell $> cd llll
+minishell $> mkdir lll
+minishell $> cd lll
+minishell $> rm  -rf ../../../lllll 
+minishell $> pwd
+minishell $> pwd
+minishell $> pwd
+minishell $> cd ..
+bash: cd: ..: No such file or directory
+minishell $> cd .
+bash: cd: .: No such 
+
+//100% fix this the syntax error (high priority ***********************)
+minishell $> ls" "ls
+minishell: syntax error near unexpected token 
+[1]    512 segmentation fault  ./minishell
+
+//don't throw the correct error
+minishell $> export AA= "'"""
+minishell: unset: `'': not a valid identifier
+
+
+
+
+
+
+//wierd staff with the path, dig deep in it (Very important) changing the path in the evaluation file
+minishell $> mkdir y
+minishell $> mv a.out y
+minishell $> export PATH="$PWD/y:$PATH"
+minishell $> env
+minishell $> ls
+minishell $> echo hh
+minishell $> echo $PATH
+[1]    524 segmentation fault  ./minishell
+
+//this expands to no token in bash, this is not even a command like typing ENTER
+minishell $> $G  
+minishell: : No such file or directory
+minishell $> echo $d a
+ a
+
+//protect the env_parsing function to check null and not segfault
+ahsalem@lab1r4s11 minishell_code % env -i ./minishell
+zsh: segmentation fault  env -i ./minishell
+
+//this shouldn't be syntax error, also handle the segfault, I believe there is wrong counting for quotes (high priority *************************)
+minishell $> ""ls""""""|ls""|cat|cat'|'
+minishell: syntax error near unexpected token 
+[1]    493 segmentation fault  ./minishell
+
+//this should expand to ls gdsfgn 
+minishell $> ""l"""s"' gdsfgn'
+minishell: ls': command not found
+
+
+//exit with a crriage, handle the invalid pointer
+minishell $> exit ^M
+minishell: exit: numeric argument required 
+free(): invalid pointer
+[1]    462 abort      ./minishell
+
+//should throw an error then exit
+minishell $> exit 467897566789087657890876
+
+//we creatd echo before this point, the error message is wrong
+minishell $> ./echo
+minishell: ./echo: No such file or directory
+minishell $> ./ls
+minishell: ./ls: No such file or directory
+minishell $> ./echo
+minishell: ./echo: No such file or directory
+
+//I believ no issue here by try it again later in your minishell and bash
+minishell $> cat < file > file2    
+
+//it's not a syntax erro, then fix the segfault
+minishell $> echo $YTR" "DFYUITF
+minishell: syntax error near unexpected token 
+[1]    503 segmentation fault  ./minishell
+
+//this should give syntax, this is a valid cse , should be fixed automatically after fixing quotes issue
+minishell $> echo f'"D'D''D'DD"D'D'D'D'D"D'D'D'''''"gthryug,khg'D"'lD"D'D'D'D""'''''"'"td
+f"DDDDD"DDDDD"DDD"gthryug,khgD"lD"DDDD""""td
+
+//CTRL C should change the exit code to 1
+minishell $> ^C
+minishell $> echo $?
+0
+
+//the error code should be permission denied, and mac report should be  permission denied also, (important)
+//and the exit code is 126 (edge case low prioritt)
+minishell $> < badfile 
+minishell: badfile: No such file or directory
+minishell $> macreport 
+minishell: macreport: command not found
+
+
+//double free for the heredocs inside the child process
+minishell $> echo hi << l
+heredoc> dsfg
+heredoc> sdfgj
+heredoc> gsdf
+heredoc> f
+heredoc> 
+heredoc> dsf
+heredoc> l
+hi
+free(): double free detected in tcache 2
+minishell $> echo hi << l
+heredoc> fd
+heredoc> 
+heredoc> l
+hi
+minishell(71236,0x104b9edc0) malloc: *** error for object 0x7fa24f8040a0: pointer being freed was not allocated
+minishell(71236,0x104b9edc0) malloc: *** set a breakpoint in malloc_error_break to debug
+
+//this gives synta erro while it shouldn't, redirectioninto pipe should
+minishell $> ls<<l|<<k pwd
+ echo hi>kftygh|>>lpwd   
+
+//shouldn't print the quotation marks
+ echo hi >> "abcd"efg'hij'klmno""
+minishell $> echo  "abcd"efg'hij'klmno""
+abcdefg'hij'klmno
+
+//fix the segfault with multiple heredocs
+minishell $> cat << a << b << c
+minishell: syntax error near unexpected token 
+[1]    307 segmentation fault  ./minishell
+
+minishell $> >>|l
+minishell: syntax error near unexpected token 
+[1]    316 segmentation fault  ./minishell
+
+
+
+
+//shitty nonsense case, just forget about it
+./minishell | ./minishell
+minishell $> minishell $> 
+minishell: syntax error near unexpected token 
+[1]    343 done                ./minishell | 
+       344 segmentation fault  ./minishell
+
+
 
 case 2:
 ------
@@ -18,15 +292,34 @@ cat << hello    then CTR C doesn't execute
 cat << hello    then CTR D execute
 cat + ctr D or + ctr cc
 
+this should be the right exit codes
+bash-3.2$ wc
+^C
+bash-3.2$ echo $?
+130
+bash-3.2$ wc
+^\Quit: 3
+bash-3.2$ echo $?
+131
 
 (solved)
 -------------------------------------------------------------------------
+
+//you should print dollar here
+minishell $> echo $ 
+
+//check the bash
+echo$
+
+
 case 17:
 --------
 minishell $> chmod -w green.txt 
 minishell $> ls > green.txt    ls shouldn't execute
 econvert cmd not found to 127
 file not found exit code 1
+
+echo hi | grep h > tetfile 
 
 case 16:
 ------
@@ -134,3 +427,11 @@ inishell $> export a="ls -la"
 minishell $> $a
 minishell: ls -la: command not found
 minishell $>
+
+minishell $> export B=$PATH
+minishell $> echo $B 
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+minishell $> export PATH="yy:$PATH"
+minishell $> mkdir yy
+minishell $> cd yy
+bash: cd: yy: No such file or directory

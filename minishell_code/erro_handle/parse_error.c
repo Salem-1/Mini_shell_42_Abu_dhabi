@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 11:05:21 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/27 13:25:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	throw_parser_error(t_pipes *t, int *exit_status)
 		err_printf("exit: fd: numeric argument required\n");
 		*exit_status = 255;
 	}
+	flush_pipes(t);
 }
 
 void	cd_exit_with_code(t_pipes *t)

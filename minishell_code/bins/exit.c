@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:56:29 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:29:41 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void	exec_exit(struct t_pipes *all_cmds, int exit_shell)
 		len++;
 	else if (all_cmds->npipes == 1 && !ft_strncmp(args[0], "exit", len) && !args[1])
 	{
-		//remember to flush pipes
+		clean_env(all_cmds->env);
+		flush_pipes(all_cmds);
 		exit(249);
 	}
-	//flush pipes
+	clean_env(all_cmds->env);
+	flush_pipes(all_cmds);
 	exit(exit_shell);
 }
 
@@ -61,7 +63,9 @@ int	exec_exit_in_parent(int *i,  struct t_pipes *t)
 		else
 			exit_code = ft_atoi(t->single_cmd[*i]->args[1]);
 	}
-	//clean
+	close_files(t->fd, t->npipes);
+	clean_env(t->env);
+	flush_pipes(t);
 	exit(exit_code);
 	return (0);
 }
@@ -78,6 +82,7 @@ int	exec_exit_in_child(
 			err_printf("exit\n");
 			throw_error_in_exit(t, &exit_code, 1, 4);
 			//clean
+			//suspect double freee
 			exit(1);
 		}
 		exit_code = 3;

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/26 19:57:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:21:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,37 @@ void	flush_pipes(t_pipes	*t)
 	int	i;
 
 	i = 0;
-	// while (t->single_cmd[i])
-	// {
-		free_cmd(t->single_cmd[i]);
-		i++;
-	// }
-	clean_env(t->env);
+	if (!t)
+		return ;
+	// clean_env(t->env);
 	if (t->single_cmd)
+	{
+		while (t->single_cmd[i])
+		{
+			free_cmd(t->single_cmd[i]);
+			i++;
+		}
+		free(t->single_cmd[i]);
 		free(t->single_cmd);
-	if (t)
-		free(t);
+	}
+	free_fd(t);
+	free(t);
 }
 
+void	free_fd(t_pipes *t)
+{
+	int	i;
+
+	i = 0;
+	if (!t)
+		return ;
+	while (i < t->npipes)
+	{
+		free(t->fd[i]);
+		i++;
+	}
+	free(t->fd);
+}
 void	clean_env(t_list *env)
 {
 	if (!env)

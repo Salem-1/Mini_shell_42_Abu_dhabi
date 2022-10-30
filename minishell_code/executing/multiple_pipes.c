@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/27 01:26:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:20:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,14 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 	int				pid;
 	int				i;
 
-//forens_printf("Inside exec_multiple_pipes \n");
+forens_printf("Inside exec_multiple_pipes \n");
 	fd = NULL;
 	t = parsing_piped_cmd(cmd, env, exit_status);
-	//break point to test memory leaks, if passed , then you are about to finish inshalla
-	// flush_pipes(t);
-	// exit(0);
-	//try cleanining all memory here 
-	//try exit here to check the memory leaks of the parsing 
-	//this is a good starting point
 	if (!t)
 		return ;
 	if (t->parse_error != 0)
 	{
-		//forens_printf("Throwing parsing errorr, t->parse_error = %d\n", t->parse_error);
+		forens_printf("Throwing parsing errorr, t->parse_error = %d\n", t->parse_error);
 		throw_parser_error(t, exit_status);
 		return ;
 	}
@@ -45,6 +39,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 	if_there_is_heredoc_fill_it(t, env);
 	//forens_printf("opening %d pipes\n", t->npipes);
 	fd = open_pipes(t->npipes, fd);
+	t->fd = fd;
 	//remeber to check for the null cmd
 	while (i < t->npipes)
 	{
@@ -71,7 +66,7 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 		i++;
 	}
 	close_files_and_wait(fd, t, exit_status);
-		// flush_pipes(t);
+	flush_pipes(t);
 	return ;
 }
 
@@ -132,12 +127,12 @@ int	**open_pipes(int n, int **fd)
 {
 	int	i;
 	i = 0;
-	fd = malloc(sizeof(int *) * n);
+	fd = calloc(sizeof(int *), n);
 	if (!fd)
 		return (NULL);
 	while (i < n)
 	{
-		fd[i] = malloc(sizeof(int) * 2);
+		fd[i] = calloc(sizeof(int), 2);
 		if (!fd[i])
 		{
 			free_split((void **)fd);

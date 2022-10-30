@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 14:27:23 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:10:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ void	parsing_laundry(t_pipes *t)
 			if (t->single_cmd[1]->args[2])
 			{
 				//forens_printf("we are gonna miss with this command \n");
-				case_t_f1_cat_f2_f3_etc(t);
+				case_take_f1_cat_f2_f3_etc(t);
 			}
 		}
 	}
 }
-void	case_t_f1_cat_f2_f3_etc(t_pipes *t)
+
+void	case_take_f1_cat_f2_f3_etc(t_pipes *t)
 {
 	int	i;
 	int	count_args;

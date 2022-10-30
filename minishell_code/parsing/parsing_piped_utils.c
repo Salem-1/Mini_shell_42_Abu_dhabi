@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 06:20:20 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/26 19:48:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/27 03:55:41 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i)
 {
 	if (t->parse_error != 0)
 		return ;
-	t->single_cmd[i] = malloc(sizeof(t_parsed_command));
+	t->single_cmd[i] = calloc(sizeof(t_parsed_command), 1);
 	if (!t->single_cmd[i])
 	{
 		err_printf("Failed to malloc t->single_cmd[%d]", i);
@@ -73,6 +73,6 @@ int	init_fill_cmd(int *local_i, int *i, t_pipes * t, t_list *smashed_cmd)
 	n_args = count_args_in_cmd(smashed_cmd);
 //forens_printf("Single_cmd n_args = %d\n", n_args);
 	malloc_single_cmd_in_t_piped_cmd(t, *i);
-	t->single_cmd[*i]->args = malloc(sizeof(char *) * n_args + 1);
+	t->single_cmd[*i]->args = calloc(sizeof(char *), n_args + 1);
 	return (n_args);
 }

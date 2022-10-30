@@ -12,4 +12,4 @@
 
 #!/bin/bash
 
-valgrind --suppressions=readline.supp --trace-children=yes --track-origins=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./minishell
+valgrind --suppressions=readline.supp  --track-origins=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./minishell

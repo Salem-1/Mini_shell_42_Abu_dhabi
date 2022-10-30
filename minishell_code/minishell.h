@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/26 20:12:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:17:44 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct t_pipes
 {
 	t_parsed_command	**single_cmd;
 	int					npipes;
+	int					**fd;
 	int					last_exit_code;
 	int					parse_error;
 	t_list				*env;
@@ -135,7 +136,7 @@ int					scan_cmd_for_parsing_errors(
 						t_list *smashed_cmd);
 int					is_r_flag(char flag);
 void				parsing_laundry(t_pipes *t);
-void				case_t_f1_cat_f2_f3_etc(t_pipes *t);
+void				case_take_f1_cat_f2_f3_etc(t_pipes *t);
 //quotes handling
 char				*figure_out_end_of_quote_and_fill_arg(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
@@ -253,7 +254,7 @@ void				vis_smached_cmd(t_list **head);
 //cleaning
 void				flush_pipes(t_pipes	*t);
 void				free_cmd(t_parsed_command *single_cmd);
-
+void				free_fd(t_pipes *t);
 /*
 	Certified function through testing in real life scenarios
 */
