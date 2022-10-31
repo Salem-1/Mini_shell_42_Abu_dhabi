@@ -2,10 +2,6 @@ case 1:
 -------
 Mem clean
 
-//should print file2 no such file or direct.	
-minishell $> cat < file < fle2
-minishell: file: No such file or directory
-
 //using unset alot missing up your path
 //also unsetting the path shouldn't affect the builtins
 minishell $> unset HOME SHELL LaunchInstanceID __CF_USER_TEXT_ENCODING XPC_SERVICE_NAME SSH_AUTH_SOCK XPC_FLAGS LOGNAME TMPDIR PWD OLDPWD GIT_ASKPASS TERM PATH HOME SHELL USER
@@ -34,7 +30,6 @@ minishell $>
 minishell $> 
 minishell $> unset PATH
 [1]    560 segmentation fault  ./minishell
-
 
 //should expand the $PWD
 minishell $> cat << $PWD
@@ -274,6 +269,13 @@ bash-3.2$ echo $?
 
 (solved)
 -------------------------------------------------------------------------
+
+
+
+
+//should print file2 no such file or direct.	
+minishell $> cat < file < fle2
+minishell: file: No such file or directory
 
 case 2:
 ------

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 09:39:54 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/22 20:52:05 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 02:48:33 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	t    throw an error
 	s    silent the error
 */
-int	exec_unset(struct t_parsed_command *t, t_list **env,int i, char flag)
+int	exec_unset(struct t_parsed_command *t, t_list **env, int i, char flag)
 {
 	t_list	*tmp;
 	int		exit_code;
@@ -31,7 +31,7 @@ int	exec_unset(struct t_parsed_command *t, t_list **env,int i, char flag)
 		if (!valid_export_arg(t->args[i], 'u') || ft_strnchr(t->args[i], '=') != -1)
 		{
 			if (flag == 't')
-				unset_error(t->args[i], 0, 'n', NULL);
+				unset_error(t->args[i], 1, 'n', NULL);
 			exit_code = 1;
 		}
 		tmp = search_env(*env, t->args[i], 'c', flag);

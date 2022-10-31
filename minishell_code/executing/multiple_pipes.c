@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/28 02:20:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 02:58:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ forens_printf("Inside exec_multiple_pipes \n");
 			i++;
 			continue ;
 		}
-		//forens_printf("Multiple_cmd line 56 Current cmd = %s\n", t->single_cmd[i]->cmd);
-		exec_exit_export_unset_cd_in_parent(&i,  t, env, exit_status);
+		*exit_status = exec_exit_export_unset_cd_in_parent(
+				&i, t, env, exit_status);
 		pid = fork();
 		if (pid == 0)
 		{
@@ -65,10 +65,17 @@ forens_printf("Inside exec_multiple_pipes \n");
 			i++;
 		i++;
 	}
+	i = 0;
+	if (*exit_status != 0)
+		i = *exit_status;
 	close_files_and_wait(fd, t, exit_status);
+	if (i != 0)
+		*exit_status = i;
 	flush_pipes(t);
 	return ;
 }
+//lat 5 lines setting the exit code of the bins executed in parent
+
 
 //for echo hi > f1 > f2 > f3
 		//it creates f1 and f2 and only fill f3

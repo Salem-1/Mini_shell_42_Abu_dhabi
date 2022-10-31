@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:17:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/31 06:26:24 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 02:45:43 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	unset_error(char *env_variable, int error_code,
 		if (t)
 			(void)t;
 	}
-		err_printf("minishell: unset: `%s': not a valid identifier\n", env_variable);
+	err_printf("minishell: unset: `%s': not a valid identifier\n", env_variable);
 }
 
 void	cd_error(t_pipes *t, char *error_path, char flag)

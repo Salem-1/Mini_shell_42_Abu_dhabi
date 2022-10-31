@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/31 06:25:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 02:51:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,8 @@ void				case_input_file_cat(
 void				case_input_file_cat_otherfiles(
 						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
 void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
-void				exec_exit_export_unset_cd_in_parent(
-						int *i, struct t_pipes *t, t_list *env, int *exit_status);
+int					exec_exit_export_unset_cd_in_parent(int *i,
+						struct t_pipes *t, t_list *env, int *exit_status);
 char				*ft_low(char *cmd);
 //heredoc
 void				if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
@@ -204,7 +204,8 @@ char				**fill_export_with_key_only(char **exp_item,
 t_list				*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp,
 						struct t_parsed_command *t);
 int					is_repeated(char *cmd, t_list **env);
-
+int					exec_export_unset_cd_in_child(struct t_parsed_command *t,
+						t_list *env, struct t_pipes *all_cmds, int len);
 void				exec_env(t_list **env);
 void				exec_pwd(void);
 void				exec_export(t_pipes *all_cmds, struct t_parsed_command *t,
