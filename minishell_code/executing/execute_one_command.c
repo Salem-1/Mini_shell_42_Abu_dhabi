@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/28 02:27:59 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/31 06:26:43 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 	return (0);
 }
 
-void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_cmds)
+void	just_execve(struct t_parsed_command *t,
+					t_list *t_env, struct t_pipes *all_cmds)
 {
 	char	**envp;
 	char	*old_cmd;
@@ -58,7 +59,6 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_
 	if (is_in_our_executable(t, t_env, all_cmds))
 	{
 		free_split((void **)envp);
-		
 		exec_exit(all_cmds, 0);
 		return ;
 	}
@@ -77,8 +77,8 @@ void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_
 	{
 		if (execve(t->cmd, t->args, envp) == -1)
 		{
-			err_printf("minishell: %s: No such file or directory\n", t->cmd);
-			exec_exit(all_cmds, 127);
+			normal_execution_error(t, all_cmds, envp);
+			
 		}
 	}
 	exec_exit(all_cmds, 0);

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:40:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/30 17:55:53 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/31 04:26:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,42 @@
 /*
 	call_case 1 --> "hello" or 'hello' normal handle , take care for the '' or ""
 	call_case 2 --> h"ello" or "hell"o or h"ell"o    , take care of unclosed quotes
+	SURPRISE ......
+	one more case
+	case     3 --> 0"1"2"3"4"5"67'8'9"1"   
+					""" "
+					" """
 */
+
+char	*multiple_single_and_double_quotes(t_smash_kit *s, char *cmd, char flag, int *exit_status)
+{
+	char	*merged_str;
+forens_printf("\nMultiple single and double quote gen\n cmd = <%s>, flag = %c, start = %d, end = %d, i = %d\n\n", cmd, flag, s->start, s->end, s->i);
+	merged_str = figure_out_end_of_quote_and_fill_arg(s, cmd, flag, exit_status);
+	while (cmd[s->i + 1] == '\'' || cmd[s->i + 1] == '"')
+	{
+		s->i++;
+		s->flag = cmd[s->i];
+		s->start = s->i;
+forens_printf("\nLooping Multiple single and double quote gen\n merge_str = <%s>, flag = %c, start = %d, end = %d, i = %d\n\n", merged_str, flag, s->start, s->end, s->i);
+		merged_str = ft_expand_strjoin(merged_str,
+				figure_out_end_of_quote_and_fill_arg(
+					s, cmd, s->flag, exit_status
+					)
+				);
+	}
+forens_printf("\nExiting Multiple single and double quote gen\n merged_str = <%s>, flag = %c, start = %d, end = %d, i = %d\n\n", merged_str, flag, s->start, s->end, s->i);
+
+	return (merged_str);
+}
+
 char	*figure_out_end_of_quote_and_fill_arg(
 		t_smash_kit *s, char *cmd, char flag, int *exit_status)
 {
 	char	*final_arg;
 	int		call_case;
 
+// forens_printf("\nEntering figure out end of quote cmd = <%s>, flag = %c, start = %d, end = %d, i = %d\n", cmd, flag, s->start, s->end, s->i);
 	final_arg = NULL;
 	call_case = 0;
 	if (cmd[s->start] != flag)
@@ -50,8 +79,13 @@ forens_printf("Calling case 2 string don't start with quote, start = %d, end = %
 		if (s->i == 0)
 			s->i++;
 		if (!cmd[s->i + 1] || cmd[s->i + 1] == ' ' || check_redirection(cmd, s->i + 1)
-			|| cmd[s->i + 1] == flag)
+			|| cmd[s->i + 1] == '\'' || cmd[s->i + 1] == '"')
+		{
+			if (cmd[s->i + 1] == ' ')
+				s->i += 2;
+forens_printf("calling case 1 main cmd[%d] = %c , start = %d\n", s->i, cmd[s->i], s->start);
 			call_case = 1;
+		}
 		else
 		{
 			call_case = 2;
@@ -72,8 +106,10 @@ char	*fill_normal_quote_case(t_smash_kit *s, char *cmd, char flag, int *exit_sta
 {
 	char	*final_arg;
 
-	forens_printf("Case 1 Filling normal quote, cmd = %s\n", cmd);
 	s->end = s->i;
+	forens_printf("Case 1 Filling normal quote, cmd = %s, start = %d, end = %d\n", cmd, s->start, s->end);
+	if (s->start == s->end)
+		s->end++;
 	final_arg = ft_substr(cmd, s->start + 1, s->end - s->start - 1);
 	forens_printf("final_arg before expand = %s, start = %d, end = %d\n", final_arg, s->start, s->end);
 	if (final_arg[0] != '\0')
@@ -99,7 +135,8 @@ char	*fill_outliar_quote_by_split_expand(t_smash_kit *s, char *cmd, char flag, i
 	forens_printf("Case 2 FIll outliar quote, flag = %c\n", flag);
 	forens_printf("cmd before expand = %s, start = %d, end = %d, i = %d\n", cmd, s->start, s->end, s->i);
 	while (cmd[s->i + fetch_end] != '\0' && !check_redirection(cmd, s->i + fetch_end)
-		&& (cmd[s->i + fetch_end] != ' ') && (cmd[s->i + fetch_end] != flag))
+		&& (cmd[s->i + fetch_end] != ' ') && (cmd[s->i + fetch_end] != '\'')
+		&& (cmd[s->i + fetch_end] != '"'))
 	{
 forens_printf("cmd[%d + %d] = %c\n", s->i, fetch_end, cmd[s->i + fetch_end]);
 		fetch_end++;

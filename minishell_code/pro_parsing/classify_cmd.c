@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/28 17:57:59 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/31 02:03:46 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ forens_printf("inside double quote smash arg = <%s>,cmd[%d] = %c,  start = %d i 
 	else if (cmd[s->i] == '"')
 	{
 		forens_printf("before cleaning arg = <%s>, start = %d i = %d\n", cmd, s->start, s->i);
-		smashed_arg = figure_out_end_of_quote_and_fill_arg(
-						s, cmd, '"', exit_status);
+		smashed_arg = multiple_single_and_double_quotes(
+				s, cmd, '"', exit_status);
 		forens_printf("filling node with ~%s~\n", smashed_arg);
 		s->tmp = fill_cmd_node(smashed_arg, 'c');
 		ft_lstadd_back(head, s->tmp);
@@ -96,7 +96,7 @@ forens_printf("check for single quote <%c>\n", cmd[s->i]);
 	if (cmd[s->i] == '\'' || ((cmd[s->i] != '\'' && !cmd[s->i + 1])))
 	{
 		forens_printf("before cleaning arg = <%s>, start = %d i = %d\n", cmd, s->start, s->i);
-		smashed_arg = figure_out_end_of_quote_and_fill_arg(
+		smashed_arg = multiple_single_and_double_quotes(
 						s, cmd, '\'', &exit_code);
 		forens_printf("filling node with ~%s~\n", smashed_arg);
 		tmp = fill_cmd_node(smashed_arg,'c');

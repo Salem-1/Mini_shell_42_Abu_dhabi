@@ -2,14 +2,6 @@ case 1:
 -------
 Mem clean
 
-//shouldn't sigfualt here
-""echo" " 
-ls" "
-
-//print command not found
-minishell $> ""
-minishell $> " "
-
 //should print file2 no such file or direct.	
 minishell $> cat < file < fle2
 minishell: file: No such file or directory
@@ -152,11 +144,6 @@ minishell: syntax error near unexpected token
 minishell $> export AA= "'"""
 minishell: unset: `'': not a valid identifier
 
-
-
-
-
-
 //wierd staff with the path, dig deep in it (Very important) changing the path in the evaluation file
 minishell $> mkdir y
 minishell $> mv a.out y
@@ -267,23 +254,6 @@ minishell: syntax error near unexpected token
 [1]    316 segmentation fault  ./minishell
 
 
-
-
-//shitty nonsense case, just forget about it
-./minishell | ./minishell
-minishell $> minishell $> 
-minishell: syntax error near unexpected token 
-[1]    343 done                ./minishell | 
-       344 segmentation fault  ./minishell
-
-
-
-case 2:
-------
-minishell $> ""
-minishell: /usr/local/bin/: No such file or directory
-
-
 case 4:  (Bilal)
 -------
 ctr c twice shouldn't exit 
@@ -304,6 +274,27 @@ bash-3.2$ echo $?
 
 (solved)
 -------------------------------------------------------------------------
+
+case 2:
+------
+minishell $> ""
+minishell: /usr/local/bin/: No such file or directory
+
+//print command not found
+minishell $> ""
+minishell $> " "
+
+
+//shitty nonsense case, just forget about it
+./minishell | ./minishell
+minishell $> minishell $> 
+minishell: syntax error near unexpected token 
+[1]    343 done                ./minishell | 
+       344 segmentation fault  ./minishell
+
+//shouldn't sigfualt here
+""echo" " 
+ls" "
 
 //you should print dollar here
 minishell $> echo $ 

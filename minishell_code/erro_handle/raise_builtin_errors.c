@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:17:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/22 20:52:19 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/31 06:26:24 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,20 @@ void	cd_error(t_pipes *t, char *error_path, char flag)
 		err_printf("bash: cd: %s: No such file or directory\n", error_path);
 	}
 	t->parse_error = 10;
+}
+
+void	normal_execution_error(struct t_parsed_command *t,
+		struct t_pipes *all_cmds, char **envp)
+{
+	(void)all_cmds;
+	if (!t)
+		return ;
+	if (t->path == 'r' || t->cmd[0] == '\0')
+		err_printf("minishell: %s: command not found\n", t->cmd);
+	else
+		err_printf("minishell: %s: No such file or directory\n", t->cmd);
+	//consider flushing pipes here
+	if (envp)
+		free_split((void **)envp);
+	exec_exit(all_cmds, 127);
 }

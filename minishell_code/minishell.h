@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/28 02:17:44 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/10/31 06:25:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,8 @@ char				*outliar_double_with_expand(t_smash_kit *s,
 						char **splitted_arg, char *final_arg, int *exit_status);
 char				*outliar_single_fill(
 						char **splitted_arg, char *final_arg);
-
+char				*multiple_single_and_double_quotes(t_smash_kit *s,
+						char *cmd, char flag, int *exit_status);
 //Execution
 int					exec_to_output_operations(t_pipes *t, t_list *env,int **fd, int i);
 int					exec_to_take_operations(t_pipes *t, t_list *env,int **fd, int i);
@@ -242,7 +243,10 @@ void				throw_parser_error(t_pipes *t, int * exit_status);
 void				fill_errored_pipe(
 						t_pipes *t, int error, t_list *smashed_cmd);
 void				cd_exit_with_code(t_pipes *t);
-void				pipes_and_redirect_errors(t_pipes *t, int i, int local_fd, int **fd);
+void				pipes_and_redirect_errors(
+						t_pipes *t, int i, int local_fd, int **fd);
+void				normal_execution_error(struct t_parsed_command *t,
+						struct t_pipes *all_cmds, char **envp);
 //signals handling
 void					handle_signals(int sig);
 void					init_signals();
