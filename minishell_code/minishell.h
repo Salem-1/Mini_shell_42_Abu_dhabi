@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/01 02:51:04 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 10:37:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char				**get_path(t_list *env);
 size_t				length_of_larger_string(char *str1, char *str2);
 char				*search_list(t_list *t_env, char *needle, char flag);
 char				**join_env(t_list *t_env);
+char				**get_env_key_val(char *var);
 int					cmd_not_empty(char *cmd);
 int					is_piped(char *cmd);
 t_pipes				*parsing_piped_cmd(

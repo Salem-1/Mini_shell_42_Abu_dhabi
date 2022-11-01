@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 09:39:54 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/01 02:48:33 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 10:21:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	clear_var(t_list *delete_me, t_list **env, int throw_error)
 		node_before_del->next = delete_me->next;
 	}
 	ft_lstdelone(delete_me, del);
+	delete_me = NULL;
 }
 
 //flag == 'c' return the searched node
