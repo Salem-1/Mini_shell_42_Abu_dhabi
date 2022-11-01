@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/01 02:58:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 10:57:24 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ forens_printf("Inside exec_multiple_pipes \n");
 			i++;
 			continue ;
 		}
-		*exit_status = exec_exit_export_unset_cd_in_parent(
-				&i, t, env, exit_status);
 		pid = fork();
 		if (pid == 0)
 		{
 			piping_and_redirections(i, fd, t, env);
 			return ;
 		}
+		*exit_status = exec_exit_export_unset_cd_in_parent(
+				&i, t, env, exit_status);
 		if (t->single_cmd[i]->after_sep == 't')
 			i++;
 		i++;

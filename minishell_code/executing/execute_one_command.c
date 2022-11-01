@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/31 07:21:29 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 18:52:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	just_execve(struct t_parsed_command *t,
 
 	old_cmd = NULL;
 	envp = NULL;
-	envp = join_env(t_env);
+	if (t_env)
+		envp = join_env(t_env);
 	if (!t->cmd)
 		exec_exit(all_cmds, 0);
 	if (is_in_our_executable(t, t_env, all_cmds))
@@ -121,7 +122,8 @@ char	*search_path_for_bin(char *split_command_0, t_list *t_env)
 			return (searched_path);
 		}
 	}
-	free(searched_path);
+	if (searched_path)
+		free(searched_path);
 	free_split((void **)pathes);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/31 06:07:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 18:26:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	free_fd(t_pipes *t)
 	}
 	free(t->fd);
 }
+
 void	clean_env(t_list *env)
 {
 	if (!env)

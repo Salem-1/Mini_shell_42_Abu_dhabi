@@ -21,7 +21,8 @@ SRC =	main.c \
 		erro_handle/parse_error.c \
 		erro_handle/pipes_redirect_errors.c \
 		test_files/vis.c 
-CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3 -fsanitize=address -static-libasan 
+CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3 
+#-fsanitize=address -static-libasan 
 
 CC = gcc 
 OBJ = $(SRC:.c=.o)
