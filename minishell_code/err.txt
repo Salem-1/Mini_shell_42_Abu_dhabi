@@ -2,68 +2,7 @@ case :
 -------
 Mem clean
 
- 28)
-//using unset alot missing up your path
-//also unsetting the path shouldn't affect the builtins
-//the issue is when PATH is the first variable it missup with the head of env_vars
-minishell $> unset HOME SHELL LaunchInstanceID __CF_USER_TEXT_ENCODING XPC_SERVICE_NAME SSH_AUTH_SOCK XPC_FLAGS LOGNAME TMPDIR PWD OLDPWD GIT_ASKPASS TERM PATH HOME SHELL USER
-minishell $> ls
-
-
-//should throw an error
- unset a=3
-
-//Handling to lower
-  UNSET APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE no_proxy TERM HOSTNAME
-minishell: unset: command not found
- 
-(high priority *************************)
-minishell $> unset HOME SHELL LaunchInstanceID __CF_USER_TEXT_ENCODING XPC_SERVICE_NAME SSH_AUTH_SOCK XPC_FLAGS LOGNAME TMPDIR PWD OLDPWD GIT_ASKPASS TERM PATH HOME SHELL USER
-minishell $> ls
-minishell $> ls
-minishell $> ls
-minishell $> l;s
-minishell $> ls
-minishell $> l;s
-minishell $> ls
-minishell $> ls
-minishell $> echo 
-minishell $> echo sdfghjfhdgrs
-minishell $> vb
-minishell $> gf
-minishell $> gdbxfhncg
-minishell $> gf
-nminishell $> n
-minishell $> 
-minishell $> 
-minishell $> 
-minishell $> 
-minishell $> unset PATH
-[1]    560 segmentation fault  ./minishell
-
-
-
 27)
-//should execute the unset and other builtins with >> < >
-minishell $> unset >> l
-minishell $> unset PATH >> l
-minishell $> ls
-1                       executing               minishell
-2                       export                  minishell.h
-Makefile                file                    mkdir
-a                       forensics_cmds.log      mv
-abcdefg'hij'klmno       kftygh                  parsing
-b                       l                       pro_parsing
-badfile                 libft                   r
-bak                     lllll                   readline.supp
-bins                    lpwd                    t
-c                       ls                      test.c
-e                       ls"                     test_files
-echo                    ls2"                    test_wc
-env                     main.c                  trash
-err.txt                 main.o                  y
-erro_handle             mem_check.sh
-minishell $> export m=4 >> l
 minishell $> echo $m
 minishell $> cd > SSS
 minishell $> exit >> l
@@ -310,7 +249,70 @@ minishell $> echo $?
 
 (solved)
 -------------------------------------------------------------------------
+27)
+//should execute the unset and other builtins with >> < >
+minishell $> unset >> l
+minishell $> unset PATH >> l
+minishell $> ls
+1                       executing               minishell
+2                       export                  minishell.h
+Makefile                file                    mkdir
+a                       forensics_cmds.log      mv
+abcdefg'hij'klmno       kftygh                  parsing
+b                       l                       pro_parsing
+badfile                 libft                   r
+bak                     lllll                   readline.supp
+bins                    lpwd                    t
+c                       ls                      test.c
+e                       ls"                     test_files
+echo                    ls2"                    test_wc
+env                     main.c                  trash
+err.txt                 main.o                  y
+erro_handle             mem_check.sh
+minishell $> export m=4 >> l
 
+
+case 28:
+-------
+//should throw an error even when the a exists
+ unset a=3
+//Handling to lower
+  UNSET APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE no_proxy TERM HOSTNAME
+minishell: unset: command not found
+
+28)
+//using unset alot missing up your path
+//also unsetting the path shouldn't affect the builtins
+//the issue is when PATH is the first variable it missup with the head of env_vars
+minishell $> unset HOME SHELL LaunchInstanceID __CF_USER_TEXT_ENCODING XPC_SERVICE_NAME SSH_AUTH_SOCK XPC_FLAGS LOGNAME TMPDIR PWD OLDPWD GIT_ASKPASS TERM PATH HOME SHELL USER
+minishell $> ls
+
+
+
+ 
+(high priority *************************)
+minishell $> unset HOME SHELL LaunchInstanceID __CF_USER_TEXT_ENCODING XPC_SERVICE_NAME SSH_AUTH_SOCK XPC_FLAGS LOGNAME TMPDIR PWD OLDPWD GIT_ASKPASS TERM PATH HOME SHELL USER
+minishell $> ls
+minishell $> ls
+minishell $> ls
+minishell $> l;s
+minishell $> ls
+minishell $> l;s
+minishell $> ls
+minishell $> ls
+minishell $> echo 
+minishell $> echo sdfghjfhdgrs
+minishell $> vb
+minishell $> gf
+minishell $> gdbxfhncg
+minishell $> gf
+nminishell $> n
+minishell $> 
+minishell $> 
+minishell $> 
+minishell $> 
+minishell $> unset PATH
+[1]    560 segmentation fault  ./minishell
 
 
 

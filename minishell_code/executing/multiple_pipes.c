@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/01 10:57:24 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/03 18:56:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ forens_printf("Inside exec_multiple_pipes \n");
 	//remeber to check for the null cmd
 	while (i < t->npipes)
 	{
+		*exit_status = exec_exit_export_unset_cd_in_parent(
+				&i, t, env, exit_status);
 		if (t->single_cmd[i]->after_sep == 'h')
 			i = skip_multiple_heredocs(t, i);
 		if (t->single_cmd[i]->before_sep == 'g'
@@ -59,8 +61,6 @@ forens_printf("Inside exec_multiple_pipes \n");
 			piping_and_redirections(i, fd, t, env);
 			return ;
 		}
-		*exit_status = exec_exit_export_unset_cd_in_parent(
-				&i, t, env, exit_status);
 		if (t->single_cmd[i]->after_sep == 't')
 			i++;
 		i++;

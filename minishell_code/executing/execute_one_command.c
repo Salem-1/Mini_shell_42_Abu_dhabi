@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/01 18:52:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/01 20:09:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	just_execve(struct t_parsed_command *t,
 	if (!t->cmd)
 	{
 		err_printf("minishell: %s: command not found\n", old_cmd);
+		free_split((void **)envp);
 		exec_exit(all_cmds, 127);
 		return ;
 	}
@@ -79,7 +80,6 @@ void	just_execve(struct t_parsed_command *t,
 		if (execve(t->cmd, t->args, envp) == -1)
 		{
 			normal_execution_error(t, all_cmds, envp);
-			
 		}
 	}
 	exec_exit(all_cmds, 0);
@@ -113,9 +113,11 @@ char	*search_path_for_bin(char *split_command_0, t_list *t_env)
 		return (NULL);
 	while (pathes[++i])
 	{
+		if (searched_path)
+			free(searched_path);
 		add_slash = ft_strjoin(pathes[i], "/");
-		searched_path = ft_strjoin(add_slash, split_command_0);
-		free(add_slash);
+		searched_path = env_strjoin(add_slash, split_command_0,
+				ft_strlen(add_slash) + ft_strlen(split_command_0));
 		if (access(searched_path, X_OK) == 0)
 		{
 			free_split((void **)pathes);

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:21:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/01 03:06:07 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/02 18:36:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	exec_exit_export_unset_cd_in_parent(
 	}
 	if (!ft_strncmp(t->single_cmd[*i]->cmd, "exit", 5))
 		exec_exit_in_parent(i, t);
-	if (*exit_status == 0)
+	if (t->npipes == 1 || (*exit_status == 0 && t->npipes > 1))
 	{
 		if (!ft_strncmp(t->single_cmd[*i]->cmd, "cd", 3))
 			*exit_status = exec_cd(t->single_cmd[*i], &env, t, 't');
