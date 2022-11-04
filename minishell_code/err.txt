@@ -2,35 +2,28 @@ case :
 -------
 Mem clean
 
-27)
-minishell $> echo $m
-minishell $> cd > SSS
-minishell $> exit >> l
-// should exit minishell
-
-26)
-//just fix the segfault and the exit code
-minishell $> exit hjh
-minishell: exit: numeric argument required 
-[1]    1042 segmentation fault  ./minishell
-
-
-25)
-minishell $> cat l
-// return 127 instead of 0, same with CTR D, should exit with 127"last exit code"
-minishell $> kjhbdbgfl
-minishell: kjhbdbgfl: command not found
-minishell $> exit
-[DOCKER]➜  src echo $?
-0
-
-24)
+23)
 //multiple arguments with export and silent the unset error in export
+export ^&%*& | ls
+should throw error 
+export *&^%
+should throw error, clean, don't close the program change status code to
 minishell $> export AA=AA BB=BB
 minishell: unset: `BB=BB': not a valid identifier
 minishell: unset: `BB=BB': not a valid identifier
 
-23)
+22)
+//wierd staff with the path, dig deep in it (Very important) changing the path in the evaluation file
+minishell $> mkdir y
+minishell $> mv a.out y
+minishell $> export PATH="$PWD/y:$PATH"
+minishell $> env
+minishell $> ls
+minishell $> echo hh
+minishell $> echo $PATH
+[1]    524 segmentation fault  ./minishell
+
+21)
 //This isn't syntax error by any mean
 minishell $> export AA="<"
 minishell: syntax error near unexpected token 
@@ -41,7 +34,71 @@ minishell: syntax error near unexpected token
 minishell $> echo "hi"sdfd|dsfsdfls""
 minishell: dsfsdfls: command not found
 
-22)
+
+20)
+//don't throw the correct error
+minishell $> export AA= "'"""
+minishell: unset: `'': not a valid identifier
+
+19)
+//100% fix this the syntax error (high priority ***********************)
+minishell $> ls" "ls
+minishell: syntax error near unexpected token 
+[1]    512 segmentation fault  ./minishell
+
+
+
+18)
+//this expands to no token in bash, this is not even a command like typing ENTER
+minishell $> $G  
+minishell: : No such file or directory
+minishell $> echo $d a
+ a
+17)
+//this shouldn't be syntax error, also handle the segfault, I believe there is wrong counting for quotes (high priority *************************)
+minishell $> ""ls""""""|ls""|cat|cat'|'
+minishell: syntax error near unexpected token 
+[1]    493 segmentation fault  ./minishell
+
+16)
+//this should expand to ls gdsfgn 
+minishell $> ""l"""s"' gdsfgn'
+minishell: ls': command not found
+
+15)
+minishell $> exit >> l
+// should exit minishell
+
+14)
+//just fix the segfault and the exit code
+minishell $> exit hjh
+minishell: exit: numeric argument required 
+[1]    1042 segmentation fault  ./minishell
+
+13)
+//exit with a crriage, handle the invalid pointer
+minishell $> exit ^M
+minishell: exit: numeric argument required 
+free(): invalid pointer
+[1]    462 abort      ./minishell
+
+13)
+//should throw an error then exit
+minishell $> exit 467897566789087657890876
+
+
+12)
+minishell $> cat l
+// return 127 instead of 0, same with CTR D, should exit with 127"last exit code"
+minishell $> kjhbdbgfl
+minishell: kjhbdbgfl: command not found
+minishell $> exit
+[DOCKER]➜  src echo $?
+0
+
+
+
+11)
 //some shitty characters inside the code below
 minishell $> ^N
 minishell: : command not found
@@ -52,7 +109,7 @@ gfhjk: command not found
 minishell $> ^Dfhdg
 minishell: fhdg: command not found
 
-21)
+10)
 //don't handle this, just make sure you don't sigfault
 minishell $> mkdir lllll
 minishell $> cd lllll
@@ -69,63 +126,16 @@ bash: cd: ..: No such file or directory
 minishell $> cd .
 bash: cd: .: No such 
 
-20)
-//100% fix this the syntax error (high priority ***********************)
-minishell $> ls" "ls
-minishell: syntax error near unexpected token 
-[1]    512 segmentation fault  ./minishell
 
-19)
-//don't throw the correct error
-minishell $> export AA= "'"""
-minishell: unset: `'': not a valid identifier
 
-18)
-//wierd staff with the path, dig deep in it (Very important) changing the path in the evaluation file
-minishell $> mkdir y
-minishell $> mv a.out y
-minishell $> export PATH="$PWD/y:$PATH"
-minishell $> env
-minishell $> ls
-minishell $> echo hh
-minishell $> echo $PATH
-[1]    524 segmentation fault  ./minishell
-
-17)
-//this expands to no token in bash, this is not even a command like typing ENTER
-minishell $> $G  
-minishell: : No such file or directory
-minishell $> echo $d a
- a
-
-16)
+9)
 //protect the env_parsing function to check null and not segfault
 ahsalem@lab1r4s11 minishell_code % env -i ./minishell
 zsh: segmentation fault  env -i ./minishell
 
-15)
-//this shouldn't be syntax error, also handle the segfault, I believe there is wrong counting for quotes (high priority *************************)
-minishell $> ""ls""""""|ls""|cat|cat'|'
-minishell: syntax error near unexpected token 
-[1]    493 segmentation fault  ./minishell
 
-14)
-//this should expand to ls gdsfgn 
-minishell $> ""l"""s"' gdsfgn'
-minishell: ls': command not found
 
-13)
-//exit with a crriage, handle the invalid pointer
-minishell $> exit ^M
-minishell: exit: numeric argument required 
-free(): invalid pointer
-[1]    462 abort      ./minishell
-
-12)
-//should throw an error then exit
-minishell $> exit 467897566789087657890876
-
-11)
+8)
 //we creatd echo before this point, the error message is wrong
 minishell $> ./echo
 minishell: ./echo: No such file or directory
@@ -134,23 +144,23 @@ minishell: ./ls: No such file or directory
 minishell $> ./echo
 minishell: ./echo: No such file or directory
 
-10)
+7)
 //I believ no issue here by try it again later in your minishell and bash
 minishell $> cat < file > file2    
 
-9)
+6)
 //it's not a syntax erro, then fix the segfault
 minishell $> echo $YTR" "DFYUITF
 minishell: syntax error near unexpected token 
 [1]    503 segmentation fault  ./minishell
 
-8)
+5)
 //this should give syntax, this is a valid cse , should be fixed automatically after fixing quotes issue
 minishell $> echo f'"D'D''D'DD"D'D'D'D'D"D'D'D'''''"gthryug,khg'D"'lD"D'D'D'D""'''''"'"td
 f"DDDDD"DDDDD"DDD"gthryug,khgD"lD"DDDD""""td
 
 
-7)
+4)
 //the error code should be permission denied, and mac report should be  permission denied also, (important)
 //and the exit code is 126 (edge case low prioritt)
 minishell $> < badfile 
@@ -158,7 +168,7 @@ minishell: badfile: No such file or directory
 minishell $> macreport 
 minishell: macreport: command not found
 
-6)
+3)
 //double free for the heredocs inside the child process
 minishell $> echo hi << l
 heredoc> dsfg
@@ -181,18 +191,16 @@ minishell(71236,0x104b9edc0) malloc: *** set a breakpoint in malloc_error_break 
 minishell $> ls<<l|<<k pwd
  echo hi>kftygh|>>lpwd   
 
+//fix the segfault with multiple heredocs
+minishell $> cat << a << b << c
+minishell: syntax error near unexpected token 
+[1]    307 segmentation fault  ./minishell
+
  minishell $> exit << l
 heredoc> trgdh
 heredoc> ersrd\
 heredoc> l
 
-5)
-//should expand the $PWD
-minishell $> cat << $PWD
-heredoc> PWD
-heredoc> $PWD
-
-4)
 //revise the heredoc for the segfault
 minishell $> cat << $PWD
 heredoc> PWD
@@ -203,28 +211,13 @@ heredoc> ^C
 heredoc> ^C
 heredoc> [1]    1065 segmentation fault  ./minishell
 
-
-
-3)
-//shouldn't print the quotation marks
- echo hi >> "abcd"efg'hij'klmno""
-minishell $> echo  "abcd"efg'hij'klmno""
-abcdefg'hij'klmno
-
-
 2)
-//fix the segfault with multiple heredocs
-minishell $> cat << a << b << c
-minishell: syntax error near unexpected token 
-[1]    307 segmentation fault  ./minishell
+//should expand the $PWD
+minishell $> cat << $PWD
+heredoc> PWD
+heredoc> $PWD
 
-1)
-minishell $> >>|l
-minishell: syntax error near unexpected token 
-[1]    316 segmentation fault  ./minishell
-
-
-case 4:  (Bilal)
+case 1:  (Bilal)
 -------
 ctr c twice shouldn't exit 
 cat <<hello | cat << green  should do the heredoc before execution
@@ -248,7 +241,28 @@ minishell $> echo $?
 0
 
 (solved)
--------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+3)
+//shouldn't print the quotation marks
+ echo hi >> "abcd"efg'hij'klmno""
+minishell $> echo  "abcd"efg'hij'klmno""
+abcdefg'hij'klmno
+
+
+2)
+minishell $> >>|l
+minishell: syntax error near unexpected token 
+[1]    316 segmentation fault  ./minishell
+
+
+minishell $> cd > SSS
+minishell $> echo $m
+
 27)
 //should execute the unset and other builtins with >> < >
 minishell $> unset >> l

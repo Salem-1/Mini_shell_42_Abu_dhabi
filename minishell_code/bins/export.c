@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/22 20:10:14 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/04 15:15:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 /*
 	flags
-	t    throw an error
-	s    silent the error
+	p    parent
+	c    child
 */
-void	exec_export(t_pipes *all_cmds, struct t_parsed_command *t, t_list **env, int flag)
+int	exec_export(t_pipes *all_cmds, struct t_parsed_command *t, t_list **env, int flag)
 {
 	int		i;
 	t_list	*tmp;
@@ -32,17 +32,17 @@ void	exec_export(t_pipes *all_cmds, struct t_parsed_command *t, t_list **env, in
 			if (tmp)
 				ft_lstadd_back(env, tmp);
 		}
-		else if (flag == 't')
-		{
-			//just print errors here
-			raise_export_error(all_cmds, t->args[i], 'v');
-		}
+		else if (flag == 'p')
+			raise_export_error(all_cmds, t->args[i], 'p');
 		i++;
 	}
 	if (t->args[1] == NULL)
 		vis_list(env, 'x');
-	if (flag == 't' && all_cmds->parse_error == 30)
-		raise_export_error(all_cmds, t->args[i], 'e');
+	if (flag == 'c' && all_cmds->parse_error == 30)
+		raise_export_error(all_cmds, t->args[i], 'c');
+	if (all_cmds->parse_error == 30)
+		return (1);
+	return (0);
 }
 
 t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_command *t)

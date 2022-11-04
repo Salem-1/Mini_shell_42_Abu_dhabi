@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/01 18:04:40 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/04 15:12:16 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ int					exec_export_unset_cd_in_child(struct t_parsed_command *t,
 						t_list *env, struct t_pipes *all_cmds, int len);
 void				exec_env(t_list **env);
 void				exec_pwd(void);
-void				exec_export(t_pipes *all_cmds, struct t_parsed_command *t,
+int				exec_export(t_pipes *all_cmds, struct t_parsed_command *t,
 						t_list **env, int flag);
 int					valid_export_arg(char *str, char flag);
 int					find_msize(char *cmd);

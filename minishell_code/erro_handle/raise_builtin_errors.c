@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:17:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/01 02:45:43 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/04 15:06:41 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	raise_export_error(t_pipes *t, char *cmd, char flag)
 {
-	if (flag == 'v')
+	t->parse_error = 30;
+	if (flag == 'p')
 	{
 		err_printf("minishell: export: `%s': not a valid identifier\n", cmd);
-		t->parse_error = 30;
 	}
 	else
 	{
-		//clean 
+		err_printf("minishell: export: `%s': not a valid identifier\n", cmd);
 		exit(1);
 	}
 }

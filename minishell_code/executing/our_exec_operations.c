@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:21:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/02 18:36:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/04 15:26:46 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,14 @@ void	exec_our_cmd(struct t_parsed_command *t, t_list *env,
 	if (!ft_strncmp(t->cmd, "pwd", len))
 		exec_pwd();
 	len = length_of_larger_string(t->cmd, "export");
-	if (!ft_strncmp(t->cmd, "export", len) && t->args[1] == NULL)
-		exec_export(all_cmds, t, &env, 't');
+	if (!ft_strncmp(t->cmd, "export", len))
+		exec_export(all_cmds, t, &env, 'c');
+	len = length_of_larger_string(t->cmd, "unset");
+	if (!ft_strncmp(t->cmd, "unset", len))
+		exec_unset(t, &env, 1, 't');
+	len = length_of_larger_string(t->cmd, "cd");
+	if (!ft_strncmp(t->cmd, "cd", len))
+		cd_exit_with_code(all_cmds);
 }
 
 
@@ -105,7 +111,7 @@ int	exec_exit_export_unset_cd_in_parent(
 			*exit_status = exec_cd(t->single_cmd[*i], &env, t, 't');
 		else if (!ft_strncmp(t->single_cmd[*i]->cmd, "export", 7)
 			&& t->single_cmd[*i]->args[1] != NULL)
-			exec_export(t, t->single_cmd[*i], &env, 't');
+			*exit_status = exec_export(t, t->single_cmd[*i], &env, 'p');
 		else if (!ft_strncmp(t->single_cmd[*i]->cmd, "unset", 6))
 			*exit_status = exec_unset(t->single_cmd[*i], &env, 1, 't');
 	}
