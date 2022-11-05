@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/05 22:56:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/06 01:46:50 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_com
 		if (t->args[1])
 			free(t->args[1]);
 		t->args[1] = ft_strdup(exp_item[0]);
-		exec_unset(t, env, 1, 't');
+		exec_unset(t, env, 1, 's');
 	}
 	return (tmp);
 }
