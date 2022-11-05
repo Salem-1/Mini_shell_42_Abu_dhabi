@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/28 01:46:33 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/05 22:48:39 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 
 t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd, t_list *env)
 {
-	t = calloc(sizeof(t_pipes), 1);
+	t = ft_calloc(sizeof(t_pipes), 1);
 	if (!t)
 		return (NULL);
 	t->fd = NULL;
@@ -78,9 +78,9 @@ t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd, t_list *env)
 	}
 	t->npipes = n_cmds;
 	if (smashed_cmd->flag != 'c' && n_cmds == 1)
-		t->single_cmd = calloc(sizeof(t_parsed_command *), n_cmds + 2);
+		t->single_cmd = ft_calloc(sizeof(t_parsed_command *), n_cmds + 2);
 	else
-		t->single_cmd = calloc(sizeof(t_parsed_command *), n_cmds + 1);
+		t->single_cmd = ft_calloc(sizeof(t_parsed_command *), n_cmds + 1);
 	if (!t->single_cmd)
 		return (NULL);
 	return (t);

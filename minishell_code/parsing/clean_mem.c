@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/01 18:26:52 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/05 22:45:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	free_cmd(t_parsed_command	*single_cmd)
 {
 	free_split((void **)single_cmd->args);
+	single_cmd->args = NULL;
 	free(single_cmd);
+	single_cmd = NULL;
 }
 
 void	flush_pipes(t_pipes	*t)

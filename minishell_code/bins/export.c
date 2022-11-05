@@ -6,21 +6,17 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/04 15:15:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/05 22:56:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/*
-	flags
-	p    parent
-	c    child
-*/
-int	exec_export(t_pipes *all_cmds, struct t_parsed_command *t, t_list **env, int flag)
+int	exec_export(t_pipes *all_cmds,
+				struct t_parsed_command *t, t_list **env, int flag)
 {
-	int		i;
 	t_list	*tmp;
+	int		i;
 
 	i = 1;
 	tmp = NULL;
@@ -32,7 +28,7 @@ int	exec_export(t_pipes *all_cmds, struct t_parsed_command *t, t_list **env, int
 			if (tmp)
 				ft_lstadd_back(env, tmp);
 		}
-		else if (flag == 'p')
+		else
 			raise_export_error(all_cmds, t->args[i], 'p');
 		i++;
 	}
@@ -67,6 +63,8 @@ t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_com
 	tmp = fill_new_export_node(tmp, exp_item, m_size);
 	if (is_repeated(exp_item[0], env))
 	{
+		if (t->args[1])
+			free(t->args[1]);
 		t->args[1] = ft_strdup(exp_item[0]);
 		exec_unset(t, env, 1, 't');
 	}

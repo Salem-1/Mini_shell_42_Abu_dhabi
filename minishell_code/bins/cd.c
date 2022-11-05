@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/04 10:42:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/05 20:19:49 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int fl
 }
 
 void	fill_old_and_current_pwd(
-		t_list **env, char *old_path, char *current_path)
+		t_list **env, char *current_path, char *old_path)
 {
 	t_list	*old_node;
 	t_list	*current_node;

@@ -2,39 +2,6 @@ case :
 -------
 Mem clean
 
-23)
-//multiple arguments with export and silent the unset error in export
-export ^&%*& | ls
-should throw error 
-export *&^%
-should throw error, clean, don't close the program change status code to
-minishell $> export AA=AA BB=BB
-minishell: unset: `BB=BB': not a valid identifier
-minishell: unset: `BB=BB': not a valid identifier
-
-22)
-//wierd staff with the path, dig deep in it (Very important) changing the path in the evaluation file
-minishell $> mkdir y
-minishell $> mv a.out y
-minishell $> export PATH="$PWD/y:$PATH"
-minishell $> env
-minishell $> ls
-minishell $> echo hh
-minishell $> echo $PATH
-[1]    524 segmentation fault  ./minishell
-
-21)
-//This isn't syntax error by any mean
-minishell $> export AA="<"
-minishell: syntax error near unexpected token 
-[1]    321 segmentation fault  ./minishell
-minishell $> export AA="|"
-minishell: syntax error near unexpected token 
-[1]    328 segmentation fault  ./minishell
-minishell $> echo "hi"sdfd|dsfsdfls""
-minishell: dsfsdfls: command not found
-
-
 20)
 //don't throw the correct error
 minishell $> export AA= "'"""
@@ -246,6 +213,48 @@ minishell $> echo $?
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+
+minishell $> echo "hi"sdfd|dsfsdfls""
+minishell: dsfsdfls: command not found
+
+export a=1
+export a=2    cause leaks 
+
+
+
+//This isn't syntax error by any mean
+minishell $> export AA="<"
+minishell: syntax error near unexpected token 
+[1]    321 segmentation fault  ./minishell
+minishell $> export AA="|"
+minishell: syntax error near unexpected token 
+[1]    328 segmentation fault  ./minishell
+
+cd trash/
+doesn't update the path correctly
+
+22)
+//wierd staff with the path, dig deep in it (Very important) changing the path in the evaluation file
+minishell $> mkdir y
+minishell $> mv a.out y
+minishell $> export PATH="$PWD/y:$PATH"
+minishell $> env
+minishell $> ls
+minishell $> echo hh
+minishell $> echo $PATH
+[1]    524 segmentation fault  ./minishell
+
+ASZ23)
+should throw error, clean, don't close the program change status code to
+export *&^%
+minishell: export: `%%': not a valid identifier
+minishell: export: `(null)': not a valid identifier
+export ^&%*& | ls
+should throw error 
+//multiple arguments with export and silent the unset error in export
+minishell $> export AA=AA BB=BB
+minishell: unset: `BB=BB': not a valid identifier
+minishell: unset: `BB=BB': not a valid identifier
 
 3)
 //shouldn't print the quotation marks

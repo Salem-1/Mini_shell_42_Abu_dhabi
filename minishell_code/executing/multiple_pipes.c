@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/04 14:33:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/06 00:29:07 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,57 @@ forens_printf("Inside exec_multiple_pipes \n");
 			i++;
 		i++;
 	}
-	i = 0;
-	if (*exit_status != 0)
-		i = *exit_status;
-	close_files_and_wait(fd, t, exit_status);
-	if (i != 0)
-		*exit_status = i;
+	if (!was_exec_in_parent(i, exit_status, t))
+		close_files_and_wait(fd, t, exit_status);
 	flush_pipes(t);
 	return ;
+}
+
+int	was_exec_in_parent(int i, int *exit_status, t_pipes *t)
+{
+	int	redirec;
+
+	redirec = 0;
+	while (t->single_cmd[redirec] && redirec < t->npipes)
+	{
+		if (t->single_cmd[redirec]->after_sep == 'p'
+			|| t->single_cmd[redirec]->before_sep == 'p' )
+			return (0);
+		redirec++;
+	}
+
+	if (!local_exec_cmd_spec(t))
+		return (0);
+	if (*exit_status != 0)
+		i = *exit_status;
+	close_files_and_wait(t->fd, t, exit_status);
+	if (i != 0)
+		*exit_status = i;
+	return (1);
+}
+
+int	local_exec_cmd_spec(t_pipes *t)
+{
+	int		redirec;
+	int		i;
+	char	*parent_cmds[3] = {"export", "cd", "unset"};
+	redirec = 0;
+	i = 0;
+	while (i < t->npipes)
+	{
+		redirec = 0;
+		while (redirec < 3)
+		{
+			if (!ft_strncmp(parent_cmds[redirec], t->single_cmd[i]->cmd, 7))
+			{
+				i = 0;
+				return (1);
+			}
+			redirec++;
+		}
+		i++;
+	}
+	return (0);
 }
 //lat 5 lines setting the exit code of the bins executed in parent
 
@@ -121,7 +164,7 @@ void	close_files_and_wait(int **fd, struct t_pipes	*t, int *exit_satus)
 		wait(&forwait);
 		*exit_satus = WEXITSTATUS(forwait);
 		// *exit_satus = WIFSIGNALED(forwait);
-// //forens_printf("in close files and wiat cmd %d execution end exit status %d\n", i, *exit_satus);
+// err_printf("in close files and wiat cmd %d execution end exit status %d\n", i, *exit_satus);
 		i++;
 	}
 // 	//forens_printf("\n------------------------------------------\n");
@@ -134,12 +177,12 @@ int	**open_pipes(int n, int **fd)
 {
 	int	i;
 	i = 0;
-	fd = calloc(sizeof(int *), n);
+	fd = ft_calloc(sizeof(int *), n);
 	if (!fd)
 		return (NULL);
 	while (i < n)
 	{
-		fd[i] = calloc(sizeof(int), 2);
+		fd[i] = ft_calloc(sizeof(int), 2);
 		if (!fd[i])
 		{
 			free_split((void **)fd);

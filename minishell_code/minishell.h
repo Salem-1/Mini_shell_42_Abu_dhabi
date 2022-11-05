@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/04 15:12:16 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/06 00:26:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,8 @@ void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
 int					exec_exit_export_unset_cd_in_parent(int *i,
 						struct t_pipes *t, t_list *env, int *exit_status);
 char				*ft_low(char *cmd);
+int					local_exec_cmd_spec(t_pipes *t);
+int					was_exec_in_parent(int i, int *exit_status, t_pipes *t);
 //heredoc
 void				if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
 void				fill_heredoced_cmd(t_pipes *t, t_list *env, int i);
