@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:40:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/06 04:11:58 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/06 20:14:27 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 	call_case 2 --> h"ello" or "hell"o or h"ell"o    , take care of unclosed quotes
 	SURPRISE ......
 	one more case
-	case     3 --> 0"1"2"3"4"5"67'8'9"1"   
+	case     3 --> 0"1"2"3"4"5"67'8'9"1"
 					""" "
 					" """
 */
@@ -78,18 +78,20 @@ forens_printf("Calling case 2 string don't start with quote, start = %d, end = %
 	{
 		if (s->i == 0)
 			s->i++;
-		if (!cmd[s->i + 1] || cmd[s->i + 1] == ' ' || check_redirection(cmd, s->i + 1)
+		// if (!cmd[s->i + 1] || cmd[s->i + 1] == ' '
+		if (!cmd[s->i + 1]
+			|| check_redirection(cmd, s->i + 1)
 			|| cmd[s->i + 1] == '\'' || cmd[s->i + 1] == '"')
 		{
 			// if (cmd[s->i + 1] == ' ' && cmd[s->i - 1] != s->flag)
 			// 	s->i += 2;
-forens_printf("calling case 1 main cmd[%d] = %c , start = %d\n", s->i, cmd[s->i], s->start);
+forens_printf("calling case 1 main cmd[%d] = %c  cmd[%d] = %c , start = %d, flag = %c\n", s->i, cmd[s->i],s->i + 1, cmd[s->i + 1], s->start, s->flag);
 			call_case = 1;
 		}
 		else
 		{
 			call_case = 2;
-			forens_printf("calling case 2, have reminder after the quote,start = %d, end = %d, s->i = %d\n",  s->start, s->end, s->i);
+forens_printf("calling case 2 main cmd[%d] = %c  cmd[%d] = %c , start = %d, flag = %c\n", s->i, cmd[s->i],s->i + 1, cmd[s->i + 1], s->start, s->flag);
 		}
 	}
 	if (call_case == 1)
@@ -134,8 +136,12 @@ char	*fill_outliar_quote_by_split_expand(t_smash_kit *s, char *cmd, char flag, i
 	fetch_end = 1;
 	forens_printf("Case 2 FIll outliar quote, flag = %c\n", flag);
 	forens_printf("cmd before expand = %s, start = %d, end = %d, i = %d\n", cmd, s->start, s->end, s->i);
+
+	// while (cmd[s->i + fetch_end] != '\0' && !check_redirection(cmd, s->i + fetch_end)
+	// 	&& (cmd[s->i + fetch_end] != ' ') && (cmd[s->i + fetch_end] != '\'')
+	// 	&& (cmd[s->i + fetch_end] != '"'))
 	while (cmd[s->i + fetch_end] != '\0' && !check_redirection(cmd, s->i + fetch_end)
-		&& (cmd[s->i + fetch_end] != ' ') && (cmd[s->i + fetch_end] != '\'')
+		 && (cmd[s->i + fetch_end] != '\'')
 		&& (cmd[s->i + fetch_end] != '"'))
 	{
 forens_printf("cmd[%d + %d] = %c\n", s->i, fetch_end, cmd[s->i + fetch_end]);
@@ -200,7 +206,7 @@ char	*handle_outliar_remain_after_quote(t_smash_kit *s, char flag, char *cmd, in
 
 	remain = NULL;
 	i = 1;
-	//this is a wrong function 
+	//this is a wrong function
 	forens_printf("#####################################\n");
 	forens_printf("outliar begining cmd = %s, remain = %s\n", cmd, remain);
 	while (cmd[i] && (cmd[i] != ' ' || check_redirection(cmd, i)))

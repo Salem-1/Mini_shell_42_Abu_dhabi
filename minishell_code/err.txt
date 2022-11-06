@@ -2,10 +2,7 @@ case :
 -------
 Mem clean
 
-16)
-//this should expand to ls gdsfgn 
-minishell $> ""l"""s"' gdsfgn'
-minishell: ls': command not found
+
 
 15)
 minishell $> exit >> l
@@ -260,6 +257,10 @@ minishell $> echo $?
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+16)
+//this should expand to ls gdsfgn 
+minishell $> ""l"""s"' gdsfgn'
+minishell: ls': command not found
 
 17)
 //this shouldn't be syntax error, also handle the segfault, I believe there is wrong counting for quotes (high priority *************************)
