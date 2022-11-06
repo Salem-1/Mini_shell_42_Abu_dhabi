@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 11:05:21 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/27 13:25:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/06 21:07:07 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ void	throw_error_in_exit(
 
 	convert_erro = error_code;
 	t->parse_error = parse_error;
+	close_files(t->fd, t->npipes);
+	clean_env(t->env);
 	throw_parser_error(t, &convert_erro);
 	*exit_code = 255;
+	exit (*exit_code);
 }

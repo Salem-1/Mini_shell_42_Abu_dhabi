@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:56:29 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/06 20:19:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/06 22:26:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	check_exit_arg(struct t_parsed_command *single_cmd)
 			return (1);
 		k++;
 	}
-	if (arg[0] == '+' || arg[0] == '-')
+	if (arg[0] == '+' || arg[0] == '-' || (k > 19 && ft_atoi(arg) < 0))
 		return (1);
 	else
 		return (0);

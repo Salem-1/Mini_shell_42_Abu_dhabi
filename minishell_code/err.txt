@@ -2,29 +2,13 @@ case :
 -------
 Mem clean
 
-
-
-
-
-14)
-//just fix the segfault and the exit code, check the exit codes and exit messages if exit
-minishell $> exit hjh
-minishell: exit: numeric argument required 
-[1]    1042 segmentation fault  ./minishell
-
-13)
-//exit with a crriage, handle the invalid pointer
-minishell $> exit ^M
-minishell: exit: numeric argument required 
-free(): invalid pointer
-[1]    462 abort      ./minishell
-
-13)
-//should throw an error then exit
-minishell $> exit 467897566789087657890876
-
-
 12)
+//shouldn't exit 
+minishell $> exit  3 3
+minishell: exit: too many arguments 
+
+
+11)
 minishell $> cat l
 // return 127 instead of 0, same with CTR D, should exit with 127"last exit code"
 minishell $> kjhbdbgfl
@@ -35,7 +19,7 @@ minishell $> exit
 
 
 
-11)
+10)
 //some shitty characters inside the code below
 minishell $> ^N
 minishell: : command not found
@@ -46,7 +30,7 @@ gfhjk: command not found
 minishell $> ^Dfhdg
 minishell: fhdg: command not found
 
-10)
+9)
 //don't handle this, just make sure you don't sigfault
 minishell $> mkdir lllll
 minishell $> cd lllll
@@ -62,14 +46,6 @@ minishell $> cd ..
 bash: cd: ..: No such file or directory
 minishell $> cd .
 bash: cd: .: No such 
-
-
-
-9)
-//protect the env_parsing function to check null and not segfault
-ahsalem@lab1r4s11 minishell_code % env -i ./minishell
-zsh: segmentation fault  env -i ./minishell
-
 
 
 8)
@@ -257,6 +233,34 @@ minishell $> echo $?
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+
+//should throw an error then exit
+minishell $> exit 467897566789087657890876
+
+9)
+//protect the env_parsing function to check null and not segfault
+ahsalem@lab1r4s11 minishell_code % env -i ./minishell
+zsh: segmentation fault  env -i ./minishell
+
+Doesn't segfault
+
+
+
+
+14)
+//just fix the segfault and the exit code, check the exit codes and exit messages if exit
+minishell $> exit hjh
+minishell: exit: numeric argument required 
+[1]    1042 segmentation fault  ./minishell
+
+13)
+//exit with a crriage, handle the invalid pointer
+minishell $> exit ^M
+minishell: exit: numeric argument required 
+free(): invalid pointer
+[1]    462 abort      ./minishell
+
+
 16)
 //this should expand to ls gdsfgn 
 minishell $> ""l"""s"' gdsfgn'
