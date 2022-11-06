@@ -4,12 +4,10 @@ Mem clean
 
 
 
-15)
-minishell $> exit >> l
-// should exit minishell
+
 
 14)
-//just fix the segfault and the exit code
+//just fix the segfault and the exit code, check the exit codes and exit messages if exit
 minishell $> exit hjh
 minishell: exit: numeric argument required 
 [1]    1042 segmentation fault  ./minishell
@@ -86,6 +84,8 @@ minishell: ./echo: No such file or directory
 7)
 //I believ no issue here by try it again later in your minishell and bash
 minishell $> cat < file > file2    
+
+cat < file    cause leak
 
 6)
 //it's not a syntax erro, then fix the segfault
@@ -261,6 +261,9 @@ minishell $> echo $?
 //this should expand to ls gdsfgn 
 minishell $> ""l"""s"' gdsfgn'
 minishell: ls': command not found
+15)
+minishell $> exit >> l
+// should exit minishell
 
 17)
 //this shouldn't be syntax error, also handle the segfault, I believe there is wrong counting for quotes (high priority *************************)

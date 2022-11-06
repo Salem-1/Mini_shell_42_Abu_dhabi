@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:56:29 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/28 02:29:41 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/06 20:19:31 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,13 @@ int	exec_exit_in_parent(int *i,  struct t_pipes *t)
 
 	exit_code = 1;
 	// //forens_printf("exec_exit_in parent :\n");
-	if (t->npipes > 1)
-		return (0);
 	if (t->single_cmd[*i]->args[1] == NULL)
 		exit_code = 0;
 	else if (t->single_cmd[*i]->args[1])
 	{
 		if (t->single_cmd[*i]->args[2] != NULL)
 		{
-			//throw this exit code later inshalla in the upcoming 
-			//exit code function geenrator
-			// throw_error_in_exit(t, &exit_code, 1,4);
+			throw_error_in_exit(t, &exit_code, 1,4);
 			return (1);
 		}
 		exit_code = 3;
@@ -70,6 +66,7 @@ int	exec_exit_in_parent(int *i,  struct t_pipes *t)
 	return (0);
 }
 
+//but flag here in order not to repeate the exit errors
 int	exec_exit_in_child(
 		t_parsed_command *single_cmd, t_pipes *t, int exit_code)
 {
