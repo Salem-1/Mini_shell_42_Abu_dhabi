@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:40:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/31 04:26:49 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/06 04:11:58 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ forens_printf("Calling case 2 string don't start with quote, start = %d, end = %
 		if (!cmd[s->i + 1] || cmd[s->i + 1] == ' ' || check_redirection(cmd, s->i + 1)
 			|| cmd[s->i + 1] == '\'' || cmd[s->i + 1] == '"')
 		{
-			if (cmd[s->i + 1] == ' ')
-				s->i += 2;
+			// if (cmd[s->i + 1] == ' ' && cmd[s->i - 1] != s->flag)
+			// 	s->i += 2;
 forens_printf("calling case 1 main cmd[%d] = %c , start = %d\n", s->i, cmd[s->i], s->start);
 			call_case = 1;
 		}

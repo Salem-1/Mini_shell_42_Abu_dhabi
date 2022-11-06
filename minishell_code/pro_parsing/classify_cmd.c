@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/05 20:55:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/06 03:56:50 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,21 @@ void	spaces_smash(t_smash_kit *s, char *cmd, t_list **head, int *exit_status)
 		s->start = s->i + 1;
 	else if (cmd[s->i] == ' ')
 		;
-	else if (cmd[s->i + 1] == ' '
-		|| (check_redirection(cmd, s->i + 1) && s->flag == 's')
+	else if ((s->flag == 's' && (cmd[s->i + 1] == ' '
+				|| (check_redirection(cmd, s->i + 1))))
 		|| !cmd[s->i + 1])
 	{
 		s->end = s->i;
 		smashed_arg = ft_substr(cmd, s->start, s->end - s->start + 1);
 forens_printf("space_smash, smashed_arg = %s, start = %d, end = %d\n", smashed_arg, s->start, s->end);
 		smashed_arg = expand_var(s, smashed_arg, exit_status);
-		s->tmp = fill_cmd_node(smashed_arg, 'c');
-		ft_lstadd_back(head, s->tmp);
+		if (!(!smashed_arg[0] && cmd[0]))
+		{
+			s->tmp = fill_cmd_node(smashed_arg, 'c');
+			ft_lstadd_back(head, s->tmp);
+		}
+		else
+			free(smashed_arg);
 		s->end = 0;
 		s->flag = 'i';
 	}
