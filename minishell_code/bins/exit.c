@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:56:29 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/06 22:26:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/07 09:40:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	exec_exit_in_parent(int *i,  struct t_pipes *t)
 	{
 		if (t->single_cmd[*i]->args[2] != NULL)
 		{
-			throw_error_in_exit(t, &exit_code, 1,4);
+			// throw_error_in_exit(t, &exit_code, 1,4);
 			return (1);
 		}
 		exit_code = 3;
@@ -77,9 +77,11 @@ int	exec_exit_in_child(
 		if (single_cmd->args[2] != NULL)
 		{
 			err_printf("exit\n");
+			clean_env(t->env);
 			throw_error_in_exit(t, &exit_code, 1, 4);
-			//clean
-			//suspect double freee
+			// //suspect double freee
+			if (single_cmd->env)
+				free_split((void **)single_cmd->env);
 			exit(1);
 		}
 		exit_code = 3;
@@ -90,6 +92,10 @@ int	exec_exit_in_child(
 			exit_code = ft_atoi(single_cmd->args[1]);
 	}
 	//clean
+	if (single_cmd->env)
+		free_split((void **)single_cmd->env);
+	clean_env(t->env);
+	flush_pipes(t);
 	exit(exit_code);
 	return (0);
 }
