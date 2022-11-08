@@ -2,44 +2,14 @@ case :
 -------
 Mem clean
 
-9)
-//don't handle this, just make sure you don't sigfault
-minishell $> mkdir lllll
-minishell $> cd lllll
-minishell $> mkdir llll
-minishell $> cd llll
-minishell $> mkdir lll
-minishell $> cd lll
-minishell $> rm  -rf ../../../lllll 
-minishell $> pwd
-minishell $> pwd
-minishell $> pwd
-minishell $> cd ..
-bash: cd: ..: No such file or directory
-minishell $> cd .
-bash: cd: .: No such 
-
-
-8)
-//we creatd echo before this point, the error message is wrong
-minishell $> ./echo
-minishell: ./echo: No such file or directory
-minishell $> ./ls
-minishell: ./ls: No such file or directory
-minishell $> ./echo
-minishell: ./echo: No such file or directory
-
 7)
 //I believ no issue here by try it again later in your minishell and bash
-minishell $> cat < file > file2    
-
 cat < file    cause leak
+minishell $> < badfile 
+segfault
 
-6)
-//it's not a syntax erro, then fix the segfault
-minishell $> echo $YTR" "DFYUITF
-minishell: syntax error near unexpected token 
-[1]    503 segmentation fault  ./minishell
+
+
 
 5)
 //this should give syntax, this is a valid cse , should be fixed automatically after fixing quotes issue
@@ -48,14 +18,6 @@ f"DDDDD"DDDDD"DDD"gthryug,khgD"lD"DDDD""""td
 
 
 4)
-//the error code should be permission denied, and mac report should be  permission denied also, (important)
-//and the exit code is 126 (edge case low prioritt)
-minishell $> < badfile 
-minishell: badfile: No such file or directory
-minishell $> macreport 
-minishell: macreport: command not found
-
-3)
 //double free for the heredocs inside the child process
 minishell $> echo hi << l
 heredoc> dsfg
@@ -98,11 +60,20 @@ heredoc> ^C
 heredoc> ^C
 heredoc> [1]    1065 segmentation fault  ./minishell
 
-2)
+3)
 //should expand the $PWD
 minishell $> cat << $PWD
 heredoc> PWD
 heredoc> $PWD
+
+cat << h > file
+add the case condition to the heredoc execution
+
+2)
+//the error code should be permission denied, and mac report should be  permission denied also, (important)
+//and the exit code is 126 (edge case low prioritt)
+minishell $> macreport 
+minishell: macreport: command not found
 
 case 1:  (Bilal)
 -------
@@ -127,6 +98,8 @@ minishell $> ^C
 minishell $> echo $?
 0
 
+norminettes:
+Delete the forenscis, and add the flags to the printf
 (solved)
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
@@ -205,6 +178,41 @@ minishell $> echo $?
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+
+minishell $> cat < file > file2    
+6)
+//it's not a syntax erro, then fix the segfault
+minishell $> echo $YTR" "DFYUITF
+minishell: syntax error near unexpected token 
+[1]    503 segmentation fault  ./minishell
+
+
+8)
+//we creatd echo before this point, the error message is wrong
+minishell $> ./echo
+minishell: ./echo: No such file or directory
+minishell $> ./ls
+minishell: ./ls: No such file or directory
+minishell $> ./echo
+minishell: ./echo: No such file or directory
+
+9)
+//don't handle this, just make sure you don't sigfault
+minishell $> mkdir lllll
+minishell $> cd lllll
+minishell $> mkdir llll
+minishell $> cd llll
+minishell $> mkdir lll
+minishell $> cd lll
+minishell $> rm  -rf ../../../lllll 
+minishell $> pwd
+minishell $> pwd
+minishell $> pwd
+minishell $> cd ..
+bash: cd: ..: No such file or directory
+minishell $> cd .
+bash: cd: .: No such 
+
 10)
 //some shitty characters inside the code below
 minishell $> ^N

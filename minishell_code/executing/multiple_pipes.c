@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/06 00:29:07 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/08 19:05:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ forens_printf("Inside exec_multiple_pipes \n");
 		return ;
 	if (t->parse_error != 0)
 	{
-		forens_printf("Throwing parsing errorr, t->parse_error = %d\n", t->parse_error);
+forens_printf("Throwing parsing errorr, t->parse_error = %d\n", t->parse_error);
 		throw_parser_error(t, exit_status);
 		return ;
 	}
 	//forens_printf("\nt->parse_error = %d\n", t->parse_error);
 	i = 0;
 	pid = 0;
-	visualized_piped_cmd(t);
+visualized_piped_cmd(t);
 	if_there_is_heredoc_fill_it(t, env);
 	//forens_printf("opening %d pipes\n", t->npipes);
 	fd = open_pipes(t->npipes, fd);
@@ -47,14 +47,9 @@ forens_printf("Inside exec_multiple_pipes \n");
 			i = skip_multiple_heredocs(t, i);
 		*exit_status = exec_exit_export_unset_cd_in_parent(
 				&i, t, env, exit_status);
-		if (t->single_cmd[i]->before_sep == 'g'
-			|| t->single_cmd[i]->before_sep == 'a'
-			|| t->single_cmd[i]->before_sep == 'h'
-			|| t->single_cmd[i]->before_sep == 't')
-		{
-			i++;
+		if (update_i_in_case_of_redirection(t, &i))
 			continue ;
-		}
+// err_printf("inside execution loof i= %d\n", i);
 		pid = fork();
 		if (pid == 0)
 		{
@@ -69,6 +64,22 @@ forens_printf("Inside exec_multiple_pipes \n");
 		close_files_and_wait(fd, t, exit_status);
 	flush_pipes(t);
 	return ;
+}
+
+//do the staff of input after out put and vise versa here
+int	update_i_in_case_of_redirection(t_pipes *t, int *i)
+{
+	char redir;
+
+	redir = t->single_cmd[*i]->before_sep;
+	if (redir == 'g' || redir == 'a' || redir == 'h' || redir == 't')
+	{
+		if (*i == 0)
+			return(0);
+		*i = *i + 1;
+		return (1);
+	}
+	return (0);
 }
 
 int	was_exec_in_parent(int i, int *exit_status, t_pipes *t)
@@ -131,14 +142,14 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	if (t->npipes == 1 || t->single_cmd[i]->after_sep == 't' )
 	{
 		if (t->single_cmd[i]->after_sep == 't')
-			exec_to_take_operations(t, env, fd, i);
+			exec_to_take_operations(t, env, fd, i , 0);
 		else
 			close_files(fd, t->npipes);
 		just_execve(t->single_cmd[i], env, t);
 	}
 	if (t->single_cmd[i]->after_sep == 'g'
 		|| t->single_cmd[i]->after_sep == 'a')
-		exec_to_output_operations(t, env,fd, i);
+		exec_to_output_operations(t, env,fd, i, 0);
 	else if (t->single_cmd[i]->after_sep == 'h')
 	{	
 		write(fd[i][1], t->single_cmd[i + 1]->args[0],
@@ -146,6 +157,9 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 		dup2(fd[i][0], STDIN_FILENO);
 		close_files(fd, t->npipes);
 		free(t->single_cmd[i + 1]->args[0]);
+		// if (case_out)
+		// 	return (0);
+		//then add this case to the heredoc execution 
 		just_execve(t->single_cmd[i], env, t);
 	}
 	else

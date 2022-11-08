@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/06 00:26:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/08 18:40:29 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
-
+# include <sys/errno.h>
 /*
 	Parse error codes:
 	1  parsing error
@@ -152,8 +152,10 @@ char				*outliar_single_fill(
 char				*multiple_single_and_double_quotes(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
 //Execution
-int					exec_to_output_operations(t_pipes *t, t_list *env,int **fd, int i);
-int					exec_to_take_operations(t_pipes *t, t_list *env,int **fd, int i);
+int					exec_to_output_operations(t_pipes *t, 
+						t_list *env, int **fd, int i, int case_in);
+int					exec_to_take_operations(t_pipes *t,
+						t_list *env, int **fd, int i, int case_out);
 int					execute_in_pipe(t_pipes *t, t_list *env,int **fd, int i);
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
@@ -183,6 +185,7 @@ int					exec_exit_export_unset_cd_in_parent(int *i,
 char				*ft_low(char *cmd);
 int					local_exec_cmd_spec(t_pipes *t);
 int					was_exec_in_parent(int i, int *exit_status, t_pipes *t);
+int					update_i_in_case_of_redirection(t_pipes *t, int *i);
 //heredoc
 void				if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
 void				fill_heredoced_cmd(t_pipes *t, t_list *env, int i);
@@ -251,7 +254,7 @@ void				cd_exit_with_code(t_pipes *t);
 void				pipes_and_redirect_errors(
 						t_pipes *t, int i, int local_fd, int **fd);
 void				normal_execution_error(struct t_parsed_command *t,
-						struct t_pipes *all_cmds, char **envp);
+						struct t_pipes *all_cmds, char **envp, int error);
 //signals handling
 void					handle_signals(int sig);
 void					init_signals();

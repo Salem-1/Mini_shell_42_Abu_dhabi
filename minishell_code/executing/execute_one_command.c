@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/07 09:35:05 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/07 18:19:02 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,16 @@ int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 }
 
 void	just_execve(struct t_parsed_command *t,
-					t_list *t_env, struct t_pipes *all_cmds)
+			t_list *t_env, struct t_pipes *all_cmds)
 {
-	char	**envp;
-	char	*old_cmd;
+	char		**envp;
+	char		*old_cmd;
+	extern int	errno ;
+	int			error;
 
 	old_cmd = NULL;
 	envp = NULL;
+	error = 0;
 	if (t_env)
 	{
 		envp = join_env(t_env);
@@ -73,16 +76,17 @@ void	just_execve(struct t_parsed_command *t,
 	}
 	if (!t->cmd)
 	{
-		err_printf("minishell: %s: command not found\n", old_cmd);
+		err_printf("minishell: %s: %s\n", old_cmd, strerror(errno));
 		free_split((void **)envp);
 		exec_exit(all_cmds, 127);
-		return ;
 	}
 	else
 	{
 		if (execve(t->cmd, t->args, envp) == -1)
 		{
-			normal_execution_error(t, all_cmds, envp);
+			error = errno;
+			// perror("execve");
+			normal_execution_error(t, all_cmds, envp, error);
 		}
 	}
 	exec_exit(all_cmds, 0);

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/05 17:20:06 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/07 11:44:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ int	main(int argc, char **argv, char **envp)
 		cmd = readline("minishell $> ");
 		// if (cmd == NULL)
 		// 	return (exit_status);
-		if (execution_operations(cmd, t_env, &exit_status) == 249)
-			return (0);
+		execution_operations(cmd, t_env, &exit_status);
 	}
 }
 

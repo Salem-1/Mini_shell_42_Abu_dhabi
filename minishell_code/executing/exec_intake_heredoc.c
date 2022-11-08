@@ -6,17 +6,19 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:58:33 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 03:23:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/08 19:02:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	exec_to_take_operations(t_pipes *t, t_list *env, int **fd, int i)
+int	exec_to_take_operations(t_pipes *t, t_list *env, int **fd, int i, int case_out)
 {
 	int	local_i;
 	int	local_fd;
-
+// err_printf("inside exec to take operations\n");
+	if (i == 0)
+		i = -1;
 	local_i = i;
 	while (t->single_cmd[local_i]->after_sep == 't')
 	{
@@ -36,6 +38,11 @@ int	exec_to_take_operations(t_pipes *t, t_list *env, int **fd, int i)
 	}
 	close(local_fd);
 	close_files(fd, t->npipes);
+	if (t->single_cmd[local_i]->after_sep == 'g'
+		|| t->single_cmd[local_i]->after_sep == 'a')
+	exec_to_output_operations(t, env, t->fd,  local_i, 1);
+	if (case_out == 1)
+		return (0);
 	just_execve(t->single_cmd[i], env, t);
 	return (0);
 }
