@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:58:33 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/08 20:00:01 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/09 00:34:33 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	exec_to_take_operations(t_pipes *t, t_list *env, int **fd, int i, int case_o
 		// if (i == 0)
 		// 	break ;
 	}
-err_printf("inside exec to take operations\n");
+// err_printf("inside exec to take operations\n");
 	local_fd = open(t->single_cmd[local_i]->cmd, O_RDONLY);
 	if (dup2(local_fd, STDIN_FILENO) == -1)
 		perror("dup2");

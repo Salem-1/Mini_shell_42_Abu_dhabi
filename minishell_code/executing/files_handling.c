@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:21:29 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/08 22:32:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/09 00:30:08 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,15 @@ int	local_exec_cmd_spec(t_pipes *t)
 		redirec = 0;
 		while (redirec < 3)
 		{
+			err_printf("let's Seg jere, i = %d\n", i);
+			if (t->single_cmd[i])
+			{
 				if (!ft_strncmp(parent_cmds[redirec], t->single_cmd[i]->cmd, 7))
 				{
 					i = 0;
 					return (1);
 				}
+			}
 			redirec++;
 		}
 		i++;
