@@ -5,6 +5,7 @@ SRC =	main.c \
 		parsing/parsing_one_command.c parsing/parsing_utils_1.c \
 		executing/multiple_pipes.c\
 		executing/heredoc.c\
+		executing/files_handling.c\
 		executing/signals_handling.c\
 		parsing/clean_mem.c  parsing/parse_env.c \
 		parsing/parsing_piped_cmd.c parsing/parsing_piped_utils.c\

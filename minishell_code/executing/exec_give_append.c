@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:53:28 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/08 18:49:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/08 23:22:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ regardless it was in pipe or not
 int	exec_to_output_operations(t_pipes *t, t_list *env, int **fd, int i, int case_in)
 {
 	int	local_fd;
+	int	local_i;
+
 	local_fd = output_append_execution(t, i, fd) - 1;
+	local_i = local_fd;
 	if (t->single_cmd[local_fd]->after_sep == 'g')
 			local_fd = open(t->single_cmd[local_fd + 1]->cmd,
 				O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -61,12 +64,16 @@ int	exec_to_output_operations(t_pipes *t, t_list *env, int **fd, int i, int case
 		dup2(fd[i - 1][0], STDIN_FILENO);
 	}
 	close_files(fd, t->npipes);
-	if (t->single_cmd[local_fd]->after_sep == 't')
+	if (t->single_cmd[local_i]->after_sep == 't')
+		// || t->single_cmd[local_fd]->after_sep == 'h')
+	{
 		exec_to_take_operations(t, env, t->fd, local_fd, 1);
-	// || t->single_cmd[local_fd]->after_sep == 'h')
+	}
 	if (case_in)
 		return (0);
 	else
+	{
 		just_execve(t->single_cmd[i], env, t);
+	}
 	return (0);
 }

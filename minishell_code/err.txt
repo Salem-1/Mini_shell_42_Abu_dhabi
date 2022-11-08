@@ -5,8 +5,12 @@ Mem clean
 7)
 //I believ no issue here by try it again later in your minishell and bash
 cat < file    cause leak
-minishell $> < badfile 
-segfault
+
+< file 
+> file 
+<< file 
+>> file
+all segfualts
 
 
 

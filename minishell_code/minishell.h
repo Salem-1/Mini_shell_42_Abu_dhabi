@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/08 18:40:29 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/08 22:36:16 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct t_pipes
 	int					**fd;
 	int					last_exit_code;
 	int					parse_error;
+	int					first_cmd_is_empty;
 	t_list				*env;
 }	t_pipes;
 

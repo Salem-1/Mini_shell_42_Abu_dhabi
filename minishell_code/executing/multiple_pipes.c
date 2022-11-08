@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/08 19:05:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/08 22:48:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ visualized_piped_cmd(t);
 		i++;
 	}
 	if (!was_exec_in_parent(i, exit_status, t))
-		close_files_and_wait(fd, t, exit_status);
+	{
+			close_files_and_wait(fd, t, exit_status);
+	}
 	flush_pipes(t);
 	return ;
 }
@@ -94,40 +96,19 @@ int	was_exec_in_parent(int i, int *exit_status, t_pipes *t)
 			return (0);
 		redirec++;
 	}
-
 	if (!local_exec_cmd_spec(t))
 		return (0);
+err_printf("am I seg here\n");
 	if (*exit_status != 0)
 		i = *exit_status;
+err_printf("am I seg here\n");
 	close_files_and_wait(t->fd, t, exit_status);
+err_printf("am I seg here\n");
 	if (i != 0)
 		*exit_status = i;
 	return (1);
 }
 
-int	local_exec_cmd_spec(t_pipes *t)
-{
-	int		redirec;
-	int		i;
-	char	*parent_cmds[3] = {"export", "cd", "unset"};
-	redirec = 0;
-	i = 0;
-	while (i < t->npipes)
-	{
-		redirec = 0;
-		while (redirec < 3)
-		{
-			if (!ft_strncmp(parent_cmds[redirec], t->single_cmd[i]->cmd, 7))
-			{
-				i = 0;
-				return (1);
-			}
-			redirec++;
-		}
-		i++;
-	}
-	return (0);
-}
 //lat 5 lines setting the exit code of the bins executed in parent
 
 
@@ -139,7 +120,7 @@ int	local_exec_cmd_spec(t_pipes *t)
 		//it creates f1 f2 and fill f3 with hi and do nothing with f4
 void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 {
-	if (t->npipes == 1 || t->single_cmd[i]->after_sep == 't' )
+	if (t->npipes == 1 || t->single_cmd[i]->after_sep == 't')
 	{
 		if (t->single_cmd[i]->after_sep == 't')
 			exec_to_take_operations(t, env, fd, i , 0);
@@ -164,63 +145,4 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	}
 	else
 		execute_in_pipe(t, env, fd, i);
-}
-
-void	close_files_and_wait(int **fd, struct t_pipes	*t, int *exit_satus)
-{
-	int	forwait;
-	int	i;
-
-	i = 0;
-	close_files(fd, t->npipes);
-	while (i < t->npipes)
-	{
-		wait(&forwait);
-		*exit_satus = WEXITSTATUS(forwait);
-		// *exit_satus = WIFSIGNALED(forwait);
-// err_printf("in close files and wiat cmd %d execution end exit status %d\n", i, *exit_satus);
-		i++;
-	}
-// 	//forens_printf("\n------------------------------------------\n");
-// 	//forens_printf("------------------------------------------\n");
-// 	//forens_printf("------------------------------------------\n");
-// 	//forens_printf("------------------------------------------\n\n\n");
-}
-
-int	**open_pipes(int n, int **fd)
-{
-	int	i;
-	i = 0;
-	fd = ft_calloc(sizeof(int *), n);
-	if (!fd)
-		return (NULL);
-	while (i < n)
-	{
-		fd[i] = ft_calloc(sizeof(int), 2);
-		if (!fd[i])
-		{
-			free_split((void **)fd);
-			return (NULL);
-		}
-		if (pipe(fd[i]) == -1)
-		{
-			free_split((void **)fd);
-			return (NULL);
-		}
-		i++;
-	}
-	return (fd);
-}
-
-void	close_files(int **fd, int npipes)
-{
-	int	i;
-
-	i = 0;
-	while (i < npipes )
-	{
-		close(fd[i][0]);
-		close(fd[i][1]);
-		i++;
-	}
 }
