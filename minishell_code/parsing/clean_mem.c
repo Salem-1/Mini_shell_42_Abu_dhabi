@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/05 22:45:04 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/09 00:48:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	clean_env(t_list *env)
 	if (!env)
 		return ;
 	ft_lstclear(&env, del);
+	env = NULL;
 }
 
 void	freedom(char *cmd, t_list *env, t_list *smashed_cmd)

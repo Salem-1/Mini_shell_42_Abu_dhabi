@@ -5,14 +5,14 @@ Mem clean
 7)
 //I believ no issue here by try it again later in your minishell and bash
 cat < file    cause leak
+< file cat 
+double free
+cat < f 1
+double free
+//cat < 1 2 3 4 should skip 1 and execute cat on 2 3 4 ...
 
-< file 
-> file 
-<< file 
->> file
-all segfualts
-
-
+cat < file    is Broked :( :) :)
+6) error code for staff executed inside the parent
 
 
 5)
@@ -182,6 +182,14 @@ Delete the forenscis, and add the flags to the printf
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+
+< file 
+> file 
+<< file 
+>> file
+all segfualts
+
+
 
 minishell $> cat < file > file2    
 6)

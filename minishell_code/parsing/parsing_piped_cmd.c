@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/08 22:29:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/09 01:56:12 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	// malloc_single_cmd_in_t_piped_cmd(t, i);
 	while (smashed_cmd)
 	{
-		smashed_cmd  = fill_cmd(smashed_cmd, t, i);
+		smashed_cmd = fill_cmd(smashed_cmd, t, i);
 		if (smashed_cmd)
 			smashed_cmd = smashed_cmd->next;
 		else
@@ -52,7 +52,7 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	}
 	forens_printf("filling t finished\n");
 	t->single_cmd[i + 1] = NULL;
-	parsing_laundry(t);
+	// parsing_laundry(t);
 	forens_printf("laundry t finished\n");
 	clean_env(smashed_head);
 	free(cmd);

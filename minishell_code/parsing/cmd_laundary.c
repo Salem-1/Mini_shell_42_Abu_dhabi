@@ -6,12 +6,18 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 14:27:23 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/28 02:10:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/09 01:48:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/*
+	I am sorry to say that, but this is a totally trash file
+	first function's condition is never to be satisfied
+	second function executa in a way diffrent than bash
+	
+*/
 void	parsing_laundry(t_pipes *t)
 {
 	//forens_printf("\n*********~~~~~~~~~~~~~Let's Rock and Roll~~~~~~~~~~~~~*********\n");

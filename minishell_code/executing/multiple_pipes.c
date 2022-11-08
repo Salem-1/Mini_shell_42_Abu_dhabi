@@ -6,14 +6,14 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/09 00:34:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/09 01:53:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //t->npipes is number of pipes + 1 just for sake of simplicity
-
+//the exit code of the staff executed inside the child is missed up
 void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 {
 	struct t_pipes	*t;
