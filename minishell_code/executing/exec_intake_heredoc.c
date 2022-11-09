@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:58:33 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/09 00:34:33 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/09 05:48:38 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,12 @@ int	exec_to_take_operations(t_pipes *t, t_list *env, int **fd, int i, int case_o
 	close(local_fd);
 	close_files(fd, t->npipes);
 	if ((t->single_cmd[local_i]->after_sep == 'g'
-		|| t->single_cmd[local_i]->after_sep == 'a') && i != -1)
+		|| t->single_cmd[local_i]->after_sep == 'a'))
 	{
 		exec_to_output_operations(t, env, t->fd,  local_i, 1);
 	}
 	if (case_out == 1)
 		return (0);
-	if (i == 0)
-	{
-		// flush_pipes(t);
-		exit(0);
-	}
 	just_execve(t->single_cmd[i], env, t);
 	return (0);
 }
