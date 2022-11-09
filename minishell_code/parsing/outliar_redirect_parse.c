@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:11:01 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/05 23:46:36 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/09 06:15:50 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ void	fill_outliar_input(
 	if (after_red == 0)
 		return ;
 	// j = 0;
-	t->single_cmd[*i + 1] = malloc(sizeof(t_parsed_command) * 1);
+	// t->single_cmd[*i + 1] = malloc(sizeof(t_parsed_command) * 1);
 	if (!t->single_cmd[*i + 1])
 		return ;
 	//fille the outliar cases for the first cmd
 	if (t->single_cmd[*i]->before_sep == '\0')
 	{
+		err_printf("this shouldn't be triggred\n");
 		if (after_red == 2)
 			case_input_file_cat(smashed_cmd, t, i, local_i);
 		// else if (after_red > 2)
@@ -70,6 +71,9 @@ void	fill_outliar_input(
 	< file.txt cat
 	to 
 	cat < file.txt
+	
+	
+	the functions below cause double free
 */
 void	case_input_file_cat(
 	t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
@@ -114,7 +118,7 @@ int	count_outliar_redire(t_list *cmd, int i)
 {
 	t_list	*tmp;
 
-//forens_printf("entering out count_outliar_redire i = %d, ? i == -1 ok:error\n", i);
+forens_printf("entering out count_outliar_redire i = %d, ? i == -1 ok:error\n", i);
 	if (i < -1)
 		i = -1;
 	tmp = cmd;
@@ -132,7 +136,7 @@ int	count_outliar_redire(t_list *cmd, int i)
 				break ;
 			tmp = tmp->next;
 		}
-	//forens_printf("\nOutliar redirects cmds %d\n", i);
+	forens_printf("\nOutliar redirects cmds %d\n", i);
 		return (i);
 	}
 	return (0);
