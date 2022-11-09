@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/09 01:53:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/11/09 07:05:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ visualized_piped_cmd(t);
 	}
 	if (!was_exec_in_parent(i, exit_status, t))
 	{
-			close_files_and_wait(fd, t, exit_status);
+		close_files_and_wait(fd, t, exit_status);
 	}
 	flush_pipes(t);
 	return ;
@@ -97,12 +97,12 @@ int	was_exec_in_parent(int i, int *exit_status, t_pipes *t)
 			return (0);
 		redirec++;
 	}
+	//this is a seg fault function in case < file cat 
 	// if (!local_exec_cmd_spec(t))
 	// 	return (0);
 	if (*exit_status != 0)
 		i = *exit_status;
 	close_files_and_wait(t->fd, t, exit_status);
-// err_printf("am I seg here\n");
 	if (i != 0)
 		*exit_status = i;
 	return (1);

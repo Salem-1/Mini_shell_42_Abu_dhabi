@@ -63,5 +63,3 @@ fclean: clean
 	
 re: fclean all
 
-test:
-	valgrind --leak-check=full --show-leak-kinds=all ./minishell

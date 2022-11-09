@@ -2,17 +2,9 @@ case :
 -------
 Mem clean
 
-7)
-//I believ no issue here by try it again later in your minishell and bash
-cat < file    cause leak
-< file cat 
-double free
-cat < f 1
-double free
-//cat < 1 2 3 4 should skip 1 and execute cat on 2 3 4 ...
 
-cat < file    is Broked :( :) :)
-6) error code for staff executed inside the parent
+
+6) exit status update
 
 
 5)
@@ -182,14 +174,27 @@ Delete the forenscis, and add the flags to the printf
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
-
+cat < file    is Broked :( :) :)
 < file 
 > file 
 << file 
 >> file
 all segfualts
 
+7)
+will not handle this behavior
+cat < 1 2 3 4 
+< 1 cat 
 
+
+
+//I believ no issue here by try it again later in your minishell and bash
+cat < file    cause leak
+< file cat 
+double free
+cat < f 1
+double free
+//cat < 1 2 3 4 should skip 1 and execute cat on 2 3 4 ...
 
 minishell $> cat < file > file2    
 6)
