@@ -20,7 +20,9 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 	int				**fd;
 	int				pid;
 	int				i;
+	int				parent_exit_status;
 
+	parent_exit_status = 0;
 forens_printf("Inside exec_multiple_pipes \n");
 	fd = NULL;
 	t = parsing_piped_cmd(cmd, env, exit_status);
@@ -28,7 +30,6 @@ forens_printf("Inside exec_multiple_pipes \n");
 		return ;
 	if (t->parse_error != 0)
 	{
-forens_printf("Throwing parsing errorr, t->parse_error = %d\n", t->parse_error);
 		throw_parser_error(t, exit_status);
 		return ;
 	}
@@ -45,8 +46,8 @@ visualized_piped_cmd(t);
 	{
 		if (t->single_cmd[i]->after_sep == 'h')
 			i = skip_multiple_heredocs(t, i);
-		*exit_status = exec_exit_export_unset_cd_in_parent(
-				&i, t, env, exit_status);
+		parent_exit_status = exec_exit_export_unset_cd_in_parent(
+				&i, t, env);
 		if (update_i_in_case_of_redirection(t, &i))
 			continue ;
 // err_printf("inside execution loof i= %d\n", i);
@@ -60,10 +61,9 @@ visualized_piped_cmd(t);
 			i++;
 		i++;
 	}
-	if (!was_exec_in_parent(i, exit_status, t))
-	{
-		close_files_and_wait(fd, t, exit_status);
-	}
+	close_files_and_wait(fd, t, exit_status);
+	if (parent_exit_status != 0)
+		*exit_status = parent_exit_status;
 	flush_pipes(t);
 	return ;
 }

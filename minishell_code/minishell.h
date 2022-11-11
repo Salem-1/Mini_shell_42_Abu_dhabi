@@ -182,7 +182,7 @@ void				case_input_file_cat_otherfiles(
 						t_list *smashed_cmd, t_pipes *t, int *i, int *local_i);
 void				malloc_single_cmd_in_t_piped_cmd(t_pipes *t, int i);
 int					exec_exit_export_unset_cd_in_parent(int *i,
-						struct t_pipes *t, t_list *env, int *exit_status);
+						struct t_pipes *t, t_list *env);
 char				*ft_low(char *cmd);
 int					local_exec_cmd_spec(t_pipes *t);
 int					was_exec_in_parent(int i, int *exit_status, t_pipes *t);

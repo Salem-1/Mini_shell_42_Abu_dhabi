@@ -12,4 +12,5 @@
 
 #!/bin/bash
 
-valgrind --suppressions=readline.supp  --track-origins=yes --track-fds=yes --leak-check=full --show-leak-kinds=all --child-silent-after-fork=yes ./minishell
+valgrind --suppressions=readline.supp  --track-origins=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./minishell
+# --child-silent-after-fork=yes 

@@ -82,7 +82,7 @@ void	vis_list(t_list **env, char is_env_or_exp)
 
 //if executing here don't execute in the child okay
 int	exec_exit_export_unset_cd_in_parent(
-		int *i,  struct t_pipes *t, t_list *env, int *exit_status)
+		int *i,  struct t_pipes *t, t_list *env)
 {
 	int	redirec;
 
@@ -96,19 +96,20 @@ int	exec_exit_export_unset_cd_in_parent(
 			return (0);
 		redirec++;
 	}
+	redirec = 0;
 	if (!ft_strncmp(t->single_cmd[*i]->cmd, "exit", 5))
 		exec_exit_in_parent(i, t);
 	if (t->npipes == 1 || (t->npipes > 1))
 	{
 		if (!ft_strncmp(t->single_cmd[*i]->cmd, "cd", 3))
-			*exit_status = exec_cd(t->single_cmd[*i], &env, t, 't');
+			redirec = exec_cd(t->single_cmd[*i], &env, t, 't');
 		else if (!ft_strncmp(t->single_cmd[*i]->cmd, "export", 7)
 			&& t->single_cmd[*i]->args[1] != NULL)
-			*exit_status = exec_export(t, t->single_cmd[*i], &env, 'p');
+			redirec = exec_export(t, t->single_cmd[*i], &env, 'p');
 		else if (!ft_strncmp(t->single_cmd[*i]->cmd, "unset", 6))
-			*exit_status = exec_unset(t->single_cmd[*i], &env, 1, 't');
+			redirec = exec_unset(t->single_cmd[*i], &env, 1, 't');
 	}
-	return (*exit_status);
+	return (redirec);
 }
 
 /*
