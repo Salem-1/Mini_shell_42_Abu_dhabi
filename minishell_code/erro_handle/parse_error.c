@@ -117,17 +117,15 @@ void	init_e_args(t_scan_parse_error *e, t_list *smashed_cmd)
 */
 int	is_parse_error_inside_smached_cmd(t_scan_parse_error *e)
 {
-	// if (e->i != 0 && ((e->current_flag == 'g' && e->next_flag == 'p'
-	// 			&& e->next_next_flag == 'c')
-	// 		|| (e->current_flag == 't' && e->next_flag == 'g'
-	// 			&& e->next_next_flag == 'c')))
-	// {
-	// 	remove_second_redirection(e);
-	// 	err_printf("it worked\n");
-	// 	return (0);
-	// }
-	// else if
-	if ((is_r_flag(e->current_flag) && !e->next_flag) 
+	if (e->i != 0 && ((e->current_flag == 'g' && e->next_flag == 'p'
+				&& e->next_next_flag == 'c')
+			|| (e->current_flag == 't' && e->next_flag == 'g'
+				&& e->next_next_flag == 'c')))
+	{
+		remove_second_redirection(e);
+		return (0);
+	}
+	else if((is_r_flag(e->current_flag) && !e->next_flag) 
 		|| ((is_r_flag(e->current_flag)
 				&& is_r_flag(e->next_flag)))
 	)

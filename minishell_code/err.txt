@@ -1,18 +1,6 @@
 case :
 -------
 Mem clean
-echo hi >| f  ==  echo hi > f
-cat <> file == cat < file
-
-echo hi |>> f || echo hi |> f  == creates empty f
-cat |<< del == fill the heredoc with del and execute cat with no cmd  
-cat |< f == just execute cat
-
-3)
-minishell $> ls<<l|<<k pwd
- echo hi>kftygh|>>lpwd   
-//not syntax error
-echo hi > f>|ls  
 
 2)
 //this should give syntax, this is a valid cse , should be fixed automatically after fixing quotes issue
@@ -63,7 +51,15 @@ Delete the forenscis, and add the flags to the printf
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+echo hi |>> f || echo hi |> f  == creates empty f
+cat |<< del == fill the heredoc with del and execute cat with no cmd  
+cat |< f == just execute cat
 
+3)
+minishell $> ls<<l|<<k pwd
+ echo hi>kftygh|>>lpwd   
+//not syntax error
+echo hi > f>|ls  
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
@@ -72,6 +68,9 @@ Delete the forenscis, and add the flags to the printf
 -------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+echo hi >| f  ==  echo hi > f
+cat <> file == cat < file
+
 cat << h > file
 add the case condition to the heredoc execution
 

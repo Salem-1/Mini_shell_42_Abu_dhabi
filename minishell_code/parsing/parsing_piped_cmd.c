@@ -24,24 +24,19 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 {
 	t_list				*smashed_cmd;
 	t_pipes				*t;
-	int					n_cmds;
 	int					i;
 	t_list				*smashed_head;
 
-
 	i = 0;
 	t = NULL;
-	n_cmds = 0;
 	smashed_cmd = NULL;
 	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env, exit_status);
 	if (!smashed_cmd)
 		return (NULL);
 	smashed_head = smashed_cmd;
-	n_cmds = count_cmds(smashed_cmd);
-	t = init_t_struct(t, n_cmds, smashed_cmd, env);
+	t = init_t_struct(t, smashed_cmd, env);
 	if (t->parse_error != 0)
 		return (t);
-	// malloc_single_cmd_in_t_piped_cmd(t, i);
 	while (smashed_cmd)
 	{
 		smashed_cmd = fill_cmd(smashed_cmd, t, i);
@@ -61,7 +56,7 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	return (t);
 }
 
-t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd, t_list *env)
+t_pipes	*init_t_struct(t_pipes *t, t_list *smashed_cmd, t_list *env)
 {
 	t = ft_calloc(sizeof(t_pipes), 1);
 	if (!t)
@@ -79,11 +74,11 @@ t_pipes	*init_t_struct(t_pipes *t, int n_cmds, t_list *smashed_cmd, t_list *env)
 			fill_errored_pipe(t, 3, smashed_cmd);
 		return (t);
 	}
-	t->npipes = n_cmds;
-	if (smashed_cmd->flag != 'c' && n_cmds == 1)
-		t->single_cmd = ft_calloc(sizeof(t_parsed_command *), n_cmds + 2);
+	t->npipes = count_cmds(smashed_cmd);
+	if (smashed_cmd->flag != 'c' && t->npipes == 1)
+		t->single_cmd = ft_calloc(sizeof(t_parsed_command *), t->npipes + 2);
 	else
-		t->single_cmd = ft_calloc(sizeof(t_parsed_command *), n_cmds + 1);
+		t->single_cmd = ft_calloc(sizeof(t_parsed_command *), t->npipes + 1);
 	if (!t->single_cmd)
 		return (NULL);
 	return (t);

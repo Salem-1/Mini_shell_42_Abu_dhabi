@@ -117,7 +117,8 @@ void				fill_append(t_smash_kit *s, char *cmd, int i);
 void				fill_in_out_app_hered(t_smash_kit *s,
 						char *cmd, t_list **head, int i);
 int					count_cmds(t_list *cmd);
-t_pipes				*init_t_struct(t_pipes *t,int n_cmds, t_list *smashed_cmd, t_list *env);
+t_pipes				*init_t_struct(t_pipes *t,
+						t_list *smashed_cmd, t_list *env);
 t_list				*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i);
 int					count_args_in_cmd(t_list *smashed_cmd);
 char				decide_rel_or_abs_path(char *cmd);
