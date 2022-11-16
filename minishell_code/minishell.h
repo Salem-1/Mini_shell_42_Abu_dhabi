@@ -86,9 +86,6 @@ typedef struct dollar_expansion_kit
 }	t_dollar_expansion_kit;
 
 //Parsing
-int					is_parse_error_inside_smached_cmd(t_scan_parse_error *e);
-void				init_e_args(t_scan_parse_error *e, t_list *smashed_cmd);
-void				update_e_args(t_scan_parse_error *e);
 t_parsed_command	*init_one_cmd(t_parsed_command *one_cmd);
 t_parsed_command	*parse_one_cmd(char *command);
 t_list				*parse_env(char **envp, t_list *head);
@@ -263,6 +260,10 @@ void				throw_error_in_exit(t_pipes *t, int *exit_code,
 int					exec_exit_in_child(t_parsed_command *single_cmd,
 						t_pipes *t, int exit_code);
 //Handling erros
+void				remove_second_redirection(t_scan_parse_error *e);
+int					is_parse_error_inside_smached_cmd(t_scan_parse_error *e);
+void				init_e_args(t_scan_parse_error *e, t_list *smashed_cmd);
+void				update_e_args(t_scan_parse_error *e);
 void				throw_parser_error(t_pipes *t, int * exit_status);
 void				fill_errored_pipe(
 						t_pipes *t, int error, t_list *smashed_cmd);

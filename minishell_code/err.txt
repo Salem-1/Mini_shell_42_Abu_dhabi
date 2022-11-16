@@ -1,6 +1,12 @@
 case :
 -------
 Mem clean
+echo hi >| f  ==  echo hi > f
+cat <> file == cat < file
+
+echo hi |>> f || echo hi |> f  == creates empty f
+cat |<< del == fill the heredoc with del and execute cat with no cmd  
+cat |< f == just execute cat
 
 3)
 minishell $> ls<<l|<<k pwd
