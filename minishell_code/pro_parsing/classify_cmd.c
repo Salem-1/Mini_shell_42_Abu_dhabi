@@ -35,7 +35,7 @@ void	spaces_smash(t_smash_kit *s, char *cmd, t_list **head, int *exit_status)
 		;
 	else if ((s->flag == 's' && (cmd[s->i + 1] == ' '
 				|| (check_redirection(cmd, s->i + 1))))
-		|| !cmd[s->i + 1])
+		|| ((s->i + 1) >= s->cmd_len))
 	{
 		s->end = s->i;
 		smashed_arg = ft_substr(cmd, s->start, s->end - s->start + 1);
@@ -62,7 +62,7 @@ forens_printf("inside double quote smash arg = <%s>,cmd[%d] = %c,  start = %d i 
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
-	if (cmd[s->i] != '"' && !cmd[s->i + 1])
+	if (cmd[s->i] != '"' && ((s->i + 1) >= s->cmd_len))
 	{
 		forens_printf("Unclose \" double quote, throwing an error\n");
 		s->parse_error_code = 2;
@@ -93,13 +93,13 @@ forens_printf("check for single quote <%c>\n", cmd[s->i]);
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
-	if (cmd[s->i] != '\'' && !cmd[s->i + 1])
+	if (cmd[s->i] != '\'' && ((s->i + 1) >= s->cmd_len))
 	{
 		forens_printf("Unclose ' single quote, throwing an error\n");
 		s->parse_error_code = 2;
 		// return ;
 	}
-	if (cmd[s->i] == '\'' || ((cmd[s->i] != '\'' && !cmd[s->i + 1])))
+	if (cmd[s->i] == '\'' || ((cmd[s->i] != '\'' && ((s->i + 1) >= s->cmd_len))))
 	{
 		forens_printf("before cleaning arg = <%s>, start = %d i = %d\n", cmd, s->start, s->i);
 		smashed_arg = multiple_single_and_double_quotes(

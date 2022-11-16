@@ -32,11 +32,17 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	smashed_cmd = NULL;
 	smashed_cmd = cmd_smasher(cmd, &smashed_cmd, env, exit_status);
 	if (!smashed_cmd)
+	{
+		forens_printf("strangely enough we are returning NUll from parsing\n");
 		return (NULL);
+	}
 	smashed_head = smashed_cmd;
 	t = init_t_struct(t, smashed_cmd, env);
 	if (t->parse_error != 0)
+	{
+		forens_printf("Inside parsing piped cmd, We have parse error, \n");
 		return (t);
+	}
 	while (smashed_cmd)
 	{
 		smashed_cmd = fill_cmd(smashed_cmd, t, i);

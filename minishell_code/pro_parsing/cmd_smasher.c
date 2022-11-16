@@ -22,7 +22,8 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 	t_smash_kit	s;
 
 	init_smash_kit(&s, head, env);
-	while (cmd[s.i])
+	s.cmd_len = (int)ft_strlen(cmd);
+	while (s.i < s.cmd_len)
 	{
 		forens_printf("Cmd smasher cmd[%d] = (%c), flag = <%c>, s.start = %d, s.end = %d\n", s.i, cmd[s.i], s.flag, s.start, s.end);
 		if (cmd_classifier(&s, cmd) == 'r')
@@ -35,8 +36,8 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 			double_qoute_smash(&s, cmd, head, exit_status);
 		else
 			spaces_smash(&s, cmd,  head, exit_status);
-		// if (s.parse_error_code != 0)
-		// 	break ;
+		if (s.parse_error_code != 0)
+			break ;
 		s.i++;
 	}
 	if (*head)
@@ -95,6 +96,7 @@ void	init_smash_kit(t_smash_kit *s, t_list **head, t_list *env)
 	s->flag = 'i';
 	s->env = env;
 	s->parse_error_code = 0;
+	s->cmd_len = 0;
 	// return (s);
 }
 

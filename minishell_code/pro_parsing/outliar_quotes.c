@@ -43,6 +43,8 @@ char	*multiple_single_and_double_quotes(t_smash_kit *s, char *cmd, char flag, in
 	char	*merged_str;
 forens_printf("\nMultiple single and double quote gen\n cmd = <%s>, flag = %c, start = %d, end = %d, i = %d\n\n", cmd, flag, s->start, s->end, s->i);
 	merged_str = figure_out_end_of_quote_and_fill_arg(s, cmd, flag, exit_status);
+	if (((s->i + 1) >= s->cmd_len))
+		return (merged_str);
 	while (cmd[s->i + 1] == '\'' || cmd[s->i + 1] == '"')
 	{
 		s->i++;

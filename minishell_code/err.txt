@@ -51,6 +51,8 @@ Delete the forenscis, and add the flags to the printf
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+you can create a new direction types with defined behaviors
+to tackle those types, but this is an extra miles
 echo hi |>> f || echo hi |> f  == creates empty f
 cat |<< del == fill the heredoc with del and execute cat with no cmd  
 cat |< f == just execute cat

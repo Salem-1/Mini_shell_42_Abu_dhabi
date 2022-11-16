@@ -72,6 +72,7 @@ typedef struct smashing_kit
 	int		end;
 	char	flag;
 	int		parse_error_code;
+	int	cmd_len;
 }	t_smash_kit;
 
 typedef struct dollar_expansion_kit

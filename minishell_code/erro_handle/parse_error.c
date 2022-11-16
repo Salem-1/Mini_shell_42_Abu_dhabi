@@ -15,6 +15,12 @@
 //remeber to throw erro for error
 void	throw_parser_error(t_pipes *t, int *exit_status)
 {
+	if (!t)
+	{
+		err_printf("minishell: parser error \n");
+		*exit_status = 258;
+		return ;
+	}
 	if (t->parse_error == 2)
 	{
 		err_printf("minishell: syntax error near unexpected token \n");

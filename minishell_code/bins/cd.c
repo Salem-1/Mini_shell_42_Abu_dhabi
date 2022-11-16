@@ -86,8 +86,5 @@ void	exec_local_export(char *local_var, t_list **env, char flag)
 	else
 		local_cmd = ft_strjoin("export ", "OLDPWD=");
 	local_cmd = ft_strjoin(local_cmd, local_var);
-	// exec_multiple_pipes(local_cmd, *env, 0);
-
-	//end of new code
 	execute_one_cmd(local_cmd, *env, 0);
 }

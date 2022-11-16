@@ -27,9 +27,13 @@ forens_printf("Inside exec_multiple_pipes \n");
 	fd = NULL;
 	t = parsing_piped_cmd(cmd, env, exit_status);
 	if (!t)
+	{
+		throw_parser_error(t, exit_status);
 		return ;
+	}
 	if (t->parse_error != 0)
 	{
+		forens_printf("Throwing parse error throw multiple pipes\n");
 		throw_parser_error(t, exit_status);
 		return ;
 	}
