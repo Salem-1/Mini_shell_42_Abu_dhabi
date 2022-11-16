@@ -1,0 +1,2411 @@
+==81407== Memcheck, a memory error detector
+==81407== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==81407== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==81407== Command: ./minishell
+==81407== 
+==81512== 
+==81512== FILE DESCRIPTORS: 3 open at exit.
+==81512== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==81512==    <inherited from parent>
+==81512== 
+==81512== Open file descriptor 1: /dev/pts/1
+==81512==    <inherited from parent>
+==81512== 
+==81512== Open file descriptor 0: /dev/pts/1
+==81512==    <inherited from parent>
+==81512== 
+==81512== 
+==81512== HEAP SUMMARY:
+==81512==     in use at exit: 204,636 bytes in 218 blocks
+==81512==   total heap usage: 1,150 allocs, 932 frees, 638,257 bytes allocated
+==81512== 
+==81512== LEAK SUMMARY:
+==81512==    definitely lost: 0 bytes in 0 blocks
+==81512==    indirectly lost: 0 bytes in 0 blocks
+==81512==      possibly lost: 0 bytes in 0 blocks
+==81512==    still reachable: 0 bytes in 0 blocks
+==81512==         suppressed: 204,636 bytes in 218 blocks
+==81512== 
+==81512== For lists of detected and suppressed errors, rerun with: -s
+==81512== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==81666== 
+==81666== FILE DESCRIPTORS: 3 open at exit.
+==81666== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==81666==    <inherited from parent>
+==81666== 
+==81666== Open file descriptor 1: /dev/pts/1
+==81666==    <inherited from parent>
+==81666== 
+==81666== Open file descriptor 0: /dev/pts/1
+==81666==    <inherited from parent>
+==81666== 
+==81666== 
+==81666== HEAP SUMMARY:
+==81666==     in use at exit: 204,678 bytes in 221 blocks
+==81666==   total heap usage: 1,188 allocs, 967 frees, 638,602 bytes allocated
+==81666== 
+==81666== LEAK SUMMARY:
+==81666==    definitely lost: 0 bytes in 0 blocks
+==81666==    indirectly lost: 0 bytes in 0 blocks
+==81666==      possibly lost: 0 bytes in 0 blocks
+==81666==    still reachable: 0 bytes in 0 blocks
+==81666==         suppressed: 204,678 bytes in 221 blocks
+==81666== 
+==81666== For lists of detected and suppressed errors, rerun with: -s
+==81666== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==81407== Conditional jump or move depends on uninitialised value(s)
+==81407==    at 0x10CB2E: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:153)
+==81407==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==81407==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==81407==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==81407==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==81407==    by 0x109A64: execution_operations (exec_init.c:25)
+==81407==    by 0x109570: main (main.c:35)
+==81407==  Uninitialised value was created by a heap allocation
+==81407==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==81407==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==81407==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==81407==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==81407==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==81407==    by 0x109A64: execution_operations (exec_init.c:25)
+==81407==    by 0x109570: main (main.c:35)
+==81407== 
+==82101== 
+==82101== FILE DESCRIPTORS: 3 open at exit.
+==82101== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==82101==    <inherited from parent>
+==82101== 
+==82101== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/hi
+==82101==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==82101==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==82101==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==82101==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==82101==    by 0x109A64: execution_operations (exec_init.c:25)
+==82101==    by 0x109570: main (main.c:35)
+==82101== 
+==82101== Open file descriptor 0: /dev/pts/1
+==82101==    <inherited from parent>
+==82101== 
+==82101== 
+==82101== HEAP SUMMARY:
+==82101==     in use at exit: 204,796 bytes in 228 blocks
+==82101==   total heap usage: 1,306 allocs, 1,078 frees, 639,907 bytes allocated
+==82101== 
+==82101== 3 bytes in 1 blocks are indirectly lost in loss record 1 of 65
+==82101==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82101==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==82101==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==82101==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==82101==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82101==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82101==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82101==    by 0x109A64: execution_operations (exec_init.c:25)
+==82101==    by 0x109570: main (main.c:35)
+==82101== 
+==82101== 3 bytes in 1 blocks are indirectly lost in loss record 2 of 65
+==82101==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82101==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==82101==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==82101==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==82101==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82101==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82101==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82101==    by 0x109A64: execution_operations (exec_init.c:25)
+==82101==    by 0x109570: main (main.c:35)
+==82101== 
+==82101== 16 bytes in 1 blocks are indirectly lost in loss record 12 of 65
+==82101==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82101==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==82101==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==82101==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82101==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82101==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82101==    by 0x109A64: execution_operations (exec_init.c:25)
+==82101==    by 0x109570: main (main.c:35)
+==82101== 
+==82101== 70 (48 direct, 22 indirect) bytes in 1 blocks are definitely lost in loss record 20 of 65
+==82101==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82101==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==82101==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82101==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82101==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82101==    by 0x109A64: execution_operations (exec_init.c:25)
+==82101==    by 0x109570: main (main.c:35)
+==82101== 
+==82101== LEAK SUMMARY:
+==82101==    definitely lost: 48 bytes in 1 blocks
+==82101==    indirectly lost: 22 bytes in 3 blocks
+==82101==      possibly lost: 0 bytes in 0 blocks
+==82101==    still reachable: 0 bytes in 0 blocks
+==82101==         suppressed: 204,726 bytes in 224 blocks
+==82101== 
+==82101== For lists of detected and suppressed errors, rerun with: -s
+==82101== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==82583== 
+==82583== FILE DESCRIPTORS: 3 open at exit.
+==82583== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==82583==    <inherited from parent>
+==82583== 
+==82583== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/hi
+==82583==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==82583==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==82583==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==82583==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==82583==    by 0x109A64: execution_operations (exec_init.c:25)
+==82583==    by 0x109570: main (main.c:35)
+==82583== 
+==82583== Open file descriptor 0: /dev/pts/1
+==82583==    <inherited from parent>
+==82583== 
+==82583== 
+==82583== HEAP SUMMARY:
+==82583==     in use at exit: 205,081 bytes in 243 blocks
+==82583==   total heap usage: 1,594 allocs, 1,351 frees, 642,436 bytes allocated
+==82583== 
+==82583== 6 bytes in 2 blocks are indirectly lost in loss record 3 of 70
+==82583==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82583==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==82583==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==82583==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==82583==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82583==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82583==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82583==    by 0x109A64: execution_operations (exec_init.c:25)
+==82583==    by 0x109570: main (main.c:35)
+==82583== 
+==82583== 6 bytes in 2 blocks are indirectly lost in loss record 4 of 70
+==82583==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82583==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==82583==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==82583==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==82583==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82583==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82583==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82583==    by 0x109A64: execution_operations (exec_init.c:25)
+==82583==    by 0x109570: main (main.c:35)
+==82583== 
+==82583== 32 bytes in 2 blocks are indirectly lost in loss record 18 of 70
+==82583==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82583==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==82583==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==82583==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82583==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82583==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82583==    by 0x109A64: execution_operations (exec_init.c:25)
+==82583==    by 0x109570: main (main.c:35)
+==82583== 
+==82583== 140 (96 direct, 44 indirect) bytes in 2 blocks are definitely lost in loss record 29 of 70
+==82583==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82583==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==82583==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82583==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82583==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82583==    by 0x109A64: execution_operations (exec_init.c:25)
+==82583==    by 0x109570: main (main.c:35)
+==82583== 
+==82583== LEAK SUMMARY:
+==82583==    definitely lost: 96 bytes in 2 blocks
+==82583==    indirectly lost: 44 bytes in 6 blocks
+==82583==      possibly lost: 0 bytes in 0 blocks
+==82583==    still reachable: 0 bytes in 0 blocks
+==82583==         suppressed: 204,941 bytes in 235 blocks
+==82583== 
+==82583== For lists of detected and suppressed errors, rerun with: -s
+==82583== ERROR SUMMARY: 3 errors from 2 contexts (suppressed: 0 from 0)
+==82803== 
+==82803== FILE DESCRIPTORS: 3 open at exit.
+==82803== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==82803==    <inherited from parent>
+==82803== 
+==82803== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/hi
+==82803==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==82803==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==82803==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==82803==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==82803==    by 0x109A64: execution_operations (exec_init.c:25)
+==82803==    by 0x109570: main (main.c:35)
+==82803== 
+==82803== Open file descriptor 0: /dev/pts/1
+==82803==    <inherited from parent>
+==82803== 
+==82803== 
+==82803== HEAP SUMMARY:
+==82803==     in use at exit: 205,266 bytes in 253 blocks
+==82803==   total heap usage: 1,892 allocs, 1,639 frees, 644,549 bytes allocated
+==82803== 
+==82803== 9 bytes in 3 blocks are indirectly lost in loss record 5 of 70
+==82803==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82803==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==82803==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==82803==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==82803==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82803==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82803==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82803==    by 0x109A64: execution_operations (exec_init.c:25)
+==82803==    by 0x109570: main (main.c:35)
+==82803== 
+==82803== 9 bytes in 3 blocks are indirectly lost in loss record 6 of 70
+==82803==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82803==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==82803==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==82803==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==82803==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82803==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82803==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82803==    by 0x109A64: execution_operations (exec_init.c:25)
+==82803==    by 0x109570: main (main.c:35)
+==82803== 
+==82803== 48 bytes in 3 blocks are indirectly lost in loss record 21 of 70
+==82803==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82803==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==82803==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==82803==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82803==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82803==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82803==    by 0x109A64: execution_operations (exec_init.c:25)
+==82803==    by 0x109570: main (main.c:35)
+==82803== 
+==82803== 210 (144 direct, 66 indirect) bytes in 3 blocks are definitely lost in loss record 30 of 70
+==82803==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==82803==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==82803==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==82803==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==82803==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==82803==    by 0x109A64: execution_operations (exec_init.c:25)
+==82803==    by 0x109570: main (main.c:35)
+==82803== 
+==82803== LEAK SUMMARY:
+==82803==    definitely lost: 144 bytes in 3 blocks
+==82803==    indirectly lost: 66 bytes in 9 blocks
+==82803==      possibly lost: 0 bytes in 0 blocks
+==82803==    still reachable: 0 bytes in 0 blocks
+==82803==         suppressed: 205,056 bytes in 241 blocks
+==82803== 
+==82803== For lists of detected and suppressed errors, rerun with: -s
+==82803== ERROR SUMMARY: 4 errors from 2 contexts (suppressed: 0 from 0)
+==83311== 
+==83311== FILE DESCRIPTORS: 3 open at exit.
+==83311== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==83311==    <inherited from parent>
+==83311== 
+==83311== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==83311==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==83311==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==83311==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==83311==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==83311==    by 0x109A64: execution_operations (exec_init.c:25)
+==83311==    by 0x109570: main (main.c:35)
+==83311== 
+==83311== Open file descriptor 0: /dev/pts/1
+==83311==    <inherited from parent>
+==83311== 
+==83311== 
+==83311== HEAP SUMMARY:
+==83311==     in use at exit: 205,432 bytes in 258 blocks
+==83311==   total heap usage: 2,293 allocs, 2,035 frees, 647,081 bytes allocated
+==83311== 
+==83311== 11 bytes in 4 blocks are indirectly lost in loss record 4 of 68
+==83311==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83311==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==83311==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==83311==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83311==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83311==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83311==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83311==    by 0x109A64: execution_operations (exec_init.c:25)
+==83311==    by 0x109570: main (main.c:35)
+==83311== 
+==83311== 11 bytes in 4 blocks are indirectly lost in loss record 5 of 68
+==83311==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83311==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==83311==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==83311==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83311==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83311==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83311==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83311==    by 0x109A64: execution_operations (exec_init.c:25)
+==83311==    by 0x109570: main (main.c:35)
+==83311== 
+==83311== 64 bytes in 4 blocks are indirectly lost in loss record 19 of 68
+==83311==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83311==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==83311==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83311==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83311==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83311==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83311==    by 0x109A64: execution_operations (exec_init.c:25)
+==83311==    by 0x109570: main (main.c:35)
+==83311== 
+==83311== 278 (192 direct, 86 indirect) bytes in 4 blocks are definitely lost in loss record 29 of 68
+==83311==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83311==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==83311==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83311==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83311==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83311==    by 0x109A64: execution_operations (exec_init.c:25)
+==83311==    by 0x109570: main (main.c:35)
+==83311== 
+==83311== LEAK SUMMARY:
+==83311==    definitely lost: 192 bytes in 4 blocks
+==83311==    indirectly lost: 86 bytes in 12 blocks
+==83311==      possibly lost: 0 bytes in 0 blocks
+==83311==    still reachable: 0 bytes in 0 blocks
+==83311==         suppressed: 205,154 bytes in 242 blocks
+==83311== 
+==83311== For lists of detected and suppressed errors, rerun with: -s
+==83311== ERROR SUMMARY: 5 errors from 2 contexts (suppressed: 0 from 0)
+==83344== 
+==83344== FILE DESCRIPTORS: 3 open at exit.
+==83344== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==83344==    <inherited from parent>
+==83344== 
+==83344== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==83344==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==83344==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==83344==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==83344==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==83344==    by 0x109A64: execution_operations (exec_init.c:25)
+==83344==    by 0x109570: main (main.c:35)
+==83344== 
+==83344== Open file descriptor 0: /dev/pts/1
+==83344==    <inherited from parent>
+==83344== 
+==83344== 
+==83344== HEAP SUMMARY:
+==83344==     in use at exit: 205,648 bytes in 267 blocks
+==83344==   total heap usage: 2,679 allocs, 2,412 frees, 649,244 bytes allocated
+==83344== 
+==83344== 13 bytes in 5 blocks are indirectly lost in loss record 7 of 70
+==83344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83344==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==83344==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==83344==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83344==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83344==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83344==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83344==    by 0x109A64: execution_operations (exec_init.c:25)
+==83344==    by 0x109570: main (main.c:35)
+==83344== 
+==83344== 13 bytes in 5 blocks are indirectly lost in loss record 8 of 70
+==83344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83344==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==83344==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==83344==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83344==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83344==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83344==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83344==    by 0x109A64: execution_operations (exec_init.c:25)
+==83344==    by 0x109570: main (main.c:35)
+==83344== 
+==83344== 80 bytes in 5 blocks are indirectly lost in loss record 23 of 70
+==83344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83344==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==83344==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83344==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83344==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83344==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83344==    by 0x109A64: execution_operations (exec_init.c:25)
+==83344==    by 0x109570: main (main.c:35)
+==83344== 
+==83344== 346 (240 direct, 106 indirect) bytes in 5 blocks are definitely lost in loss record 32 of 70
+==83344==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83344==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==83344==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83344==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83344==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83344==    by 0x109A64: execution_operations (exec_init.c:25)
+==83344==    by 0x109570: main (main.c:35)
+==83344== 
+==83344== LEAK SUMMARY:
+==83344==    definitely lost: 240 bytes in 5 blocks
+==83344==    indirectly lost: 106 bytes in 15 blocks
+==83344==      possibly lost: 0 bytes in 0 blocks
+==83344==    still reachable: 0 bytes in 0 blocks
+==83344==         suppressed: 205,302 bytes in 247 blocks
+==83344== 
+==83344== For lists of detected and suppressed errors, rerun with: -s
+==83344== ERROR SUMMARY: 6 errors from 2 contexts (suppressed: 0 from 0)
+==83451== 
+==83451== FILE DESCRIPTORS: 3 open at exit.
+==83451== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==83451==    <inherited from parent>
+==83451== 
+==83451== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==83451==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==83451==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==83451==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==83451==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==83451==    by 0x109A64: execution_operations (exec_init.c:25)
+==83451==    by 0x109570: main (main.c:35)
+==83451== 
+==83451== Open file descriptor 0: /dev/pts/1
+==83451==    <inherited from parent>
+==83451== 
+==83451== 
+==83451== HEAP SUMMARY:
+==83451==     in use at exit: 205,859 bytes in 274 blocks
+==83451==   total heap usage: 3,202 allocs, 2,928 frees, 652,421 bytes allocated
+==83451== 
+==83451== 15 bytes in 6 blocks are indirectly lost in loss record 10 of 70
+==83451==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83451==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==83451==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==83451==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83451==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83451==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83451==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83451==    by 0x109A64: execution_operations (exec_init.c:25)
+==83451==    by 0x109570: main (main.c:35)
+==83451== 
+==83451== 15 bytes in 6 blocks are indirectly lost in loss record 11 of 70
+==83451==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83451==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==83451==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==83451==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83451==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83451==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83451==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83451==    by 0x109A64: execution_operations (exec_init.c:25)
+==83451==    by 0x109570: main (main.c:35)
+==83451== 
+==83451== 96 bytes in 6 blocks are indirectly lost in loss record 25 of 70
+==83451==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83451==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==83451==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83451==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83451==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83451==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83451==    by 0x109A64: execution_operations (exec_init.c:25)
+==83451==    by 0x109570: main (main.c:35)
+==83451== 
+==83451== 414 (288 direct, 126 indirect) bytes in 6 blocks are definitely lost in loss record 32 of 70
+==83451==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83451==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==83451==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83451==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83451==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83451==    by 0x109A64: execution_operations (exec_init.c:25)
+==83451==    by 0x109570: main (main.c:35)
+==83451== 
+==83451== LEAK SUMMARY:
+==83451==    definitely lost: 288 bytes in 6 blocks
+==83451==    indirectly lost: 126 bytes in 18 blocks
+==83451==      possibly lost: 0 bytes in 0 blocks
+==83451==    still reachable: 0 bytes in 0 blocks
+==83451==         suppressed: 205,445 bytes in 250 blocks
+==83451== 
+==83451== For lists of detected and suppressed errors, rerun with: -s
+==83451== ERROR SUMMARY: 7 errors from 2 contexts (suppressed: 0 from 0)
+==83718== 
+==83718== FILE DESCRIPTORS: 3 open at exit.
+==83718== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==83718==    <inherited from parent>
+==83718== 
+==83718== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==83718==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==83718==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==83718==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==83718==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==83718==    by 0x109A64: execution_operations (exec_init.c:25)
+==83718==    by 0x109570: main (main.c:35)
+==83718== 
+==83718== Open file descriptor 0: /dev/pts/1
+==83718==    <inherited from parent>
+==83718== 
+==83718== 
+==83718== HEAP SUMMARY:
+==83718==     in use at exit: 206,074 bytes in 281 blocks
+==83718==   total heap usage: 3,749 allocs, 3,468 frees, 655,799 bytes allocated
+==83718== 
+==83718== 17 bytes in 7 blocks are indirectly lost in loss record 11 of 70
+==83718==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83718==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==83718==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==83718==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83718==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83718==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83718==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83718==    by 0x109A64: execution_operations (exec_init.c:25)
+==83718==    by 0x109570: main (main.c:35)
+==83718== 
+==83718== 17 bytes in 7 blocks are indirectly lost in loss record 12 of 70
+==83718==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83718==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==83718==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==83718==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83718==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83718==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83718==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83718==    by 0x109A64: execution_operations (exec_init.c:25)
+==83718==    by 0x109570: main (main.c:35)
+==83718== 
+==83718== 112 bytes in 7 blocks are indirectly lost in loss record 25 of 70
+==83718==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83718==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==83718==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==83718==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83718==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83718==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83718==    by 0x109A64: execution_operations (exec_init.c:25)
+==83718==    by 0x109570: main (main.c:35)
+==83718== 
+==83718== 482 (336 direct, 146 indirect) bytes in 7 blocks are definitely lost in loss record 32 of 70
+==83718==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==83718==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==83718==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==83718==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==83718==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==83718==    by 0x109A64: execution_operations (exec_init.c:25)
+==83718==    by 0x109570: main (main.c:35)
+==83718== 
+==83718== LEAK SUMMARY:
+==83718==    definitely lost: 336 bytes in 7 blocks
+==83718==    indirectly lost: 146 bytes in 21 blocks
+==83718==      possibly lost: 0 bytes in 0 blocks
+==83718==    still reachable: 0 bytes in 0 blocks
+==83718==         suppressed: 205,592 bytes in 253 blocks
+==83718== 
+==83718== For lists of detected and suppressed errors, rerun with: -s
+==83718== ERROR SUMMARY: 8 errors from 2 contexts (suppressed: 0 from 0)
+==84093== 
+==84093== FILE DESCRIPTORS: 3 open at exit.
+==84093== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==84093==    <inherited from parent>
+==84093== 
+==84093== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==84093==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==84093==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==84093==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==84093==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==84093==    by 0x109A64: execution_operations (exec_init.c:25)
+==84093==    by 0x109570: main (main.c:35)
+==84093== 
+==84093== Open file descriptor 0: /dev/pts/1
+==84093==    <inherited from parent>
+==84093== 
+==84093== 
+==84093== HEAP SUMMARY:
+==84093==     in use at exit: 206,344 bytes in 291 blocks
+==84093==   total heap usage: 4,343 allocs, 4,052 frees, 659,507 bytes allocated
+==84093== 
+==84093== 19 bytes in 8 blocks are indirectly lost in loss record 11 of 70
+==84093==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84093==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==84093==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==84093==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==84093==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==84093==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==84093==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==84093==    by 0x109A64: execution_operations (exec_init.c:25)
+==84093==    by 0x109570: main (main.c:35)
+==84093== 
+==84093== 19 bytes in 8 blocks are indirectly lost in loss record 12 of 70
+==84093==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84093==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==84093==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==84093==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==84093==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==84093==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==84093==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==84093==    by 0x109A64: execution_operations (exec_init.c:25)
+==84093==    by 0x109570: main (main.c:35)
+==84093== 
+==84093== 128 bytes in 8 blocks are indirectly lost in loss record 25 of 70
+==84093==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84093==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==84093==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==84093==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==84093==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==84093==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==84093==    by 0x109A64: execution_operations (exec_init.c:25)
+==84093==    by 0x109570: main (main.c:35)
+==84093== 
+==84093== 550 (384 direct, 166 indirect) bytes in 8 blocks are definitely lost in loss record 34 of 70
+==84093==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84093==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==84093==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==84093==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==84093==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==84093==    by 0x109A64: execution_operations (exec_init.c:25)
+==84093==    by 0x109570: main (main.c:35)
+==84093== 
+==84093== LEAK SUMMARY:
+==84093==    definitely lost: 384 bytes in 8 blocks
+==84093==    indirectly lost: 166 bytes in 24 blocks
+==84093==      possibly lost: 0 bytes in 0 blocks
+==84093==    still reachable: 0 bytes in 0 blocks
+==84093==         suppressed: 205,794 bytes in 259 blocks
+==84093== 
+==84093== For lists of detected and suppressed errors, rerun with: -s
+==84093== ERROR SUMMARY: 9 errors from 2 contexts (suppressed: 0 from 0)
+==84482== 
+==84482== FILE DESCRIPTORS: 3 open at exit.
+==84482== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==84482==    <inherited from parent>
+==84482== 
+==84482== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==84482==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==84482==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==84482==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==84482==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==84482==    by 0x109A64: execution_operations (exec_init.c:25)
+==84482==    by 0x109570: main (main.c:35)
+==84482== 
+==84482== Open file descriptor 0: /dev/pts/1
+==84482==    <inherited from parent>
+==84482== 
+==84482== 
+==84482== HEAP SUMMARY:
+==84482==     in use at exit: 206,572 bytes in 298 blocks
+==84482==   total heap usage: 4,885 allocs, 4,587 frees, 662,511 bytes allocated
+==84482== 
+==84482== 21 bytes in 9 blocks are indirectly lost in loss record 12 of 70
+==84482==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84482==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==84482==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==84482==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==84482==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==84482==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==84482==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==84482==    by 0x109A64: execution_operations (exec_init.c:25)
+==84482==    by 0x109570: main (main.c:35)
+==84482== 
+==84482== 21 bytes in 9 blocks are indirectly lost in loss record 13 of 70
+==84482==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84482==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==84482==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==84482==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==84482==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==84482==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==84482==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==84482==    by 0x109A64: execution_operations (exec_init.c:25)
+==84482==    by 0x109570: main (main.c:35)
+==84482== 
+==84482== 144 bytes in 9 blocks are indirectly lost in loss record 25 of 70
+==84482==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84482==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==84482==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==84482==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==84482==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==84482==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==84482==    by 0x109A64: execution_operations (exec_init.c:25)
+==84482==    by 0x109570: main (main.c:35)
+==84482== 
+==84482== 618 (432 direct, 186 indirect) bytes in 9 blocks are definitely lost in loss record 34 of 70
+==84482==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==84482==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==84482==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==84482==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==84482==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==84482==    by 0x109A64: execution_operations (exec_init.c:25)
+==84482==    by 0x109570: main (main.c:35)
+==84482== 
+==84482== LEAK SUMMARY:
+==84482==    definitely lost: 432 bytes in 9 blocks
+==84482==    indirectly lost: 186 bytes in 27 blocks
+==84482==      possibly lost: 0 bytes in 0 blocks
+==84482==    still reachable: 0 bytes in 0 blocks
+==84482==         suppressed: 205,954 bytes in 262 blocks
+==84482== 
+==84482== For lists of detected and suppressed errors, rerun with: -s
+==84482== ERROR SUMMARY: 10 errors from 2 contexts (suppressed: 0 from 0)
+==85025== 
+==85025== FILE DESCRIPTORS: 3 open at exit.
+==85025== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85025==    <inherited from parent>
+==85025== 
+==85025== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85025==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85025==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85025==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85025==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85025==    by 0x109A64: execution_operations (exec_init.c:25)
+==85025==    by 0x109570: main (main.c:35)
+==85025== 
+==85025== Open file descriptor 0: /dev/pts/1
+==85025==    <inherited from parent>
+==85025== 
+==85025== 
+==85025== HEAP SUMMARY:
+==85025==     in use at exit: 206,688 bytes in 303 blocks
+==85025==   total heap usage: 5,085 allocs, 4,782 frees, 663,816 bytes allocated
+==85025== 
+==85025== 23 bytes in 10 blocks are indirectly lost in loss record 11 of 68
+==85025==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85025==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85025==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85025==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85025==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85025==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85025==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85025==    by 0x109A64: execution_operations (exec_init.c:25)
+==85025==    by 0x109570: main (main.c:35)
+==85025== 
+==85025== 23 bytes in 10 blocks are indirectly lost in loss record 12 of 68
+==85025==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85025==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85025==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85025==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85025==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85025==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85025==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85025==    by 0x109A64: execution_operations (exec_init.c:25)
+==85025==    by 0x109570: main (main.c:35)
+==85025== 
+==85025== 160 bytes in 10 blocks are indirectly lost in loss record 24 of 68
+==85025==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85025==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85025==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85025==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85025==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85025==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85025==    by 0x109A64: execution_operations (exec_init.c:25)
+==85025==    by 0x109570: main (main.c:35)
+==85025== 
+==85025== 686 (480 direct, 206 indirect) bytes in 10 blocks are definitely lost in loss record 32 of 68
+==85025==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85025==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85025==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85025==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85025==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85025==    by 0x109A64: execution_operations (exec_init.c:25)
+==85025==    by 0x109570: main (main.c:35)
+==85025== 
+==85025== LEAK SUMMARY:
+==85025==    definitely lost: 480 bytes in 10 blocks
+==85025==    indirectly lost: 206 bytes in 30 blocks
+==85025==      possibly lost: 0 bytes in 0 blocks
+==85025==    still reachable: 0 bytes in 0 blocks
+==85025==         suppressed: 206,002 bytes in 263 blocks
+==85025== 
+==85025== For lists of detected and suppressed errors, rerun with: -s
+==85025== ERROR SUMMARY: 11 errors from 2 contexts (suppressed: 0 from 0)
+==85028== 
+==85028== FILE DESCRIPTORS: 3 open at exit.
+==85028== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85028==    <inherited from parent>
+==85028== 
+==85028== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85028==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85028==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85028==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85028==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85028==    by 0x109A64: execution_operations (exec_init.c:25)
+==85028==    by 0x109570: main (main.c:35)
+==85028== 
+==85028== Open file descriptor 0: /dev/pts/1
+==85028==    <inherited from parent>
+==85028== 
+==85028== 
+==85028== HEAP SUMMARY:
+==85028==     in use at exit: 206,854 bytes in 312 blocks
+==85028==   total heap usage: 5,285 allocs, 4,973 frees, 665,082 bytes allocated
+==85028== 
+==85028== 25 bytes in 11 blocks are indirectly lost in loss record 14 of 70
+==85028==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85028==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85028==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85028==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85028==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85028==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85028==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85028==    by 0x109A64: execution_operations (exec_init.c:25)
+==85028==    by 0x109570: main (main.c:35)
+==85028== 
+==85028== 25 bytes in 11 blocks are indirectly lost in loss record 15 of 70
+==85028==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85028==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85028==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85028==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85028==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85028==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85028==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85028==    by 0x109A64: execution_operations (exec_init.c:25)
+==85028==    by 0x109570: main (main.c:35)
+==85028== 
+==85028== 176 bytes in 11 blocks are indirectly lost in loss record 26 of 70
+==85028==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85028==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85028==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85028==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85028==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85028==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85028==    by 0x109A64: execution_operations (exec_init.c:25)
+==85028==    by 0x109570: main (main.c:35)
+==85028== 
+==85028== 754 (528 direct, 226 indirect) bytes in 11 blocks are definitely lost in loss record 34 of 70
+==85028==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85028==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85028==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85028==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85028==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85028==    by 0x109A64: execution_operations (exec_init.c:25)
+==85028==    by 0x109570: main (main.c:35)
+==85028== 
+==85028== LEAK SUMMARY:
+==85028==    definitely lost: 528 bytes in 11 blocks
+==85028==    indirectly lost: 226 bytes in 33 blocks
+==85028==      possibly lost: 0 bytes in 0 blocks
+==85028==    still reachable: 0 bytes in 0 blocks
+==85028==         suppressed: 206,100 bytes in 268 blocks
+==85028== 
+==85028== For lists of detected and suppressed errors, rerun with: -s
+==85028== ERROR SUMMARY: 12 errors from 2 contexts (suppressed: 0 from 0)
+==85029== 
+==85029== FILE DESCRIPTORS: 3 open at exit.
+==85029== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85029==    <inherited from parent>
+==85029== 
+==85029== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85029==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85029==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85029==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85029==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85029==    by 0x109A64: execution_operations (exec_init.c:25)
+==85029==    by 0x109570: main (main.c:35)
+==85029== 
+==85029== Open file descriptor 0: /dev/pts/1
+==85029==    <inherited from parent>
+==85029== 
+==85029== 
+==85029== HEAP SUMMARY:
+==85029==     in use at exit: 206,995 bytes in 319 blocks
+==85029==   total heap usage: 5,485 allocs, 5,166 frees, 666,348 bytes allocated
+==85029== 
+==85029== 27 bytes in 12 blocks are indirectly lost in loss record 14 of 70
+==85029==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85029==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85029==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85029==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85029==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85029==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85029==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85029==    by 0x109A64: execution_operations (exec_init.c:25)
+==85029==    by 0x109570: main (main.c:35)
+==85029== 
+==85029== 27 bytes in 12 blocks are indirectly lost in loss record 15 of 70
+==85029==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85029==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85029==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85029==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85029==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85029==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85029==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85029==    by 0x109A64: execution_operations (exec_init.c:25)
+==85029==    by 0x109570: main (main.c:35)
+==85029== 
+==85029== 192 bytes in 12 blocks are indirectly lost in loss record 26 of 70
+==85029==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85029==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85029==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85029==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85029==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85029==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85029==    by 0x109A64: execution_operations (exec_init.c:25)
+==85029==    by 0x109570: main (main.c:35)
+==85029== 
+==85029== 822 (576 direct, 246 indirect) bytes in 12 blocks are definitely lost in loss record 35 of 70
+==85029==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85029==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85029==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85029==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85029==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85029==    by 0x109A64: execution_operations (exec_init.c:25)
+==85029==    by 0x109570: main (main.c:35)
+==85029== 
+==85029== LEAK SUMMARY:
+==85029==    definitely lost: 576 bytes in 12 blocks
+==85029==    indirectly lost: 246 bytes in 36 blocks
+==85029==      possibly lost: 0 bytes in 0 blocks
+==85029==    still reachable: 0 bytes in 0 blocks
+==85029==         suppressed: 206,173 bytes in 271 blocks
+==85029== 
+==85029== For lists of detected and suppressed errors, rerun with: -s
+==85029== ERROR SUMMARY: 13 errors from 2 contexts (suppressed: 0 from 0)
+==85041== 
+==85041== FILE DESCRIPTORS: 3 open at exit.
+==85041== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85041==    <inherited from parent>
+==85041== 
+==85041== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85041==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85041==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85041==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85041==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85041==    by 0x109A64: execution_operations (exec_init.c:25)
+==85041==    by 0x109570: main (main.c:35)
+==85041== 
+==85041== Open file descriptor 0: /dev/pts/1
+==85041==    <inherited from parent>
+==85041== 
+==85041== 
+==85041== HEAP SUMMARY:
+==85041==     in use at exit: 207,136 bytes in 326 blocks
+==85041==   total heap usage: 5,685 allocs, 5,359 frees, 667,614 bytes allocated
+==85041== 
+==85041== 29 bytes in 13 blocks are indirectly lost in loss record 14 of 70
+==85041==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85041==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85041==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85041==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85041==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85041==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85041==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85041==    by 0x109A64: execution_operations (exec_init.c:25)
+==85041==    by 0x109570: main (main.c:35)
+==85041== 
+==85041== 29 bytes in 13 blocks are indirectly lost in loss record 15 of 70
+==85041==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85041==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85041==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85041==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85041==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85041==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85041==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85041==    by 0x109A64: execution_operations (exec_init.c:25)
+==85041==    by 0x109570: main (main.c:35)
+==85041== 
+==85041== 208 bytes in 13 blocks are indirectly lost in loss record 26 of 70
+==85041==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85041==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85041==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85041==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85041==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85041==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85041==    by 0x109A64: execution_operations (exec_init.c:25)
+==85041==    by 0x109570: main (main.c:35)
+==85041== 
+==85041== 890 (624 direct, 266 indirect) bytes in 13 blocks are definitely lost in loss record 35 of 70
+==85041==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85041==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85041==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85041==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85041==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85041==    by 0x109A64: execution_operations (exec_init.c:25)
+==85041==    by 0x109570: main (main.c:35)
+==85041== 
+==85041== LEAK SUMMARY:
+==85041==    definitely lost: 624 bytes in 13 blocks
+==85041==    indirectly lost: 266 bytes in 39 blocks
+==85041==      possibly lost: 0 bytes in 0 blocks
+==85041==    still reachable: 0 bytes in 0 blocks
+==85041==         suppressed: 206,246 bytes in 274 blocks
+==85041== 
+==85041== For lists of detected and suppressed errors, rerun with: -s
+==85041== ERROR SUMMARY: 14 errors from 2 contexts (suppressed: 0 from 0)
+==85051== 
+==85051== FILE DESCRIPTORS: 3 open at exit.
+==85051== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85051==    <inherited from parent>
+==85051== 
+==85051== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85051==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85051==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85051==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85051==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85051==    by 0x109A64: execution_operations (exec_init.c:25)
+==85051==    by 0x109570: main (main.c:35)
+==85051== 
+==85051== Open file descriptor 0: /dev/pts/1
+==85051==    <inherited from parent>
+==85051== 
+==85051== 
+==85051== HEAP SUMMARY:
+==85051==     in use at exit: 207,277 bytes in 333 blocks
+==85051==   total heap usage: 5,885 allocs, 5,552 frees, 668,880 bytes allocated
+==85051== 
+==85051== 31 bytes in 14 blocks are indirectly lost in loss record 14 of 70
+==85051==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85051==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85051==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85051==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85051==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85051==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85051==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85051==    by 0x109A64: execution_operations (exec_init.c:25)
+==85051==    by 0x109570: main (main.c:35)
+==85051== 
+==85051== 31 bytes in 14 blocks are indirectly lost in loss record 15 of 70
+==85051==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85051==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85051==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85051==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85051==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85051==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85051==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85051==    by 0x109A64: execution_operations (exec_init.c:25)
+==85051==    by 0x109570: main (main.c:35)
+==85051== 
+==85051== 224 bytes in 14 blocks are indirectly lost in loss record 26 of 70
+==85051==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85051==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85051==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85051==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85051==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85051==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85051==    by 0x109A64: execution_operations (exec_init.c:25)
+==85051==    by 0x109570: main (main.c:35)
+==85051== 
+==85051== 958 (672 direct, 286 indirect) bytes in 14 blocks are definitely lost in loss record 35 of 70
+==85051==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85051==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85051==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85051==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85051==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85051==    by 0x109A64: execution_operations (exec_init.c:25)
+==85051==    by 0x109570: main (main.c:35)
+==85051== 
+==85051== LEAK SUMMARY:
+==85051==    definitely lost: 672 bytes in 14 blocks
+==85051==    indirectly lost: 286 bytes in 42 blocks
+==85051==      possibly lost: 0 bytes in 0 blocks
+==85051==    still reachable: 0 bytes in 0 blocks
+==85051==         suppressed: 206,319 bytes in 277 blocks
+==85051== 
+==85051== For lists of detected and suppressed errors, rerun with: -s
+==85051== ERROR SUMMARY: 15 errors from 2 contexts (suppressed: 0 from 0)
+==85061== 
+==85061== FILE DESCRIPTORS: 3 open at exit.
+==85061== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85061==    <inherited from parent>
+==85061== 
+==85061== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85061==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85061==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85061==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85061==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85061==    by 0x109A64: execution_operations (exec_init.c:25)
+==85061==    by 0x109570: main (main.c:35)
+==85061== 
+==85061== Open file descriptor 0: /dev/pts/1
+==85061==    <inherited from parent>
+==85061== 
+==85061== 
+==85061== HEAP SUMMARY:
+==85061==     in use at exit: 207,418 bytes in 340 blocks
+==85061==   total heap usage: 6,085 allocs, 5,745 frees, 670,146 bytes allocated
+==85061== 
+==85061== 33 bytes in 15 blocks are indirectly lost in loss record 14 of 70
+==85061==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85061==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85061==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85061==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85061==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85061==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85061==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85061==    by 0x109A64: execution_operations (exec_init.c:25)
+==85061==    by 0x109570: main (main.c:35)
+==85061== 
+==85061== 33 bytes in 15 blocks are indirectly lost in loss record 15 of 70
+==85061==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85061==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85061==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85061==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85061==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85061==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85061==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85061==    by 0x109A64: execution_operations (exec_init.c:25)
+==85061==    by 0x109570: main (main.c:35)
+==85061== 
+==85061== 240 bytes in 15 blocks are indirectly lost in loss record 26 of 70
+==85061==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85061==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85061==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85061==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85061==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85061==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85061==    by 0x109A64: execution_operations (exec_init.c:25)
+==85061==    by 0x109570: main (main.c:35)
+==85061== 
+==85061== 1,026 (720 direct, 306 indirect) bytes in 15 blocks are definitely lost in loss record 41 of 70
+==85061==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85061==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85061==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85061==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85061==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85061==    by 0x109A64: execution_operations (exec_init.c:25)
+==85061==    by 0x109570: main (main.c:35)
+==85061== 
+==85061== LEAK SUMMARY:
+==85061==    definitely lost: 720 bytes in 15 blocks
+==85061==    indirectly lost: 306 bytes in 45 blocks
+==85061==      possibly lost: 0 bytes in 0 blocks
+==85061==    still reachable: 0 bytes in 0 blocks
+==85061==         suppressed: 206,392 bytes in 280 blocks
+==85061== 
+==85061== For lists of detected and suppressed errors, rerun with: -s
+==85061== ERROR SUMMARY: 16 errors from 2 contexts (suppressed: 0 from 0)
+==85070== 
+==85070== FILE DESCRIPTORS: 3 open at exit.
+==85070== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85070==    <inherited from parent>
+==85070== 
+==85070== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85070==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85070==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85070==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85070==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85070==    by 0x109A64: execution_operations (exec_init.c:25)
+==85070==    by 0x109570: main (main.c:35)
+==85070== 
+==85070== Open file descriptor 0: /dev/pts/1
+==85070==    <inherited from parent>
+==85070== 
+==85070== 
+==85070== HEAP SUMMARY:
+==85070==     in use at exit: 207,559 bytes in 347 blocks
+==85070==   total heap usage: 6,285 allocs, 5,938 frees, 671,412 bytes allocated
+==85070== 
+==85070== 35 bytes in 16 blocks are indirectly lost in loss record 14 of 70
+==85070==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85070==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85070==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85070==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85070==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85070==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85070==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85070==    by 0x109A64: execution_operations (exec_init.c:25)
+==85070==    by 0x109570: main (main.c:35)
+==85070== 
+==85070== 35 bytes in 16 blocks are indirectly lost in loss record 15 of 70
+==85070==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85070==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85070==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85070==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85070==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85070==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85070==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85070==    by 0x109A64: execution_operations (exec_init.c:25)
+==85070==    by 0x109570: main (main.c:35)
+==85070== 
+==85070== 256 bytes in 16 blocks are indirectly lost in loss record 28 of 70
+==85070==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85070==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85070==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85070==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85070==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85070==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85070==    by 0x109A64: execution_operations (exec_init.c:25)
+==85070==    by 0x109570: main (main.c:35)
+==85070== 
+==85070== 1,094 (768 direct, 326 indirect) bytes in 16 blocks are definitely lost in loss record 41 of 70
+==85070==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85070==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85070==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85070==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85070==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85070==    by 0x109A64: execution_operations (exec_init.c:25)
+==85070==    by 0x109570: main (main.c:35)
+==85070== 
+==85070== LEAK SUMMARY:
+==85070==    definitely lost: 768 bytes in 16 blocks
+==85070==    indirectly lost: 326 bytes in 48 blocks
+==85070==      possibly lost: 0 bytes in 0 blocks
+==85070==    still reachable: 0 bytes in 0 blocks
+==85070==         suppressed: 206,465 bytes in 283 blocks
+==85070== 
+==85070== For lists of detected and suppressed errors, rerun with: -s
+==85070== ERROR SUMMARY: 17 errors from 2 contexts (suppressed: 0 from 0)
+==85078== 
+==85078== FILE DESCRIPTORS: 3 open at exit.
+==85078== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85078==    <inherited from parent>
+==85078== 
+==85078== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85078==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85078==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85078==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85078==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85078==    by 0x109A64: execution_operations (exec_init.c:25)
+==85078==    by 0x109570: main (main.c:35)
+==85078== 
+==85078== Open file descriptor 0: /dev/pts/1
+==85078==    <inherited from parent>
+==85078== 
+==85078== 
+==85078== HEAP SUMMARY:
+==85078==     in use at exit: 207,700 bytes in 354 blocks
+==85078==   total heap usage: 6,485 allocs, 6,131 frees, 672,678 bytes allocated
+==85078== 
+==85078== 37 bytes in 17 blocks are indirectly lost in loss record 14 of 70
+==85078==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85078==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85078==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85078==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85078==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85078==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85078==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85078==    by 0x109A64: execution_operations (exec_init.c:25)
+==85078==    by 0x109570: main (main.c:35)
+==85078== 
+==85078== 37 bytes in 17 blocks are indirectly lost in loss record 15 of 70
+==85078==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85078==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85078==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85078==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85078==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85078==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85078==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85078==    by 0x109A64: execution_operations (exec_init.c:25)
+==85078==    by 0x109570: main (main.c:35)
+==85078== 
+==85078== 272 bytes in 17 blocks are indirectly lost in loss record 28 of 70
+==85078==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85078==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85078==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85078==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85078==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85078==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85078==    by 0x109A64: execution_operations (exec_init.c:25)
+==85078==    by 0x109570: main (main.c:35)
+==85078== 
+==85078== 1,162 (816 direct, 346 indirect) bytes in 17 blocks are definitely lost in loss record 41 of 70
+==85078==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85078==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85078==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85078==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85078==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85078==    by 0x109A64: execution_operations (exec_init.c:25)
+==85078==    by 0x109570: main (main.c:35)
+==85078== 
+==85078== LEAK SUMMARY:
+==85078==    definitely lost: 816 bytes in 17 blocks
+==85078==    indirectly lost: 346 bytes in 51 blocks
+==85078==      possibly lost: 0 bytes in 0 blocks
+==85078==    still reachable: 0 bytes in 0 blocks
+==85078==         suppressed: 206,538 bytes in 286 blocks
+==85078== 
+==85078== For lists of detected and suppressed errors, rerun with: -s
+==85078== ERROR SUMMARY: 18 errors from 2 contexts (suppressed: 0 from 0)
+==85087== 
+==85087== FILE DESCRIPTORS: 3 open at exit.
+==85087== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85087==    <inherited from parent>
+==85087== 
+==85087== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85087==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85087==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85087==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85087==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85087==    by 0x109A64: execution_operations (exec_init.c:25)
+==85087==    by 0x109570: main (main.c:35)
+==85087== 
+==85087== Open file descriptor 0: /dev/pts/1
+==85087==    <inherited from parent>
+==85087== 
+==85087== 
+==85087== HEAP SUMMARY:
+==85087==     in use at exit: 207,841 bytes in 361 blocks
+==85087==   total heap usage: 6,685 allocs, 6,324 frees, 673,944 bytes allocated
+==85087== 
+==85087== 39 bytes in 18 blocks are indirectly lost in loss record 14 of 70
+==85087==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85087==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85087==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85087==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85087==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85087==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85087==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85087==    by 0x109A64: execution_operations (exec_init.c:25)
+==85087==    by 0x109570: main (main.c:35)
+==85087== 
+==85087== 39 bytes in 18 blocks are indirectly lost in loss record 15 of 70
+==85087==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85087==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85087==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85087==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85087==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85087==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85087==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85087==    by 0x109A64: execution_operations (exec_init.c:25)
+==85087==    by 0x109570: main (main.c:35)
+==85087== 
+==85087== 288 bytes in 18 blocks are indirectly lost in loss record 29 of 70
+==85087==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85087==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85087==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85087==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85087==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85087==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85087==    by 0x109A64: execution_operations (exec_init.c:25)
+==85087==    by 0x109570: main (main.c:35)
+==85087== 
+==85087== 1,230 (864 direct, 366 indirect) bytes in 18 blocks are definitely lost in loss record 41 of 70
+==85087==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85087==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85087==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85087==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85087==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85087==    by 0x109A64: execution_operations (exec_init.c:25)
+==85087==    by 0x109570: main (main.c:35)
+==85087== 
+==85087== LEAK SUMMARY:
+==85087==    definitely lost: 864 bytes in 18 blocks
+==85087==    indirectly lost: 366 bytes in 54 blocks
+==85087==      possibly lost: 0 bytes in 0 blocks
+==85087==    still reachable: 0 bytes in 0 blocks
+==85087==         suppressed: 206,611 bytes in 289 blocks
+==85087== 
+==85087== For lists of detected and suppressed errors, rerun with: -s
+==85087== ERROR SUMMARY: 19 errors from 2 contexts (suppressed: 0 from 0)
+==85120== 
+==85120== FILE DESCRIPTORS: 3 open at exit.
+==85120== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85120==    <inherited from parent>
+==85120== 
+==85120== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85120==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85120==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85120==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85120==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85120==    by 0x109A64: execution_operations (exec_init.c:25)
+==85120==    by 0x109570: main (main.c:35)
+==85120== 
+==85120== Open file descriptor 0: /dev/pts/1
+==85120==    <inherited from parent>
+==85120== 
+==85120== 
+==85120== HEAP SUMMARY:
+==85120==     in use at exit: 207,982 bytes in 368 blocks
+==85120==   total heap usage: 6,885 allocs, 6,517 frees, 675,210 bytes allocated
+==85120== 
+==85120== 41 bytes in 19 blocks are indirectly lost in loss record 14 of 70
+==85120==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85120==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85120==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85120==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85120==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85120==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85120==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85120==    by 0x109A64: execution_operations (exec_init.c:25)
+==85120==    by 0x109570: main (main.c:35)
+==85120== 
+==85120== 41 bytes in 19 blocks are indirectly lost in loss record 15 of 70
+==85120==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85120==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85120==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85120==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85120==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85120==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85120==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85120==    by 0x109A64: execution_operations (exec_init.c:25)
+==85120==    by 0x109570: main (main.c:35)
+==85120== 
+==85120== 304 bytes in 19 blocks are indirectly lost in loss record 29 of 70
+==85120==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85120==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85120==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85120==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85120==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85120==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85120==    by 0x109A64: execution_operations (exec_init.c:25)
+==85120==    by 0x109570: main (main.c:35)
+==85120== 
+==85120== 1,298 (912 direct, 386 indirect) bytes in 19 blocks are definitely lost in loss record 41 of 70
+==85120==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85120==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85120==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85120==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85120==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85120==    by 0x109A64: execution_operations (exec_init.c:25)
+==85120==    by 0x109570: main (main.c:35)
+==85120== 
+==85120== LEAK SUMMARY:
+==85120==    definitely lost: 912 bytes in 19 blocks
+==85120==    indirectly lost: 386 bytes in 57 blocks
+==85120==      possibly lost: 0 bytes in 0 blocks
+==85120==    still reachable: 0 bytes in 0 blocks
+==85120==         suppressed: 206,684 bytes in 292 blocks
+==85120== 
+==85120== For lists of detected and suppressed errors, rerun with: -s
+==85120== ERROR SUMMARY: 20 errors from 2 contexts (suppressed: 0 from 0)
+==85122== 
+==85122== FILE DESCRIPTORS: 3 open at exit.
+==85122== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85122==    <inherited from parent>
+==85122== 
+==85122== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85122==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85122==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85122==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85122==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85122==    by 0x109A64: execution_operations (exec_init.c:25)
+==85122==    by 0x109570: main (main.c:35)
+==85122== 
+==85122== Open file descriptor 0: /dev/pts/1
+==85122==    <inherited from parent>
+==85122== 
+==85122== 
+==85122== HEAP SUMMARY:
+==85122==     in use at exit: 208,123 bytes in 375 blocks
+==85122==   total heap usage: 7,085 allocs, 6,710 frees, 676,476 bytes allocated
+==85122== 
+==85122== 43 bytes in 20 blocks are indirectly lost in loss record 14 of 70
+==85122==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85122==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85122==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85122==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85122==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85122==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85122==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85122==    by 0x109A64: execution_operations (exec_init.c:25)
+==85122==    by 0x109570: main (main.c:35)
+==85122== 
+==85122== 43 bytes in 20 blocks are indirectly lost in loss record 15 of 70
+==85122==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85122==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85122==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85122==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85122==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85122==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85122==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85122==    by 0x109A64: execution_operations (exec_init.c:25)
+==85122==    by 0x109570: main (main.c:35)
+==85122== 
+==85122== 320 bytes in 20 blocks are indirectly lost in loss record 29 of 70
+==85122==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85122==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85122==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85122==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85122==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85122==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85122==    by 0x109A64: execution_operations (exec_init.c:25)
+==85122==    by 0x109570: main (main.c:35)
+==85122== 
+==85122== 1,366 (960 direct, 406 indirect) bytes in 20 blocks are definitely lost in loss record 41 of 70
+==85122==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85122==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85122==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85122==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85122==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85122==    by 0x109A64: execution_operations (exec_init.c:25)
+==85122==    by 0x109570: main (main.c:35)
+==85122== 
+==85122== LEAK SUMMARY:
+==85122==    definitely lost: 960 bytes in 20 blocks
+==85122==    indirectly lost: 406 bytes in 60 blocks
+==85122==      possibly lost: 0 bytes in 0 blocks
+==85122==    still reachable: 0 bytes in 0 blocks
+==85122==         suppressed: 206,757 bytes in 295 blocks
+==85122== 
+==85122== For lists of detected and suppressed errors, rerun with: -s
+==85122== ERROR SUMMARY: 21 errors from 2 contexts (suppressed: 0 from 0)
+==85127== 
+==85127== FILE DESCRIPTORS: 3 open at exit.
+==85127== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85127==    <inherited from parent>
+==85127== 
+==85127== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85127==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85127==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85127==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85127==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85127==    by 0x109A64: execution_operations (exec_init.c:25)
+==85127==    by 0x109570: main (main.c:35)
+==85127== 
+==85127== Open file descriptor 0: /dev/pts/1
+==85127==    <inherited from parent>
+==85127== 
+==85127== 
+==85127== HEAP SUMMARY:
+==85127==     in use at exit: 208,264 bytes in 382 blocks
+==85127==   total heap usage: 7,285 allocs, 6,903 frees, 677,742 bytes allocated
+==85127== 
+==85127== 45 bytes in 21 blocks are indirectly lost in loss record 14 of 70
+==85127==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85127==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85127==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85127==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85127==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85127==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85127==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85127==    by 0x109A64: execution_operations (exec_init.c:25)
+==85127==    by 0x109570: main (main.c:35)
+==85127== 
+==85127== 45 bytes in 21 blocks are indirectly lost in loss record 15 of 70
+==85127==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85127==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85127==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85127==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85127==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85127==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85127==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85127==    by 0x109A64: execution_operations (exec_init.c:25)
+==85127==    by 0x109570: main (main.c:35)
+==85127== 
+==85127== 336 bytes in 21 blocks are indirectly lost in loss record 29 of 70
+==85127==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85127==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85127==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85127==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85127==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85127==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85127==    by 0x109A64: execution_operations (exec_init.c:25)
+==85127==    by 0x109570: main (main.c:35)
+==85127== 
+==85127== 1,434 (1,008 direct, 426 indirect) bytes in 21 blocks are definitely lost in loss record 41 of 70
+==85127==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85127==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85127==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85127==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85127==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85127==    by 0x109A64: execution_operations (exec_init.c:25)
+==85127==    by 0x109570: main (main.c:35)
+==85127== 
+==85127== LEAK SUMMARY:
+==85127==    definitely lost: 1,008 bytes in 21 blocks
+==85127==    indirectly lost: 426 bytes in 63 blocks
+==85127==      possibly lost: 0 bytes in 0 blocks
+==85127==    still reachable: 0 bytes in 0 blocks
+==85127==         suppressed: 206,830 bytes in 298 blocks
+==85127== 
+==85127== For lists of detected and suppressed errors, rerun with: -s
+==85127== ERROR SUMMARY: 22 errors from 2 contexts (suppressed: 0 from 0)
+==85128== 
+==85128== FILE DESCRIPTORS: 3 open at exit.
+==85128== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85128==    <inherited from parent>
+==85128== 
+==85128== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85128==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85128==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85128==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85128==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85128==    by 0x109A64: execution_operations (exec_init.c:25)
+==85128==    by 0x109570: main (main.c:35)
+==85128== 
+==85128== Open file descriptor 0: /dev/pts/1
+==85128==    <inherited from parent>
+==85128== 
+==85128== 
+==85128== HEAP SUMMARY:
+==85128==     in use at exit: 208,405 bytes in 389 blocks
+==85128==   total heap usage: 7,485 allocs, 7,096 frees, 679,008 bytes allocated
+==85128== 
+==85128== 47 bytes in 22 blocks are indirectly lost in loss record 16 of 70
+==85128==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85128==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85128==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85128==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85128==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85128==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85128==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85128==    by 0x109A64: execution_operations (exec_init.c:25)
+==85128==    by 0x109570: main (main.c:35)
+==85128== 
+==85128== 47 bytes in 22 blocks are indirectly lost in loss record 17 of 70
+==85128==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85128==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85128==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85128==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85128==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85128==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85128==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85128==    by 0x109A64: execution_operations (exec_init.c:25)
+==85128==    by 0x109570: main (main.c:35)
+==85128== 
+==85128== 352 bytes in 22 blocks are indirectly lost in loss record 29 of 70
+==85128==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85128==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85128==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85128==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85128==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85128==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85128==    by 0x109A64: execution_operations (exec_init.c:25)
+==85128==    by 0x109570: main (main.c:35)
+==85128== 
+==85128== 1,502 (1,056 direct, 446 indirect) bytes in 22 blocks are definitely lost in loss record 41 of 70
+==85128==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85128==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85128==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85128==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85128==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85128==    by 0x109A64: execution_operations (exec_init.c:25)
+==85128==    by 0x109570: main (main.c:35)
+==85128== 
+==85128== LEAK SUMMARY:
+==85128==    definitely lost: 1,056 bytes in 22 blocks
+==85128==    indirectly lost: 446 bytes in 66 blocks
+==85128==      possibly lost: 0 bytes in 0 blocks
+==85128==    still reachable: 0 bytes in 0 blocks
+==85128==         suppressed: 206,903 bytes in 301 blocks
+==85128== 
+==85128== For lists of detected and suppressed errors, rerun with: -s
+==85128== ERROR SUMMARY: 23 errors from 2 contexts (suppressed: 0 from 0)
+==85145== 
+==85145== FILE DESCRIPTORS: 3 open at exit.
+==85145== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85145==    <inherited from parent>
+==85145== 
+==85145== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85145==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85145==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85145==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85145==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85145==    by 0x109A64: execution_operations (exec_init.c:25)
+==85145==    by 0x109570: main (main.c:35)
+==85145== 
+==85145== Open file descriptor 0: /dev/pts/1
+==85145==    <inherited from parent>
+==85145== 
+==85145== 
+==85145== HEAP SUMMARY:
+==85145==     in use at exit: 208,546 bytes in 396 blocks
+==85145==   total heap usage: 7,685 allocs, 7,289 frees, 680,274 bytes allocated
+==85145== 
+==85145== 49 bytes in 23 blocks are indirectly lost in loss record 17 of 70
+==85145==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85145==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85145==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85145==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85145==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85145==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85145==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85145==    by 0x109A64: execution_operations (exec_init.c:25)
+==85145==    by 0x109570: main (main.c:35)
+==85145== 
+==85145== 49 bytes in 23 blocks are indirectly lost in loss record 18 of 70
+==85145==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85145==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85145==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85145==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85145==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85145==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85145==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85145==    by 0x109A64: execution_operations (exec_init.c:25)
+==85145==    by 0x109570: main (main.c:35)
+==85145== 
+==85145== 368 bytes in 23 blocks are indirectly lost in loss record 29 of 70
+==85145==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85145==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85145==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85145==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85145==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85145==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85145==    by 0x109A64: execution_operations (exec_init.c:25)
+==85145==    by 0x109570: main (main.c:35)
+==85145== 
+==85145== 1,570 (1,104 direct, 466 indirect) bytes in 23 blocks are definitely lost in loss record 43 of 70
+==85145==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85145==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85145==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85145==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85145==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85145==    by 0x109A64: execution_operations (exec_init.c:25)
+==85145==    by 0x109570: main (main.c:35)
+==85145== 
+==85145== LEAK SUMMARY:
+==85145==    definitely lost: 1,104 bytes in 23 blocks
+==85145==    indirectly lost: 466 bytes in 69 blocks
+==85145==      possibly lost: 0 bytes in 0 blocks
+==85145==    still reachable: 0 bytes in 0 blocks
+==85145==         suppressed: 206,976 bytes in 304 blocks
+==85145== 
+==85145== For lists of detected and suppressed errors, rerun with: -s
+==85145== ERROR SUMMARY: 24 errors from 2 contexts (suppressed: 0 from 0)
+==85157== 
+==85157== FILE DESCRIPTORS: 3 open at exit.
+==85157== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85157==    <inherited from parent>
+==85157== 
+==85157== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85157==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85157==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85157==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85157==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85157==    by 0x109A64: execution_operations (exec_init.c:25)
+==85157==    by 0x109570: main (main.c:35)
+==85157== 
+==85157== Open file descriptor 0: /dev/pts/1
+==85157==    <inherited from parent>
+==85157== 
+==85157== 
+==85157== HEAP SUMMARY:
+==85157==     in use at exit: 208,687 bytes in 403 blocks
+==85157==   total heap usage: 7,885 allocs, 7,482 frees, 681,540 bytes allocated
+==85157== 
+==85157== 51 bytes in 24 blocks are indirectly lost in loss record 17 of 70
+==85157==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85157==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85157==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85157==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85157==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85157==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85157==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85157==    by 0x109A64: execution_operations (exec_init.c:25)
+==85157==    by 0x109570: main (main.c:35)
+==85157== 
+==85157== 51 bytes in 24 blocks are indirectly lost in loss record 18 of 70
+==85157==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85157==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85157==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85157==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85157==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85157==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85157==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85157==    by 0x109A64: execution_operations (exec_init.c:25)
+==85157==    by 0x109570: main (main.c:35)
+==85157== 
+==85157== 384 bytes in 24 blocks are indirectly lost in loss record 29 of 70
+==85157==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85157==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85157==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85157==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85157==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85157==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85157==    by 0x109A64: execution_operations (exec_init.c:25)
+==85157==    by 0x109570: main (main.c:35)
+==85157== 
+==85157== 1,638 (1,152 direct, 486 indirect) bytes in 24 blocks are definitely lost in loss record 43 of 70
+==85157==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85157==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85157==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85157==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85157==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85157==    by 0x109A64: execution_operations (exec_init.c:25)
+==85157==    by 0x109570: main (main.c:35)
+==85157== 
+==85157== LEAK SUMMARY:
+==85157==    definitely lost: 1,152 bytes in 24 blocks
+==85157==    indirectly lost: 486 bytes in 72 blocks
+==85157==      possibly lost: 0 bytes in 0 blocks
+==85157==    still reachable: 0 bytes in 0 blocks
+==85157==         suppressed: 207,049 bytes in 307 blocks
+==85157== 
+==85157== For lists of detected and suppressed errors, rerun with: -s
+==85157== ERROR SUMMARY: 25 errors from 2 contexts (suppressed: 0 from 0)
+==85170== 
+==85170== FILE DESCRIPTORS: 3 open at exit.
+==85170== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85170==    <inherited from parent>
+==85170== 
+==85170== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85170==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85170==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85170==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85170==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85170==    by 0x109A64: execution_operations (exec_init.c:25)
+==85170==    by 0x109570: main (main.c:35)
+==85170== 
+==85170== Open file descriptor 0: /dev/pts/1
+==85170==    <inherited from parent>
+==85170== 
+==85170== 
+==85170== HEAP SUMMARY:
+==85170==     in use at exit: 208,828 bytes in 410 blocks
+==85170==   total heap usage: 8,085 allocs, 7,675 frees, 682,806 bytes allocated
+==85170== 
+==85170== 53 bytes in 25 blocks are indirectly lost in loss record 17 of 70
+==85170==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85170==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85170==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85170==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85170==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85170==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85170==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85170==    by 0x109A64: execution_operations (exec_init.c:25)
+==85170==    by 0x109570: main (main.c:35)
+==85170== 
+==85170== 53 bytes in 25 blocks are indirectly lost in loss record 18 of 70
+==85170==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85170==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85170==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85170==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85170==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85170==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85170==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85170==    by 0x109A64: execution_operations (exec_init.c:25)
+==85170==    by 0x109570: main (main.c:35)
+==85170== 
+==85170== 400 bytes in 25 blocks are indirectly lost in loss record 29 of 70
+==85170==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85170==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85170==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85170==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85170==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85170==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85170==    by 0x109A64: execution_operations (exec_init.c:25)
+==85170==    by 0x109570: main (main.c:35)
+==85170== 
+==85170== 1,706 (1,200 direct, 506 indirect) bytes in 25 blocks are definitely lost in loss record 43 of 70
+==85170==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85170==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85170==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85170==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85170==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85170==    by 0x109A64: execution_operations (exec_init.c:25)
+==85170==    by 0x109570: main (main.c:35)
+==85170== 
+==85170== LEAK SUMMARY:
+==85170==    definitely lost: 1,200 bytes in 25 blocks
+==85170==    indirectly lost: 506 bytes in 75 blocks
+==85170==      possibly lost: 0 bytes in 0 blocks
+==85170==    still reachable: 0 bytes in 0 blocks
+==85170==         suppressed: 207,122 bytes in 310 blocks
+==85170== 
+==85170== For lists of detected and suppressed errors, rerun with: -s
+==85170== ERROR SUMMARY: 26 errors from 2 contexts (suppressed: 0 from 0)
+==85176== 
+==85176== FILE DESCRIPTORS: 3 open at exit.
+==85176== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85176==    <inherited from parent>
+==85176== 
+==85176== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85176==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85176==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85176==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85176==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85176==    by 0x109A64: execution_operations (exec_init.c:25)
+==85176==    by 0x109570: main (main.c:35)
+==85176== 
+==85176== Open file descriptor 0: /dev/pts/1
+==85176==    <inherited from parent>
+==85176== 
+==85176== 
+==85176== HEAP SUMMARY:
+==85176==     in use at exit: 208,969 bytes in 417 blocks
+==85176==   total heap usage: 8,285 allocs, 7,868 frees, 684,072 bytes allocated
+==85176== 
+==85176== 55 bytes in 26 blocks are indirectly lost in loss record 17 of 70
+==85176==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85176==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85176==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85176==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85176==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85176==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85176==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85176==    by 0x109A64: execution_operations (exec_init.c:25)
+==85176==    by 0x109570: main (main.c:35)
+==85176== 
+==85176== 55 bytes in 26 blocks are indirectly lost in loss record 18 of 70
+==85176==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85176==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85176==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85176==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85176==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85176==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85176==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85176==    by 0x109A64: execution_operations (exec_init.c:25)
+==85176==    by 0x109570: main (main.c:35)
+==85176== 
+==85176== 416 bytes in 26 blocks are indirectly lost in loss record 29 of 70
+==85176==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85176==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85176==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85176==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85176==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85176==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85176==    by 0x109A64: execution_operations (exec_init.c:25)
+==85176==    by 0x109570: main (main.c:35)
+==85176== 
+==85176== 1,774 (1,248 direct, 526 indirect) bytes in 26 blocks are definitely lost in loss record 43 of 70
+==85176==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85176==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85176==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85176==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85176==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85176==    by 0x109A64: execution_operations (exec_init.c:25)
+==85176==    by 0x109570: main (main.c:35)
+==85176== 
+==85176== LEAK SUMMARY:
+==85176==    definitely lost: 1,248 bytes in 26 blocks
+==85176==    indirectly lost: 526 bytes in 78 blocks
+==85176==      possibly lost: 0 bytes in 0 blocks
+==85176==    still reachable: 0 bytes in 0 blocks
+==85176==         suppressed: 207,195 bytes in 313 blocks
+==85176== 
+==85176== For lists of detected and suppressed errors, rerun with: -s
+==85176== ERROR SUMMARY: 27 errors from 2 contexts (suppressed: 0 from 0)
+minishell: hi: No such file or directory
+==85306== 
+==85306== FILE DESCRIPTORS: 3 open at exit.
+==85306== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85306==    <inherited from parent>
+==85306== 
+==85306== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85306==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85306==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85306==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85306==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85306==    by 0x109A64: execution_operations (exec_init.c:25)
+==85306==    by 0x109570: main (main.c:35)
+==85306== 
+==85306== Open file descriptor 0: /dev/pts/1
+==85306==    <inherited from parent>
+==85306== 
+==85306== 
+==85306== HEAP SUMMARY:
+==85306==     in use at exit: 209,175 bytes in 428 blocks
+==85306==   total heap usage: 8,549 allocs, 8,121 frees, 686,432 bytes allocated
+==85306== 
+==85306== 62 bytes in 28 blocks are indirectly lost in loss record 17 of 70
+==85306==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85306==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85306==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85306==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85306==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85306==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85306==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85306==    by 0x109A64: execution_operations (exec_init.c:25)
+==85306==    by 0x109570: main (main.c:35)
+==85306== 
+==85306== 62 bytes in 28 blocks are indirectly lost in loss record 18 of 70
+==85306==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85306==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85306==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85306==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85306==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85306==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85306==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85306==    by 0x109A64: execution_operations (exec_init.c:25)
+==85306==    by 0x109570: main (main.c:35)
+==85306== 
+==85306== 448 bytes in 28 blocks are indirectly lost in loss record 29 of 70
+==85306==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85306==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85306==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85306==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85306==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85306==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85306==    by 0x109A64: execution_operations (exec_init.c:25)
+==85306==    by 0x109570: main (main.c:35)
+==85306== 
+==85306== 1,916 (1,344 direct, 572 indirect) bytes in 28 blocks are definitely lost in loss record 43 of 70
+==85306==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85306==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85306==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85306==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85306==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85306==    by 0x109A64: execution_operations (exec_init.c:25)
+==85306==    by 0x109570: main (main.c:35)
+==85306== 
+==85306== LEAK SUMMARY:
+==85306==    definitely lost: 1,344 bytes in 28 blocks
+==85306==    indirectly lost: 572 bytes in 84 blocks
+==85306==      possibly lost: 0 bytes in 0 blocks
+==85306==    still reachable: 0 bytes in 0 blocks
+==85306==         suppressed: 207,259 bytes in 316 blocks
+==85306== 
+==85306== For lists of detected and suppressed errors, rerun with: -s
+==85306== ERROR SUMMARY: 29 errors from 2 contexts (suppressed: 0 from 0)
+==85387== 
+==85387== FILE DESCRIPTORS: 3 open at exit.
+==85387== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==85387==    <inherited from parent>
+==85387== 
+==85387== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==85387==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==85387==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==85387==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==85387==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==85387==    by 0x109A64: execution_operations (exec_init.c:25)
+==85387==    by 0x109570: main (main.c:35)
+==85387== 
+==85387== Open file descriptor 0: /dev/pts/1
+==85387==    <inherited from parent>
+==85387== 
+==85387== 
+==85387== HEAP SUMMARY:
+==85387==     in use at exit: 209,316 bytes in 435 blocks
+==85387==   total heap usage: 8,714 allocs, 8,279 frees, 687,015 bytes allocated
+==85387== 
+==85387== 64 bytes in 29 blocks are indirectly lost in loss record 17 of 70
+==85387==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85387==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85387==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==85387==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85387==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85387==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85387==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85387==    by 0x109A64: execution_operations (exec_init.c:25)
+==85387==    by 0x109570: main (main.c:35)
+==85387== 
+==85387== 64 bytes in 29 blocks are indirectly lost in loss record 18 of 70
+==85387==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85387==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==85387==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==85387==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85387==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85387==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85387==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85387==    by 0x109A64: execution_operations (exec_init.c:25)
+==85387==    by 0x109570: main (main.c:35)
+==85387== 
+==85387== 464 bytes in 29 blocks are indirectly lost in loss record 29 of 70
+==85387==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85387==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==85387==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==85387==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85387==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85387==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85387==    by 0x109A64: execution_operations (exec_init.c:25)
+==85387==    by 0x109570: main (main.c:35)
+==85387== 
+==85387== 1,984 (1,392 direct, 592 indirect) bytes in 29 blocks are definitely lost in loss record 43 of 70
+==85387==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==85387==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==85387==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==85387==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==85387==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==85387==    by 0x109A64: execution_operations (exec_init.c:25)
+==85387==    by 0x109570: main (main.c:35)
+==85387== 
+==85387== LEAK SUMMARY:
+==85387==    definitely lost: 1,392 bytes in 29 blocks
+==85387==    indirectly lost: 592 bytes in 87 blocks
+==85387==      possibly lost: 0 bytes in 0 blocks
+==85387==    still reachable: 0 bytes in 0 blocks
+==85387==         suppressed: 207,332 bytes in 319 blocks
+==85387== 
+==85387== For lists of detected and suppressed errors, rerun with: -s
+==85387== ERROR SUMMARY: 30 errors from 2 contexts (suppressed: 0 from 0)
+==86372== 
+==86372== FILE DESCRIPTORS: 3 open at exit.
+==86372== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==86372==    <inherited from parent>
+==86372== 
+==86372== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==86372==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==86372==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==86372==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==86372==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==86372==    by 0x109A64: execution_operations (exec_init.c:25)
+==86372==    by 0x109570: main (main.c:35)
+==86372== 
+==86372== Open file descriptor 0: /dev/pts/1
+==86372==    <inherited from parent>
+==86372== 
+==86372== 
+==86372== HEAP SUMMARY:
+==86372==     in use at exit: 209,547 bytes in 448 blocks
+==86372==   total heap usage: 9,090 allocs, 8,642 frees, 689,650 bytes allocated
+==86372== 
+==86372== 66 bytes in 30 blocks are indirectly lost in loss record 18 of 70
+==86372==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86372==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==86372==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==86372==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86372==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86372==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86372==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86372==    by 0x109A64: execution_operations (exec_init.c:25)
+==86372==    by 0x109570: main (main.c:35)
+==86372== 
+==86372== 66 bytes in 30 blocks are indirectly lost in loss record 19 of 70
+==86372==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86372==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==86372==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==86372==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86372==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86372==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86372==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86372==    by 0x109A64: execution_operations (exec_init.c:25)
+==86372==    by 0x109570: main (main.c:35)
+==86372== 
+==86372== 480 bytes in 30 blocks are indirectly lost in loss record 29 of 70
+==86372==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86372==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==86372==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86372==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86372==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86372==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86372==    by 0x109A64: execution_operations (exec_init.c:25)
+==86372==    by 0x109570: main (main.c:35)
+==86372== 
+==86372== 2,052 (1,440 direct, 612 indirect) bytes in 30 blocks are definitely lost in loss record 44 of 70
+==86372==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86372==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==86372==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86372==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86372==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86372==    by 0x109A64: execution_operations (exec_init.c:25)
+==86372==    by 0x109570: main (main.c:35)
+==86372== 
+==86372== LEAK SUMMARY:
+==86372==    definitely lost: 1,440 bytes in 30 blocks
+==86372==    indirectly lost: 612 bytes in 90 blocks
+==86372==      possibly lost: 0 bytes in 0 blocks
+==86372==    still reachable: 0 bytes in 0 blocks
+==86372==         suppressed: 207,495 bytes in 328 blocks
+==86372== 
+==86372== For lists of detected and suppressed errors, rerun with: -s
+==86372== ERROR SUMMARY: 31 errors from 2 contexts (suppressed: 0 from 0)
+==86395== 
+==86395== FILE DESCRIPTORS: 3 open at exit.
+==86395== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==86395==    <inherited from parent>
+==86395== 
+==86395== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==86395==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==86395==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==86395==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==86395==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==86395==    by 0x109A64: execution_operations (exec_init.c:25)
+==86395==    by 0x109570: main (main.c:35)
+==86395== 
+==86395== Open file descriptor 0: /dev/pts/1
+==86395==    <inherited from parent>
+==86395== 
+==86395== 
+==86395== HEAP SUMMARY:
+==86395==     in use at exit: 209,705 bytes in 455 blocks
+==86395==   total heap usage: 9,368 allocs, 8,913 frees, 691,323 bytes allocated
+==86395== 
+==86395== 68 bytes in 31 blocks are indirectly lost in loss record 18 of 70
+==86395==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86395==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==86395==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==86395==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86395==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86395==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86395==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86395==    by 0x109A64: execution_operations (exec_init.c:25)
+==86395==    by 0x109570: main (main.c:35)
+==86395== 
+==86395== 68 bytes in 31 blocks are indirectly lost in loss record 19 of 70
+==86395==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86395==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==86395==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==86395==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86395==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86395==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86395==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86395==    by 0x109A64: execution_operations (exec_init.c:25)
+==86395==    by 0x109570: main (main.c:35)
+==86395== 
+==86395== 496 bytes in 31 blocks are indirectly lost in loss record 31 of 70
+==86395==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86395==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==86395==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86395==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86395==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86395==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86395==    by 0x109A64: execution_operations (exec_init.c:25)
+==86395==    by 0x109570: main (main.c:35)
+==86395== 
+==86395== 2,120 (1,488 direct, 632 indirect) bytes in 31 blocks are definitely lost in loss record 44 of 70
+==86395==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86395==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==86395==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86395==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86395==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86395==    by 0x109A64: execution_operations (exec_init.c:25)
+==86395==    by 0x109570: main (main.c:35)
+==86395== 
+==86395== LEAK SUMMARY:
+==86395==    definitely lost: 1,488 bytes in 31 blocks
+==86395==    indirectly lost: 632 bytes in 93 blocks
+==86395==      possibly lost: 0 bytes in 0 blocks
+==86395==    still reachable: 0 bytes in 0 blocks
+==86395==         suppressed: 207,585 bytes in 331 blocks
+==86395== 
+==86395== For lists of detected and suppressed errors, rerun with: -s
+==86395== ERROR SUMMARY: 32 errors from 2 contexts (suppressed: 0 from 0)
+==86417== 
+==86417== FILE DESCRIPTORS: 3 open at exit.
+==86417== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==86417==    <inherited from parent>
+==86417== 
+==86417== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==86417==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==86417==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==86417==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==86417==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==86417==    by 0x109A64: execution_operations (exec_init.c:25)
+==86417==    by 0x109570: main (main.c:35)
+==86417== 
+==86417== Open file descriptor 0: /dev/pts/1
+==86417==    <inherited from parent>
+==86417== 
+==86417== 
+==86417== HEAP SUMMARY:
+==86417==     in use at exit: 209,863 bytes in 462 blocks
+==86417==   total heap usage: 9,646 allocs, 9,184 frees, 692,996 bytes allocated
+==86417== 
+==86417== 70 bytes in 32 blocks are indirectly lost in loss record 18 of 70
+==86417==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86417==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==86417==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==86417==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86417==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86417==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86417==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86417==    by 0x109A64: execution_operations (exec_init.c:25)
+==86417==    by 0x109570: main (main.c:35)
+==86417== 
+==86417== 70 bytes in 32 blocks are indirectly lost in loss record 19 of 70
+==86417==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86417==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==86417==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==86417==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86417==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86417==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86417==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86417==    by 0x109A64: execution_operations (exec_init.c:25)
+==86417==    by 0x109570: main (main.c:35)
+==86417== 
+==86417== 512 bytes in 32 blocks are indirectly lost in loss record 31 of 70
+==86417==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86417==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==86417==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86417==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86417==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86417==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86417==    by 0x109A64: execution_operations (exec_init.c:25)
+==86417==    by 0x109570: main (main.c:35)
+==86417== 
+==86417== 2,188 (1,536 direct, 652 indirect) bytes in 32 blocks are definitely lost in loss record 44 of 70
+==86417==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86417==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==86417==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86417==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86417==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86417==    by 0x109A64: execution_operations (exec_init.c:25)
+==86417==    by 0x109570: main (main.c:35)
+==86417== 
+==86417== LEAK SUMMARY:
+==86417==    definitely lost: 1,536 bytes in 32 blocks
+==86417==    indirectly lost: 652 bytes in 96 blocks
+==86417==      possibly lost: 0 bytes in 0 blocks
+==86417==    still reachable: 0 bytes in 0 blocks
+==86417==         suppressed: 207,675 bytes in 334 blocks
+==86417== 
+==86417== For lists of detected and suppressed errors, rerun with: -s
+==86417== ERROR SUMMARY: 33 errors from 2 contexts (suppressed: 0 from 0)
+==86418== 
+==86418== FILE DESCRIPTORS: 3 open at exit.
+==86418== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==86418==    <inherited from parent>
+==86418== 
+==86418== Open file descriptor 1: /home/salem/coding/projects/last_minishell/minishell_code/trash/f
+==86418==    at 0x49BE8CB: dup2 (syscall-template.S:78)
+==86418==    by 0x10A669: exec_to_output_operations (exec_give_append.c:59)
+==86418==    by 0x10B1BF: piping_and_redirections (multiple_pipes.c:132)
+==86418==    by 0x10AEC8: exec_multiple_pipes (multiple_pipes.c:57)
+==86418==    by 0x109A64: execution_operations (exec_init.c:25)
+==86418==    by 0x109570: main (main.c:35)
+==86418== 
+==86418== Open file descriptor 0: /dev/pts/1
+==86418==    <inherited from parent>
+==86418== 
+==86418== 
+==86418== HEAP SUMMARY:
+==86418==     in use at exit: 210,021 bytes in 469 blocks
+==86418==   total heap usage: 9,924 allocs, 9,455 frees, 694,669 bytes allocated
+==86418== 
+==86418== 72 bytes in 33 blocks are indirectly lost in loss record 18 of 70
+==86418==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86418==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==86418==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==86418==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86418==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86418==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86418==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86418==    by 0x109A64: execution_operations (exec_init.c:25)
+==86418==    by 0x109570: main (main.c:35)
+==86418== 
+==86418== 72 bytes in 33 blocks are indirectly lost in loss record 19 of 70
+==86418==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86418==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==86418==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==86418==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86418==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86418==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86418==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86418==    by 0x109A64: execution_operations (exec_init.c:25)
+==86418==    by 0x109570: main (main.c:35)
+==86418== 
+==86418== 528 bytes in 33 blocks are indirectly lost in loss record 31 of 70
+==86418==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86418==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==86418==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==86418==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86418==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86418==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86418==    by 0x109A64: execution_operations (exec_init.c:25)
+==86418==    by 0x109570: main (main.c:35)
+==86418== 
+==86418== 2,256 (1,584 direct, 672 indirect) bytes in 33 blocks are definitely lost in loss record 45 of 70
+==86418==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86418==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==86418==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==86418==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==86418==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==86418==    by 0x109A64: execution_operations (exec_init.c:25)
+==86418==    by 0x109570: main (main.c:35)
+==86418== 
+==86418== LEAK SUMMARY:
+==86418==    definitely lost: 1,584 bytes in 33 blocks
+==86418==    indirectly lost: 672 bytes in 99 blocks
+==86418==      possibly lost: 0 bytes in 0 blocks
+==86418==    still reachable: 0 bytes in 0 blocks
+==86418==         suppressed: 207,765 bytes in 337 blocks
+==86418== 
+==86418== For lists of detected and suppressed errors, rerun with: -s
+==86418== ERROR SUMMARY: 34 errors from 2 contexts (suppressed: 0 from 0)
+==81407== 
+==81407== FILE DESCRIPTORS: 3 open at exit.
+==81407== Open file descriptor 2: /home/salem/coding/projects/last_minishell/minishell_code/mem_analysis
+==81407==    <inherited from parent>
+==81407== 
+==81407== Open file descriptor 1: /dev/pts/1
+==81407==    <inherited from parent>
+==81407== 
+==81407== Open file descriptor 0: /dev/pts/1
+==81407==    <inherited from parent>
+==81407== 
+==81407== 
+==81407== HEAP SUMMARY:
+==81407==     in use at exit: 209,996 bytes in 467 blocks
+==81407==   total heap usage: 9,607 allocs, 9,140 frees, 326,821 bytes allocated
+==81407== 
+==81407== 72 bytes in 33 blocks are indirectly lost in loss record 16 of 68
+==81407==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==81407==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==81407==    by 0x10CBE2: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:158)
+==81407==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==81407==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==81407==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==81407==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==81407==    by 0x109A64: execution_operations (exec_init.c:25)
+==81407==    by 0x109570: main (main.c:35)
+==81407== 
+==81407== 72 bytes in 33 blocks are indirectly lost in loss record 17 of 68
+==81407==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==81407==    by 0x1117D7: ft_strdup (ft_strdup.c:25)
+==81407==    by 0x10CC42: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:160)
+==81407==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==81407==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==81407==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==81407==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==81407==    by 0x109A64: execution_operations (exec_init.c:25)
+==81407==    by 0x109570: main (main.c:35)
+==81407== 
+==81407== 528 bytes in 33 blocks are indirectly lost in loss record 29 of 68
+==81407==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==81407==    by 0x10CB7F: fill_redirec_outliar_cmd_hard_coded (outliar_redirect_parse.c:155)
+==81407==    by 0x10C964: fill_outliar_redirected_cmd (outliar_redirect_parse.c:106)
+==81407==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==81407==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==81407==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==81407==    by 0x109A64: execution_operations (exec_init.c:25)
+==81407==    by 0x109570: main (main.c:35)
+==81407== 
+==81407== 2,256 (1,584 direct, 672 indirect) bytes in 33 blocks are definitely lost in loss record 43 of 68
+==81407==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==81407==    by 0x10C90E: fill_outliar_redirected_cmd (outliar_redirect_parse.c:102)
+==81407==    by 0x10C2DE: fill_cmd (parsing_piped_cmd.c:111)
+==81407==    by 0x10BF96: parsing_piped_cmd (parsing_piped_cmd.c:46)
+==81407==    by 0x10ADB5: exec_multiple_pipes (multiple_pipes.c:28)
+==81407==    by 0x109A64: execution_operations (exec_init.c:25)
+==81407==    by 0x109570: main (main.c:35)
+==81407== 
+==81407== LEAK SUMMARY:
+==81407==    definitely lost: 1,584 bytes in 33 blocks
+==81407==    indirectly lost: 672 bytes in 99 blocks
+==81407==      possibly lost: 0 bytes in 0 blocks
+==81407==    still reachable: 0 bytes in 0 blocks
+==81407==         suppressed: 207,740 bytes in 335 blocks
+==81407== 
+==81407== For lists of detected and suppressed errors, rerun with: -s
+==81407== ERROR SUMMARY: 34 errors from 2 contexts (suppressed: 0 from 0)

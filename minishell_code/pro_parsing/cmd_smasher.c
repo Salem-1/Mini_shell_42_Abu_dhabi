@@ -16,6 +16,7 @@
 	will fill the first flag with parser error code, 
 	check if there is an error if the flag value less than 30
 */
+
 t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 {
 	t_smash_kit	s;
@@ -34,11 +35,10 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 			double_qoute_smash(&s, cmd, head, exit_status);
 		else
 			spaces_smash(&s, cmd,  head, exit_status);
-		if (s.parse_error_code != 0)
-			break ;
+		// if (s.parse_error_code != 0)
+		// 	break ;
 		s.i++;
 	}
-	// free(s);
 	if (*head)
 	{
 		if (s.parse_error_code != 0)

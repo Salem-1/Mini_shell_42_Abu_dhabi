@@ -37,10 +37,10 @@ forens_printf("Inside exec_multiple_pipes \n");
 	i = 0;
 	pid = 0;
 visualized_piped_cmd(t);
-	if_there_is_heredoc_fill_it(t, env);
 	//forens_printf("opening %d pipes\n", t->npipes);
 	fd = open_pipes(t->npipes, fd);
 	t->fd = fd;
+	if_there_is_heredoc_fill_it(t, env);
 	//remeber to check for the null cmd
 	while (i < t->npipes)
 	{
@@ -68,7 +68,9 @@ visualized_piped_cmd(t);
 	return ;
 }
 
-//do the staff of input after out put and vise versa here
+//do the staff of input after out put and vise versa here 
+//I believe this function can do the job of execute two consective 
+//redirections
 int	update_i_in_case_of_redirection(t_pipes *t, int *i)
 {
 	char redir;
@@ -77,7 +79,7 @@ int	update_i_in_case_of_redirection(t_pipes *t, int *i)
 	if (redir == 'g' || redir == 'a' || redir == 'h' || redir == 't')
 	{
 		if (*i == 0)
-			return(0);
+			return (0);
 		*i = *i + 1;
 		return (1);
 	}
@@ -131,16 +133,8 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 		|| t->single_cmd[i]->after_sep == 'a')
 		exec_to_output_operations(t, env,fd, i, 0);
 	else if (t->single_cmd[i]->after_sep == 'h')
-	{	
-		write(fd[i][1], t->single_cmd[i + 1]->args[0],
-			ft_strlen(t->single_cmd[i + 1]->args[0]));
-		dup2(fd[i][0], STDIN_FILENO);
-		close_files(fd, t->npipes);
-		free(t->single_cmd[i + 1]->args[0]);
-		// if (case_out)
-		// 	return (0);
-		//then add this case to the heredoc execution 
-		just_execve(t->single_cmd[i], env, t);
+	{
+		exec_heredoc(t,  i, env, 0);
 	}
 	else
 		execute_in_pipe(t, env, fd, i);

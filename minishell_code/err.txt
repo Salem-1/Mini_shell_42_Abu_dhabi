@@ -2,10 +2,109 @@ case :
 -------
 Mem clean
 
-5)
+3)
+minishell $> ls<<l|<<k pwd
+ echo hi>kftygh|>>lpwd   
+//not syntax error
+echo hi > f>|ls  
+
+2)
 //this should give syntax, this is a valid cse , should be fixed automatically after fixing quotes issue
 minishell $> echo f'"D'D''D'DD"D'D'D'D'D"D'D'D'''''"gthryug,khg'D"'lD"D'D'D'D""'''''"'"td
 f"DDDDD"DDDDD"DDD"gthryug,khgD"lD"DDDD""""td
+
+
+case 1:  (Bilal)
+-------
+ctr c twice shouldn't exit 
+cat <<hello | cat << green  should do the heredoc before execution
+cat << hello    then CTR C doesn't execute
+cat << hello    then CTR D execute
+cat + ctr D or + ctr cc
+
+//revise the heredoc for the segfault with the CTR + D
+minishell $> cat << $PWD
+heredoc> PWD
+heredoc> $PWD
+heredoc> ^C
+heredoc> ^C
+heredoc> ^C
+heredoc> ^C
+heredoc> [1]    1065 segmentation fault  ./minishell
+
+this should be the right exit codes
+bash-3.2$ wc
+^C
+bash-3.2$ echo $?
+130
+bash-3.2$ wc
+^\Quit: 3
+bash-3.2$ echo $?
+131
+
+//CTRL C should change the exit code to 1
+minishell $> ^C
+minishell $> echo $?
+0
+
+< file cat 
+leaks
+
+norminettes:
+Delete the forenscis, and add the flags to the printf
+(solved)
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+-------------------------------
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+cat << h > file
+add the case condition to the heredoc execution
+
+
+
+//fix the segfault with multiple heredocs
+minishell $> cat << a << b << c
+minishell: syntax error near unexpected token 
+[1]    307 segmentation fault  ./minishell
+
+3)
+//should expand the $PWD
+minishell $> cat << $PWD
+heredoc> PWD
+heredoc> $PWD
+
+6)echo hi > f hello hello hello hello 
+double free
+
+> f echo hi 
+leaks 
+
+// the proplem is in the t->single_cmd[0]->cmd is filled with trash not the args[0]
+6) > echo hi
+segfault and double free
+
+cat < file    is Broken :( :) :)
+< file 
+> file 
+<< file 
+>> file
+all segfualts
+
+
+
+ minishell $> exit << l
+heredoc> trgdh
+heredoc> ersrd\
+heredoc> l
 
 
 4)
@@ -28,88 +127,6 @@ hi
 minishell(71236,0x104b9edc0) malloc: *** error for object 0x7fa24f8040a0: pointer being freed was not allocated
 minishell(71236,0x104b9edc0) malloc: *** set a breakpoint in malloc_error_break to debug
 //this gives synta erro while it shouldn't, redirectioninto pipe should
-minishell $> ls<<l|<<k pwd
- echo hi>kftygh|>>lpwd   
-
-//fix the segfault with multiple heredocs
-minishell $> cat << a << b << c
-minishell: syntax error near unexpected token 
-[1]    307 segmentation fault  ./minishell
-
- minishell $> exit << l
-heredoc> trgdh
-heredoc> ersrd\
-heredoc> l
-
-//revise the heredoc for the segfault
-minishell $> cat << $PWD
-heredoc> PWD
-heredoc> $PWD
-heredoc> ^C
-heredoc> ^C
-heredoc> ^C
-heredoc> ^C
-heredoc> [1]    1065 segmentation fault  ./minishell
-
-3)
-//should expand the $PWD
-minishell $> cat << $PWD
-heredoc> PWD
-heredoc> $PWD
-
-cat << h > file
-add the case condition to the heredoc execution
-
-2)
-//the error code should be permission denied, and mac report should be  permission denied also, (important)
-//and the exit code is 126 (edge case low prioritt)
-minishell $> macreport 
-minishell: macreport: command not found
-
-case 1:  (Bilal)
--------
-ctr c twice shouldn't exit 
-cat <<hello | cat << green  should do the heredoc before execution
-cat << hello    then CTR C doesn't execute
-cat << hello    then CTR D execute
-cat + ctr D or + ctr cc
-
-this should be the right exit codes
-bash-3.2$ wc
-^C
-bash-3.2$ echo $?
-130
-bash-3.2$ wc
-^\Quit: 3
-bash-3.2$ echo $?
-131
-
-//CTRL C should change the exit code to 1
-minishell $> ^C
-minishell $> echo $?
-0
-
-norminettes:
-Delete the forenscis, and add the flags to the printf
-(solved)
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
--------------------------------
-----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
-cat < file    is Broken :( :) :)
-< file 
-> file 
-<< file 
->> file
-all segfualts
 
 7)
 will not handle this behavior/ or will handle it in the last iteration of 
@@ -117,6 +134,11 @@ the project after norminette inshalla as perfection stage
 cat < 1 2 3 4 
 < 1 cat 
 
+2)
+//the error code should be permission denied, and mac report should be  permission denied also, (important)
+//and the exit code is 126 (edge case low prioritt)
+minishell $> macreport 
+minishell: macreport: command not found
 
 
 //I believ no issue here by try it again later in your minishell and bash

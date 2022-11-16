@@ -61,21 +61,26 @@ void	lets_heredoc(t_pipes *t, t_list *env, int i)
 	filled_heredoc = NULL;
 	len = 0;
 	delim = t->single_cmd[i]->args[0];
-	line = readline("heredoc> ");
-	len = length_of_larger_string(line, delim);
-	while (ft_strncmp(line, delim, len) != 0)
+	line = NULL;
+	while (1)
 	{
+		line = readline("heredoc> ");
 		init_s_for_heredoc(&s, line, env);
-		line = expand_heredoc_var(&s, line, 0);		
+		line = expand_heredoc_var(&s, line, 0);
+		len = length_of_larger_string(line, delim);
+		if(!ft_strncmp(line, delim, len))
+			break ;		
 		filled_heredoc = ft_expand_strjoin(filled_heredoc, line);
 		filled_heredoc = ft_expand_strjoin(filled_heredoc, ft_strdup("\n"));
-		line = readline("heredoc> ");
-		len = length_of_larger_string(line, delim);
+		// err_printf("heredoc line %s\n", filled_heredoc);
 	}
 	free(line);
-	free(delim);
-	t->single_cmd[i]->args[0] = filled_heredoc;
-	//forens_printf("heredoc filled with:\n%s\n", t->single_cmd[i]->args[0]);
+	// err_printf("inside heredoc, writing in cmd = %d\n", i);
+	write(t->fd[i - 1][1], filled_heredoc,
+		ft_strlen(filled_heredoc));
+	free(filled_heredoc);
+	// err_printf("heredoc filled with:\n%s, t->args[1] = %s\n",
+	//  t->single_cmd[i]->args[0], t->single_cmd[i]->args[1]);
 }
 
 //case : cat << 1 << 2 << 3
@@ -92,11 +97,35 @@ int	skip_multiple_heredocs(t_pipes *t, int i)
 	if (i != original_i)
 	{
 		// return (i);
-		free(t->single_cmd[i]);
-		t->single_cmd[i] = t->single_cmd[original_i];
+		// free_cmd(t->single_cmd[i]);
+		//need to copy the cmd here 
+		// t->single_cmd[i] = t->single_cmd[original_i];
+		cpy_cmd(t->single_cmd[original_i], t->single_cmd[i]);
 	}
 // //forens_printf("at the end t->single_cmd[i] = %s i = %d, original_i = %d\n",t->single_cmd[i]->cmd, i, original_i);
 	return (i);
+}
+
+void	cpy_cmd(struct t_parsed_command *src, struct t_parsed_command *dst)
+{
+	int	i;
+
+	i = 0;
+	if (src->cmd)
+		dst->cmd = src->cmd;
+	free_split((void **)dst->args);
+	while (src->args[i])
+		i++;
+	dst->args = ft_calloc(sizeof(char *), i + 1);
+	i = 0;
+	while (src->args[i])
+	{
+		dst->args[i] = ft_strdup(src->args[i]);
+		i++;
+	}
+	dst->before_sep = src->before_sep;
+	dst->after_sep = src->after_sep;
+	dst->args[i] = NULL;
 }
 
 void	init_s_for_heredoc(t_smash_kit *s, char *filled_heredoc, t_list *env)
@@ -109,12 +138,14 @@ void	init_s_for_heredoc(t_smash_kit *s, char *filled_heredoc, t_list *env)
 char	*expand_heredoc_var(t_smash_kit *s, char *cmd, int * exit_status)
 {
 	t_dollar_expansion_kit	e;
+	char 					*free_sub_smashed;
 //forens_printf("heeredoc analyzing expansion operations:\n");
 //forens_printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	e.tmp = NULL;
 	e.end = 0;
 	e.new_arg = NULL;
 	e.smashed_arg = ft_substr(cmd, s->start, s->end - s->start + 1);
+	free_sub_smashed = e.smashed_arg;
 	//forens_printf("heredoc row = %s\n", e.smashed_arg);
 	e.start = ft_strnchr(e.smashed_arg, '$');
 	//forens_printf("heredoc START = %d\n", e.start);
@@ -122,7 +153,6 @@ char	*expand_heredoc_var(t_smash_kit *s, char *cmd, int * exit_status)
 	{
 //forens_printf("heredocanalyzing end .................\n");
 //forens_printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
-
 		return (e.smashed_arg);
 	}
 	e.end = get_end_of_var(e.smashed_arg + e.start + 1);
@@ -131,6 +161,8 @@ char	*expand_heredoc_var(t_smash_kit *s, char *cmd, int * exit_status)
 		e.start = dollar_expan_operation_loop(&e, s, exit_status);
 //forens_printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
 //forens_printf("heredoc analyzing end .................\n");
+	if (free_sub_smashed)
+		free(free_sub_smashed);
 	return (e.new_arg);
 }
 // void	refractor_heredoced_cmd(t_pipes *t, t_list *env)

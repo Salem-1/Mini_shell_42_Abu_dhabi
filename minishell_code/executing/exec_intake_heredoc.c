@@ -41,12 +41,30 @@ int	exec_to_take_operations(t_pipes *t, t_list *env, int **fd, int i, int case_o
 	close(local_fd);
 	close_files(fd, t->npipes);
 	if ((t->single_cmd[local_i]->after_sep == 'g'
-		|| t->single_cmd[local_i]->after_sep == 'a'))
+			|| t->single_cmd[local_i]->after_sep == 'a'))
 	{
 		exec_to_output_operations(t, env, t->fd,  local_i, 1);
 	}
-	if (case_out == 1)
+	if (case_out)
 		return (0);
 	just_execve(t->single_cmd[i], env, t);
 	return (0);
+}
+
+void	exec_heredoc(t_pipes *t,  int i, t_list *env, int case_out)
+{
+	int	local_i;
+
+	local_i = i;
+	while (t->single_cmd[local_i]->after_sep == 'h')
+		local_i++;
+	// local_i--;
+	dup2(t->fd[i][0], STDIN_FILENO);
+	close_files(t->fd, t->npipes);
+	if ((t->single_cmd[local_i]->after_sep == 'g'
+			|| t->single_cmd[local_i]->after_sep == 'a'))
+		exec_to_output_operations(t, env, t->fd,  local_i, 1);
+	if (case_out)
+		return ;
+	just_execve(t->single_cmd[i], env, t);
 }

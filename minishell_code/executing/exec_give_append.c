@@ -65,15 +65,21 @@ int	exec_to_output_operations(t_pipes *t, t_list *env, int **fd, int i, int case
 	}
 	close_files(fd, t->npipes);
 	if (t->single_cmd[local_i]->after_sep == 't')
-		// || t->single_cmd[local_fd]->after_sep == 'h')
 	{
 		exec_to_take_operations(t, env, t->fd, local_fd, 1);
 	}
+	else if (t->single_cmd[local_i]->after_sep == 'h')
+	{
+		exec_heredoc(t, local_fd, env, 1);
+	}
 	if (case_in)
+	{
 		return (0);
+	}
 	else
 	{
 		just_execve(t->single_cmd[i], env, t);
 	}
+	err_printf("nothing and returning 0\n");
 	return (0);
 }

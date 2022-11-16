@@ -28,6 +28,7 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	int					i;
 	t_list				*smashed_head;
 
+
 	i = 0;
 	t = NULL;
 	n_cmds = 0;
@@ -94,15 +95,22 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 	int		local_i;
 
 	// n_args = init_fill_cmd(&local_i, &i, t, smashed_cmd);
+forens_printf("#########################\ninside fill_cmd\n");
 	init_fill_cmd(&local_i, &i, t, smashed_cmd);
 	while (smashed_cmd)
 	{
 		if (smashed_cmd->flag == 'c')
+		{
+forens_printf("fill command type smashed_arg, i= %d, local_i = %d, smashed_cont = %s\n", i, local_i, smashed_cmd->content);
 			t->single_cmd[i]->args[local_i++] = ft_strdup((char *)smashed_cmd->content);
+		}
 		else
 		{
 			if (smashed_cmd->flag == 'g' || smashed_cmd->flag == 'a')
+			{
+forens_printf("Have give ot append,i = %dm local i=%d, smashed = %s \n", i, local_i, smashed_cmd->content);
 				fill_outliar_redirected_cmd(smashed_cmd, t, &i, &local_i);
+			}
 			else if (smashed_cmd->flag == 't')
 				fill_outliar_input(smashed_cmd, t, &i, &local_i);
 			else if (smashed_cmd->flag == 'h')

@@ -99,17 +99,18 @@ void	fill_outliar_redirected_cmd(
 	after_red = count_outliar_redire(smashed_cmd, -1);
 	if (after_red <= 0)
 		return ;
-	t->single_cmd[*i + 1] = malloc(sizeof(t_parsed_command) * 1);
-	if (!t->single_cmd[*i + 1])
-		return ;
-	fill_redirec_outliar_cmd_hard_coded(t, i, smashed_cmd);
+	// t->single_cmd[*i + 1] = malloc(sizeof(t_parsed_command) * 1);
+	// if (!t->single_cmd[*i + 1])
+	// 	return ;
+forens_printf("inside fill outliar redirect cmd, after_redirec = %d\n", after_red);
+	// fill_redirec_outliar_cmd_hard_coded(t, i, smashed_cmd);
 	smashed_cmd = smashed_cmd->next;
 	while (j < after_red)
 	{
 		smashed_cmd = smashed_cmd->next;
 		if (!smashed_cmd || smashed_cmd->flag != 'c')
 			break ;
-		t->single_cmd[*i]->args[(*local_i)++] = (char *)smashed_cmd->content;
+		t->single_cmd[*i]->args[(*local_i)++] = ft_strdup((char *)smashed_cmd->content);
 		j++;
 	}
 }
@@ -142,18 +143,22 @@ forens_printf("entering out count_outliar_redire i = %d, ? i == -1 ok:error\n", 
 	return (0);
 }
 
+
+//what the hell this function do
+
 void	fill_redirec_outliar_cmd_hard_coded(
 	t_pipes *t, int *i, t_list *smashed_cmd)
 {
+forens_printf("inside fill redirec hard coded\n");
 	t->single_cmd[*i + 1]->before_sep = smashed_cmd->flag;
 	if (t->single_cmd[*i + 1]->args)
 		free(t->single_cmd[*i + 1]->args);
-	t->single_cmd[*i + 1]->args = malloc(sizeof(char *) * 2);
+	t->single_cmd[*i + 1]->args = calloc(sizeof(char *), 2);
 	if (!t->single_cmd[*i + 1]->args)
 		return ;
-	t->single_cmd[*i + 1]->args[0] = (char *)smashed_cmd->next->content;
+	t->single_cmd[*i + 1]->args[0] = ft_strdup((char *)smashed_cmd->next->content);
 	t->single_cmd[*i + 1]->args[1] = NULL;
-	t->single_cmd[*i + 1]->cmd = (char *)smashed_cmd->next->content;
+	t->single_cmd[*i + 1]->cmd = ft_strdup((char *)smashed_cmd->next->content);
 }
 
 //t->npipes--

@@ -30,6 +30,15 @@
 	1  parsing error
 	2  syntax error
 */
+
+typedef struct t_scan_parse_error
+{
+	t_list	*tmp;
+	char	current_flag;
+	char	next_flag;
+	char	next_next_flag;
+	int		i;
+} t_scan_parse_error;
 typedef struct t_parsed_command
 {
 	char	before_sep;
@@ -77,6 +86,9 @@ typedef struct dollar_expansion_kit
 }	t_dollar_expansion_kit;
 
 //Parsing
+int					is_parse_error_inside_smached_cmd(t_scan_parse_error *e);
+void				init_e_args(t_scan_parse_error *e, t_list *smashed_cmd);
+void				update_e_args(t_scan_parse_error *e);
 t_parsed_command	*init_one_cmd(t_parsed_command *one_cmd);
 t_parsed_command	*parse_one_cmd(char *command);
 t_list				*parse_env(char **envp, t_list *head);
@@ -198,6 +210,9 @@ char				*expand_heredoc_var(
 						t_smash_kit *s, char *cmd, int * exit_status);
 void				init_s_for_heredoc(
 						t_smash_kit *s, char *filled_heredoc, t_list *env);
+void				cpy_cmd(struct t_parsed_command *src,
+						struct t_parsed_command *dst);
+void				exec_heredoc(t_pipes *t,  int i, t_list *env, int case_out);
 //Executables
 int					is_in_our_executable(struct t_parsed_command *t
 						, t_list *env, struct t_pipes *all_cmds);
