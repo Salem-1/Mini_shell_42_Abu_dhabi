@@ -37,6 +37,7 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 		return (NULL);
 	}
 	smashed_head = smashed_cmd;
+	
 	t = init_t_struct(t, smashed_cmd, env);
 	if (t->parse_error != 0)
 	{

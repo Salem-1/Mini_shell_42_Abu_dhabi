@@ -1,11 +1,9 @@
 case :
 -------
 Mem clean
+e"c"h'o'  hi
+should be recieved as echo hi
 
-2)
-//this should give syntax, this is a valid cse , should be fixed automatically after fixing quotes issue
-minishell $> echo f'"D'D''D'DD"D'D'D'D'D"D'D'D'''''"gthryug,khg'D"'lD"D'D'D'D""'''''"'"td
-f"DDDDD"DDDDD"DDD"gthryug,khgD"lD"DDDD""""td
 
 
 case 1:  (Bilal)
@@ -70,6 +68,12 @@ echo hi > f>|ls
 -------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+2)
+//this should give syntax, this is a valid cse , should be fixed automatically after fixing quotes issue
+minishell $> echo f'"D'D''D'DD"D'D'D'D'D"D'D'D'''''"gthryug,khg'D"'lD"D'D'D'D""'''''"'"td
+f"DDDDD"DDDDD"DDD"gthryug,khgD"lD"DDDD""""td
+
+
 echo hi >| f  ==  echo hi > f
 cat <> file == cat < file
 

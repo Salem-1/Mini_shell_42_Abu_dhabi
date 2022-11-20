@@ -17,36 +17,34 @@ void	throw_parser_error(t_pipes *t, int *exit_status)
 {
 	if (!t)
 	{
-		err_printf("minishell: parser error \n");
-		*exit_status = 258;
+		throw_error_exit_code(
+			"minishell: parser error \n", exit_status, 258);
 		return ;
 	}
 	if (t->parse_error == 2)
-	{
-		err_printf("minishell: syntax error near unexpected token \n");
-		*exit_status = 258;
-	}
+		throw_error_exit_code(
+			"minishell: syntax error near unexpected token\n", exit_status, 258);
 	else if (t->parse_error == 1)
-	{
-		err_printf("minishell: parser error \n");
-		*exit_status = 258;
-	}
+		throw_error_exit_code(
+			"minishell: parser error \n", exit_status, 258);
 	else if (t->parse_error == 3)
-	{
-		err_printf("minishell: exit: numeric argument required \n");
-		*exit_status = 258;
-	}
+		throw_error_exit_code(
+			"minishell: exit: numeric argument required \n", exit_status, 258);
 	else if (t->parse_error == 4)
-	{
-		err_printf("minishell: exit: too many arguments\n");
-		*exit_status = 1;
-	}
+		throw_error_exit_code(
+			"minishell: exit: too many arguments\n", exit_status, 1);
 	else if (t->parse_error == 5)
-	{
-		err_printf("exit: fd: numeric argument required\n");
-		*exit_status = 255;
-	}
+		throw_error_exit_code(
+			"exit: fd: numeric argument required\n", exit_status, 255);
 	flush_pipes(t);
+}
+//fill the function above using this code block, then clean this file from the 
+//extra functions in second file inshalla
+void	throw_error_exit_code(
+			char *message, int *exit_status, int exit_code)
+{
+	err_printf("%s", message);
+	*exit_status = exit_code;
 }
 
 void	cd_exit_with_code(t_pipes *t)
@@ -197,4 +195,53 @@ void	throw_error_in_exit(
 	throw_parser_error(t, &convert_erro);
 	*exit_code = 255;
 	exit (*exit_code);
+}
+
+void	stick_error_code_if_it__exists(char *cmd, t_list *head, t_smash_kit *s)
+{
+	search_for_unclosed_quote(cmd, s);
+	if (head)
+	{
+		if (s->parse_error_code != 0)
+			head->flag = s->parse_error_code;
+		vis_smached_cmd(&head);
+	}
+}
+
+void	search_for_unclosed_quote(char *cmd, t_smash_kit *s)
+{
+	s->i = 0;
+	s->start = 0;
+	s->end = 0;
+	s->flag = '\0';
+	while (cmd[s->i])
+	{
+		if (s->start == 0)
+			set_flag_start_end_for_error_check(cmd, s);
+		else
+		{
+			if (cmd[s->i] == s->flag)
+			{
+				s->end = 2;
+				s->start = 0;
+			}
+		}
+		s->i++;
+	}
+	if (s->end == 1)
+		s->parse_error_code = 2;
+}
+
+void	set_flag_start_end_for_error_check(char *cmd, t_smash_kit *s)
+{
+
+	if (cmd[s->i] == '"')
+		s->flag = '"';
+	else if(cmd[s->i] == '\'')
+		s->flag = '\'';
+	if (cmd[s->i] == '\'' || cmd[s->i] == '"')
+	{
+		s->start = 1;
+		s->end = 1;
+	}
 }

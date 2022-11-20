@@ -40,14 +40,11 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 			break ;
 		s.i++;
 	}
-	if (*head)
-	{
-		if (s.parse_error_code != 0)
-			(*head)->flag = s.parse_error_code;
-		vis_smached_cmd(head);
-	}
+	stick_error_code_if_it__exists(cmd, *head, &s);
 	return (*head);
 }
+
+
 
 char	cmd_classifier(t_smash_kit *s, char *cmd)
 {

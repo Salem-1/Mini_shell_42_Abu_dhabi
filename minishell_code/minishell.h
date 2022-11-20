@@ -274,6 +274,13 @@ void				pipes_and_redirect_errors(
 						t_pipes *t, int i, int local_fd, int **fd);
 void				normal_execution_error(struct t_parsed_command *t,
 						struct t_pipes *all_cmds, char **envp, int error);
+void				search_for_unclosed_quote(char *cmd, t_smash_kit *s);
+void				stick_error_code_if_it__exists(char *cmd, t_list *head,
+						t_smash_kit *s);
+void				set_flag_start_end_for_error_check(
+						char *cmd, t_smash_kit *s);
+void	throw_error_exit_code(
+			char *message, int *exit_status, int exit_code);
 //signals handling
 void					handle_signals(int sig);
 void					init_signals();

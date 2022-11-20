@@ -12,6 +12,18 @@
 
 #include "../minishell.h"
 /*
+Shall I make separate function to fetch the unclosed quotes to throw errors instead
+of spraying the error checking every where?
+it will be something like this
+
+
+	refractor the whole lovely file to a cleaner version
+	Case 1 should throw an erro in case of unclosed quotes
+	Case 2 should be divded into several functions to handle one for each case
+	for ex:
+		e"ch"o
+		"ech"o
+	Case 2 should track the occurance of last quote to stop appending if found space
 	cases to handle:
 	---------------
 	"ls  hello"
@@ -43,8 +55,9 @@ char	*multiple_single_and_double_quotes(t_smash_kit *s, char *cmd, char flag, in
 	char	*merged_str;
 forens_printf("\nMultiple single and double quote gen\n cmd = <%s>, flag = %c, start = %d, end = %d, i = %d\n\n", cmd, flag, s->start, s->end, s->i);
 	merged_str = figure_out_end_of_quote_and_fill_arg(s, cmd, flag, exit_status);
-	if (((s->i + 1) >= s->cmd_len))
+	if ((s->i + 1) >= s->cmd_len)
 		return (merged_str);
+forens_printf("entering the source of all devil loop\n");
 	while (cmd[s->i + 1] == '\'' || cmd[s->i + 1] == '"')
 	{
 		s->i++;
@@ -62,13 +75,16 @@ forens_printf("\nExiting Multiple single and double quote gen\n merged_str = <%s
 	return (merged_str);
 }
 
+
+//this is the source of the all evil
+//check for throwing the error, then all the error cases
 char	*figure_out_end_of_quote_and_fill_arg(
 		t_smash_kit *s, char *cmd, char flag, int *exit_status)
 {
 	char	*final_arg;
 	int		call_case;
 
-// forens_printf("\nEntering figure out end of quote cmd = <%s>, flag = %c, start = %d, end = %d, i = %d\n", cmd, flag, s->start, s->end, s->i);
+forens_printf("\nEntering figure out end of quote cmd = <%s>, flag = %c, start = %d, end = %d, i = %d\n", cmd, flag, s->start, s->end, s->i);
 	final_arg = NULL;
 	call_case = 0;
 	if (cmd[s->start] != flag)
@@ -85,15 +101,13 @@ forens_printf("Calling case 2 string don't start with quote, start = %d, end = %
 			|| check_redirection(cmd, s->i + 1)
 			|| cmd[s->i + 1] == '\'' || cmd[s->i + 1] == '"')
 		{
-			// if (cmd[s->i + 1] == ' ' && cmd[s->i - 1] != s->flag)
-			// 	s->i += 2;
-forens_printf("calling case 1 main cmd[%d] = %c  cmd[%d] = %c , start = %d, flag = %c\n", s->i, cmd[s->i],s->i + 1, cmd[s->i + 1], s->start, s->flag);
+forens_printf("calling case 1 filling normal quote  main cmd[%d] = %c  cmd[%d] = %c , start = %d, flag = %c\n", s->i, cmd[s->i],s->i + 1, cmd[s->i + 1], s->start, s->flag);
 			call_case = 1;
 		}
 		else
 		{
 			call_case = 2;
-forens_printf("calling case 2 main cmd[%d] = %c  cmd[%d] = %c , start = %d, flag = %c\n", s->i, cmd[s->i],s->i + 1, cmd[s->i + 1], s->start, s->flag);
+forens_printf("calling case 2 Doesn't end with quote \nmain cmd[%d] = %c  cmd[%d] = %c , start = %d, flag = %c\n", s->i, cmd[s->i],s->i + 1, cmd[s->i + 1], s->start, s->flag);
 		}
 	}
 	if (call_case == 1)
@@ -148,7 +162,6 @@ char	*fill_outliar_quote_by_split_expand(t_smash_kit *s, char *cmd, char flag, i
 	{
 forens_printf("cmd[%d + %d] = %c\n", s->i, fetch_end, cmd[s->i + fetch_end]);
 		fetch_end++;
-
 	}
 	s->end = s->i + fetch_end;
 	s->i += fetch_end - 1;
@@ -243,3 +256,12 @@ forens_printf("no chars after quote inside outliar quotes, i = 1 error line 78\n
 		return (remain);
 	}
 }
+
+
+
+
+
+
+
+
+
