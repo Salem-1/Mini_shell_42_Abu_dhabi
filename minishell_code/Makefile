@@ -21,8 +21,6 @@ SRC =	main.c \
 		bins/export_utils.c \
 		erro_handle/raise_builtin_errors.c \
 		erro_handle/parse_error.c \
-		erro_handle/scan_cmd.c \
-		erro_handle/parse_error_utils.c \
 		erro_handle/pipes_redirect_errors.c \
 		test_files/vis.c 
 CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3 

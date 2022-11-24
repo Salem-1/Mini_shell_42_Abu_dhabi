@@ -70,22 +70,3 @@ void	normal_execution_error(struct t_parsed_command *t,
 		exec_exit(all_cmds, 126);
 	exec_exit(all_cmds, 127);
 }
-
-void	throw_error_in_exit(
-		t_pipes *t, int *exit_code, int error_code,int parse_error)
-{
-	int	convert_erro;
-
-	convert_erro = error_code;
-	t->parse_error = parse_error;
-	close_files(t->fd, t->npipes);
-	if (parse_error == 4)
-	{
-		throw_parser_error(t, &convert_erro);
-		return ;
-	}
-	clean_env(t->env);
-	throw_parser_error(t, &convert_erro);
-	*exit_code = 255;
-	exit (*exit_code);
-}

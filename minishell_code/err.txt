@@ -4,8 +4,11 @@ Mem clean
 e"c"h'o'  hi
 should be recieved as echo hi
 
+<<<<<<< HEAD
 exit 2 3 
 invalid reads 
+=======
+>>>>>>> parent of e83fd9e... refractoring the parse error file to 3 files
 
 
 case 1:  (Bilal)
