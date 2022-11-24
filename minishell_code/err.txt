@@ -5,7 +5,7 @@ e"c"h'o'  hi
 should be recieved as echo hi
 
 exit 2 3 
-invalid reads
+invalid reads 
 
 
 case 1:  (Bilal)

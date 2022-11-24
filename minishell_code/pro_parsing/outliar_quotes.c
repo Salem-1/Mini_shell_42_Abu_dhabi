@@ -113,7 +113,7 @@ forens_printf("calling case 2 Doesn't end with quote \nmain cmd[%d] = %c  cmd[%d
 	if (call_case == 1)
 		final_arg = fill_normal_quote_case(s, cmd, flag, exit_status);
 	else if (call_case == 2)
-		final_arg = fill_outliar_quote_by_split_expand(s, cmd, flag, exit_status);
+		final_arg = fill_case_2(s, cmd, flag, exit_status);
 	else
 		s->parse_error_code = 2;
 	forens_printf("After handling all quotes arg = #%s#\n", final_arg);
@@ -139,43 +139,6 @@ char	*fill_normal_quote_case(t_smash_kit *s, char *cmd, char flag, int *exit_sta
 	return (final_arg);
 }
 
-//fetch_end  figure out wher the arg ends;
-char	*fill_outliar_quote_by_split_expand(t_smash_kit *s, char *cmd, char flag, int *exit_status)
-{
-	char	*final_arg;
-	char	**splitted_arg;
-	int		fetch_end;
-
-	splitted_arg = NULL;
-	(void)exit_status;
-	final_arg = NULL;
-	fetch_end = 1;
-	forens_printf("Case 2 FIll outliar quote, flag = %c\n", flag);
-	forens_printf("cmd before expand = %s, start = %d, end = %d, i = %d\n", cmd, s->start, s->end, s->i);
-
-	// while (cmd[s->i + fetch_end] != '\0' && !check_redirection(cmd, s->i + fetch_end)
-	// 	&& (cmd[s->i + fetch_end] != ' ') && (cmd[s->i + fetch_end] != '\'')
-	// 	&& (cmd[s->i + fetch_end] != '"'))
-	while (cmd[s->i + fetch_end] != '\0' && !check_redirection(cmd, s->i + fetch_end)
-		 && (cmd[s->i + fetch_end] != '\'')
-		&& (cmd[s->i + fetch_end] != '"'))
-	{
-forens_printf("cmd[%d + %d] = %c\n", s->i, fetch_end, cmd[s->i + fetch_end]);
-		fetch_end++;
-	}
-	s->end = s->i + fetch_end;
-	s->i += fetch_end - 1;
-	final_arg = ft_substr(cmd, s->start, s->end - s->start);
-	forens_printf("final_arg after substr outliar case  = %s, start = %d, end = %d\n", final_arg, s->start, s->end);
-	splitted_arg = ft_split(final_arg, flag);
-	if (flag == '"')
-		final_arg = outliar_double_with_expand(s, splitted_arg, final_arg,exit_status);
-	else
-		final_arg = outliar_single_fill(splitted_arg, final_arg);
-	forens_printf("End fill outliar case  = %s, start = %d, end = %d\n", final_arg, s->start, s->end);
-	return (final_arg);
-}
-
 char	*outliar_single_fill(char **splitted_arg, char *final_arg)
 {
 	int	i;
@@ -195,7 +158,7 @@ char	*outliar_single_fill(char **splitted_arg, char *final_arg)
 	return (final_arg);
 }
 
-char	*outliar_double_with_expand(
+char	*fill_double_q(
 	t_smash_kit *s, char **splitted_arg, char *final_arg, int *exit_status)
 {
 	int	i;
