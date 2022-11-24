@@ -15,7 +15,6 @@ SRC =	main.c \
 		pro_parsing/smash_redirections.c\
 		pro_parsing/expand_dollar.c\
 		pro_parsing/outliar_quotes.c\
-		pro_parsing/complicated_quote_cases.c \
 		bins/cd.c bins/echo.c bins/env_pwd.c \
 		bins/exit.c bins/export.c  bins/unset.c \
 		bins/export_utils.c \

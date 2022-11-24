@@ -7,11 +7,15 @@ should be recieved as echo hi
 <<<<<<< HEAD
 <<<<<<< HEAD
 exit 2 3 
+<<<<<<< HEAD
 invalid reads 
 =======
 >>>>>>> parent of e83fd9e... refractoring the parse error file to 3 files
 =======
 >>>>>>> parent of e83fd9e... refractoring the parse error file to 3 files
+=======
+invalid reads
+>>>>>>> parent of 96788e7... errored quote empty space parsing
 
 
 case 1:  (Bilal)

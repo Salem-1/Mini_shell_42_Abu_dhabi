@@ -47,7 +47,6 @@ int not_reched_end(char *cmd, t_smash_kit *s, int fetch_end, int *quote_end)
     if (cmd[s->i + fetch_end] != '\0'
             && !check_redirection(cmd, s->i + fetch_end)
             && (cmd[s->i + fetch_end] != '\'')
-            && (cmd[s->i + fetch_end] != ' ')
             && (cmd[s->i + fetch_end] != '"')
         )
      return (1);
