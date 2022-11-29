@@ -77,11 +77,11 @@ int	exec_exit_in_child(
 		if (single_cmd->args[2] != NULL)
 		{
 			err_printf("exit\n");
+			free_split((void **)single_cmd->env);
 			clean_env(t->env);
 			throw_error_in_exit(t, &exit_code, 1, 4);
 			// //suspect double freee
-			if (single_cmd->env)
-				free_split((void **)single_cmd->env);
+			// if (single_cmd->env)
 			exit(1);
 		}
 		exit_code = 3;

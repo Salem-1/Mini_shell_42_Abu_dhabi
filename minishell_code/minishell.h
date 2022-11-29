@@ -157,12 +157,15 @@ char				*fill_normal_quote_case(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
 char				*fill_outliar_quote_by_split_expand(
 						t_smash_kit *s, char *cmd, char flag, int *exit_status);
-char				*outliar_double_with_expand(t_smash_kit *s,
+char				*fill_double_q(t_smash_kit *s,
 						char **splitted_arg, char *final_arg, int *exit_status);
 char				*outliar_single_fill(
 						char **splitted_arg, char *final_arg);
 char				*multiple_single_and_double_quotes(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
+int 				not_reched_end(char *   cmd, t_smash_kit *s, int fetch_end, int *quote_end);
+char 				*fill_case_2(t_smash_kit *s,
+                            char *cmd, char flag, int *exit_status);
 //Execution
 int					exec_to_output_operations(t_pipes *t, 
 						t_list *env, int **fd, int i, int case_in);

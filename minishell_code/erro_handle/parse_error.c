@@ -82,6 +82,7 @@ int	scan_cmd_for_parsing_errors(t_list *smashed_cmd)
 		update_e_args(&e);
 		if (is_parse_error_inside_smached_cmd(&e))
 		{
+forens_printf("uclosed quote\nthrowing parsing error error inside scan for parsing error\n");
 			smashed_cmd->flag = 2;
 			return (2);
 		}

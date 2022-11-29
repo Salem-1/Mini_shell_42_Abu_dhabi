@@ -25,8 +25,12 @@ char *fill_case_2(t_smash_kit *s,
     final_arg = NULL;
     fetch_end = 1;
     quote_end = 0;
+    forens_printf("Inside complicated case\n\n\n\n\n");
     while (not_reched_end(cmd, s, fetch_end, &quote_end))
+    {
+forens_printf("cmd[%d + %d] = <%c>, flag = %c\n", s->i, fetch_end, cmd[s->i + fetch_end], s->flag);
         fetch_end++;
+    }
     s->end = s->i + fetch_end;
     s->i += fetch_end - 1;
     final_arg = ft_substr(cmd, s->start, s->end - s->start);
@@ -38,7 +42,7 @@ char *fill_case_2(t_smash_kit *s,
     return (final_arg);
 }
 
-int not_reched_end(char *cmd, t_smash_kit *s, int fetch_end, int *quote_end)
+int not_reched_end(char *   cmd, t_smash_kit *s, int fetch_end, int *quote_end)
 {
     if (cmd[s->i] == s->flag && *quote_end == 0)
         *quote_end = 1;
@@ -47,11 +51,13 @@ int not_reched_end(char *cmd, t_smash_kit *s, int fetch_end, int *quote_end)
     if (cmd[s->i + fetch_end] != '\0'
             && !check_redirection(cmd, s->i + fetch_end)
             && (cmd[s->i + fetch_end] != '\'')
-            && (cmd[s->i + fetch_end] != '"')
+            && (cmd[s->i + fetch_end] != '"'
+            )
         )
      return (1);
     else
         return (0);
+
 }
 
 // int is_quote_ended(char *cmd, t_smash_kit *s)
@@ -66,7 +72,6 @@ int not_reched_end(char *cmd, t_smash_kit *s, int fetch_end, int *quote_end)
     // while (cmd[s->i + fetch_end] != '\0' && !check_redirection(cmd, s->i + fetch_end)
     // 	&& (cmd[s->i + fetch_end] != ' ') && (cmd[s->i + fetch_end] != '\'')
     // 	&& (cmd[s->i + fetch_end] != '"'))
-forens_printf("cmd[%d + %d] = %c\n", s->i, fetch_end, cmd[s->i + fetch_end]);
 
     forens_printf("final_arg after substr outliar case  = %s, start = %d, end = %d\n", final_arg, s->start, s->end);
 
