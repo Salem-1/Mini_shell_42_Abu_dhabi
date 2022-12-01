@@ -6,18 +6,29 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 03:09:35 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 08:42:33 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 11:07:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	pipes_and_redirect_errors(t_pipes *t, int i, int local_fd, int **fd)
+void	pipes_redirec_errors(t_pipes *t, int i, int local_fd, int **fd)
 {
 	close(local_fd);
 	close_files(fd, t->npipes);
 	err_printf("minishell: %s: No such file or directory\n",
 		t->single_cmd[i]->cmd);
+	exit(1);
+}
+
+void	intake_errors(t_pipes *t, int i, int local_fd, int **fd)
+{
+	close(local_fd);
+	close_files(fd, t->npipes);
+	err_printf("minishell: %s: No such file or directory\n",
+		t->single_cmd[i]->cmd);
+	clean_env(t->env);
+	flush_pipes(t);
 	exit(1);
 }
 
@@ -64,28 +75,4 @@ void	set_flag_start_end_for_error_check(char *cmd, t_smash_kit *s)
 		s->start = 1;
 		s->end = 1;
 	}
-}
-
-void	search_for_unclosed_quote(char *cmd, t_smash_kit *s)
-{
-	s->i = 0;
-	s->start = 0;
-	s->end = 0;
-	s->flag = '\0';
-	while (cmd[s->i])
-	{
-		if (s->start == 0)
-			set_flag_start_end_for_error_check(cmd, s);
-		else
-		{
-			if (cmd[s->i] == s->flag)
-			{
-				s->end = 2;
-				s->start = 0;
-			}
-		}
-		s->i++;
-	}
-	if (s->end == 1)
-		s->parse_error_code = 2;
 }

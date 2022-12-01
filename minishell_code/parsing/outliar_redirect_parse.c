@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:11:01 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/09 06:15:50 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 11:52:34 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	fill_outliar_input(
 void	case_input_file_cat(
 	t_list *smashed_cmd, t_pipes *t, int *i, int *local_i)
 {
+	err_printf("inside case_input_file_cat\n");
 	t->single_cmd[*i]->after_sep = 't';
 	t->single_cmd[*i]->args = malloc(sizeof(char *) * 2);
 	t->single_cmd[*i]->args[0] = (char *)smashed_cmd->next->next->content;

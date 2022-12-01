@@ -1,6 +1,10 @@
 case :
 -------
 Mem clean
+cat << end | ls
+shouldn't print the heredoc
+< 1 cat
+fix in the parsing to be cat 1 instead الخروج من الخلاف مستحب
 
 e"c"h'o'  hi
 should be recieved as echo hi
@@ -70,6 +74,8 @@ mem_clean
 -------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+cat < 5 < 1
+
 cd adslfkjnsd | echo hi
 
 <<<<<<< HEAD

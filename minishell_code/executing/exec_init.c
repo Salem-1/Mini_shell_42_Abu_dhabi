@@ -6,17 +6,15 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 06:51:40 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/28 02:38:54 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 10:27:40 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//remembre to lower the cmd before go into execution operations
-//getconf ARG_MAX for cmd length 
 int	execution_operations(char *cmd, t_list *t_env, int *exit_status)
 {
-	if (cmd) 
+	if (cmd)
 	{
 		if (cmd_not_empty(cmd))
 		{
@@ -38,3 +36,5 @@ int	execution_operations(char *cmd, t_list *t_env, int *exit_status)
 	}
 	return (*exit_status);
 }
+
+//getconf ARG_MAX for cmd length for mac is 262144

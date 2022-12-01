@@ -5,6 +5,7 @@ SRC =	main.c \
 		parsing/parsing_one_command.c parsing/parsing_utils_1.c \
 		executing/multiple_pipes.c\
 		executing/heredoc.c\
+		executing/execution_pipes_utils.c\
 		executing/files_handling.c\
 		executing/signals_handling.c\
 		parsing/clean_mem.c  parsing/parse_env.c \
@@ -22,6 +23,7 @@ SRC =	main.c \
 		bins/unset_utils.c \
 		erro_handle/raise_builtin_errors.c \
 		erro_handle/parse_error.c \
+		erro_handle/rest_of_errors.c  \
 		erro_handle/parse_error_utils.c\
 		erro_handle/pipes_redirect_errors.c \
 		test_files/vis.c 

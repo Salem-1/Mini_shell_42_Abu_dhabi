@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/09 07:05:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 14:31:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,14 +128,14 @@ void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 	if (t->npipes == 1 || t->single_cmd[i]->after_sep == 't')
 	{
 		if (t->single_cmd[i]->after_sep == 't')
-			exec_to_take_operations(t, env, fd, i , 0);
+			exec_to_take_operations(t, env, i , 0);
 		else
 			close_files(fd, t->npipes);
 		just_execve(t->single_cmd[i], env, t);
 	}
 	if (t->single_cmd[i]->after_sep == 'g'
 		|| t->single_cmd[i]->after_sep == 'a')
-		exec_to_output_operations(t, env,fd, i, 0);
+		exec_to_output_operations(t, env, i, 0);
 	else if (t->single_cmd[i]->after_sep == 'h')
 	{
 		exec_heredoc(t,  i, env, 0);

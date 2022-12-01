@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 09:29:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 13:30:42 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 	struct t_parsed_command	*t;
 	int						pid;
 	int						len;
+
 	t = parse_one_cmd(command);
 	if (!t)
 		return (0);
@@ -50,12 +51,9 @@ void	just_execve(struct t_parsed_command *t,
 {
 	char		**envp;
 	char		*old_cmd;
-	extern int	errno ;
-	int			error;
 
 	old_cmd = NULL;
 	envp = NULL;
-	error = 0;
 	if (t_env)
 	{
 		envp = join_env(t_env);
@@ -67,16 +65,25 @@ void	just_execve(struct t_parsed_command *t,
 	{
 		free_split((void **)envp);
 		exec_exit(all_cmds, 0);
-		return ;
 	}
 	else if (t->path == 'r')
 	{
 		old_cmd = t->cmd;
 		t->cmd = search_path_for_bin(ft_low(t->cmd), t_env);
 	}
+	executing_non_builtin(all_cmds, t, envp, old_cmd);
+	exec_exit(all_cmds, 0);
+}
+
+void	executing_non_builtin(t_pipes *all_cmds,
+		struct t_parsed_command *t, char **envp, char *old_cmd)
+{
+	extern int	errno ;
+	int			error;
+
+	error = 0;
 	if (!t->cmd)
 	{
-		//err_printf("minishell: %s: %s\n", old_cmd, strerror(errno));
 		err_printf("minishell: %s: No such file or directory\n", old_cmd);
 		free_split((void **)envp);
 		exec_exit(all_cmds, 127);
@@ -86,46 +93,26 @@ void	just_execve(struct t_parsed_command *t,
 		if (execve(t->cmd, t->args, envp) == -1)
 		{
 			error = errno;
-			// perror("execve");
 			normal_execution_error(t, all_cmds, envp, error);
 		}
 	}
-	exec_exit(all_cmds, 0);
-}
-
-char	*ft_low(char *cmd)
-{
-	int	i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		cmd[i] = ft_tolower(cmd[i]);
-		i++;
-	}
-	return (cmd);
 }
 
 char	*search_path_for_bin(char *split_command_0, t_list *t_env)
 {
 	char	**pathes;
 	char	*searched_path;
-	char	*add_slash;
 	int		i;
 
 	i = -1;
 	searched_path = NULL;
-	add_slash = NULL;
 	pathes = get_path(t_env);
 	if (!pathes)
 		return (NULL);
 	while (pathes[++i])
 	{
-		if (searched_path)
-			free(searched_path);
-		add_slash = ft_strjoin(pathes[i], "/");
-		searched_path = env_strjoin(add_slash, split_command_0,
-				ft_strlen(add_slash) + ft_strlen(split_command_0));
+		searched_path = refractor_searched_path(
+				searched_path, pathes, split_command_0, i);
 		if (access(searched_path, X_OK) == 0)
 		{
 			free_split((void **)pathes);
@@ -136,4 +123,18 @@ char	*search_path_for_bin(char *split_command_0, t_list *t_env)
 		free(searched_path);
 	free_split((void **)pathes);
 	return (NULL);
+}
+
+char	*refractor_searched_path(
+		char *searched_path, char **pathes, char *split_command_0, int i)
+{
+	char	*add_slash;
+
+	add_slash = NULL;
+	if (searched_path)
+		free(searched_path);
+	add_slash = ft_strjoin(pathes[i], "/");
+	searched_path = env_strjoin(add_slash, split_command_0,
+			ft_strlen(add_slash) + ft_strlen(split_command_0));
+	return (searched_path);
 }
