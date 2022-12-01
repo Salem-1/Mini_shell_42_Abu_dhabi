@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 08:13:35 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 22:03:27 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:21:58 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(char **content)
 {
 	t_list	*new;
 
-	new = ft_calloc(sizeof(t_list) ,  1);
+	new = ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
 	new->content = NULL;

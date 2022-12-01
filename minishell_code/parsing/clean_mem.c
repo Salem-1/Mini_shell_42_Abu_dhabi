@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:19:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/09 00:48:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:29:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	free_cmd(t_parsed_command	*single_cmd)
 void	flush_pipes(t_pipes	*t)
 {
 	int	i;
+
 	i = 0;
 	if (!t)
 		return ;
-	// clean_env(t->env);
 	if (t->single_cmd)
 	{
 		while (t->single_cmd[i])

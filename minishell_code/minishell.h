@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 16:16:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 18:41:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct t_scan_parse_error
 	char	next_flag;
 	char	next_next_flag;
 	int		i;
-} t_scan_parse_error;
+}	t_scan_parse_error;
 typedef struct t_parsed_command
 {
 	char	before_sep;
@@ -99,9 +99,11 @@ int					cmd_not_empty(char *cmd);
 int					is_piped(char *cmd);
 t_pipes				*parsing_piped_cmd(
 						char *cmd, t_list *env, int *exit_status);
-
+t_list				*assingn_t_and_smashed_head(t_pipes *t, t_list *smashed_cmd,
+						t_list *env);
 char				**ft_cmd_split(char *raw_cmd);
-t_list				*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status);
+t_list				*cmd_smasher(char *cmd,
+						t_list **head, t_list *env, int *exit_status);
 t_list				*fill_cmd_node(char *arg, char type);
 void				spaces_smash(t_smash_kit *s, char *cmd,
 						t_list **head, int *exit_status);
@@ -148,7 +150,8 @@ char				*handle_outliar_remain_after_quote(
 int					scan_cmd_for_parsing_errors(
 						t_list *smashed_cmd);
 int					is_r_flag(char flag);
-void				parsing_laundry(t_pipes *t);
+void				parsing_laundry(t_pipes *t,
+						t_list *smashed_head, char *cmd, int i);
 void				case_take_f1_cat_f2_f3_etc(t_pipes *t);
 //quotes handling
 char				*figure_out_end_of_quote_and_fill_arg(t_smash_kit *s,
@@ -323,10 +326,6 @@ void				vis_smached_cmd(t_list **head);
 void				flush_pipes(t_pipes	*t);
 void				free_cmd(t_parsed_command *single_cmd);
 void				free_fd(t_pipes *t);
-/*
-	Certified function through testing in real life scenarios
-*/
 void				freedom(char *cmd, t_list *env, t_list *smashed_cmd);
 void				clean_env(t_list *env);
-
 #endif

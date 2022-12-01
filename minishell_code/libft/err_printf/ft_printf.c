@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:13:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/15 11:36:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:25:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,3 @@ static int	ft_putchar(const char *s)
 	write(2, s, 1);
 	return (1);
 }
- // ft_err_printf("Hello %c %c", 'a','d') // Hello a d
