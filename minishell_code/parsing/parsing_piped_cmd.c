@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/09 06:13:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 15:48:20 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 		return (NULL);
 	}
 	smashed_head = smashed_cmd;
-	
 	t = init_t_struct(t, smashed_cmd, env);
 	if (t->parse_error != 0)
 	{
@@ -96,7 +95,6 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 	// int		n_args;
 	int		local_i;
 
-	// n_args = init_fill_cmd(&local_i, &i, t, smashed_cmd);
 forens_printf("#########################\ninside fill_cmd\n");
 	init_fill_cmd(&local_i, &i, t, smashed_cmd);
 	while (smashed_cmd)

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:53:28 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 10:58:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 15:59:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	exec_to_output_operations(t_pipes *t,
 		return (0);
 	else
 		just_execve(t->single_cmd[i], env, t);
-	err_printf("nothing and returning 0\n");
 	return (0);
 }
 

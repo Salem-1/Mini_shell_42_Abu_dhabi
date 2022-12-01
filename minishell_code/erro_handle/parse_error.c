@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 11:05:21 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 09:40:05 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 15:51:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	throw_parser_error(t_pipes *t, int *exit_status)
 	}
 	if (t->parse_error == 2)
 		throw_error_exit_code(
-			"minishell: syntax error near unexpected token\n", exit_status, 258);
+			"minishell: syntax error near unexpected token\n", exit_status, 2);
 	else if (t->parse_error == 1)
 		throw_error_exit_code(
 			"minishell: parser error \n", exit_status, 258);
@@ -51,6 +51,8 @@ int	scan_cmd_for_parsing_errors(t_list *smashed_cmd)
 	t_scan_parse_error	e;
 
 	init_e_args(&e, smashed_cmd);
+	if (smashed_cmd->flag == 'p')
+		return (2);
 	while (e.tmp)
 	{
 		update_e_args(&e);

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 13:27:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:06:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,8 @@ char				*refractor_searched_path(char *searched_path,
 						char **pathes, char *split_command_0, int i);
 void				just_execve(t_parsed_command *t,
 						t_list *t_env, struct t_pipes *all_cmds);
+void				exit_and_free_env(t_pipes *all_cmds,
+						char **envp, int exit_status);
 void				executing_non_builtin(t_pipes *all_cmds,
 						struct t_parsed_command *t, char **envp, char *old_cmd);
 int					execution_operations(char *cmd, t_list *t_env,
@@ -194,6 +196,10 @@ int					local_fd_with_multiple_intakes(
 int					**open_pipes(int n, int **fd);
 void				exec_multiple_pipes(
 						char *cmd, t_list *env, int *exit_status);
+int					init_exec_multiple_pipes_args(
+						t_pipes *t, t_list *env);
+int					exec_loop(t_pipes *t,
+						int *i, int *parent_exit_status);
 void				close_files_and_wait(int **fd,
 						struct t_pipes *t, int *exit_status);
 void				piping_and_redirections(
@@ -301,8 +307,9 @@ void				stick_error_code_if_it__exists(char *cmd, t_list *head,
 						t_smash_kit *s);
 void				set_flag_start_end_for_error_check(
 						char *cmd, t_smash_kit *s);
-void	throw_error_exit_code(
-			char *message, int *exit_status, int exit_code);
+void				throw_error_exit_code(
+						char *message, int *exit_status, int exit_code);
+int					errord_t_piped(t_pipes *t, int *exit_status);
 //signals handling
 void					handle_signals(int sig);
 void					init_signals();

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:07:52 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 11:08:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 14:49:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,17 @@ void	search_for_unclosed_quote(char *cmd, t_smash_kit *s)
 	}
 	if (s->end == 1)
 		s->parse_error_code = 2;
+}
+
+void	set_flag_start_end_for_error_check(char *cmd, t_smash_kit *s)
+{
+	if (cmd[s->i] == '"')
+		s->flag = '"';
+	else if (cmd[s->i] == '\'')
+		s->flag = '\'';
+	if (cmd[s->i] == '\'' || cmd[s->i] == '"')
+	{
+		s->start = 1;
+		s->end = 1;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 13:30:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:06:02 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,9 @@ void	just_execve(struct t_parsed_command *t,
 		t->env = envp;
 	}
 	if (!t->cmd)
-		exec_exit(all_cmds, 0);
+		exit_and_free_env(all_cmds, envp, 0);
 	if (is_in_our_executable(t, t_env, all_cmds, envp))
-	{
-		free_split((void **)envp);
-		exec_exit(all_cmds, 0);
-	}
+		exit_and_free_env(all_cmds, envp, 0);
 	else if (t->path == 'r')
 	{
 		old_cmd = t->cmd;
@@ -73,6 +70,12 @@ void	just_execve(struct t_parsed_command *t,
 	}
 	executing_non_builtin(all_cmds, t, envp, old_cmd);
 	exec_exit(all_cmds, 0);
+}
+
+void	exit_and_free_env(t_pipes *all_cmds, char **envp, int exit_status)
+{
+	free_split((void **)envp);
+	exec_exit(all_cmds, exit_status);
 }
 
 void	executing_non_builtin(t_pipes *all_cmds,
@@ -123,18 +126,4 @@ char	*search_path_for_bin(char *split_command_0, t_list *t_env)
 		free(searched_path);
 	free_split((void **)pathes);
 	return (NULL);
-}
-
-char	*refractor_searched_path(
-		char *searched_path, char **pathes, char *split_command_0, int i)
-{
-	char	*add_slash;
-
-	add_slash = NULL;
-	if (searched_path)
-		free(searched_path);
-	add_slash = ft_strjoin(pathes[i], "/");
-	searched_path = env_strjoin(add_slash, split_command_0,
-			ft_strlen(add_slash) + ft_strlen(split_command_0));
-	return (searched_path);
 }
