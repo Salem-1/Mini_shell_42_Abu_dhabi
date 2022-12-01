@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 18:38:13 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/24 13:31:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 07:31:38 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //test this befor deployment
 char	**fill_export_with_key_val_variables(char *cmd,
-			t_list *env,t_list *tmp, char **exp_item)
+			t_list *env, t_list *tmp, char **exp_item)
 {
 	int	equal_location;
 
@@ -29,18 +29,22 @@ char	**fill_export_with_key_val_variables(char *cmd,
 	exp_item = malloc(sizeof(char *) * 3);
 	if (!exp_item)
 		return (NULL);
-	exp_item[0] = ft_substr(cmd,0,  equal_location);
+	exp_item[0] = ft_substr(cmd, 0, equal_location);
 	exp_item[1] = ft_substr(cmd, equal_location + 1,
 			ft_strlen(cmd) - equal_location);
-	if (ft_strnchr(exp_item[1], '"') != -1 || ft_strnchr(exp_item[1], '\'') != -1)
-	{
-		if (ft_strnchr(exp_item[1], '"') < ft_strnchr(exp_item[1], '\'') || ft_strnchr(exp_item[1], '\'') == -1)
-			exp_item[1] = clean_export_var_from_quotes(exp_item[1], '"');
-		else
-			exp_item[1] = clean_export_var_from_quotes(exp_item[1], '\'');
-	}
-	//forens_printf("exported val = ~%s~\n", exp_item[1]);
+	if (ft_strnchr(exp_item[1], '"') != -1
+		|| ft_strnchr(exp_item[1], '\'') != -1)
+		reafractor_export_vars(exp_item);
 	return (exp_item);
+}
+
+void	reafractor_export_vars(char **exp_item)
+{
+	if (ft_strnchr(exp_item[1], '"') < ft_strnchr(exp_item[1], '\'')
+		|| ft_strnchr(exp_item[1], '\'') == -1)
+		exp_item[1] = clean_export_var_from_quotes(exp_item[1], '"');
+	else
+		exp_item[1] = clean_export_var_from_quotes(exp_item[1], '\'');
 }
 
 char	*clean_export_var_from_quotes(char *val, char quote)
@@ -53,7 +57,7 @@ char	*clean_export_var_from_quotes(char *val, char quote)
 	i = 0;
 	if (!strrchr(val, quote))
 		return (val);
-	if (val[i] == quote && val[i+ 1] == quote)
+	if (val[i] == quote && val[i + 1] == quote)
 	{
 		free(val);
 		return (ft_expand_strjoin(new_arg, ft_strdup("\0")));

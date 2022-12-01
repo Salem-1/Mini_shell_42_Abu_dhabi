@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/06 01:46:50 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 08:08:05 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	exec_export(t_pipes *all_cmds,
 	return (0);
 }
 
-t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_command *t)
+t_list	*parsed_exp_arg(
+	char *cmd, t_list **env, t_list *tmp, struct t_parsed_command *t)
 {
 	char	**exp_item;
 	int		m_size;
@@ -62,65 +63,56 @@ t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_com
 	exp_item[m_size - 1] = NULL;
 	tmp = fill_new_export_node(tmp, exp_item, m_size);
 	if (is_repeated(exp_item[0], env))
-	{
-		if (t->args[1])
-			free(t->args[1]);
-		t->args[1] = ft_strdup(exp_item[0]);
-		exec_unset(t, env, 1, 's');
-	}
+		handling_repeated_export_item(t, exp_item, env);
 	return (tmp);
 }
 
-//flag == 'c' return the searched node
-//flag == 'b' return the node before the searched node
-// t_list	*search_env_for_export(t_list *t_env, char *env_variable, char flag, int throw_error)
-// {
-// 	t_list	*tmp;
-// 	t_list	*node_before;
-// 	size_t	len;
+void	handling_repeated_export_item(
+	struct t_parsed_command *t, char	**exp_item, t_list **env)
+{
+	if (t->args[1])
+		free(t->args[1]);
+	t->args[1] = ft_strdup(exp_item[0]);
+	exec_unset(t, env, 1, 's');
+}
 
-// 	tmp = t_env;
-// 	node_before = NULL;
-// 	if (!t_env || !env_variable)
-// 		return (NULL);
-// 	if (!valid_export_arg(env_variable, 'u') || find_msize(env_variable) != 2)
-// 	{
-// 		if (throw_error == 't')
-// 		{
-// 			throw_error = 's';
-// 			unset_error(env_variable);
-// 		}
-// 		return (NULL);
-// 	}
-// 	while (tmp)
-// 	{
-// 		len = length_of_larger_string(tmp->key_val[0], env_variable);
-// 		if (!ft_strncmp(tmp->key_val[0], env_variable, len))
-// 		{
-// 			if (flag == 'c')
-// 				return (tmp);
-// 			else
-// 				return (node_before);
-// 		}
-// 		node_before = tmp;
-// 		tmp = tmp->next;
-// 	}
-// 	return (NULL);
-// }
-//set the last exit, if succeessful it's 0,
-//  if not make 127 for command not found
-//126 permission denied, CTR-C 130, exit code of wait
-//check the exit code of the builtins
-//last minishelll inside wait() ==-1 no schild to wait upon CTR-c
+int	valid_export_arg(char *str, char flag)
+{
+	int	i;
 
+	i = 1;
+	flag++;
+	if (!str)
+		return (0);
+	if (!(ft_isalpha(str[0]) || str[0] == '_'))
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == '=')
+			break ;
+		if (!(ft_isalpha(str[i]) || ft_isdigit(str[i])
+				|| str[i] == '_' || str[i] == '='))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
-/*
-export specs:
-if var with no value:
-	-if not there Add var export list
-	-if var is repeated do nothing
-if var has value:
-	-if exists update the value
-	-else add the var=vlaue to env list
+int	find_msize(char *cmd)
+{
+	int	m_size;
+	int	i;
 
-*/
+	m_size = 2;
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '=')
+		{
+			m_size = 3;
+			break ;
+		}
+		i++;
+	}
+	return (m_size);
+}

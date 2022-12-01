@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 03:09:35 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/08 20:00:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 08:42:33 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,76 @@ void	pipes_and_redirect_errors(t_pipes *t, int i, int local_fd, int **fd)
 {
 	close(local_fd);
 	close_files(fd, t->npipes);
-	err_printf("minishell: %s: No such file or directory\n", t->single_cmd[i]->cmd);
+	err_printf("minishell: %s: No such file or directory\n",
+		t->single_cmd[i]->cmd);
 	exit(1);
+}
+
+void	fill_errored_pipe(t_pipes *t, int error, t_list *smashed_cmd)
+{
+	t->npipes = 1;
+	t->parse_error = error;
+	t->single_cmd = NULL;
+	ft_lstclear(&smashed_cmd, del);
+	smashed_cmd = NULL;
+}
+
+/*
+	echo hi >| f  ==  echo hi > f
+	cat <> file == cat < file
+*/
+int	is_parse_error_inside_smached_cmd(t_scan_parse_error *e)
+{
+	if (e->i != 0 && ((e->current_flag == 'g' && e->next_flag == 'p'
+				&& e->next_next_flag == 'c')
+			|| (e->current_flag == 't' && e->next_flag == 'g'
+				&& e->next_next_flag == 'c')))
+	{
+		remove_second_redirection(e);
+		return (0);
+	}
+	else if ((is_r_flag(e->current_flag) && !e->next_flag)
+		|| ((is_r_flag(e->current_flag)
+				&& is_r_flag(e->next_flag)))
+	)
+		return (1);
+	else
+		return (0);
+}
+
+void	set_flag_start_end_for_error_check(char *cmd, t_smash_kit *s)
+{
+	if (cmd[s->i] == '"')
+		s->flag = '"';
+	else if (cmd[s->i] == '\'')
+		s->flag = '\'';
+	if (cmd[s->i] == '\'' || cmd[s->i] == '"')
+	{
+		s->start = 1;
+		s->end = 1;
+	}
+}
+
+void	search_for_unclosed_quote(char *cmd, t_smash_kit *s)
+{
+	s->i = 0;
+	s->start = 0;
+	s->end = 0;
+	s->flag = '\0';
+	while (cmd[s->i])
+	{
+		if (s->start == 0)
+			set_flag_start_end_for_error_check(cmd, s);
+		else
+		{
+			if (cmd[s->i] == s->flag)
+			{
+				s->end = 2;
+				s->start = 0;
+			}
+		}
+		s->i++;
+	}
+	if (s->end == 1)
+		s->parse_error_code = 2;
 }

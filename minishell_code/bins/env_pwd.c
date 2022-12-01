@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:11:08 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/09/30 20:10:32 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 07:13:53 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	exec_env(t_list **env)
 	vis_list(env, 'v');
 }
 
-void	exec_pwd()
+void	exec_pwd(void)
 {
 	char	*current_path;
 

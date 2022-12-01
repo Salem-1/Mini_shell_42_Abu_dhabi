@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 11:05:21 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/07 09:26:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 09:40:05 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	throw_parser_error(t_pipes *t, int *exit_status)
 			"exit: fd: numeric argument required\n", exit_status, 255);
 	flush_pipes(t);
 }
-//fill the function above using this code block, then clean this file from the 
-//extra functions in second file inshalla
+
 void	throw_error_exit_code(
 			char *message, int *exit_status, int exit_code)
 {
@@ -47,34 +46,9 @@ void	throw_error_exit_code(
 	*exit_status = exit_code;
 }
 
-void	cd_exit_with_code(t_pipes *t)
-{
-	if (t->parse_error == 10)
-	{
-		//clean
-		exit (1);
-	}
-	else
-	{
-		//clean
-		exit(0);
-	}
-}
-/*
-	take car while flushing errod piped make it as simple as possible
-*/
-void	fill_errored_pipe(t_pipes *t, int error, t_list *smashed_cmd)
-{
-	t->npipes = 1;
-	t->parse_error = error;
-	t->single_cmd = NULL;
-	ft_lstclear(&smashed_cmd, del);
-	smashed_cmd = NULL;
-}
-
 int	scan_cmd_for_parsing_errors(t_list *smashed_cmd)
 {
-	t_scan_parse_error e;
+	t_scan_parse_error	e;
 
 	init_e_args(&e, smashed_cmd);
 	while (e.tmp)
@@ -82,7 +56,6 @@ int	scan_cmd_for_parsing_errors(t_list *smashed_cmd)
 		update_e_args(&e);
 		if (is_parse_error_inside_smached_cmd(&e))
 		{
-forens_printf("uclosed quote\nthrowing parsing error error inside scan for parsing error\n");
 			smashed_cmd->flag = 2;
 			return (2);
 		}
@@ -93,156 +66,16 @@ forens_printf("uclosed quote\nthrowing parsing error error inside scan for parsi
 
 void	update_e_args(t_scan_parse_error *e)
 {
-		e->current_flag = e->tmp->flag;
-		if (e->tmp->next)
-		{	
-			e->next_flag = e->tmp->next->flag;
-			if (e->tmp->next->next)
-				e->next_next_flag = e->tmp->next->next->flag;
-			else
-				e->next_next_flag = '\0';
-		}
+	e->current_flag = e->tmp->flag;
+	if (e->tmp->next)
+	{	
+		e->next_flag = e->tmp->next->flag;
+		if (e->tmp->next->next)
+			e->next_next_flag = e->tmp->next->next->flag;
 		else
-			e->next_flag = '\0';
-		e->i++;
-}
-
-void	init_e_args(t_scan_parse_error *e, t_list *smashed_cmd)
-{
-	e->i = -1;
-	e->current_flag = '\0';
-	e->next_flag = '\0';
-	e->next_next_flag = '\0';
-	e->tmp = smashed_cmd;
-}
-
-/*
-	echo hi >| f  ==  echo hi > f
-	cat <> file == cat < file
-*/
-int	is_parse_error_inside_smached_cmd(t_scan_parse_error *e)
-{
-	if (e->i != 0 && ((e->current_flag == 'g' && e->next_flag == 'p'
-				&& e->next_next_flag == 'c')
-			|| (e->current_flag == 't' && e->next_flag == 'g'
-				&& e->next_next_flag == 'c')))
-	{
-		remove_second_redirection(e);
-		return (0);
-	}
-	else if((is_r_flag(e->current_flag) && !e->next_flag) 
-		|| ((is_r_flag(e->current_flag)
-				&& is_r_flag(e->next_flag)))
-	)
-	{
-		return (1);
+			e->next_next_flag = '\0';
 	}
 	else
-	{
-		return (0); 
-	}
-}
-
-void	remove_second_redirection(t_scan_parse_error *e)
-{
-	t_list *delete_me;
-
-	delete_me = e->tmp->next;
-	e->tmp->next = e->tmp->next->next;
-	ft_lstdelone(delete_me, del);
-}
-/*
-	//update the conditions here
-	//if the first second || last and prelast or 3 consective redire
-	//or || consective pipes
-
-int	is_parse_error_inside_smached_cmd(t_scan_parse_error *e)
-{	
-	if ((is_r_flag(e->current_flag) && !e->next_flag) 
-		|| ((e->i == 0 
-				&& is_r_flag(e->current_flag) && is_r_flag(e->next_flag)))
-		|| (is_r_flag(e->current_flag) && is_r_flag(e->next_flag)
-				&& is_r_flag(e->next_next_flag))
-		|| (is_r_flag(e->current_flag) && is_r_flag(e->next_flag) 
-				&& e->next_next_flag == '\0')
-		)
-		return (1);
-	else
-		return (0); 
-}
-*/
-int	is_r_flag(char flag)
-{
-	if (flag == 'p' || flag == 'g' || flag == 't'
-		|| flag == 'a' || flag == 'h' )
-		return (1);
-	return (0);
-}
-
-void	throw_error_in_exit(
-		t_pipes *t, int *exit_code, int error_code,int parse_error)
-{
-	int	convert_erro;
-
-	convert_erro = error_code;
-	t->parse_error = parse_error;
-	close_files(t->fd, t->npipes);
-	if (parse_error == 4)
-	{
-		throw_parser_error(t, &convert_erro);
-		return ;
-	}
-	clean_env(t->env);
-	throw_parser_error(t, &convert_erro);
-	*exit_code = 255;
-	exit (*exit_code);
-}
-
-void	stick_error_code_if_it__exists(char *cmd, t_list *head, t_smash_kit *s)
-{
-	search_for_unclosed_quote(cmd, s);
-	if (head)
-	{
-		if (s->parse_error_code != 0)
-			head->flag = s->parse_error_code;
-		vis_smached_cmd(&head);
-	}
-}
-
-void	search_for_unclosed_quote(char *cmd, t_smash_kit *s)
-{
-	s->i = 0;
-	s->start = 0;
-	s->end = 0;
-	s->flag = '\0';
-	while (cmd[s->i])
-	{
-		if (s->start == 0)
-			set_flag_start_end_for_error_check(cmd, s);
-		else
-		{
-			if (cmd[s->i] == s->flag)
-			{
-				s->end = 2;
-				s->start = 0;
-			}
-		}
-		s->i++;
-	}
-	if (s->end == 1)
-		s->parse_error_code = 2;
-}
-
-void	set_flag_start_end_for_error_check(char *cmd, t_smash_kit *s)
-{
-
-	if (cmd[s->i] == '"')
-		s->flag = '"';
-	else if(cmd[s->i] == '\'')
-		s->flag = '\'';
-	if (cmd[s->i] == '\'' || cmd[s->i] == '"')
-	{
-		s->start = 1;
-		s->end = 1;
-	}
+		e->next_flag = '\0';
+	e->i++;
 }

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/07 18:19:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 09:29:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	just_execve(struct t_parsed_command *t,
 	}
 	if (!t->cmd)
 		exec_exit(all_cmds, 0);
-	if (is_in_our_executable(t, t_env, all_cmds))
+	if (is_in_our_executable(t, t_env, all_cmds, envp))
 	{
 		free_split((void **)envp);
 		exec_exit(all_cmds, 0);
@@ -76,7 +76,8 @@ void	just_execve(struct t_parsed_command *t,
 	}
 	if (!t->cmd)
 	{
-		err_printf("minishell: %s: %s\n", old_cmd, strerror(errno));
+		//err_printf("minishell: %s: %s\n", old_cmd, strerror(errno));
+		err_printf("minishell: %s: No such file or directory\n", old_cmd);
 		free_split((void **)envp);
 		exec_exit(all_cmds, 127);
 	}

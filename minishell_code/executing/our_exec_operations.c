@@ -6,14 +6,14 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:21:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/06 00:15:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 09:37:08 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 int	is_in_our_executable(
-	struct t_parsed_command *t, t_list *env, struct t_pipes *all_cmds)
+	struct t_parsed_command *t, t_list *env, struct t_pipes *all_cmds, char **envp)
 {
 	size_t	len;
 	char	*our_execs[7] = { 
@@ -26,7 +26,7 @@ int	is_in_our_executable(
 		len = length_of_larger_string(t->cmd, our_execs[i]);
 		if (!ft_strncmp(t->cmd, our_execs[i], len))
 		{
-			exec_our_cmd(t, env, all_cmds);
+			exec_our_cmd(t, env, all_cmds, envp);
 			return (1);
 		}
 		i++;
@@ -36,10 +36,12 @@ int	is_in_our_executable(
 
 //if executing in parent don't execute 
 void	exec_our_cmd(struct t_parsed_command *t, t_list *env,
-			struct t_pipes *all_cmds)
+			struct t_pipes *all_cmds, char **envp)
 {
 	size_t	len;
+	int		exit_code;
 
+	exit_code = 0;
 	len = length_of_larger_string(t->cmd, "echo");
 	if (!ft_strncmp(t->cmd, "echo", len))
 		exec_echo(t);
@@ -55,7 +57,12 @@ void	exec_our_cmd(struct t_parsed_command *t, t_list *env,
 	len = length_of_larger_string(t->cmd, "export");
 	if (!ft_strncmp(t->cmd, "export", len) && t->args[1] == NULL)
 		exec_export(all_cmds, t, &env, 't');
-	exec_export_unset_cd_in_child(t, env, all_cmds, len);
+	exit_code = exec_export_unset_cd_in_child(t, env, all_cmds, len);
+	if (exit_code)
+	{
+		free_split((void **)envp);
+		exec_exit(all_cmds, exit_code);
+	}
 }
 
 void	vis_list(t_list **env, char is_env_or_exp)
@@ -124,7 +131,7 @@ int	exec_export_unset_cd_in_child(struct t_parsed_command *t, t_list *env,
 
 	redirec = 0;
 	there_is_pipe = 0;
-		while (all_cmds->single_cmd[redirec] && redirec < all_cmds->npipes)
+	while (all_cmds->single_cmd[redirec] && redirec < all_cmds->npipes)
 	{
 		if (all_cmds->single_cmd[redirec]->after_sep == 'p'
 			|| all_cmds->single_cmd[redirec]->before_sep == 'p' )
@@ -138,10 +145,10 @@ int	exec_export_unset_cd_in_child(struct t_parsed_command *t, t_list *env,
 		exec_export(all_cmds, t, &env, 't');
 	len = length_of_larger_string(t->cmd, "unset");
 	if (!ft_strncmp(t->cmd, "unset", len))
-		unset_error(NULL, exec_unset(t, &env, 1, 't'), 't', all_cmds);
+		return (exec_unset(t, &env, 1, 't'));
 	len = length_of_larger_string(t->cmd, "cd");
 	if (!ft_strncmp(t->cmd, "cd", len))
-		cd_exit_with_code(all_cmds);
+		return (exec_cd(t, &env, all_cmds, 't'));
 	return (0);
 }
 

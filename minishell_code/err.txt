@@ -1,22 +1,9 @@
 case :
 -------
 Mem clean
+
 e"c"h'o'  hi
 should be recieved as echo hi
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-exit 2 3 
-<<<<<<< HEAD
-invalid reads 
-=======
->>>>>>> parent of e83fd9e... refractoring the parse error file to 3 files
-=======
->>>>>>> parent of e83fd9e... refractoring the parse error file to 3 files
-=======
-invalid reads
->>>>>>> parent of 96788e7... errored quote empty space parsing
-
 
 case 1:  (Bilal)
 -------
@@ -72,6 +59,9 @@ minishell $> ls<<l|<<k pwd
  echo hi>kftygh|>>lpwd   
 //not syntax error
 echo hi > f>|ls  
+
+mem_clean
+< file cat
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
@@ -80,6 +70,21 @@ echo hi > f>|ls
 -------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+cd adslfkjnsd | echo hi
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+exit 2 3 
+<<<<<<< HEAD
+invalid reads 
+=======
+>>>>>>> parent of e83fd9e... refractoring the parse error file to 3 files
+=======
+>>>>>>> parent of e83fd9e... refractoring the parse error file to 3 files
+=======
+invalid reads
+>>>>>>> parent of 96788e7... errored quote empty space parsing
+
 2)
 //this should give syntax, this is a valid cse , should be fixed automatically after fixing quotes issue
 minishell $> echo f'"D'D''D'DD"D'D'D'D'D"D'D'D'''''"gthryug,khg'D"'lD"D'D'D'D""'''''"'"td
