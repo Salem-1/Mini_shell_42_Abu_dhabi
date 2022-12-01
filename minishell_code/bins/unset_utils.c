@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 08:09:14 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 08:10:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:21:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,26 @@ t_list	*clear_var(t_list *delete_me, t_list **env, int throw_error)
 	ft_lstdelone(delete_me, del);
 	delete_me = NULL;
 	return (*env);
+}
+
+void	vis_list(t_list **env, char is_env_or_exp)
+{
+	t_list	*tmp;
+
+	if (!env)
+		return ;
+	tmp = *env;
+	while (tmp)
+	{
+		if (is_env_or_exp == 'x')
+		{
+			if ((tmp)->flag == 'v')
+				printf("declare -x %s=\"%s\"\n", tmp->key_val[0], tmp->key_val[1]);
+			else
+				printf("declare -x %s\n", tmp->key_val[0]);
+		}
+		else if (((tmp)->flag) == 'v')
+			printf("%s=%s\n", tmp->key_val[0], tmp->key_val[1]);
+		tmp = tmp->next;
+	}
 }

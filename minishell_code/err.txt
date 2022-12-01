@@ -1,11 +1,11 @@
 case :
 -------
 Mem clean
-> file 
+
 
 < 1 cat
+think about handling this in the execution as it's easier and cleaner
 fix in the parsing to be cat 1 instead الخروج من الخلاف مستحب
-
 
 e"c"h'o'  hi
 should be recieved as echo hi
@@ -73,6 +73,7 @@ echo hi > f>|ls
 -------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+> file 
 |hi
 
 cat << end | ls

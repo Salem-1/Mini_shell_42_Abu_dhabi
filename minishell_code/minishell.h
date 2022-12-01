@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 16:06:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:16:31 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,7 @@ int					output_append_execution(t_pipes *t, int i, int **fd);
 int					input_execution(t_pipes *t, t_list *env,int **fd, int i);
 char				*clean_export_var_from_quotes(char *val, char quote);
 int					exec_exit_in_parent(int *i,  struct t_pipes *t);
+int					can_exec_in_parent(int *i, struct t_pipes *t);
 int					check_exit_arg(t_parsed_command *t);
 void				throw_error_in_exit(t_pipes *t, int *exit_code,
 						int error_code,int parse_error);

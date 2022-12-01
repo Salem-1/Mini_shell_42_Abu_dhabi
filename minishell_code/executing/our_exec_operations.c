@@ -6,19 +6,19 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:21:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 09:37:08 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:21:23 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	is_in_our_executable(
-	struct t_parsed_command *t, t_list *env, struct t_pipes *all_cmds, char **envp)
+int	is_in_our_executable(struct t_parsed_command *t,
+	t_list *env, struct t_pipes *all_cmds, char **envp)
 {
-	size_t	len;
-	char	*our_execs[7] = { 
-	"env", "pwd", "export", "unset", "cd", "exit", "echo"};
-	int		i;
+	size_t		len;
+	int			i;
+	static char	*our_execs[7] = {
+		"env", "pwd", "export", "unset", "cd", "exit", "echo"};
 
 	i = 0;
 	while (i < 7)
@@ -65,31 +65,31 @@ void	exec_our_cmd(struct t_parsed_command *t, t_list *env,
 	}
 }
 
-void	vis_list(t_list **env, char is_env_or_exp)
-{
-	t_list	*tmp;
-
-	if (!env)
-		return ;
-	tmp = *env;
-	while (tmp)
-	{
-		if (is_env_or_exp == 'x')
-		{
-			if ((tmp)->flag == 'v')
-				printf("declare -x %s=\"%s\"\n", tmp->key_val[0], tmp->key_val[1]);
-			else
-				printf("declare -x %s\n", tmp->key_val[0]);
-		}
-		else if (((tmp)->flag) == 'v')
-			printf("%s=%s\n", tmp->key_val[0], tmp->key_val[1]);
-		tmp = tmp->next;
-	}
-}
-
 //if executing here don't execute in the child okay
 int	exec_exit_export_unset_cd_in_parent(
-		int *i,  struct t_pipes *t, t_list *env)
+		int *i, struct t_pipes *t, t_list *env)
+{
+	int	exit_code;
+
+	exit_code = 0;
+	if (!can_exec_in_parent(i, t))
+		return (0);
+	if (!ft_strncmp(t->single_cmd[*i]->cmd, "exit", 5))
+		exec_exit_in_parent(i, t);
+	if (t->npipes == 1 || (t->npipes > 1))
+	{
+		if (!ft_strncmp(t->single_cmd[*i]->cmd, "cd", 3))
+			exit_code = exec_cd(t->single_cmd[*i], &env, t, 't');
+		else if (!ft_strncmp(t->single_cmd[*i]->cmd, "export", 7)
+			&& t->single_cmd[*i]->args[1] != NULL)
+			exit_code = exec_export(t, t->single_cmd[*i], &env, 'p');
+		else if (!ft_strncmp(t->single_cmd[*i]->cmd, "unset", 6))
+			exit_code = exec_unset(t->single_cmd[*i], &env, 1, 't');
+	}
+	return (exit_code);
+}
+
+int	can_exec_in_parent(int *i, struct t_pipes *t)
 {
 	int	redirec;
 
@@ -103,25 +103,11 @@ int	exec_exit_export_unset_cd_in_parent(
 			return (0);
 		redirec++;
 	}
-	redirec = 0;
-	if (!ft_strncmp(t->single_cmd[*i]->cmd, "exit", 5))
-		exec_exit_in_parent(i, t);
-	if (t->npipes == 1 || (t->npipes > 1))
-	{
-		if (!ft_strncmp(t->single_cmd[*i]->cmd, "cd", 3))
-			redirec = exec_cd(t->single_cmd[*i], &env, t, 't');
-		else if (!ft_strncmp(t->single_cmd[*i]->cmd, "export", 7)
-			&& t->single_cmd[*i]->args[1] != NULL)
-			redirec = exec_export(t, t->single_cmd[*i], &env, 'p');
-		else if (!ft_strncmp(t->single_cmd[*i]->cmd, "unset", 6))
-			redirec = exec_unset(t->single_cmd[*i], &env, 1, 't');
-	}
-	return (redirec);
+	return (1);
 }
 
 /*
 	now cd unset export should execute once, weather in parent or child
-
 */
 int	exec_export_unset_cd_in_child(struct t_parsed_command *t, t_list *env,
 			struct t_pipes *all_cmds, int len)
