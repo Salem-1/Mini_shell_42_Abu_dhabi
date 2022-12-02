@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:54:37 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 18:12:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 11:29:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ t_list	*parse_env(char **envp, t_list *head)
 	head = NULL;
 	if (!envp)
 		return (NULL);
-	forens_printf("getting env vars\n");
 	while (envp[i])
 	{
-		forens_printf("var[%d] = %s\n", i, envp[i]);
 		tmp_node = ft_lstnew(get_env_key_val(envp[i]));
 		ft_lstadd_back(&head, tmp_node);
 		i++;

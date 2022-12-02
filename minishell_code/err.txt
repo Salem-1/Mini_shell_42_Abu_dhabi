@@ -7,9 +7,6 @@ Mem clean
 think about handling this in the execution as it's easier and cleaner
 fix in the parsing to be cat 1 instead الخروج من الخلاف مستحب
 
-e"c"h'o'  hi
-should be recieved as echo hi
-
 case 1:  (Bilal)
 -------
 ctr c twice shouldn't exit 
@@ -73,6 +70,10 @@ echo hi > f>|ls
 -------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+
+e"c"h'o'  hi
+should be recieved as echo hi
+
 > file 
 |hi
 

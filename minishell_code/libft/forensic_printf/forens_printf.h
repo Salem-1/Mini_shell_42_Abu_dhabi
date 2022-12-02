@@ -6,15 +6,14 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:17:52 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/25 04:12:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 14:40:33 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef forens_printF_H
-# define forens_printF_H
+#ifndef FORENS_PRINTF_H
+# define FORENS_PRINTF_H
 # include "../libft.h"
 # include <stdarg.h>
-
 # define FD 3
 
 int		forens_printf(const char *s, ...);
@@ -28,6 +27,6 @@ char	*fft_itoh(unsigned int n, int flag);
 int		fprint_hex(unsigned int n, int flag);
 char	*fft_itop(unsigned long n, int flag);
 int		fprint_ptr(unsigned long n, int flag);
-void	flocal_ft_putstr_fd(char *s, int fd);
+void	local_ft_putstr_fd(char *s, int fd);
 
 #endif

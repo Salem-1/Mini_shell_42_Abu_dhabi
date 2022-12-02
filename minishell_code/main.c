@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 18:46:32 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 11:29:46 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv, char **envp)
 	char				*cmd;
 	t_list				*t_env;
 
+	forens_printf("\n\n\n");
 	exit_status = 0;
 	cmd = NULL;
 	t_env = NULL;

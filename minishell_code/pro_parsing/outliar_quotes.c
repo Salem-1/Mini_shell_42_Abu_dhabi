@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:40:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 10:51:21 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 12:00:08 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,24 @@ int	is_normal_quote_case(t_smash_kit *s, char *cmd)
 			s->i, cmd[s->i], s->i + 1, cmd[s->i + 1], s->start, s->flag);
 		return (0);
 	}
+}
+
+char	*fill_double_q(
+	t_smash_kit *s, char **splitted_arg, char *final_arg, int *exit_status)
+{
+	int	i;
+
+	i = 0;
+	if (final_arg)
+		free(final_arg);
+	final_arg = NULL;
+	while (splitted_arg[i])
+	{
+		final_arg = ft_expand_strjoin(
+				final_arg, expand_var(s, splitted_arg[i], exit_status));
+		i++;
+	}
+	if (splitted_arg)
+		free(splitted_arg);
+	return (final_arg);
 }

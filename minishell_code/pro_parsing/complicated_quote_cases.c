@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:40:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 10:43:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 12:00:32 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 // fetch_end  figure out wher the arg ends;
 char	*fill_case_2(t_smash_kit *s,
-			char *cmd, char flag, int *exit_status)
+	char *cmd, char flag, int *exit_status)
 {
 	int		fetch_end;
 	char	*final_arg;
 	char	**splitted_arg;
-	int		quote_end;
 
 	splitted_arg = NULL;
 	final_arg = NULL;
 	fetch_end = 1;
-	quote_end = 0;
 	forens_printf("\n\nCase 2\ns=%d,e=%d,i=%d \n", s->start, s->end, s->i);
-	while (not_reched_end_2(cmd, s, fetch_end, &quote_end))
-	{
-		forens_printf("fetching end cmd[%d + %d] = <%c>, flag = %c\n",
-			s->i, fetch_end, cmd[s->i + fetch_end], s->flag);
-		fetch_end++;
-	}
+	if (s->start == 0)
+		s->i--;
+	forens_printf("after decrement s=%d,e=%d,i=%d \n", s->start, s->end, s->i);
+	fetch_end = find_end_in_case_2_abstract(cmd, s, fetch_end);
 	s->end = s->i + fetch_end;
 	s->i += fetch_end - 1;
+	if (cmd[s->start == s->flag] && cmd[s->end] == s->flag
+		&& s->start == 0)
+		return (fixing_edge_quote_start_case_2(s, cmd, flag, exit_status));
 	final_arg = ft_substr(cmd, s->start, s->end - s->start);
 	splitted_arg = ft_split(final_arg, flag);
 	if (flag == '"')
@@ -41,6 +40,18 @@ char	*fill_case_2(t_smash_kit *s,
 	else
 		final_arg = outliar_single_fill(splitted_arg, final_arg);
 	return (final_arg);
+}
+
+int	find_end_in_case_2_abstract(
+	char *cmd, t_smash_kit *s, int fetch_end)
+{
+	while (not_reched_end_2(cmd, s, fetch_end))
+	{
+		forens_printf("fetching end cmd[%d + %d] = <%c>, flag = %c\n",
+			s->i, fetch_end, cmd[s->i + fetch_end], s->flag);
+		fetch_end++;
+	}
+	return (fetch_end);
 }
 
 char	*fill_case_3(t_smash_kit *s,
@@ -107,26 +118,6 @@ char	*outliar_single_fill(char **splitted_arg, char *final_arg)
 	{
 		forens_printf("splitted_arg = %s\n", splitted_arg[i]);
 		final_arg = ft_expand_strjoin(final_arg, splitted_arg[i]);
-		i++;
-	}
-	if (splitted_arg)
-		free(splitted_arg);
-	return (final_arg);
-}
-
-char	*fill_double_q(
-	t_smash_kit *s, char **splitted_arg, char *final_arg, int *exit_status)
-{
-	int	i;
-
-	i = 0;
-	if (final_arg)
-		free(final_arg);
-	final_arg = NULL;
-	while (splitted_arg[i])
-	{
-		final_arg = ft_expand_strjoin(
-				final_arg, expand_var(s, splitted_arg[i], exit_status));
 		i++;
 	}
 	if (splitted_arg)

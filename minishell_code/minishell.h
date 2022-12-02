@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 10:49:54 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 12:17:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,9 @@ char				*outliar_single_fill(
 char				*multiple_single_and_double_quotes(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
 int					not_reched_end_2(char *cmd,
-						t_smash_kit *s, int fetch_end, int *quote_end);
+						t_smash_kit *s, int fetch_end);
+int					special_not_reched_end_2(char *cmd,
+						t_smash_kit *s, int fetch_end);
 int					not_reched_end_3(char *cmd,
 						t_smash_kit *s, int fetch_end);
 char				*fill_case_2(t_smash_kit *s,
@@ -187,6 +189,14 @@ int					fixing_start_quote_case_3_edge_case(
 						char *cmd, t_smash_kit *s, int fetch_end);
 int					is_not_end_quote_case_3(
 						char *cmd, t_smash_kit *s, int fetch_end);
+int					find_end_in_case_2_abstract(
+						char *cmd, t_smash_kit *s, int fetch_end);
+int					special_find_end_in_case_2_abstract(
+						char *cmd, t_smash_kit *s, int fetch_end);
+char				*fixing_edge_quote_start_case_2(t_smash_kit *s,
+						char *cmd, char flag, int *exit_status);
+char				*special_special_start_case_2(t_smash_kit *s,
+						char *cmd, char flag, int *exit_status);
 //Execution
 int					exec_to_output_operations(t_pipes *t,
 						t_list *env, int i, int case_in);
