@@ -1,0 +1,33 @@
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=p,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+smasher loop 5=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = export, start = 0, end = 5
+~export~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=l,flag=s, s.start = 0, s.end = 0
+smasher loop 2=e,flag=s, s.start = 0, s.end = 0
+smasher loop 3=a,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = clear, start = 0, end = 4
+~clear~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=p,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+smasher loop 5=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = export, start = 0, end = 5
+~export~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~

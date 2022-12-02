@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 12:17:52 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:27:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct smashing_kit
 	int		i;
 	int		start;
 	int		end;
+	int		last_end;
 	char	flag;
 	int		parse_error_code;
 	int		cmd_len;
@@ -197,6 +198,10 @@ char				*fixing_edge_quote_start_case_2(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
 char				*special_special_start_case_2(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
+int					case_start_3_edge_conditions(
+						char *cmd, t_smash_kit *s, int fetch_end);
+int					middle_case_check(
+						char *cmd, t_smash_kit *s, int fetch_end);
 //Execution
 int					exec_to_output_operations(t_pipes *t,
 						t_list *env, int i, int case_in);
@@ -279,6 +284,12 @@ void				exec_env(t_list **env);
 void				exec_pwd(void);
 int					exec_export(t_pipes *all_cmds, struct t_parsed_command *t,
 						t_list **env, int flag);
+void				print_export_with_condition(
+						t_list *env, char is_env_or_exp, char letter);
+void				capitals_export_print(
+						t_list *env, char is_env_or_exp);
+void				small_export_print(
+						t_list *env, char is_env_or_exp);
 void				handling_repeated_export_item(	struct t_parsed_command *t,
 						char	**exp_item, t_list **env);
 void				reafractor_export_vars(char **exp_item);
@@ -308,6 +319,7 @@ void				exec_echo(struct t_parsed_command *t);
 void				exec_exit(struct t_pipes *all_cmds, int exit_shell);
 int					tedous_n(struct t_parsed_command *t);
 void				vis_list(t_list **env, char is_env_or_exp);
+void				vis_export(t_list **env, char is_env_or_exp);
 int					output_append_execution(t_pipes *t, int i, int **fd);
 int					input_execution(t_pipes *t, t_list *env, int **fd, int i);
 char				*clean_export_var_from_quotes(char *val, char quote);

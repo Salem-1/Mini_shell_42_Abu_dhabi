@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 20:34:55 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 15:27:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	init_smash_kit(t_smash_kit *s, t_list **head, t_list *env, char *cmd)
 {
 	s->start = 0;
 	s->end = 0;
+	s->last_end = 0;
 	s->i = 0;
 	s->tmp = *head;
 	s->flag = 'i';

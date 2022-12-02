@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:40:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 12:00:32 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:41:19 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ char	*fill_case_2(t_smash_kit *s,
 	final_arg = NULL;
 	fetch_end = 1;
 	forens_printf("\n\nCase 2\ns=%d,e=%d,i=%d \n", s->start, s->end, s->i);
-	if (s->start == 0)
+	if (s->start == 0 || check_redirection(cmd, s->end))
 		s->i--;
 	forens_printf("after decrement s=%d,e=%d,i=%d \n", s->start, s->end, s->i);
 	fetch_end = find_end_in_case_2_abstract(cmd, s, fetch_end);
+	s->last_end = s->end;
 	s->end = s->i + fetch_end;
 	s->i += fetch_end - 1;
 	if (cmd[s->start == s->flag] && cmd[s->end] == s->flag
-		&& s->start == 0)
+		&& (s->start == 0 || check_redirection(cmd, s->last_end)))
 		return (fixing_edge_quote_start_case_2(s, cmd, flag, exit_status));
 	final_arg = ft_substr(cmd, s->start, s->end - s->start);
 	splitted_arg = ft_split(final_arg, flag);
@@ -65,13 +66,15 @@ char	*fill_case_3(t_smash_kit *s,
 	final_arg = NULL;
 	fetch_end = 1;
 	forens_printf("\n\nCase 3\ns=%d,e=%d,i=%d \n", s->start, s->end, s->i);
-	if (s->start == 0)
+	forens_printf("\n\nlast end cmd[%d]= %c\n\n\n", s->end, cmd[s->end]);
+	if (s->start == 0 || check_redirection(cmd, s->end))
 		s->i--;
 	while (not_reched_end_3(cmd, s, fetch_end))
 		fetch_end++;
+	s->last_end = s->end;
 	s->end = s->i + fetch_end;
 	s->i += fetch_end - 1;
-	if (s->start == 0)
+	if (s->start == 0 || check_redirection(cmd, s->last_end))
 		s->i++;
 	final_arg = ft_substr(cmd, s->start, s->end - s->start);
 	splitted_arg = ft_split(final_arg, flag);

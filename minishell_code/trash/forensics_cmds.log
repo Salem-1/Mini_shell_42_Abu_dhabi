@@ -570,3 +570,374 @@ smasher loop 2=i,flag=s, s.start = 0, s.end = 0
 smasher loop 3=t,flag=s, s.start = 0, s.end = 0
 space_smash, smashed_arg = exit, start = 0, end = 3
 ~exit~
+joining env 
+smasher loop 0=",flag=i, s.start = 0, s.end = 0
+" " arg = <"echo" 'hi'2"4"5 ""grep > hi  >,cmd[0] = ",  start = 0 i = 0, flag = "
+smasher loop 2=c,flag=", s.start = 0, s.end = 0
+" " arg = <"echo" 'hi'2"4"5 ""grep > hi  >,cmd[2] = c,  start = 0 i = 2, flag = "
+smasher loop 3=h,flag=", s.start = 0, s.end = 0
+" " arg = <"echo" 'hi'2"4"5 ""grep > hi  >,cmd[3] = h,  start = 0 i = 3, flag = "
+smasher loop 4=o,flag=", s.start = 0, s.end = 0
+" " arg = <"echo" 'hi'2"4"5 ""grep > hi  >,cmd[4] = o,  start = 0 i = 4, flag = "
+smasher loop 5=",flag=", s.start = 0, s.end = 0
+" " arg = <"echo" 'hi'2"4"5 ""grep > hi  >,cmd[5] = ",  start = 0 i = 5, flag = "
+before cleaning arg = <"echo" 'hi'2"4"5 ""grep > hi  >, start = 0 i = 5
+Mul single and double quote
+ cmd = <"echo" 'hi'2"4"5 ""grep > hi  >, flag = ",strt=0,end=0,i=5
+figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=0, en=0, i= 5
+calling case 2 Doesn't end with quote 
+main cmd[5] = "  cmd[6] =   , start = 0, flag = "
+
+
+Case 2
+s=0,e=0,i=5 
+after decrement s=0,e=0,i=4 
+
+reached end cmd[4 + 1] = <">, flag = " start = 0
+
+
+
+forcing fixing_edge_quote_start_case_2
+Case 1 Filling normal quote, cmd = "echo" 'hi'2"4"5 ""grep > hi  , start = 0, end = 5
+final_arg before expand = echo, start = 0, end = 5
+final_arg after filling normal case = echo, start = 0, end = 5
+end figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=0, en=5, i= 5
+entering the source of all devil loop
+Exiting Multiple merged_str = <echo>, st=0, en=5
+filling node with ~echo~
+smasher loop 6= ,flag=i, s.start = 0, s.end = 0
+check for single quote < >
+smasher loop 7=',flag=', s.start = 7, s.end = 0
+check for single quote <'>
+smasher loop 9=i,flag=', s.start = 7, s.end = 0
+check for single quote <i>
+smasher loop 10=',flag=', s.start = 7, s.end = 0
+check for single quote <'>
+before clean <"echo" 'hi'2"4"5 ""grep > hi  >,start=7,i=10
+Mul single and double quote
+ cmd = <"echo" 'hi'2"4"5 ""grep > hi  >, flag = ',strt=7,end=0,i=10
+figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=', st=7, en=0, i= 10
+calling case 2 Doesn't end with quote 
+main cmd[10] = '  cmd[11] = 2 , start = 7, flag = '
+
+
+Case 2
+s=7,e=0,i=10 
+after decrement s=7,e=0,i=10 
+fetching end cmd[10 + 1] = <2>, flag = '
+
+reached end cmd[10 + 2] = <">, flag = ' start = 7
+
+splitted_arg = hi
+splitted_arg = 2
+end figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=', st=7, en=12, i= 11
+entering the source of all devil loop
+Loop single double quote gen
+ cmd = <"echo" 'hi'2"4"5 ""grep > hi  >, flag = ' s 12 e 12 i 12
+figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=12, en=12, i= 12
+calling case 2 Doesn't end with quote 
+main cmd[12] = "  cmd[13] = 4 , start = 12, flag = "
+
+
+Case 2
+s=12,e=12,i=12 
+after decrement s=12,e=12,i=12 
+fetching end cmd[12 + 1] = <4>, flag = "
+
+reached end cmd[12 + 2] = <">, flag = " start = 12
+
+end figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=12, en=14, i= 13
+Loop single double quote gen
+ cmd = <"echo" 'hi'2"4"5 ""grep > hi  >, flag = ' s 14 e 14 i 14
+figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=14, en=14, i= 14
+calling case 2 Doesn't end with quote 
+main cmd[14] = "  cmd[15] = 5 , start = 14, flag = "
+
+
+Case 2
+s=14,e=14,i=14 
+after decrement s=14,e=14,i=14 
+fetching end cmd[14 + 1] = <5>, flag = "
+fetching end cmd[14 + 2] = < >, flag = "
+
+reached end cmd[14 + 3] = <">, flag = " start = 14
+
+end figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=14, en=17, i= 16
+Loop single double quote gen
+ cmd = <"echo" 'hi'2"4"5 ""grep > hi  >, flag = ' s 17 e 17 i 17
+figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=17, en=17, i= 17
+calling case 1 filling normal quote  main cmd[17] = "  cmd[18] = " , start = 17, flag = "
+Case 1 Filling normal quote, cmd = "echo" 'hi'2"4"5 ""grep > hi  , start = 17, end = 17
+final_arg before expand = , start = 17, end = 18
+final_arg after filling normal case = , start = 17, end = 18
+end figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=17, en=18, i= 17
+Loop single double quote gen
+ cmd = <"echo" 'hi'2"4"5 ""grep > hi  >, flag = ' s 18 e 18 i 18
+figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=18, en=18, i= 18
+calling case 2 Doesn't end with quote 
+main cmd[18] = "  cmd[19] = g , start = 18, flag = "
+
+
+Case 2
+s=18,e=18,i=18 
+after decrement s=18,e=18,i=18 
+fetching end cmd[18 + 1] = <g>, flag = "
+fetching end cmd[18 + 2] = <r>, flag = "
+fetching end cmd[18 + 3] = <e>, flag = "
+fetching end cmd[18 + 4] = <p>, flag = "
+fetching end cmd[18 + 5] = < >, flag = "
+
+reached end cmd[18 + 6] = <>>, flag = " start = 18
+
+end figur out end of quote <"echo" 'hi'2"4"5 ""grep > hi  >, f=", st=18, en=24, i= 23
+Exiting Multiple merged_str = <hi245 grep >, st=18, en=24
+filling node with ~hi245 grep ~
+smasher loop 24=>,flag=i, s.start = 18, s.end = 0
+smasher loop 25= ,flag=i, s.start = 24, s.end = 0
+smasher loop 26=h,flag=s, s.start = 26, s.end = 0
+smasher loop 27=i,flag=s, s.start = 26, s.end = 0
+space_smash, smashed_arg = hi, start = 26, end = 27
+smasher loop 28= ,flag=i, s.start = 26, s.end = 0
+smasher loop 29= ,flag=i, s.start = 26, s.end = 0
+~echo~
+~hi245 grep ~
+~>~
+~hi~
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 0
+smasher loop 4=h,flag=s, s.start = 4, s.end = 0
+smasher loop 5=i,flag=s, s.start = 4, s.end = 0
+space_smash, smashed_arg = hi, start = 4, end = 5
+~cat~
+~hi~
+joining env 
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=h,flag=s, s.start = 5, s.end = 3
+smasher loop 6=i,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = hi, start = 5, end = 6
+smasher loop 7= ,flag=i, s.start = 5, s.end = 6
+smasher loop 8=>,flag=i, s.start = 8, s.end = 7
+smasher loop 9= ,flag=i, s.start = 8, s.end = 8
+" " arg = <echo hi > "ct">,cmd[9] =  ,  start = 10 i = 9, flag = "
+smasher loop 10=",flag=", s.start = 10, s.end = 8
+" " arg = <echo hi > "ct">,cmd[10] = ",  start = 10 i = 10, flag = "
+smasher loop 12=t,flag=", s.start = 10, s.end = 8
+" " arg = <echo hi > "ct">,cmd[12] = t,  start = 10 i = 12, flag = "
+smasher loop 13=",flag=", s.start = 10, s.end = 8
+" " arg = <echo hi > "ct">,cmd[13] = ",  start = 10 i = 13, flag = "
+before cleaning arg = <echo hi > "ct">, start = 10 i = 13
+Mul single and double quote
+ cmd = <echo hi > "ct">, flag = ",strt=10,end=8,i=13
+figur out end of quote <echo hi > "ct">, f=", st=10, en=8, i= 13
+calling case 1 filling normal quote  main cmd[13] = "  cmd[14] =   , start = 10, flag = "
+Case 1 Filling normal quote, cmd = echo hi > "ct", start = 10, end = 13
+final_arg before expand = ct, start = 10, end = 13
+final_arg after filling normal case = ct, start = 10, end = 13
+end figur out end of quote <echo hi > "ct">, f=", st=10, en=13, i= 13
+filling node with ~ct~
+~echo~
+~hi~
+~>~
+~ct~
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=h,flag=s, s.start = 5, s.end = 3
+smasher loop 6=i,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = hi, start = 5, end = 6
+smasher loop 7= ,flag=i, s.start = 5, s.end = 6
+smasher loop 8=>,flag=i, s.start = 8, s.end = 7
+smasher loop 9= ,flag=i, s.start = 8, s.end = 8
+" " arg = <echo hi > "ct" u>,cmd[9] =  ,  start = 10 i = 9, flag = "
+smasher loop 10=",flag=", s.start = 10, s.end = 8
+" " arg = <echo hi > "ct" u>,cmd[10] = ",  start = 10 i = 10, flag = "
+smasher loop 12=t,flag=", s.start = 10, s.end = 8
+" " arg = <echo hi > "ct" u>,cmd[12] = t,  start = 10 i = 12, flag = "
+smasher loop 13=",flag=", s.start = 10, s.end = 8
+" " arg = <echo hi > "ct" u>,cmd[13] = ",  start = 10 i = 13, flag = "
+before cleaning arg = <echo hi > "ct" u>, start = 10 i = 13
+Mul single and double quote
+ cmd = <echo hi > "ct" u>, flag = ",strt=10,end=8,i=13
+figur out end of quote <echo hi > "ct" u>, f=", st=10, en=8, i= 13
+calling case 2 Doesn't end with quote 
+main cmd[13] = "  cmd[14] =   , start = 10, flag = "
+
+
+Case 2
+s=10,e=8,i=13 
+after decrement s=10,e=8,i=13 
+fetching end cmd[13 + 1] = < >, flag = "
+fetching end cmd[13 + 2] = <u>, flag = "
+
+reached end cmd[13 + 3] = < >, flag = " start = 10
+
+end figur out end of quote <echo hi > "ct" u>, f=", st=10, en=16, i= 15
+filling node with ~ct u~
+~echo~
+~hi~
+~>~
+~ct u~
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+~ls~
+joining env 
+smasher loop 0=b,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=s,flag=s, s.start = 0, s.end = 0
+smasher loop 3=h,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = bash, start = 0, end = 3
+~bash~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=i,flag=s, s.start = 0, s.end = 0
+smasher loop 2=x,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = eixt, start = 0, end = 3
+~eixt~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=p,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+smasher loop 5=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = export, start = 0, end = 5
+~export~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=l,flag=s, s.start = 0, s.end = 0
+smasher loop 2=e,flag=s, s.start = 0, s.end = 0
+smasher loop 3=a,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = clear, start = 0, end = 4
+~clear~
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+~ls~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=p,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+smasher loop 5=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = export, start = 0, end = 5
+~export~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=p,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+smasher loop 5=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = export, start = 0, end = 5
+smasher loop 6= ,flag=i, s.start = 0, s.end = 5
+smasher loop 7=|,flag=i, s.start = 7, s.end = 6
+smasher loop 8= ,flag=i, s.start = 7, s.end = 7
+smasher loop 9=g,flag=s, s.start = 9, s.end = 7
+smasher loop 10=r,flag=s, s.start = 9, s.end = 7
+smasher loop 11=e,flag=s, s.start = 9, s.end = 7
+smasher loop 12=p,flag=s, s.start = 9, s.end = 7
+space_smash, smashed_arg = grep, start = 9, end = 12
+smasher loop 13= ,flag=i, s.start = 9, s.end = 12
+smasher loop 14=O,flag=s, s.start = 14, s.end = 12
+smasher loop 15=L,flag=s, s.start = 14, s.end = 12
+smasher loop 16=D,flag=s, s.start = 14, s.end = 12
+space_smash, smashed_arg = OLD, start = 14, end = 16
+~export~
+~|~
+~grep~
+~OLD~
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=n,flag=s, s.start = 0, s.end = 0
+smasher loop 2=v,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = env, start = 0, end = 2
+~env~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=k,flag=s, s.start = 0, s.end = 0
+smasher loop 2=d,flag=s, s.start = 0, s.end = 0
+smasher loop 3=i,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = mkdir, start = 0, end = 4
+smasher loop 5= ,flag=i, s.start = 0, s.end = 4
+smasher loop 6=1,flag=s, s.start = 6, s.end = 4
+space_smash, smashed_arg = 1, start = 6, end = 6
+~mkdir~
+~1~
+joining env 
+smasher loop 0=r,flag=i, s.start = 0, s.end = 0
+smasher loop 1=m,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = rm, start = 0, end = 1
+smasher loop 2= ,flag=i, s.start = 0, s.end = 1
+smasher loop 3=1,flag=s, s.start = 3, s.end = 1
+space_smash, smashed_arg = 1, start = 3, end = 3
+~rm~
+~1~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=k,flag=s, s.start = 0, s.end = 0
+smasher loop 2=d,flag=s, s.start = 0, s.end = 0
+smasher loop 3=i,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = mkdir, start = 0, end = 4
+smasher loop 5= ,flag=i, s.start = 0, s.end = 4
+smasher loop 6=1,flag=s, s.start = 6, s.end = 4
+space_smash, smashed_arg = 1, start = 6, end = 6
+~mkdir~
+~1~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=d,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cd, start = 0, end = 1
+smasher loop 2= ,flag=i, s.start = 0, s.end = 1
+smasher loop 3=1,flag=s, s.start = 3, s.end = 1
+space_smash, smashed_arg = 1, start = 3, end = 3
+~cd~
+~1~

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 20:32:43 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:40:51 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	filling_normal_spaced_word(
 	}
 	else
 		free(smashed_arg);
-	s->end = 0;
 	s->flag = 'i';
 }
 
@@ -83,7 +82,6 @@ void	double_qoute_smash(t_smash_kit *s, char *cmd,
 		forens_printf("filling node with ~%s~\n", smashed_arg);
 		s->tmp = fill_cmd_node(smashed_arg, 'c');
 		ft_lstadd_back(head, s->tmp);
-		s->end = 0;
 		s->flag = 'i';
 	}
 }
@@ -113,7 +111,6 @@ void	single_qoute_smach(t_smash_kit *s, char *cmd,
 		forens_printf("filling node with ~%s~\n", smashed_arg);
 		tmp = fill_cmd_node(smashed_arg, 'c');
 		ft_lstadd_back(head, tmp);
-		s->end = 0;
 		s->flag = 'i';
 	}
 }

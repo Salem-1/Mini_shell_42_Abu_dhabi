@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 08:08:05 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:13:44 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	exec_export(t_pipes *all_cmds,
 		i++;
 	}
 	if (t->args[1] == NULL)
-		vis_list(env, 'x');
+		vis_export(env, 'x');
 	if (flag == 'c' && all_cmds->parse_error == 30)
 		raise_export_error(all_cmds, t->args[i], 'c');
 	if (all_cmds->parse_error == 30)

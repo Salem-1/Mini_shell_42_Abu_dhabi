@@ -22,6 +22,7 @@ SRC =	main.c \
 		bins/cd.c bins/echo.c bins/env_pwd.c \
 		bins/exit.c bins/export.c  bins/unset.c \
 		bins/export_utils.c \
+		bins/export_visulaizer.c \
 		bins/unset_utils.c \
 		erro_handle/raise_builtin_errors.c \
 		erro_handle/parse_error.c \
