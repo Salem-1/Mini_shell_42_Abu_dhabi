@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 18:41:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 10:34:55 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ typedef struct smashing_kit
 	int		end;
 	char	flag;
 	int		parse_error_code;
-	int	cmd_len;
+	int		cmd_len;
+	char	*cmd;
 }	t_smash_kit;
 
 typedef struct dollar_expansion_kit
@@ -99,6 +100,8 @@ int					cmd_not_empty(char *cmd);
 int					is_piped(char *cmd);
 t_pipes				*parsing_piped_cmd(
 						char *cmd, t_list *env, int *exit_status);
+t_list				*update_smashed_cmd_after_filling_cmd(t_list *smashed_cmd,
+						t_pipes *t, int *i);
 t_list				*assingn_t_and_smashed_head(t_pipes *t, t_list *smashed_cmd,
 						t_list *env);
 char				**ft_cmd_split(char *raw_cmd);
@@ -107,8 +110,11 @@ t_list				*cmd_smasher(char *cmd,
 t_list				*fill_cmd_node(char *arg, char type);
 void				spaces_smash(t_smash_kit *s, char *cmd,
 						t_list **head, int *exit_status);
+void				filling_normal_spaced_word(t_smash_kit *s,
+						char *smashed_arg, t_list **head, int *exit_status);
 char				cmd_classifier(t_smash_kit *s, char *cmd);
-void				init_smash_kit(t_smash_kit *s, t_list **head, t_list *env);
+void				init_smash_kit(
+						t_smash_kit *s, t_list **head, t_list *env, char *cmd);
 void				double_qoute_smash(t_smash_kit *s, char *cmd,
 						t_list **head, int *exit_status);
 void				single_qoute_smach(t_smash_kit *s, char *cmd,
@@ -156,6 +162,9 @@ void				case_take_f1_cat_f2_f3_etc(t_pipes *t);
 //quotes handling
 char				*figure_out_end_of_quote_and_fill_arg(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
+int					is_normal_quote_case(t_smash_kit *s, char *cmd);
+int					decide_normal_or_outliar_fill(
+						char *cmd, t_smash_kit *s, char flag);
 char				*fill_normal_quote_case(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
 char				*fill_outliar_quote_by_split_expand(
@@ -166,9 +175,13 @@ char				*outliar_single_fill(
 						char **splitted_arg, char *final_arg);
 char				*multiple_single_and_double_quotes(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
-int					not_reched_end(char *cmd,
+int					not_reched_end_2(char *cmd,
 						t_smash_kit *s, int fetch_end, int *quote_end);
+int					not_reched_end_3(char *cmd,
+						t_smash_kit *s, int fetch_end);
 char				*fill_case_2(t_smash_kit *s,
+						char *cmd, char flag, int *exit_status);
+char				*fill_case_3(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
 //Execution
 int					exec_to_output_operations(t_pipes *t,
@@ -176,7 +189,7 @@ int					exec_to_output_operations(t_pipes *t,
 int					opening_out_file(t_pipes *t, int local_fd);
 int					exec_to_take_operations(t_pipes *t,
 						t_list *env, int i, int case_out);
-int					execute_in_pipe(t_pipes *t, t_list *env,int **fd, int i);
+int					execute_in_pipe(t_pipes *t, t_list *env, int **fd, int i);
 int					execute_one_cmd(char *command, t_list *t_env,
 						int exit_shell);
 char				*search_path_for_bin(char *split_command_0, t_list *env);
@@ -224,17 +237,17 @@ void				fill_heredoced_cmd(t_pipes *t, t_list *env, int i);
 void				lets_heredoc(t_pipes *t, t_list *env, int i);
 int					skip_multiple_heredocs(t_pipes *t, int i);
 char				*expand_heredoc_var(
-						t_smash_kit *s, char *cmd, int * exit_status);
+						t_smash_kit *s, char *cmd, int *exit_status);
 char				*expand_heredoc_var(
-						t_smash_kit *s, char *cmd, int * exit_status);
+						t_smash_kit *s, char *cmd, int *exit_status);
 void				init_s_for_heredoc(
 						t_smash_kit *s, char *filled_heredoc, t_list *env);
 void				cpy_cmd(struct t_parsed_command *src,
 						struct t_parsed_command *dst);
-void				exec_heredoc(t_pipes *t,  int i, t_list *env, int case_out);
+void				exec_heredoc(t_pipes *t, int i, t_list *env, int case_out);
 //Executables
-int					is_in_our_executable(struct t_parsed_command *t
-						, t_list *env, struct t_pipes *all_cmds, char **envp);
+int					is_in_our_executable(struct t_parsed_command *t,
+						t_list *env, struct t_pipes *all_cmds, char **envp);
 void				exec_our_cmd(t_parsed_command *t,
 						t_list *env, struct t_pipes *all_cmds, char **envp);
 t_list				*fill_new_export_node(t_list *tmp,
@@ -272,7 +285,7 @@ void				unset_error(char *env_variable,
 int					exec_cd(struct t_parsed_command *t,
 						t_list **env, t_pipes *all_cmds, int flag);
 int					cd_has_second_arg(struct t_parsed_command *t,
-						t_pipes * all_cmds, int flag);
+						t_pipes *all_cmds, int flag);
 void				fill_old_and_current_pwd(t_list **env,
 						char *old_path, char *current_path);
 void				cd_error(t_pipes *t, char *error_path, char flag);
@@ -282,13 +295,13 @@ void				exec_exit(struct t_pipes *all_cmds, int exit_shell);
 int					tedous_n(struct t_parsed_command *t);
 void				vis_list(t_list **env, char is_env_or_exp);
 int					output_append_execution(t_pipes *t, int i, int **fd);
-int					input_execution(t_pipes *t, t_list *env,int **fd, int i);
+int					input_execution(t_pipes *t, t_list *env, int **fd, int i);
 char				*clean_export_var_from_quotes(char *val, char quote);
-int					exec_exit_in_parent(int *i,  struct t_pipes *t);
+int					exec_exit_in_parent(int *i, struct t_pipes *t);
 int					can_exec_in_parent(int *i, struct t_pipes *t);
 int					check_exit_arg(t_parsed_command *t);
 void				throw_error_in_exit(t_pipes *t, int *exit_code,
-						int error_code,int parse_error);
+						int error_code, int parse_error);
 int					exec_exit_in_child(t_parsed_command *single_cmd,
 						t_pipes *t, int exit_code);
 //Handling erros
@@ -296,7 +309,7 @@ void				remove_second_redirection(t_scan_parse_error *e);
 int					is_parse_error_inside_smached_cmd(t_scan_parse_error *e);
 void				init_e_args(t_scan_parse_error *e, t_list *smashed_cmd);
 void				update_e_args(t_scan_parse_error *e);
-void				throw_parser_error(t_pipes *t, int * exit_status);
+void				throw_parser_error(t_pipes *t, int *exit_status);
 void				fill_errored_pipe(
 						t_pipes *t, int error, t_list *smashed_cmd);
 void				cd_exit_with_code(t_pipes *t);
@@ -315,8 +328,8 @@ void				throw_error_exit_code(
 						char *message, int *exit_status, int exit_code);
 int					errord_t_piped(t_pipes *t, int *exit_status);
 //signals handling
-void					handle_signals(int sig);
-void					init_signals();
+void				handle_signals(int sig);
+void				init_signals(void);
 
 //testing functions,
 void				vis_split(char **arr);

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 18:42:52 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 20:17:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,25 @@ t_pipes	*parsing_piped_cmd(char *cmd, t_list *env, int *exit_status)
 	t = init_t_struct(t, smashed_cmd, env);
 	if (t->parse_error != 0)
 		return (t);
-	while (smashed_cmd)
-	{
-		smashed_cmd = fill_cmd(smashed_cmd, t, i);
-		if (smashed_cmd)
-			smashed_cmd = smashed_cmd->next;
-		else
-			break ;
-		i++;
-	}
+	smashed_cmd = update_smashed_cmd_after_filling_cmd(smashed_cmd, t, &i);
 	parsing_laundry(t, smashed_head, cmd, i);
 	return (t);
 }
 
+t_list	*update_smashed_cmd_after_filling_cmd(t_list *smashed_cmd
+	, t_pipes *t, int *i)
+{
+	while (smashed_cmd)
+	{
+		smashed_cmd = fill_cmd(smashed_cmd, t, *i);
+		if (smashed_cmd)
+			smashed_cmd = smashed_cmd->next;
+		else
+			break ;
+		*i = *i + 1;
+	}
+	return (smashed_cmd);
+}
 
 t_pipes	*init_t_struct(t_pipes *t, t_list *smashed_cmd, t_list *env)
 {

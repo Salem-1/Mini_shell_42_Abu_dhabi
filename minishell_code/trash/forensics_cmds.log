@@ -1,0 +1,572 @@
+joining env 
+Cmd smasher cmd[0] = (l), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (s), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+~ls~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (c), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (h), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (o), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+Cmd smasher cmd[4] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[5] = (1), flag = <s>, s.start = 5, s.end = 0
+space_smash, smashed_arg = 1, start = 5, end = 5
+Cmd smasher cmd[6] = (>), flag = <i>, s.start = 5, s.end = 0
+Cmd smasher cmd[7] = ( ), flag = <i>, s.start = 6, s.end = 0
+Cmd smasher cmd[8] = (2), flag = <s>, s.start = 8, s.end = 0
+space_smash, smashed_arg = 2, start = 8, end = 8
+Cmd smasher cmd[9] = ( ), flag = <i>, s.start = 8, s.end = 0
+Cmd smasher cmd[10] = (>), flag = <i>, s.start = 10, s.end = 0
+Cmd smasher cmd[11] = ( ), flag = <i>, s.start = 10, s.end = 0
+Cmd smasher cmd[12] = (3), flag = <s>, s.start = 12, s.end = 0
+space_smash, smashed_arg = 3, start = 12, end = 12
+~echo~
+~1~
+~>~
+~2~
+~>~
+~3~
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+joining env 
+Cmd smasher cmd[0] = (l), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (s), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+Cmd smasher cmd[2] = ( ), flag = <i>, s.start = 0, s.end = 0
+~ls~
+joining env 
+Cmd smasher cmd[0] = (c), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (a), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (t), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+Cmd smasher cmd[3] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[4] = (2), flag = <s>, s.start = 4, s.end = 0
+space_smash, smashed_arg = 2, start = 4, end = 4
+~cat~
+~2~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (c), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (h), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (o), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+Cmd smasher cmd[4] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[5] = (1), flag = <s>, s.start = 5, s.end = 0
+space_smash, smashed_arg = 1, start = 5, end = 5
+Cmd smasher cmd[6] = ( ), flag = <i>, s.start = 5, s.end = 0
+Cmd smasher cmd[7] = (>), flag = <i>, s.start = 7, s.end = 0
+Cmd smasher cmd[8] = ( ), flag = <i>, s.start = 7, s.end = 0
+Cmd smasher cmd[9] = (2), flag = <s>, s.start = 9, s.end = 0
+space_smash, smashed_arg = 2, start = 9, end = 9
+Cmd smasher cmd[10] = ( ), flag = <i>, s.start = 9, s.end = 0
+Cmd smasher cmd[11] = (>), flag = <i>, s.start = 11, s.end = 0
+Cmd smasher cmd[12] = ( ), flag = <i>, s.start = 11, s.end = 0
+Cmd smasher cmd[13] = (3), flag = <s>, s.start = 13, s.end = 0
+space_smash, smashed_arg = 3, start = 13, end = 13
+~echo~
+~1~
+~>~
+~2~
+~>~
+~3~
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+joining env 
+Cmd smasher cmd[0] = (c), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (a), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (t), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+Cmd smasher cmd[3] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[4] = (3), flag = <s>, s.start = 4, s.end = 0
+space_smash, smashed_arg = 3, start = 4, end = 4
+~cat~
+~3~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (c), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (h), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (o), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+Cmd smasher cmd[4] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[5] = (h), flag = <s>, s.start = 5, s.end = 0
+Cmd smasher cmd[6] = (i), flag = <s>, s.start = 5, s.end = 0
+space_smash, smashed_arg = hi, start = 5, end = 6
+Cmd smasher cmd[7] = ( ), flag = <i>, s.start = 5, s.end = 0
+Cmd smasher cmd[8] = (>), flag = <i>, s.start = 8, s.end = 0
+Cmd smasher cmd[9] = ( ), flag = <i>, s.start = 8, s.end = 0
+Cmd smasher cmd[10] = (1), flag = <s>, s.start = 10, s.end = 0
+space_smash, smashed_arg = 1, start = 10, end = 10
+Cmd smasher cmd[11] = ( ), flag = <i>, s.start = 10, s.end = 0
+Cmd smasher cmd[12] = (>), flag = <i>, s.start = 12, s.end = 0
+Cmd smasher cmd[13] = ( ), flag = <i>, s.start = 12, s.end = 0
+Cmd smasher cmd[14] = (2), flag = <s>, s.start = 14, s.end = 0
+space_smash, smashed_arg = 2, start = 14, end = 14
+Cmd smasher cmd[15] = ( ), flag = <i>, s.start = 14, s.end = 0
+Cmd smasher cmd[16] = (>), flag = <i>, s.start = 16, s.end = 0
+Cmd smasher cmd[17] = ( ), flag = <i>, s.start = 16, s.end = 0
+Cmd smasher cmd[18] = (3), flag = <s>, s.start = 18, s.end = 0
+space_smash, smashed_arg = 3, start = 18, end = 18
+~echo~
+~hi~
+~>~
+~1~
+~>~
+~2~
+~>~
+~3~
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+Outliar redirects cmds 0
+joining env 
+Cmd smasher cmd[0] = (c), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (a), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (t), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+Cmd smasher cmd[3] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[4] = (1), flag = <s>, s.start = 4, s.end = 0
+space_smash, smashed_arg = 1, start = 4, end = 4
+~cat~
+~1~
+joining env 
+Cmd smasher cmd[0] = (c), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (a), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (t), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+Cmd smasher cmd[3] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[4] = (2), flag = <s>, s.start = 4, s.end = 0
+space_smash, smashed_arg = 2, start = 4, end = 4
+~cat~
+~2~
+joining env 
+Cmd smasher cmd[0] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (c), flag = <s>, s.start = 1, s.end = 0
+Cmd smasher cmd[2] = (a), flag = <s>, s.start = 1, s.end = 0
+Cmd smasher cmd[3] = (t), flag = <s>, s.start = 1, s.end = 0
+space_smash, smashed_arg = cat, start = 1, end = 3
+Cmd smasher cmd[4] = ( ), flag = <i>, s.start = 1, s.end = 0
+Cmd smasher cmd[5] = (3), flag = <s>, s.start = 5, s.end = 0
+space_smash, smashed_arg = 3, start = 5, end = 5
+~cat~
+~3~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (x), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (i), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (t), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (c), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (j), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (p), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = ecjp, start = 0, end = 3
+Cmd smasher cmd[4] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[5] = (j), flag = <s>, s.start = 5, s.end = 0
+Cmd smasher cmd[6] = (o), flag = <s>, s.start = 5, s.end = 0
+space_smash, smashed_arg = jo, start = 5, end = 6
+~ecjp~
+~jo~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (x), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (i), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (t), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+joining env 
+Cmd smasher cmd[0] = (l), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (s), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+~ls~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (c), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (h), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (o), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+Cmd smasher cmd[4] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[5] = (h), flag = <s>, s.start = 5, s.end = 0
+Cmd smasher cmd[6] = (i), flag = <s>, s.start = 5, s.end = 0
+space_smash, smashed_arg = hi, start = 5, end = 6
+~echo~
+~hi~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (c), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (h), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (o), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+Cmd smasher cmd[4] = ( ), flag = <i>, s.start = 0, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[4] =  ,  start = 5 i = 4, flag = "
+Cmd smasher cmd[5] = ("), flag = <">, s.start = 5, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[5] = ",  start = 5 i = 5, flag = "
+Cmd smasher cmd[7] = (e), flag = <">, s.start = 5, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[7] = e,  start = 5 i = 7, flag = "
+Cmd smasher cmd[8] = (l), flag = <">, s.start = 5, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[8] = l,  start = 5 i = 8, flag = "
+Cmd smasher cmd[9] = (l), flag = <">, s.start = 5, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[9] = l,  start = 5 i = 9, flag = "
+Cmd smasher cmd[10] = (o), flag = <">, s.start = 5, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[10] = o,  start = 5 i = 10, flag = "
+Cmd smasher cmd[11] = ( ), flag = <">, s.start = 5, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[11] =  ,  start = 5 i = 11, flag = "
+Cmd smasher cmd[12] = (h), flag = <">, s.start = 5, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[12] = h,  start = 5 i = 12, flag = "
+Cmd smasher cmd[13] = (o), flag = <">, s.start = 5, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[13] = o,  start = 5 i = 13, flag = "
+Cmd smasher cmd[14] = ("), flag = <">, s.start = 5, s.end = 0
+inside double quote smash arg = <echo "hello ho">,cmd[14] = ",  start = 5 i = 14, flag = "
+before cleaning arg = <echo "hello ho">, start = 5 i = 14
+
+Multiple single and double quote gen
+ cmd = <echo "hello ho">, flag = ", start = 5, end = 0, i = 14
+
+
+Entering figure out end of quote cmd = <echo "hello ho">, flag = ", start = 5, end = 0, i = 14
+calling case 1 filling normal quote  main cmd[14] = "  cmd[15] =   , start = 5, flag = "
+Case 1 Filling normal quote, cmd = echo "hello ho", start = 5, end = 14
+final_arg before expand = hello ho, start = 5, end = 14
+final_arg after filling normal case = hello ho, start = 5, end = 14
+After handling all quotes arg = #hello ho#
+filling node with ~hello ho~
+~echo~
+~hello ho~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (c), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (h), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (o), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+Cmd smasher cmd[4] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[5] = (h), flag = <s>, s.start = 5, s.end = 0
+Cmd smasher cmd[6] = (i), flag = <s>, s.start = 5, s.end = 0
+space_smash, smashed_arg = hi, start = 5, end = 6
+Cmd smasher cmd[7] = ( ), flag = <i>, s.start = 5, s.end = 0
+Cmd smasher cmd[8] = (|), flag = <i>, s.start = 8, s.end = 0
+Cmd smasher cmd[9] = ( ), flag = <i>, s.start = 8, s.end = 0
+Cmd smasher cmd[10] = (g), flag = <s>, s.start = 10, s.end = 0
+Cmd smasher cmd[11] = (r), flag = <s>, s.start = 10, s.end = 0
+Cmd smasher cmd[12] = (e), flag = <s>, s.start = 10, s.end = 0
+Cmd smasher cmd[13] = (p), flag = <s>, s.start = 10, s.end = 0
+space_smash, smashed_arg = grep, start = 10, end = 13
+Cmd smasher cmd[14] = ( ), flag = <i>, s.start = 10, s.end = 0
+Cmd smasher cmd[15] = (h), flag = <s>, s.start = 15, s.end = 0
+space_smash, smashed_arg = h, start = 15, end = 15
+~echo~
+~hi~
+~|~
+~grep~
+~h~
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (c), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (h), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (o), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+Cmd smasher cmd[4] = ( ), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[5] = (h), flag = <s>, s.start = 5, s.end = 0
+Cmd smasher cmd[6] = (i), flag = <s>, s.start = 5, s.end = 0
+space_smash, smashed_arg = hi, start = 5, end = 6
+Cmd smasher cmd[7] = ( ), flag = <i>, s.start = 5, s.end = 0
+Cmd smasher cmd[8] = (|), flag = <i>, s.start = 8, s.end = 0
+Cmd smasher cmd[9] = ( ), flag = <i>, s.start = 8, s.end = 0
+Cmd smasher cmd[10] = (g), flag = <s>, s.start = 10, s.end = 0
+Cmd smasher cmd[11] = (r), flag = <s>, s.start = 10, s.end = 0
+Cmd smasher cmd[12] = (e), flag = <s>, s.start = 10, s.end = 0
+Cmd smasher cmd[13] = (p), flag = <s>, s.start = 10, s.end = 0
+space_smash, smashed_arg = grep, start = 10, end = 13
+Cmd smasher cmd[14] = ( ), flag = <i>, s.start = 10, s.end = 0
+Cmd smasher cmd[15] = (h), flag = <s>, s.start = 15, s.end = 0
+space_smash, smashed_arg = h, start = 15, end = 15
+Cmd smasher cmd[16] = ( ), flag = <i>, s.start = 15, s.end = 0
+Cmd smasher cmd[17] = (|), flag = <i>, s.start = 17, s.end = 0
+Cmd smasher cmd[18] = ( ), flag = <i>, s.start = 17, s.end = 0
+Cmd smasher cmd[19] = (l), flag = <s>, s.start = 19, s.end = 0
+Cmd smasher cmd[20] = (s), flag = <s>, s.start = 19, s.end = 0
+space_smash, smashed_arg = ls, start = 19, end = 20
+~echo~
+~hi~
+~|~
+~grep~
+~h~
+~|~
+~ls~
+count_outliar_redire i = -1, ? i == -1 ok:error
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+joining env 
+Cmd smasher cmd[0] = (c), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (l), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (e), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (a), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[4] = (r), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = clear, start = 0, end = 4
+~clear~
+joining env 
+Cmd smasher cmd[0] = (e), flag = <i>, s.start = 0, s.end = 0
+Cmd smasher cmd[1] = (x), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[2] = (i), flag = <s>, s.start = 0, s.end = 0
+Cmd smasher cmd[3] = (t), flag = <s>, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 0
+" " arg = <echo "hi">,cmd[4] =  ,  start = 5 i = 4, flag = "
+smasher loop 5=",flag=", s.start = 5, s.end = 0
+" " arg = <echo "hi">,cmd[5] = ",  start = 5 i = 5, flag = "
+smasher loop 7=i,flag=", s.start = 5, s.end = 0
+" " arg = <echo "hi">,cmd[7] = i,  start = 5 i = 7, flag = "
+smasher loop 8=",flag=", s.start = 5, s.end = 0
+" " arg = <echo "hi">,cmd[8] = ",  start = 5 i = 8, flag = "
+before cleaning arg = <echo "hi">, start = 5 i = 8
+
+Multiple single and double quote gen
+ cmd = <echo "hi">, flag = ", start = 5, end = 0, i = 8
+
+
+Entering figure out end of quote cmd = <echo "hi">, flag = ", start = 5, end = 0, i = 8
+calling case 1 filling normal quote  main cmd[8] = "  cmd[9] =   , start = 5, flag = "
+Case 1 Filling normal quote, cmd = echo "hi", start = 5, end = 8
+final_arg before expand = hi, start = 5, end = 8
+final_arg after filling normal case = hi, start = 5, end = 8
+After handling all quotes arg = #hi#
+filling node with ~hi~
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 0
+" " arg = <echo "$PWD">,cmd[4] =  ,  start = 5 i = 4, flag = "
+smasher loop 5=",flag=", s.start = 5, s.end = 0
+" " arg = <echo "$PWD">,cmd[5] = ",  start = 5 i = 5, flag = "
+smasher loop 7=P,flag=", s.start = 5, s.end = 0
+" " arg = <echo "$PWD">,cmd[7] = P,  start = 5 i = 7, flag = "
+smasher loop 8=W,flag=", s.start = 5, s.end = 0
+" " arg = <echo "$PWD">,cmd[8] = W,  start = 5 i = 8, flag = "
+smasher loop 9=D,flag=", s.start = 5, s.end = 0
+" " arg = <echo "$PWD">,cmd[9] = D,  start = 5 i = 9, flag = "
+smasher loop 10=",flag=", s.start = 5, s.end = 0
+" " arg = <echo "$PWD">,cmd[10] = ",  start = 5 i = 10, flag = "
+before cleaning arg = <echo "$PWD">, start = 5 i = 10
+
+Multiple single and double quote gen
+ cmd = <echo "$PWD">, flag = ", start = 5, end = 0, i = 10
+
+
+Entering figure out end of quote cmd = <echo "$PWD">, flag = ", start = 5, end = 0, i = 10
+calling case 1 filling normal quote  main cmd[10] = "  cmd[11] =   , start = 5, flag = "
+Case 1 Filling normal quote, cmd = echo "$PWD", start = 5, end = 10
+final_arg before expand = $PWD, start = 5, end = 10
+final_arg after filling normal case = /home/vscode/src/trash, start = 5, end = 10
+After handling all quotes arg = #/home/vscode/src/trash#
+filling node with ~/home/vscode/src/trash~
+~echo~
+~/home/vscode/src/trash~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 0
+smasher loop 5=$,flag=s, s.start = 5, s.end = 0
+smasher loop 6=U,flag=s, s.start = 5, s.end = 0
+smasher loop 7=S,flag=s, s.start = 5, s.end = 0
+smasher loop 8=E,flag=s, s.start = 5, s.end = 0
+smasher loop 9=R,flag=s, s.start = 5, s.end = 0
+smasher loop 10=",flag=s, s.start = 5, s.end = 0
+smasher loop 11=$,flag=", s.start = 5, s.end = 0
+" " arg = <echo $USER"$PWD">,cmd[11] = $,  start = 5 i = 11, flag = "
+smasher loop 12=P,flag=", s.start = 5, s.end = 0
+" " arg = <echo $USER"$PWD">,cmd[12] = P,  start = 5 i = 12, flag = "
+smasher loop 13=W,flag=", s.start = 5, s.end = 0
+" " arg = <echo $USER"$PWD">,cmd[13] = W,  start = 5 i = 13, flag = "
+smasher loop 14=D,flag=", s.start = 5, s.end = 0
+" " arg = <echo $USER"$PWD">,cmd[14] = D,  start = 5 i = 14, flag = "
+smasher loop 15=",flag=", s.start = 5, s.end = 0
+" " arg = <echo $USER"$PWD">,cmd[15] = ",  start = 5 i = 15, flag = "
+before cleaning arg = <echo $USER"$PWD">, start = 5 i = 15
+
+Multiple single and double quote gen
+ cmd = <echo $USER"$PWD">, flag = ", start = 5, end = 0, i = 15
+
+
+Entering figure out end of quote cmd = <echo $USER"$PWD">, flag = ", start = 5, end = 0, i = 15
+Calling case 2 string don't start with quote, start = 5, end = 0
+Inside complicated case
+
+
+
+
+After handling all quotes arg = #/home/vscode/src/trash#
+filling node with ~/home/vscode/src/trash~
+~echo~
+~/home/vscode/src/trash~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 0
+smasher loop 5=$,flag=s, s.start = 5, s.end = 0
+smasher loop 6=U,flag=s, s.start = 5, s.end = 0
+smasher loop 7=S,flag=s, s.start = 5, s.end = 0
+smasher loop 8=E,flag=s, s.start = 5, s.end = 0
+smasher loop 9=R,flag=s, s.start = 5, s.end = 0
+smasher loop 10=",flag=s, s.start = 5, s.end = 0
+smasher loop 11=",flag=", s.start = 5, s.end = 0
+" " arg = <echo $USER"">,cmd[11] = ",  start = 5 i = 11, flag = "
+before cleaning arg = <echo $USER"">, start = 5 i = 11
+
+Multiple single and double quote gen
+ cmd = <echo $USER"">, flag = ", start = 5, end = 0, i = 11
+
+
+Entering figure out end of quote cmd = <echo $USER"">, flag = ", start = 5, end = 0, i = 11
+Calling case 2 string don't start with quote, start = 5, end = 0
+Inside complicated case
+
+
+
+
+After handling all quotes arg = ##
+filling node with ~~
+~echo~
+~~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 0
+smasher loop 5=$,flag=s, s.start = 5, s.end = 0
+smasher loop 6=U,flag=s, s.start = 5, s.end = 0
+smasher loop 7=S,flag=s, s.start = 5, s.end = 0
+smasher loop 8=E,flag=s, s.start = 5, s.end = 0
+smasher loop 9=R,flag=s, s.start = 5, s.end = 0
+smasher loop 10=",flag=s, s.start = 5, s.end = 0
+smasher loop 11=",flag=", s.start = 5, s.end = 0
+" " arg = <echo $USER""$PWD>,cmd[11] = ",  start = 5 i = 11, flag = "
+before cleaning arg = <echo $USER""$PWD>, start = 5 i = 11
+
+Multiple single and double quote gen
+ cmd = <echo $USER""$PWD>, flag = ", start = 5, end = 0, i = 11
+
+
+Entering figure out end of quote cmd = <echo $USER""$PWD>, flag = ", start = 5, end = 0, i = 11
+Calling case 2 string don't start with quote, start = 5, end = 0
+Inside complicated case
+
+
+
+
+cmd[11 + 1] = <$>, flag = "
+cmd[11 + 2] = <P>, flag = "
+cmd[11 + 3] = <W>, flag = "
+cmd[11 + 4] = <D>, flag = "
+After handling all quotes arg = #/home/vscode/src/trash#
+filling node with ~/home/vscode/src/trash~
+~echo~
+~/home/vscode/src/trash~
+joining env 
+smasher loop 0=b,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=s,flag=s, s.start = 0, s.end = 0
+smasher loop 3=h,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = bash, start = 0, end = 3
+~bash~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 0
+smasher loop 5=$,flag=s, s.start = 5, s.end = 0
+smasher loop 6=U,flag=s, s.start = 5, s.end = 0
+smasher loop 7=S,flag=s, s.start = 5, s.end = 0
+smasher loop 8=E,flag=s, s.start = 5, s.end = 0
+smasher loop 9=",flag=s, s.start = 5, s.end = 0
+smasher loop 10=R,flag=", s.start = 5, s.end = 0
+" " arg = <echo $USE"R"$PWD>,cmd[10] = R,  start = 5 i = 10, flag = "
+smasher loop 11=",flag=", s.start = 5, s.end = 0
+" " arg = <echo $USE"R"$PWD>,cmd[11] = ",  start = 5 i = 11, flag = "
+before cleaning arg = <echo $USE"R"$PWD>, start = 5 i = 11
+
+Multiple single and double quote gen
+ cmd = <echo $USE"R"$PWD>, flag = ", start = 5, end = 0, i = 11
+
+
+Entering figure out end of quote cmd = <echo $USE"R"$PWD>, flag = ", start = 5, end = 0, i = 11
+Calling case 2 string don't start with quote, start = 5, end = 0
+Inside complicated case
+
+
+
+
+cmd[11 + 1] = <$>, flag = "
+cmd[11 + 2] = <P>, flag = "
+cmd[11 + 3] = <W>, flag = "
+cmd[11 + 4] = <D>, flag = "
+After handling all quotes arg = #R/home/vscode/src/trash#
+filling node with ~R/home/vscode/src/trash~
+~echo~
+~R/home/vscode/src/trash~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~

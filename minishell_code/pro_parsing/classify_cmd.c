@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/11/06 03:56:50 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 20:32:43 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 //remember to handle this case "he hello"ho 
 //remember to handle this case also 'how is is one sh'unk
 
-
-//unfortuntely will need to map the whole double and single quote parsing process
 void	spaces_smash(t_smash_kit *s, char *cmd, t_list **head, int *exit_status)
 {
 	char	*smashed_arg;
@@ -37,20 +35,28 @@ void	spaces_smash(t_smash_kit *s, char *cmd, t_list **head, int *exit_status)
 				|| (check_redirection(cmd, s->i + 1))))
 		|| ((s->i + 1) >= s->cmd_len))
 	{
-		s->end = s->i;
-		smashed_arg = ft_substr(cmd, s->start, s->end - s->start + 1);
-forens_printf("space_smash, smashed_arg = %s, start = %d, end = %d\n", smashed_arg, s->start, s->end);
-		smashed_arg = expand_var(s, smashed_arg, exit_status);
-		if (!(!smashed_arg[0] && cmd[0]))
-		{
-			s->tmp = fill_cmd_node(smashed_arg, 'c');
-			ft_lstadd_back(head, s->tmp);
-		}
-		else
-			free(smashed_arg);
-		s->end = 0;
-		s->flag = 'i';
+		filling_normal_spaced_word(
+			s, smashed_arg, head, exit_status);
 	}
+}
+
+void	filling_normal_spaced_word(
+		t_smash_kit *s, char *smashed_arg, t_list **head, int *exit_status)
+{
+	s->end = s->i;
+	smashed_arg = ft_substr(s->cmd, s->start, s->end - s->start + 1);
+	forens_printf("space_smash, smashed_arg = %s, start = %d, end = %d\n",
+		smashed_arg, s->start, s->end);
+	smashed_arg = expand_var(s, smashed_arg, exit_status);
+	if (!(!smashed_arg[0] && s->cmd[0]))
+	{
+		s->tmp = fill_cmd_node(smashed_arg, 'c');
+		ft_lstadd_back(head, s->tmp);
+	}
+	else
+		free(smashed_arg);
+	s->end = 0;
+	s->flag = 'i';
 }
 
 void	double_qoute_smash(t_smash_kit *s, char *cmd,
@@ -58,7 +64,8 @@ void	double_qoute_smash(t_smash_kit *s, char *cmd,
 {
 	char	*smashed_arg;
 
-forens_printf("inside double quote smash arg = <%s>,cmd[%d] = %c,  start = %d i = %d, flag = %c\n", cmd, s->i, cmd[s->i], s->start, s->i, s->flag);
+	forens_printf("\" \" arg = <%s>,cmd[%d] = %c,  start = %d i = %d, flag = %c\n",
+		cmd, s->i, cmd[s->i], s->start, s->i, s->flag);
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
@@ -69,7 +76,8 @@ forens_printf("inside double quote smash arg = <%s>,cmd[%d] = %c,  start = %d i 
 	}
 	else if (cmd[s->i] == '"')
 	{
-		forens_printf("before cleaning arg = <%s>, start = %d i = %d\n", cmd, s->start, s->i);
+		forens_printf("before cleaning arg = <%s>, start = %d i = %d\n",
+			cmd, s->start, s->i);
 		smashed_arg = multiple_single_and_double_quotes(
 				s, cmd, '"', exit_status);
 		forens_printf("filling node with ~%s~\n", smashed_arg);
@@ -80,8 +88,6 @@ forens_printf("inside double quote smash arg = <%s>,cmd[%d] = %c,  start = %d i 
 	}
 }
 
-
-
 void	single_qoute_smach(t_smash_kit *s, char *cmd,
 		t_list *tmp, t_list **head)
 {
@@ -89,7 +95,7 @@ void	single_qoute_smach(t_smash_kit *s, char *cmd,
 	int		exit_code;
 
 	exit_code = 0;
-forens_printf("check for single quote <%c>\n", cmd[s->i]);
+	forens_printf("check for single quote <%c>\n", cmd[s->i]);
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
@@ -97,15 +103,15 @@ forens_printf("check for single quote <%c>\n", cmd[s->i]);
 	{
 		forens_printf("Unclose ' single quote, throwing an error\n");
 		s->parse_error_code = 2;
-		// return ;
 	}
-	if (cmd[s->i] == '\'' || ((cmd[s->i] != '\'' && ((s->i + 1) >= s->cmd_len))))
+	if (cmd[s->i] == '\'' || ((cmd[s->i] != '\''
+				&& ((s->i + 1) >= s->cmd_len))))
 	{
-		forens_printf("before cleaning arg = <%s>, start = %d i = %d\n", cmd, s->start, s->i);
+		forens_printf("before clean <%s>,start=%d,i=%d\n", cmd, s->start, s->i);
 		smashed_arg = multiple_single_and_double_quotes(
-						s, cmd, '\'', &exit_code);
+				s, cmd, '\'', &exit_code);
 		forens_printf("filling node with ~%s~\n", smashed_arg);
-		tmp = fill_cmd_node(smashed_arg,'c');
+		tmp = fill_cmd_node(smashed_arg, 'c');
 		ft_lstadd_back(head, tmp);
 		s->end = 0;
 		s->flag = 'i';
