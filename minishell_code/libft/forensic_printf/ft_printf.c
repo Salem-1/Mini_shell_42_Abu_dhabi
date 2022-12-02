@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:13:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 14:48:36 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 14:52:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	forens_printf(const char *s, ...)
 		return (0);
 	dup2(FD, fd);
 	va_start(ptr, s);
-	len == looping_thorw_string(s, &ptr);
+	len = looping_thorw_string(s, &ptr);
 	va_end(ptr);
 	close(FD);
 	return (len);

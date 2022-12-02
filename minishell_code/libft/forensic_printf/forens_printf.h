@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 22:17:52 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 14:40:33 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 14:55:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int		fprint_hex(unsigned int n, int flag);
 char	*fft_itop(unsigned long n, int flag);
 int		fprint_ptr(unsigned long n, int flag);
 void	local_ft_putstr_fd(char *s, int fd);
+void	flocal_ft_putstr_fd(char *s, int fd);
 
 #endif

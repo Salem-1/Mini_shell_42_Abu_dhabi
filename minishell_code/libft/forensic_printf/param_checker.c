@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 19:53:17 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 14:48:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 14:54:18 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	print_char(char c);
 static int	print_string(char *arg);
+void		flocal_ft_putstr_fd(char *s, int fd);
 
 int	fparam_checker(const char *s, void *arg)
 {

@@ -2,6 +2,8 @@ case :
 -------
 Mem clean
 
+export
+organize the export print 
 
 < 1 cat
 think about handling this in the execution as it's easier and cleaner
