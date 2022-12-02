@@ -2225,3 +2225,344 @@ smasher loop 2=i,flag=s, s.start = 0, s.end = 0
 smasher loop 3=t,flag=s, s.start = 0, s.end = 0
 space_smash, smashed_arg = exit, start = 0, end = 3
 ~exit~
+getting env vars
+var[0] = PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+var[1] = HOSTNAME=1a1901a3db3e
+var[2] = TERM=xterm
+var[3] = no_proxy=*.local, 169.254/16
+var[4] = APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+var[5] = DEBIAN_FRONTEND=dialog
+var[6] = PROMPT_COMMAND=RET=$?; echo -n "[$RET] "
+var[7] = HOME=/root
+var[8] = LOGNAME=root
+var[9] = SHLVL=1
+var[10] = PWD=/home/vscode/src
+var[11] = OLDPWD=/home/vscode/src
+var[12] = ZSH=/root/.oh-my-zsh
+var[13] = PAGER=less
+var[14] = LESS=-R
+var[15] = LSCOLORS=Gxfxcxdxbxegedabagacad
+var[16] = LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+var[17] = _=/home/vscode/src/./minishell
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 0
+smasher loop 5=h,flag=s, s.start = 5, s.end = 0
+smasher loop 6=i,flag=s, s.start = 5, s.end = 0
+space_smash, smashed_arg = hi, start = 5, end = 6
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+getting env vars
+var[0] = no_proxy=*.local, 169.254/16
+var[1] = APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+var[2] = HOSTNAME=1a1901a3db3e
+var[3] = SHLVL=1
+var[4] = LD_LIBRARY_PATH=/usr/lib/debug
+var[5] = HOME=/root
+var[6] = OLDPWD=/home/vscode/src/pro_parsing
+var[7] = LESS=-R
+var[8] = ZSH=/root/.oh-my-zsh
+var[9] = LSCOLORS=Gxfxcxdxbxegedabagacad
+var[10] = PAGER=less
+var[11] = LOGNAME=root
+var[12] = _=/home/vscode/src/./mem_check.sh
+var[13] = TERM=xterm
+var[14] = PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+var[15] = GLIBCPP_FORCE_NEW=1
+var[16] = LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+var[17] = DEBIAN_FRONTEND=dialog
+var[18] = PROMPT_COMMAND=RET=$?; echo -n "[$RET] "
+var[19] = PWD=/home/vscode/src
+var[20] = GLIBCXX_FORCE_NEW=1
+var[21] = LD_PRELOAD=/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so:/usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=",flag=s, s.start = 0, s.end = 0
+smasher loop 2=c,flag=", s.start = 0, s.end = 0
+" " arg = <e"cho" hi>,cmd[2] = c,  start = 0 i = 2, flag = "
+smasher loop 3=h,flag=", s.start = 0, s.end = 0
+" " arg = <e"cho" hi>,cmd[3] = h,  start = 0 i = 3, flag = "
+smasher loop 4=o,flag=", s.start = 0, s.end = 0
+" " arg = <e"cho" hi>,cmd[4] = o,  start = 0 i = 4, flag = "
+smasher loop 5=",flag=", s.start = 0, s.end = 0
+" " arg = <e"cho" hi>,cmd[5] = ",  start = 0 i = 5, flag = "
+before cleaning arg = <e"cho" hi>, start = 0 i = 5
+Mul single and double quote
+ cmd = <e"cho" hi>, flag = ",strt=0,end=0,i=5
+figur out end of quote <e"cho" hi>, f=", st=0, en=0, i= 5
+cas 3 no quote start,st = 0 en= 0
+
+
+Case 3
+s=0,e=0,i=5 
+
+reached end cmd[4 + 1] = <">, flag = " start = 0
+
+end figur out end of quote <e"cho" hi>, f=", st=0, en=5, i= 5
+entering the source of all devil loop
+Exiting Multiple merged_str = <echo>, st=0, en=5
+filling node with ~echo~
+smasher loop 6= ,flag=i, s.start = 0, s.end = 0
+smasher loop 7=h,flag=s, s.start = 7, s.end = 0
+smasher loop 8=i,flag=s, s.start = 7, s.end = 0
+space_smash, smashed_arg = hi, start = 7, end = 8
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+smasher loop 4=",flag=s, s.start = 0, s.end = 0
+smasher loop 5=",flag=", s.start = 0, s.end = 0
+" " arg = <echo"" hi>,cmd[5] = ",  start = 0 i = 5, flag = "
+before cleaning arg = <echo"" hi>, start = 0 i = 5
+Mul single and double quote
+ cmd = <echo"" hi>, flag = ",strt=0,end=0,i=5
+figur out end of quote <echo"" hi>, f=", st=0, en=0, i= 5
+cas 3 no quote start,st = 0 en= 0
+
+
+Case 3
+s=0,e=0,i=5 
+
+reached end cmd[4 + 1] = <">, flag = " start = 0
+
+end figur out end of quote <echo"" hi>, f=", st=0, en=5, i= 5
+entering the source of all devil loop
+Exiting Multiple merged_str = <echo>, st=0, en=5
+filling node with ~echo~
+smasher loop 6= ,flag=i, s.start = 0, s.end = 0
+smasher loop 7=h,flag=s, s.start = 7, s.end = 0
+smasher loop 8=i,flag=s, s.start = 7, s.end = 0
+space_smash, smashed_arg = hi, start = 7, end = 8
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=",flag=s, s.start = 0, s.end = 0
+smasher loop 4=",flag=", s.start = 0, s.end = 0
+" " arg = <ech""o hi>,cmd[4] = ",  start = 0 i = 4, flag = "
+before cleaning arg = <ech""o hi>, start = 0 i = 4
+Mul single and double quote
+ cmd = <ech""o hi>, flag = ",strt=0,end=0,i=4
+figur out end of quote <ech""o hi>, f=", st=0, en=0, i= 4
+cas 3 no quote start,st = 0 en= 0
+
+
+Case 3
+s=0,e=0,i=4 
+fetching end cmd[3 + 2] = <o>, flag = "
+
+reached end cmd[3 + 3] = < >, flag = " start = 0
+
+end figur out end of quote <ech""o hi>, f=", st=0, en=6, i= 6
+entering the source of all devil loop
+Exiting Multiple merged_str = <echo>, st=0, en=6
+filling node with ~echo~
+smasher loop 7=h,flag=i, s.start = 0, s.end = 0
+smasher loop 8=i,flag=s, s.start = 7, s.end = 0
+space_smash, smashed_arg = hi, start = 7, end = 8
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+getting env vars
+var[0] = PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+var[1] = HOSTNAME=1a1901a3db3e
+var[2] = TERM=xterm
+var[3] = no_proxy=*.local, 169.254/16
+var[4] = APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
+var[5] = DEBIAN_FRONTEND=dialog
+var[6] = PROMPT_COMMAND=RET=$?; echo -n "[$RET] "
+var[7] = HOME=/root
+var[8] = LOGNAME=root
+var[9] = SHLVL=1
+var[10] = PWD=/home/vscode/src
+var[11] = OLDPWD=/home/vscode/src/pro_parsing
+var[12] = ZSH=/root/.oh-my-zsh
+var[13] = PAGER=less
+var[14] = LESS=-R
+var[15] = LSCOLORS=Gxfxcxdxbxegedabagacad
+var[16] = LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+var[17] = _=/home/vscode/src/./minishell
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+smasher loop 4=",flag=s, s.start = 0, s.end = 0
+smasher loop 5=",flag=", s.start = 0, s.end = 0
+" " arg = <echo"" hi>,cmd[5] = ",  start = 0 i = 5, flag = "
+before cleaning arg = <echo"" hi>, start = 0 i = 5
+Mul single and double quote
+ cmd = <echo"" hi>, flag = ",strt=0,end=0,i=5
+figur out end of quote <echo"" hi>, f=", st=0, en=0, i= 5
+cas 3 no quote start,st = 0 en= 0
+
+
+Case 3
+s=0,e=0,i=5 
+
+reached end cmd[4 + 1] = <">, flag = " start = 0
+
+end figur out end of quote <echo"" hi>, f=", st=0, en=5, i= 5
+entering the source of all devil loop
+Exiting Multiple merged_str = <echo>, st=0, en=5
+filling node with ~echo~
+smasher loop 6= ,flag=i, s.start = 0, s.end = 0
+smasher loop 7=h,flag=s, s.start = 7, s.end = 0
+smasher loop 8=i,flag=s, s.start = 7, s.end = 0
+space_smash, smashed_arg = hi, start = 7, end = 8
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=",flag=s, s.start = 0, s.end = 0
+smasher loop 4=",flag=", s.start = 0, s.end = 0
+" " arg = <ech""o hi>,cmd[4] = ",  start = 0 i = 4, flag = "
+before cleaning arg = <ech""o hi>, start = 0 i = 4
+Mul single and double quote
+ cmd = <ech""o hi>, flag = ",strt=0,end=0,i=4
+figur out end of quote <ech""o hi>, f=", st=0, en=0, i= 4
+cas 3 no quote start,st = 0 en= 0
+
+
+Case 3
+s=0,e=0,i=4 
+fetching end cmd[3 + 2] = <o>, flag = "
+
+reached end cmd[3 + 3] = < >, flag = " start = 0
+
+end figur out end of quote <ech""o hi>, f=", st=0, en=6, i= 6
+entering the source of all devil loop
+Exiting Multiple merged_str = <echo>, st=0, en=6
+filling node with ~echo~
+smasher loop 7=h,flag=i, s.start = 0, s.end = 0
+smasher loop 8=i,flag=s, s.start = 7, s.end = 0
+space_smash, smashed_arg = hi, start = 7, end = 8
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=",flag=s, s.start = 0, s.end = 0
+smasher loop 2=c,flag=", s.start = 0, s.end = 0
+" " arg = <e"cho" hi>,cmd[2] = c,  start = 0 i = 2, flag = "
+smasher loop 3=h,flag=", s.start = 0, s.end = 0
+" " arg = <e"cho" hi>,cmd[3] = h,  start = 0 i = 3, flag = "
+smasher loop 4=o,flag=", s.start = 0, s.end = 0
+" " arg = <e"cho" hi>,cmd[4] = o,  start = 0 i = 4, flag = "
+smasher loop 5=",flag=", s.start = 0, s.end = 0
+" " arg = <e"cho" hi>,cmd[5] = ",  start = 0 i = 5, flag = "
+before cleaning arg = <e"cho" hi>, start = 0 i = 5
+Mul single and double quote
+ cmd = <e"cho" hi>, flag = ",strt=0,end=0,i=5
+figur out end of quote <e"cho" hi>, f=", st=0, en=0, i= 5
+cas 3 no quote start,st = 0 en= 0
+
+
+Case 3
+s=0,e=0,i=5 
+
+reached end cmd[4 + 1] = <">, flag = " start = 0
+
+end figur out end of quote <e"cho" hi>, f=", st=0, en=5, i= 5
+entering the source of all devil loop
+Exiting Multiple merged_str = <echo>, st=0, en=5
+filling node with ~echo~
+smasher loop 6= ,flag=i, s.start = 0, s.end = 0
+smasher loop 7=h,flag=s, s.start = 7, s.end = 0
+smasher loop 8=i,flag=s, s.start = 7, s.end = 0
+space_smash, smashed_arg = hi, start = 7, end = 8
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+getting env vars
+var[0] = USER=ahsalem
+var[1] = MallocNanoZone=0
+var[2] = PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin
+var[3] = LOGNAME=ahsalem
+var[4] = SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.1OZH8peqyC/Listeners
+var[5] = HOME=/Users/ahsalem
+var[6] = SHELL=/bin/zsh
+var[7] = __CF_USER_TEXT_ENCODING=0x18D01:0x0:0x0
+var[8] = TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n000cd04003381/T/
+var[9] = XPC_SERVICE_NAME=0
+var[10] = XPC_FLAGS=0x0
+var[11] = ORIGINAL_XDG_CURRENT_DESKTOP=undefined
+var[12] = SHLVL=1
+var[13] = PWD=/Users/ahsalem/projects/minishell/before_norm_version/minishell_code
+var[14] = OLDPWD=/Users/ahsalem/projects/minishell/before_norm_version/minishell_code/pro_parsing
+var[15] = TERM_PROGRAM=vscode
+var[16] = TERM_PROGRAM_VERSION=1.72.2
+var[17] = LANG=en_US.UTF-8
+var[18] = COLORTERM=truecolor
+var[19] = GIT_ASKPASS=/goinfre/ahsalem/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
+var[20] = VSCODE_GIT_ASKPASS_NODE=/goinfre/ahsalem/Visual Studio Code.app/Contents/Frameworks/Code Helper.app/Contents/MacOS/Code Helper
+var[21] = VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
+var[22] = VSCODE_GIT_ASKPASS_MAIN=/goinfre/ahsalem/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
+var[23] = VSCODE_GIT_IPC_HANDLE=/var/folders/zz/zyxvpxvq6csfxvn_n000cd04003381/T/vscode-git-48beb9fdc6.sock
+var[24] = VSCODE_INJECTION=1
+var[25] = ZDOTDIR=/Users/ahsalem
+var[26] = USER_ZDOTDIR=/Users/ahsalem
+var[27] = TERM=xterm-256color
+var[28] = _=/Users/ahsalem/projects/minishell/before_norm_version/minishell_code/./minishell
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+smasher loop 4=",flag=s, s.start = 0, s.end = 0
+smasher loop 5=",flag=", s.start = 0, s.end = 0
+" " arg = <echo"" hi>,cmd[5] = ",  start = 0 i = 5, flag = "
+before cleaning arg = <echo"" hi>, start = 0 i = 5
+Mul single and double quote
+ cmd = <echo"" hi>, flag = ",strt=0,end=0,i=5
+figur out end of quote <echo"" hi>, f=", st=0, en=0, i= 5
+cas 3 no quote start,st = 0 en= 0
+
+
+Case 3
+s=0,e=0,i=5 
+
+reached end cmd[4 + 1] = <">, flag = " start = 0
+
+end figur out end of quote <echo"" hi>, f=", st=0, en=5, i= 5
+entering the source of all devil loop
+Exiting Multiple merged_str = <echo>, st=0, en=5
+filling node with ~echo~
+smasher loop 6= ,flag=i, s.start = 0, s.end = 0
+smasher loop 7=h,flag=s, s.start = 7, s.end = 0
+smasher loop 8=i,flag=s, s.start = 7, s.end = 0
+space_smash, smashed_arg = hi, start = 7, end = 8
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~

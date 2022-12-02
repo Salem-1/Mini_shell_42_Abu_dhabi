@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:40:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 10:34:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 10:43:17 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,6 @@ char	*fill_case_2(t_smash_kit *s,
 	return (final_arg);
 }
 
-int	not_reched_end_2(char *cmd, t_smash_kit *s, int fetch_end, int *quote_end)
-{
-	if (cmd[s->i] == s->flag && *quote_end == 0)
-		*quote_end = 1;
-	else if (cmd[s->i] == s->flag && *quote_end == 1)
-		*quote_end = 2;
-	if (cmd[s->i + fetch_end] != '\0'
-		&& !check_redirection(cmd, s->i + fetch_end)
-		&& (cmd[s->i + fetch_end] != '\'')
-		&& (cmd[s->i + fetch_end] != '"'
-		))
-		return (1);
-	else
-	{
-		forens_printf("\nreached end cmd[%d + %d] = <%c>, flag = %c",
-			s->i, fetch_end, cmd[s->i + fetch_end], s->flag);
-		forens_printf(" start = %d\n\n", s-> start);
-		return (0);
-	}
-}
-
 char	*fill_case_3(t_smash_kit *s,
 			char *cmd, char flag, int *exit_status)
 {
@@ -78,14 +57,10 @@ char	*fill_case_3(t_smash_kit *s,
 	if (s->start == 0)
 		s->i--;
 	while (not_reched_end_3(cmd, s, fetch_end))
-	{
-		forens_printf("fetching end cmd[%d + %d] = <%c>, flag = %c\n",
-			s->i, fetch_end, cmd[s->i + fetch_end], s->flag);
 		fetch_end++;
-	}
 	s->end = s->i + fetch_end;
 	s->i += fetch_end - 1;
-	if(s->start == 0)
+	if (s->start == 0)
 		s->i++;
 	final_arg = ft_substr(cmd, s->start, s->end - s->start);
 	splitted_arg = ft_split(final_arg, flag);
@@ -94,33 +69,6 @@ char	*fill_case_3(t_smash_kit *s,
 	else
 		final_arg = outliar_single_fill(splitted_arg, final_arg);
 	return (final_arg);
-}
-
-int	not_reched_end_3(char *cmd, t_smash_kit *s, int fetch_end)
-{
-	if (cmd[s->i + fetch_end] != '\0'
-		&& !check_redirection(cmd, s->i + fetch_end)
-		&& (cmd[s->i + fetch_end] != '\'')
-		&& (cmd[s->i + fetch_end] != '"')
-		&& !(s->start == 0 && cmd[s->i + fetch_end] == ' '))
-		return (1);
-	else
-	{
-		if ((s->start == 0)
-			&& (cmd[s->i + fetch_end + 1] != '\0'
-				&& !check_redirection(cmd, s->i + fetch_end)
-				&& (cmd[s->i + fetch_end + 1] != '\'')
-				&& (cmd[s->i + fetch_end + 1] != '"')
-				&& ((cmd[s->i + fetch_end + 1] != ' ')
-					&& ((cmd[s->i + fetch_end ] != ' ')))))
-		{
-			return (1);
-		}
-		forens_printf("\nreached end cmd[%d + %d] = <%c>, flag = %c",
-			s->i, fetch_end, cmd[s->i + fetch_end], s->flag);
-		forens_printf(" start = %d\n\n", s-> start);
-		return (0);
-	}
 }
 
 char	*fill_normal_quote_case(t_smash_kit *s,

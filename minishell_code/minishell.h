@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 10:34:55 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 10:49:54 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,10 @@ char				*fill_case_2(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
 char				*fill_case_3(t_smash_kit *s,
 						char *cmd, char flag, int *exit_status);
+int					fixing_start_quote_case_3_edge_case(
+						char *cmd, t_smash_kit *s, int fetch_end);
+int					is_not_end_quote_case_3(
+						char *cmd, t_smash_kit *s, int fetch_end);
 //Execution
 int					exec_to_output_operations(t_pipes *t,
 						t_list *env, int i, int case_in);

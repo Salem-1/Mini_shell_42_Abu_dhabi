@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:40:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 10:02:34 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 10:51:21 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*multiple_single_and_double_quotes(
 	char	*merged_str;
 
 	forens_printf("Mul single and double quote\n cmd = <%s>, flag = ", cmd);
-	forens_printf("%c,strt=%d,end=%d,i=%d\n",  flag, s->start, s->end, s->i);
+	forens_printf("%c,strt=%d,end=%d,i=%d\n", flag, s->start, s->end, s->i);
 	merged_str = figure_out_end_of_quote_and_fill_arg(
 			s, cmd, flag, exit_status);
 	if ((s->i + 1) >= s->cmd_len)
@@ -39,8 +39,8 @@ char	*multiple_single_and_double_quotes(
 		s->i++;
 		s->flag = cmd[s->i];
 		s->start = s->i;
-		forens_printf("Loop single and double quote gen\n cmd = <%s>, flag = ", cmd);
-		forens_printf("%c s %d e %d i %d\n",  flag, s->start, s->end, s->i);
+		forens_printf("Loop single double quote gen\n cmd = <%s>, flag = ", cmd);
+		forens_printf("%c s %d e %d i %d\n", flag, s->start, s->end, s->i);
 		merged_str = ft_expand_strjoin(merged_str,
 				figure_out_end_of_quote_and_fill_arg(
 					s, cmd, s->flag, exit_status));
