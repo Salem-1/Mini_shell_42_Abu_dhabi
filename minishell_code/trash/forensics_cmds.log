@@ -941,3 +941,829 @@ smasher loop 3=1,flag=s, s.start = 3, s.end = 1
 space_smash, smashed_arg = 1, start = 3, end = 3
 ~cd~
 ~1~
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2= ,flag=i, s.start = 0, s.end = 1
+smasher loop 3=|,flag=i, s.start = 3, s.end = 2
+smasher loop 4= ,flag=i, s.start = 3, s.end = 3
+smasher loop 5=g,flag=s, s.start = 5, s.end = 3
+smasher loop 6=r,flag=s, s.start = 5, s.end = 3
+smasher loop 7=e,flag=s, s.start = 5, s.end = 3
+smasher loop 8=p,flag=s, s.start = 5, s.end = 3
+smasher loop 9=",flag=s, s.start = 5, s.end = 3
+smasher loop 10=",flag=", s.start = 5, s.end = 3
+" " arg = <ls | grep"" h>,cmd[10] = ",  start = 5 i = 10, flag = "
+before cleaning arg = <ls | grep"" h>, start = 5 i = 10
+Mul single and double quote
+ cmd = <ls | grep"" h>, flag = ",strt=5,end=3,i=10
+figur out end of quote <ls | grep"" h>, f=", st=5, en=3, i= 10
+cas 3 no quote start,st = 5 en= 3
+
+
+Case 3
+s=5,e=3,i=10 
+
+
+last end cmd[3]= |
+
+
+fetching end cmd[9 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (0)
+fix said 0 (end)
+
+reached end cmd[9 + 1] = <">, flag = " start = 5
+
+end figur out end of quote <ls | grep"" h>, f=", st=5, en=10, i= 10
+entering the source of all devil loop
+Exiting Multiple merged_str = <grep>, st=5, en=10
+filling node with ~grep~
+smasher loop 11= ,flag=i, s.start = 5, s.end = 10
+smasher loop 12=h,flag=s, s.start = 12, s.end = 10
+space_smash, smashed_arg = h, start = 12, end = 12
+~ls~
+~|~
+~grep~
+~h~
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+~ls~
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2= ,flag=i, s.start = 0, s.end = 1
+smasher loop 3=-,flag=s, s.start = 3, s.end = 1
+smasher loop 4=c,flag=s, s.start = 3, s.end = 1
+space_smash, smashed_arg = -c, start = 3, end = 4
+~ls~
+~-c~
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2= ,flag=i, s.start = 0, s.end = 1
+smasher loop 3=-,flag=s, s.start = 3, s.end = 1
+smasher loop 4=m,flag=s, s.start = 3, s.end = 1
+space_smash, smashed_arg = -m, start = 3, end = 4
+~ls~
+~-m~
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2=|,flag=i, s.start = 0, s.end = 1
+smasher loop 3=g,flag=i, s.start = 2, s.end = 2
+smasher loop 4=r,flag=s, s.start = 3, s.end = 2
+smasher loop 5=e,flag=s, s.start = 3, s.end = 2
+smasher loop 6=",flag=s, s.start = 3, s.end = 2
+smasher loop 7=",flag=", s.start = 3, s.end = 2
+" " arg = <ls|gre""p h>,cmd[7] = ",  start = 3 i = 7, flag = "
+before cleaning arg = <ls|gre""p h>, start = 3 i = 7
+Mul single and double quote
+ cmd = <ls|gre""p h>, flag = ",strt=3,end=2,i=7
+figur out end of quote <ls|gre""p h>, f=", st=3, en=2, i= 7
+cas 3 no quote start,st = 3 en= 2
+
+
+Case 3
+s=3,e=2,i=7 
+
+
+last end cmd[2]= |
+
+
+fetching end cmd[6 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 0 (end)
+
+reached end cmd[6 + 1] = <">, flag = " start = 3
+
+end figur out end of quote <ls|gre""p h>, f=", st=3, en=7, i= 7
+entering the source of all devil loop
+Exiting Multiple merged_str = <gre>, st=3, en=7
+filling node with ~gre~
+smasher loop 8=p,flag=i, s.start = 3, s.end = 7
+space_smash, smashed_arg = p, start = 8, end = 8
+smasher loop 9= ,flag=i, s.start = 8, s.end = 8
+smasher loop 10=h,flag=s, s.start = 10, s.end = 8
+space_smash, smashed_arg = h, start = 10, end = 10
+~ls~
+~|~
+~gre~
+~p~
+~h~
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2=|,flag=i, s.start = 0, s.end = 1
+smasher loop 3= ,flag=i, s.start = 2, s.end = 2
+" " arg = <ls| "grep" h| gre""p h>,cmd[3] =  ,  start = 4 i = 3, flag = "
+smasher loop 4=",flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| gre""p h>,cmd[4] = ",  start = 4 i = 4, flag = "
+smasher loop 6=r,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| gre""p h>,cmd[6] = r,  start = 4 i = 6, flag = "
+smasher loop 7=e,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| gre""p h>,cmd[7] = e,  start = 4 i = 7, flag = "
+smasher loop 8=p,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| gre""p h>,cmd[8] = p,  start = 4 i = 8, flag = "
+smasher loop 9=",flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| gre""p h>,cmd[9] = ",  start = 4 i = 9, flag = "
+before cleaning arg = <ls| "grep" h| gre""p h>, start = 4 i = 9
+Mul single and double quote
+ cmd = <ls| "grep" h| gre""p h>, flag = ",strt=4,end=2,i=9
+figur out end of quote <ls| "grep" h| gre""p h>, f=", st=4, en=2, i= 9
+calling case 2 Doesn't end with quote 
+main cmd[9] = "  cmd[10] =   , start = 4, flag = "
+
+
+Case 2
+s=4,e=2,i=9 
+after decrement s=4,e=2,i=8 
+
+reached end cmd[8 + 1] = <">, flag = " start = 4
+
+
+
+forcing fixing_edge_quote_start_case_2
+Case 1 Filling normal quote, cmd = ls| "grep" h| gre""p h, start = 4, end = 9
+final_arg before expand = grep, start = 4, end = 9
+final_arg after filling normal case = grep, start = 4, end = 9
+end figur out end of quote <ls| "grep" h| gre""p h>, f=", st=4, en=9, i= 9
+entering the source of all devil loop
+Exiting Multiple merged_str = <grep>, st=4, en=9
+filling node with ~grep~
+smasher loop 10= ,flag=i, s.start = 4, s.end = 9
+smasher loop 11=h,flag=s, s.start = 11, s.end = 9
+space_smash, smashed_arg = h, start = 11, end = 11
+smasher loop 12=|,flag=i, s.start = 11, s.end = 11
+smasher loop 13= ,flag=i, s.start = 12, s.end = 12
+smasher loop 14=g,flag=s, s.start = 14, s.end = 12
+smasher loop 15=r,flag=s, s.start = 14, s.end = 12
+smasher loop 16=e,flag=s, s.start = 14, s.end = 12
+smasher loop 17=",flag=s, s.start = 14, s.end = 12
+smasher loop 18=",flag=", s.start = 14, s.end = 12
+" " arg = <ls| "grep" h| gre""p h>,cmd[18] = ",  start = 14 i = 18, flag = "
+before cleaning arg = <ls| "grep" h| gre""p h>, start = 14 i = 18
+Mul single and double quote
+ cmd = <ls| "grep" h| gre""p h>, flag = ",strt=14,end=12,i=18
+figur out end of quote <ls| "grep" h| gre""p h>, f=", st=14, en=12, i= 18
+cas 3 no quote start,st = 14 en= 12
+
+
+Case 3
+s=14,e=12,i=18 
+
+
+last end cmd[12]= |
+
+
+fetching end cmd[17 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 1 (not end)
+fetching end cmd[17 + 2] = <p>, flag = "
+not end cmd[17 + 2] = <p>, flag = "
+fetching end cmd[17 + 3] = < >, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (0)
+fix said 0 (end)
+
+reached end cmd[17 + 3] = < >, flag = " start = 14
+
+end figur out end of quote <ls| "grep" h| gre""p h>, f=", st=14, en=20, i= 20
+entering the source of all devil loop
+Exiting Multiple merged_str = <grep>, st=14, en=20
+filling node with ~grep~
+smasher loop 21=h,flag=i, s.start = 14, s.end = 20
+space_smash, smashed_arg = h, start = 21, end = 21
+~ls~
+~|~
+~grep~
+~h~
+~|~
+~grep~
+~h~
+count_outliar_redire i = -1, ? i == -1 ok:error
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2=|,flag=i, s.start = 0, s.end = 1
+smasher loop 3= ,flag=i, s.start = 2, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[3] =  ,  start = 4 i = 3, flag = "
+smasher loop 4=",flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[4] = ",  start = 4 i = 4, flag = "
+smasher loop 6=r,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[6] = r,  start = 4 i = 6, flag = "
+smasher loop 7=e,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[7] = e,  start = 4 i = 7, flag = "
+smasher loop 8=p,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[8] = p,  start = 4 i = 8, flag = "
+smasher loop 9=",flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[9] = ",  start = 4 i = 9, flag = "
+before cleaning arg = <ls| "grep" h| l""s >, start = 4 i = 9
+Mul single and double quote
+ cmd = <ls| "grep" h| l""s >, flag = ",strt=4,end=2,i=9
+figur out end of quote <ls| "grep" h| l""s >, f=", st=4, en=2, i= 9
+calling case 2 Doesn't end with quote 
+main cmd[9] = "  cmd[10] =   , start = 4, flag = "
+
+
+Case 2
+s=4,e=2,i=9 
+after decrement s=4,e=2,i=8 
+
+reached end cmd[8 + 1] = <">, flag = " start = 4
+
+
+
+forcing fixing_edge_quote_start_case_2
+Case 1 Filling normal quote, cmd = ls| "grep" h| l""s , start = 4, end = 9
+final_arg before expand = grep, start = 4, end = 9
+final_arg after filling normal case = grep, start = 4, end = 9
+end figur out end of quote <ls| "grep" h| l""s >, f=", st=4, en=9, i= 9
+entering the source of all devil loop
+Exiting Multiple merged_str = <grep>, st=4, en=9
+filling node with ~grep~
+smasher loop 10= ,flag=i, s.start = 4, s.end = 9
+smasher loop 11=h,flag=s, s.start = 11, s.end = 9
+space_smash, smashed_arg = h, start = 11, end = 11
+smasher loop 12=|,flag=i, s.start = 11, s.end = 11
+smasher loop 13= ,flag=i, s.start = 12, s.end = 12
+smasher loop 14=l,flag=s, s.start = 14, s.end = 12
+smasher loop 15=",flag=s, s.start = 14, s.end = 12
+smasher loop 16=",flag=", s.start = 14, s.end = 12
+" " arg = <ls| "grep" h| l""s >,cmd[16] = ",  start = 14 i = 16, flag = "
+before cleaning arg = <ls| "grep" h| l""s >, start = 14 i = 16
+Mul single and double quote
+ cmd = <ls| "grep" h| l""s >, flag = ",strt=14,end=12,i=16
+figur out end of quote <ls| "grep" h| l""s >, f=", st=14, en=12, i= 16
+cas 3 no quote start,st = 14 en= 12
+
+
+Case 3
+s=14,e=12,i=16 
+
+
+last end cmd[12]= |
+
+
+fetching end cmd[15 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 1 (not end)
+fetching end cmd[15 + 2] = <s>, flag = "
+not end cmd[15 + 2] = <s>, flag = "
+fetching end cmd[15 + 3] = < >, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (0)
+fix said 0 (end)
+
+reached end cmd[15 + 3] = < >, flag = " start = 14
+
+end figur out end of quote <ls| "grep" h| l""s >, f=", st=14, en=18, i= 18
+filling node with ~ls~
+~ls~
+~|~
+~grep~
+~h~
+~|~
+~ls~
+count_outliar_redire i = -1, ? i == -1 ok:error
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2=|,flag=i, s.start = 0, s.end = 1
+smasher loop 3= ,flag=i, s.start = 2, s.end = 2
+" " arg = <ls| "grep" h|l""s >,cmd[3] =  ,  start = 4 i = 3, flag = "
+smasher loop 4=",flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h|l""s >,cmd[4] = ",  start = 4 i = 4, flag = "
+smasher loop 6=r,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h|l""s >,cmd[6] = r,  start = 4 i = 6, flag = "
+smasher loop 7=e,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h|l""s >,cmd[7] = e,  start = 4 i = 7, flag = "
+smasher loop 8=p,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h|l""s >,cmd[8] = p,  start = 4 i = 8, flag = "
+smasher loop 9=",flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h|l""s >,cmd[9] = ",  start = 4 i = 9, flag = "
+before cleaning arg = <ls| "grep" h|l""s >, start = 4 i = 9
+Mul single and double quote
+ cmd = <ls| "grep" h|l""s >, flag = ",strt=4,end=2,i=9
+figur out end of quote <ls| "grep" h|l""s >, f=", st=4, en=2, i= 9
+calling case 2 Doesn't end with quote 
+main cmd[9] = "  cmd[10] =   , start = 4, flag = "
+
+
+Case 2
+s=4,e=2,i=9 
+after decrement s=4,e=2,i=8 
+
+reached end cmd[8 + 1] = <">, flag = " start = 4
+
+
+
+forcing fixing_edge_quote_start_case_2
+Case 1 Filling normal quote, cmd = ls| "grep" h|l""s , start = 4, end = 9
+final_arg before expand = grep, start = 4, end = 9
+final_arg after filling normal case = grep, start = 4, end = 9
+end figur out end of quote <ls| "grep" h|l""s >, f=", st=4, en=9, i= 9
+entering the source of all devil loop
+Exiting Multiple merged_str = <grep>, st=4, en=9
+filling node with ~grep~
+smasher loop 10= ,flag=i, s.start = 4, s.end = 9
+smasher loop 11=h,flag=s, s.start = 11, s.end = 9
+space_smash, smashed_arg = h, start = 11, end = 11
+smasher loop 12=|,flag=i, s.start = 11, s.end = 11
+smasher loop 13=l,flag=i, s.start = 12, s.end = 12
+smasher loop 14=",flag=s, s.start = 13, s.end = 12
+smasher loop 15=",flag=", s.start = 13, s.end = 12
+" " arg = <ls| "grep" h|l""s >,cmd[15] = ",  start = 13 i = 15, flag = "
+before cleaning arg = <ls| "grep" h|l""s >, start = 13 i = 15
+Mul single and double quote
+ cmd = <ls| "grep" h|l""s >, flag = ",strt=13,end=12,i=15
+figur out end of quote <ls| "grep" h|l""s >, f=", st=13, en=12, i= 15
+cas 3 no quote start,st = 13 en= 12
+
+
+Case 3
+s=13,e=12,i=15 
+
+
+last end cmd[12]= |
+
+
+fetching end cmd[14 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 1 (not end)
+fetching end cmd[14 + 2] = <s>, flag = "
+not end cmd[14 + 2] = <s>, flag = "
+fetching end cmd[14 + 3] = < >, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (0)
+fix said 0 (end)
+
+reached end cmd[14 + 3] = < >, flag = " start = 13
+
+end figur out end of quote <ls| "grep" h|l""s >, f=", st=13, en=17, i= 17
+filling node with ~ls~
+~ls~
+~|~
+~grep~
+~h~
+~|~
+~ls~
+count_outliar_redire i = -1, ? i == -1 ok:error
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2=|,flag=i, s.start = 0, s.end = 1
+smasher loop 3= ,flag=i, s.start = 2, s.end = 2
+smasher loop 4=l,flag=s, s.start = 4, s.end = 2
+smasher loop 5=",flag=s, s.start = 4, s.end = 2
+smasher loop 6=",flag=", s.start = 4, s.end = 2
+" " arg = <ls| l""s >,cmd[6] = ",  start = 4 i = 6, flag = "
+before cleaning arg = <ls| l""s >, start = 4 i = 6
+Mul single and double quote
+ cmd = <ls| l""s >, flag = ",strt=4,end=2,i=6
+figur out end of quote <ls| l""s >, f=", st=4, en=2, i= 6
+cas 3 no quote start,st = 4 en= 2
+
+
+Case 3
+s=4,e=2,i=6 
+
+
+last end cmd[2]= |
+
+
+fetching end cmd[5 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 0 (end)
+
+reached end cmd[5 + 1] = <">, flag = " start = 4
+
+end figur out end of quote <ls| l""s >, f=", st=4, en=6, i= 6
+entering the source of all devil loop
+Exiting Multiple merged_str = <l>, st=4, en=6
+filling node with ~l~
+smasher loop 7=s,flag=i, s.start = 4, s.end = 6
+space_smash, smashed_arg = s, start = 7, end = 7
+smasher loop 8= ,flag=i, s.start = 7, s.end = 7
+~ls~
+~|~
+~l~
+~s~
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=",flag=s, s.start = 0, s.end = 0
+smasher loop 2=",flag=", s.start = 0, s.end = 0
+" " arg = <l""s >,cmd[2] = ",  start = 0 i = 2, flag = "
+before cleaning arg = <l""s >, start = 0 i = 2
+Mul single and double quote
+ cmd = <l""s >, flag = ",strt=0,end=0,i=2
+figur out end of quote <l""s >, f=", st=0, en=0, i= 2
+cas 3 no quote start,st = 0 en= 0
+
+
+Case 3
+s=0,e=0,i=2 
+
+
+last end cmd[0]= l
+
+
+fetching end cmd[1 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 1 (not end)
+fetching end cmd[1 + 2] = <s>, flag = "
+not end cmd[1 + 2] = <s>, flag = "
+fetching end cmd[1 + 3] = < >, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (0)
+fix said 0 (end)
+
+reached end cmd[1 + 3] = < >, flag = " start = 0
+
+end figur out end of quote <l""s >, f=", st=0, en=4, i= 4
+filling node with ~ls~
+~ls~
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2=|,flag=i, s.start = 0, s.end = 1
+smasher loop 3= ,flag=i, s.start = 2, s.end = 2
+smasher loop 4=g,flag=s, s.start = 4, s.end = 2
+smasher loop 5=r,flag=s, s.start = 4, s.end = 2
+smasher loop 6=e,flag=s, s.start = 4, s.end = 2
+smasher loop 7=p,flag=s, s.start = 4, s.end = 2
+space_smash, smashed_arg = grep, start = 4, end = 7
+smasher loop 8= ,flag=i, s.start = 4, s.end = 7
+smasher loop 9=h,flag=s, s.start = 9, s.end = 7
+space_smash, smashed_arg = h, start = 9, end = 9
+smasher loop 10=|,flag=i, s.start = 9, s.end = 9
+smasher loop 11= ,flag=i, s.start = 10, s.end = 10
+smasher loop 12=l,flag=s, s.start = 12, s.end = 10
+smasher loop 13=",flag=s, s.start = 12, s.end = 10
+smasher loop 14=",flag=", s.start = 12, s.end = 10
+" " arg = <ls| grep h| l""s >,cmd[14] = ",  start = 12 i = 14, flag = "
+before cleaning arg = <ls| grep h| l""s >, start = 12 i = 14
+Mul single and double quote
+ cmd = <ls| grep h| l""s >, flag = ",strt=12,end=10,i=14
+figur out end of quote <ls| grep h| l""s >, f=", st=12, en=10, i= 14
+cas 3 no quote start,st = 12 en= 10
+
+
+Case 3
+s=12,e=10,i=14 
+
+
+last end cmd[10]= |
+
+
+fetching end cmd[13 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 0 (end)
+
+reached end cmd[13 + 1] = <">, flag = " start = 12
+
+end figur out end of quote <ls| grep h| l""s >, f=", st=12, en=14, i= 14
+entering the source of all devil loop
+Exiting Multiple merged_str = <l>, st=12, en=14
+filling node with ~l~
+smasher loop 15=s,flag=i, s.start = 12, s.end = 14
+space_smash, smashed_arg = s, start = 15, end = 15
+smasher loop 16= ,flag=i, s.start = 15, s.end = 15
+~ls~
+~|~
+~grep~
+~h~
+~|~
+~l~
+~s~
+count_outliar_redire i = -1, ? i == -1 ok:error
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2=|,flag=i, s.start = 0, s.end = 1
+smasher loop 3= ,flag=i, s.start = 2, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[3] =  ,  start = 4 i = 3, flag = "
+smasher loop 4=",flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[4] = ",  start = 4 i = 4, flag = "
+smasher loop 6=r,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[6] = r,  start = 4 i = 6, flag = "
+smasher loop 7=e,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[7] = e,  start = 4 i = 7, flag = "
+smasher loop 8=p,flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[8] = p,  start = 4 i = 8, flag = "
+smasher loop 9=",flag=", s.start = 4, s.end = 2
+" " arg = <ls| "grep" h| l""s >,cmd[9] = ",  start = 4 i = 9, flag = "
+before cleaning arg = <ls| "grep" h| l""s >, start = 4 i = 9
+Mul single and double quote
+ cmd = <ls| "grep" h| l""s >, flag = ",strt=4,end=2,i=9
+figur out end of quote <ls| "grep" h| l""s >, f=", st=4, en=2, i= 9
+calling case 2 Doesn't end with quote 
+main cmd[9] = "  cmd[10] =   , start = 4, flag = "
+
+
+Case 2
+s=4,e=2,i=9 
+after decrement s=4,e=2,i=8 
+
+reached end cmd[8 + 1] = <">, flag = " start = 4
+
+
+
+forcing fixing_edge_quote_start_case_2
+Case 1 Filling normal quote, cmd = ls| "grep" h| l""s , start = 4, end = 9
+final_arg before expand = grep, start = 4, end = 9
+final_arg after filling normal case = grep, start = 4, end = 9
+end figur out end of quote <ls| "grep" h| l""s >, f=", st=4, en=9, i= 9
+entering the source of all devil loop
+Exiting Multiple merged_str = <grep>, st=4, en=9
+filling node with ~grep~
+smasher loop 10= ,flag=i, s.start = 4, s.end = 9
+smasher loop 11=h,flag=s, s.start = 11, s.end = 9
+space_smash, smashed_arg = h, start = 11, end = 11
+smasher loop 12=|,flag=i, s.start = 11, s.end = 11
+smasher loop 13= ,flag=i, s.start = 12, s.end = 12
+smasher loop 14=l,flag=s, s.start = 14, s.end = 12
+smasher loop 15=",flag=s, s.start = 14, s.end = 12
+smasher loop 16=",flag=", s.start = 14, s.end = 12
+" " arg = <ls| "grep" h| l""s >,cmd[16] = ",  start = 14 i = 16, flag = "
+before cleaning arg = <ls| "grep" h| l""s >, start = 14 i = 16
+Mul single and double quote
+ cmd = <ls| "grep" h| l""s >, flag = ",strt=14,end=12,i=16
+figur out end of quote <ls| "grep" h| l""s >, f=", st=14, en=12, i= 16
+cas 3 no quote start,st = 14 en= 12
+
+
+Case 3
+s=14,e=12,i=16 
+
+
+last end cmd[12]= |
+
+
+fetching end cmd[15 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 1 (not end)
+fetching end cmd[15 + 2] = <s>, flag = "
+not end cmd[15 + 2] = <s>, flag = "
+fetching end cmd[15 + 3] = < >, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (0)
+fix said 0 (end)
+
+reached end cmd[15 + 3] = < >, flag = " start = 14
+
+end figur out end of quote <ls| "grep" h| l""s >, f=", st=14, en=18, i= 18
+filling node with ~ls~
+~ls~
+~|~
+~grep~
+~h~
+~|~
+~ls~
+count_outliar_redire i = -1, ? i == -1 ok:error
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+joining env 
+smasher loop 0=",flag=i, s.start = 0, s.end = 0
+" " arg = <"ls"| grep h| l""s >,cmd[0] = ",  start = 0 i = 0, flag = "
+smasher loop 2=s,flag=", s.start = 0, s.end = 0
+" " arg = <"ls"| grep h| l""s >,cmd[2] = s,  start = 0 i = 2, flag = "
+smasher loop 3=",flag=", s.start = 0, s.end = 0
+" " arg = <"ls"| grep h| l""s >,cmd[3] = ",  start = 0 i = 3, flag = "
+before cleaning arg = <"ls"| grep h| l""s >, start = 0 i = 3
+Mul single and double quote
+ cmd = <"ls"| grep h| l""s >, flag = ",strt=0,end=0,i=3
+figur out end of quote <"ls"| grep h| l""s >, f=", st=0, en=0, i= 3
+calling case 1 filling normal quote  main cmd[3] = "  cmd[4] = | , start = 0, flag = "
+Case 1 Filling normal quote, cmd = "ls"| grep h| l""s , start = 0, end = 3
+final_arg before expand = ls, start = 0, end = 3
+final_arg after filling normal case = ls, start = 0, end = 3
+end figur out end of quote <"ls"| grep h| l""s >, f=", st=0, en=3, i= 3
+entering the source of all devil loop
+Exiting Multiple merged_str = <ls>, st=0, en=3
+filling node with ~ls~
+smasher loop 4=|,flag=i, s.start = 0, s.end = 3
+smasher loop 5= ,flag=i, s.start = 4, s.end = 4
+smasher loop 6=g,flag=s, s.start = 6, s.end = 4
+smasher loop 7=r,flag=s, s.start = 6, s.end = 4
+smasher loop 8=e,flag=s, s.start = 6, s.end = 4
+smasher loop 9=p,flag=s, s.start = 6, s.end = 4
+space_smash, smashed_arg = grep, start = 6, end = 9
+smasher loop 10= ,flag=i, s.start = 6, s.end = 9
+smasher loop 11=h,flag=s, s.start = 11, s.end = 9
+space_smash, smashed_arg = h, start = 11, end = 11
+smasher loop 12=|,flag=i, s.start = 11, s.end = 11
+smasher loop 13= ,flag=i, s.start = 12, s.end = 12
+smasher loop 14=l,flag=s, s.start = 14, s.end = 12
+smasher loop 15=",flag=s, s.start = 14, s.end = 12
+smasher loop 16=",flag=", s.start = 14, s.end = 12
+" " arg = <"ls"| grep h| l""s >,cmd[16] = ",  start = 14 i = 16, flag = "
+before cleaning arg = <"ls"| grep h| l""s >, start = 14 i = 16
+Mul single and double quote
+ cmd = <"ls"| grep h| l""s >, flag = ",strt=14,end=12,i=16
+figur out end of quote <"ls"| grep h| l""s >, f=", st=14, en=12, i= 16
+cas 3 no quote start,st = 14 en= 12
+
+
+Case 3
+s=14,e=12,i=16 
+
+
+last end cmd[12]= |
+
+
+fetching end cmd[15 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 0 (end)
+
+reached end cmd[15 + 1] = <">, flag = " start = 14
+
+end figur out end of quote <"ls"| grep h| l""s >, f=", st=14, en=16, i= 16
+entering the source of all devil loop
+Exiting Multiple merged_str = <l>, st=14, en=16
+filling node with ~l~
+smasher loop 17=s,flag=i, s.start = 14, s.end = 16
+space_smash, smashed_arg = s, start = 17, end = 17
+smasher loop 18= ,flag=i, s.start = 17, s.end = 17
+~ls~
+~|~
+~grep~
+~h~
+~|~
+~l~
+~s~
+count_outliar_redire i = -1, ? i == -1 ok:error
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+smasher loop 2=|,flag=i, s.start = 0, s.end = 1
+smasher loop 3= ,flag=i, s.start = 2, s.end = 2
+smasher loop 4=g,flag=s, s.start = 4, s.end = 2
+smasher loop 5=r,flag=s, s.start = 4, s.end = 2
+smasher loop 6=e,flag=s, s.start = 4, s.end = 2
+smasher loop 7=p,flag=s, s.start = 4, s.end = 2
+space_smash, smashed_arg = grep, start = 4, end = 7
+smasher loop 8= ,flag=i, s.start = 4, s.end = 7
+smasher loop 9=h,flag=s, s.start = 9, s.end = 7
+space_smash, smashed_arg = h, start = 9, end = 9
+smasher loop 10=|,flag=i, s.start = 9, s.end = 9
+smasher loop 11= ,flag=i, s.start = 10, s.end = 10
+smasher loop 12=l,flag=s, s.start = 12, s.end = 10
+smasher loop 13=",flag=s, s.start = 12, s.end = 10
+smasher loop 14=",flag=", s.start = 12, s.end = 10
+" " arg = <ls| grep h| l""s  | l""s>,cmd[14] = ",  start = 12 i = 14, flag = "
+before cleaning arg = <ls| grep h| l""s  | l""s>, start = 12 i = 14
+Mul single and double quote
+ cmd = <ls| grep h| l""s  | l""s>, flag = ",strt=12,end=10,i=14
+figur out end of quote <ls| grep h| l""s  | l""s>, f=", st=12, en=10, i= 14
+cas 3 no quote start,st = 12 en= 10
+
+
+Case 3
+s=12,e=10,i=14 
+
+
+last end cmd[10]= |
+
+
+fetching end cmd[13 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 0 (end)
+
+reached end cmd[13 + 1] = <">, flag = " start = 12
+
+end figur out end of quote <ls| grep h| l""s  | l""s>, f=", st=12, en=14, i= 14
+entering the source of all devil loop
+Exiting Multiple merged_str = <l>, st=12, en=14
+filling node with ~l~
+smasher loop 15=s,flag=i, s.start = 12, s.end = 14
+space_smash, smashed_arg = s, start = 15, end = 15
+smasher loop 16= ,flag=i, s.start = 15, s.end = 15
+smasher loop 17= ,flag=i, s.start = 18, s.end = 16
+smasher loop 18=|,flag=i, s.start = 18, s.end = 17
+smasher loop 19= ,flag=i, s.start = 18, s.end = 18
+smasher loop 20=l,flag=s, s.start = 20, s.end = 18
+smasher loop 21=",flag=s, s.start = 20, s.end = 18
+smasher loop 22=",flag=", s.start = 20, s.end = 18
+" " arg = <ls| grep h| l""s  | l""s>,cmd[22] = ",  start = 20 i = 22, flag = "
+before cleaning arg = <ls| grep h| l""s  | l""s>, start = 20 i = 22
+Mul single and double quote
+ cmd = <ls| grep h| l""s  | l""s>, flag = ",strt=20,end=18,i=22
+figur out end of quote <ls| grep h| l""s  | l""s>, f=", st=20, en=18, i= 22
+cas 3 no quote start,st = 20 en= 18
+
+
+Case 3
+s=20,e=18,i=22 
+
+
+last end cmd[18]= |
+
+
+fetching end cmd[21 + 1] = <">, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (1)
+fix said 1 (not end)
+fetching end cmd[21 + 2] = <s>, flag = "
+not end cmd[21 + 2] = <s>, flag = "
+fetching end cmd[21 + 3] = < >, flag = "
+fixing start qutoe 3
+inside middle_csase
+middle case returned (0)
+fix said 0 (end)
+
+reached end cmd[21 + 3] = < >, flag = " start = 20
+
+end figur out end of quote <ls| grep h| l""s  | l""s>, f=", st=20, en=24, i= 24
+filling node with ~ls~
+~ls~
+~|~
+~grep~
+~h~
+~|~
+~l~
+~s~
+~|~
+~ls~
+count_outliar_redire i = -1, ? i == -1 ok:error
+count_outliar_redire i = -1, ? i == -1 ok:error
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+joining env 
+joining env 
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~

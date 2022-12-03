@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 10:39:12 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 20:07:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 17:26:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,12 @@ int	middle_case_check(
 
 	forens_printf("inside middle_csase\n");
 	tmp_check = s->i + fetch_end;
-	if ((cmd[tmp_check + 1] != '\0')
-		&& !check_redirection(cmd, tmp_check)
+	if (cmd[tmp_check] == '\0')
+	{
+		forens_printf("middle case returned (0), reached end of str\n");
+		return (0);
+	}
+	if (!check_redirection(cmd, tmp_check)
 		&& (cmd[tmp_check + 1] != '\'')
 		&& (cmd[tmp_check + 1] != '"' || (cmd[tmp_check + 1] == '"'
 				&& cmd[tmp_check + 2] != ' '))
