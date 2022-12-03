@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:40:50 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 13:43:42 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 08:09:56 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 //no more heredocs in the execution
 //remember to deduct the t->npipes -= heredocs;
-void	if_there_is_heredoc_fill_it(t_pipes *t, t_list *env)
+int	if_there_is_heredoc_fill_it(t_pipes *t, t_list *env)
 {
 	int	i;
 	int	count_heredocs;
@@ -37,9 +37,13 @@ void	if_there_is_heredoc_fill_it(t_pipes *t, t_list *env)
 		}
 		i++;
 	}
+	return (0);
 }
 
-void	lets_heredoc(t_pipes *t, t_list *env, int i)
+		//do the signal handling var here inshall
+		//when it change return 1 to free t and break the 
+		//execution and change exit code
+int	lets_heredoc(t_pipes *t, t_list *env, int i)
 {
 	t_smash_kit	s;
 	char		*line;
@@ -66,6 +70,7 @@ void	lets_heredoc(t_pipes *t, t_list *env, int i)
 	write(t->fd[i - 1][1], filled_heredoc,
 		ft_strlen(filled_heredoc));
 	free(filled_heredoc);
+	return (0);
 }
 
 int	skip_multiple_heredocs(t_pipes *t, int i)
@@ -108,3 +113,25 @@ char	*expand_heredoc_var(t_smash_kit *s, char *cmd, int *exit_status)
 		free(free_sub_smashed);
 	return (e.new_arg);
 }
+
+// int	check_delim_end(
+// 		char *line, t_smash_kit	*s, char *delim)
+// {
+// 	size_t	len;
+
+// 	len = 0;
+// 	line = expand_heredoc_var(s, line, 0);
+// 	len = length_of_larger_string(line, delim);
+// 	if (!ft_strncmp(line, delim, len))
+// 		return (1);
+// 	return (0);
+// }
+
+// void	save_heredoc_in_file_and_free_line(
+// 	char *line, int i, t_pipes *t, char *filled_heredoc)
+// {
+// 	if (line != NULL)
+// 		free(line);
+// 	write(t->fd[i - 1][1], filled_heredoc, ft_strlen(filled_heredoc));
+// 	free(filled_heredoc);
+// }

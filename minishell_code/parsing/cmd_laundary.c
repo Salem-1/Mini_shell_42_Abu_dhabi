@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 14:27:23 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 18:27:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 07:09:47 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	parsing_laundry(t_pipes *t, t_list *smashed_head, char *cmd, int i)
 		&& !t->single_cmd[0]->cmd
 		&& t->single_cmd[1]->args[0])
 	{
-		err_printf("inside laundary\n");
 		if (t->single_cmd[1]->args[1])
 		{
 			forens_printf("if 2\n");

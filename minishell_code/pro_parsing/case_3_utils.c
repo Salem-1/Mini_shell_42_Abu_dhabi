@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 10:39:12 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 19:40:03 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 20:07:45 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	middle_case_check(
 	if ((cmd[tmp_check + 1] != '\0')
 		&& !check_redirection(cmd, tmp_check)
 		&& (cmd[tmp_check + 1] != '\'')
-		&& (cmd[tmp_check + 1] != '"')
+		&& (cmd[tmp_check + 1] != '"' || (cmd[tmp_check + 1] == '"'
+				&& cmd[tmp_check + 2] != ' '))
 		&& ((cmd[tmp_check + 1] != ' ')
 			&& ((cmd[tmp_check] != ' '))))
 	{

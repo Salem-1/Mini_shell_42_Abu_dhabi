@@ -2,8 +2,7 @@ case :
 -------
 Mem clean
 
-export
-organize the export print 
+
 
 < 1 cat
 think about handling this in the execution as it's easier and cleaner
@@ -72,6 +71,8 @@ echo hi > f>|ls
 -------------------------------
 ----------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------
+export
+organize the export print 
 
 e"c"h'o'  hi
 should be recieved as echo hi

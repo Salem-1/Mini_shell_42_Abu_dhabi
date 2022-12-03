@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:30:33 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 16:03:17 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 00:35:11 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,15 @@ void	cpy_cmd(struct t_parsed_command *src, struct t_parsed_command *dst)
 
 int	init_exec_multiple_pipes_args(t_pipes *t, t_list *env)
 {
+	int	sig_or_not;
+
+	sig_or_not = 0;
 	t->fd = open_pipes(t->npipes, t->fd);
-	if_there_is_heredoc_fill_it(t, env);
-	return (0);
+	sig_or_not = if_there_is_heredoc_fill_it(t, env);
+	if (sig_or_not)
+		return (1);
+	else
+		return (0);
 }
 
 int	exec_loop(t_pipes *t,
@@ -59,6 +65,8 @@ int	exec_loop(t_pipes *t,
 {
 	int	pid;
 
+	if (*i == -1)
+		return (1);
 	pid = 0;
 	if (t->single_cmd[*i]->after_sep == 'h')
 		*i = skip_multiple_heredocs(t, *i);

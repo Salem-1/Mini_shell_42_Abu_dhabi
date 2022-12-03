@@ -7,6 +7,7 @@ SRC =	main.c \
 		executing/heredoc.c\
 		executing/execution_pipes_utils.c\
 		executing/files_handling.c\
+		executing/heredoc_utils.c\
 		executing/signals_handling.c\
 		parsing/clean_mem.c  parsing/parse_env.c \
 		parsing/parsing_piped_cmd.c parsing/parsing_piped_utils.c\
@@ -29,7 +30,8 @@ SRC =	main.c \
 		erro_handle/rest_of_errors.c  \
 		erro_handle/parse_error_utils.c\
 		erro_handle/pipes_redirect_errors.c \
-		test_files/vis.c 
+		test_files/vis.c \
+		signals.c
 CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include -g3 
 #-fsanitize=address -static-libasan 
 

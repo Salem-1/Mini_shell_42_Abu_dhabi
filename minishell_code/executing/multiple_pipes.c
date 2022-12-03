@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 16:10:25 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 07:33:07 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 	if (parent_exit_status != 0)
 		*exit_status = parent_exit_status;
 	flush_pipes(t);
-	return ;
 }
 
 int	update_i_in_case_of_redirection(t_pipes *t, int *i)
