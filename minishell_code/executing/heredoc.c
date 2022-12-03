@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:40:50 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 10:24:53 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 21:38:40 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	if_there_is_heredoc_fill_it(t_pipes *t, t_list *env)
 	int	i;
 	int	count_heredocs;
 
-	g_inside_heredoc = 1;
+	g_ctr_c.g_inside_heredoc = 1;
 	count_heredocs = 0;
 	i = 0;
 	while (i < t->npipes)

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 23:46:12 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 12:57:35 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 21:38:40 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ctr_d_in_heredoc(char *line)
 
 int	ctr_c_in_heredoc(t_pipes *t, char *filled_heredoc, char *line, int i)
 {
-	if (g_inside_heredoc == 2)
+	if (g_ctr_c.g_inside_heredoc == 2)
 	{
-		g_inside_heredoc = 0;
+		g_ctr_c.g_inside_heredoc = 0;
 		save_heredoc_in_file_and_free_line(line, i, t, filled_heredoc);
 		return (1);
 	}
@@ -49,7 +49,7 @@ void	handle_signals(int sig)
 {
 	if (sig == SIGINT)
 	{
-		if (!g_inside_heredoc)
+		if (!g_ctr_c.g_inside_heredoc)
 		{
 			rl_replace_line("", 0);
 			printf("\n");
@@ -58,10 +58,11 @@ void	handle_signals(int sig)
 		}
 		else
 		{
-			g_inside_heredoc = 2;
+			g_ctr_c.g_inside_heredoc = 2;
 			rl_replace_line("", 0);
 			printf("\nPress Enter to go back to minishell!");
 		}
+		g_ctr_c.exit_ctr_c = 1;
 	}
 }
 

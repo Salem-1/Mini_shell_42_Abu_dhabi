@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 10:59:57 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 21:38:52 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	main(int argc, char **argv, char **envp)
 	char			*cmd;
 	t_list			*t_env;
 
-	g_inside_heredoc = 0;
+	g_ctr_c.g_inside_heredoc = 0;
+	g_ctr_c.exit_ctr_c = 0;
 	forens_printf("\n\n\n");
 	exit_status = 0;
 	cmd = NULL;

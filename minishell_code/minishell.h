@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 11:03:43 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 21:38:40 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@
 	1  parsing error
 	2  syntax error
 */
-int	g_inside_heredoc;
+
+typedef struct t_ct_c
+{
+	int	g_inside_heredoc;
+	int	exit_ctr_c;
+}	t_ct_c;
 
 typedef struct t_scan_parse_error
 {
@@ -88,6 +93,8 @@ typedef struct dollar_expansion_kit
 	int		start;
 	int		end;
 }	t_dollar_expansion_kit;
+
+struct t_ct_c	g_ctr_c;
 
 //Parsing
 t_parsed_command	*init_one_cmd(t_parsed_command *one_cmd);
@@ -371,6 +378,7 @@ void				init_signals(void);
 int					ctr_c_in_heredoc(
 						t_pipes *t, char *filled_heredoc, char *line, int i);
 int					ctr_d_in_heredoc(char *line);
+int					signal_update_exit_status(int *exit_status);
 //testing functions,
 void				vis_split(char **arr);
 void				visualize_cmd(t_parsed_command *t);
