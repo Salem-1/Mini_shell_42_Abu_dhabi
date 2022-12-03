@@ -16289,3 +16289,1232 @@ smasher loop 2=i,flag=s, s.start = 0, s.end = 0
 smasher loop 3=t,flag=s, s.start = 0, s.end = 0
 space_smash, smashed_arg = exit, start = 0, end = 3
 ~exit~
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = s, start = 7, end = 7
+~cat~
+~<<~
+~s~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = s, start = 7, end = 7
+~cat~
+~<<~
+~s~
+count_outliar_redire i = -1, ? i == -1 ok:error
+joining env 
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=s,flag=s, s.start = 7, s.end = 4
+smasher loop 9=d,flag=s, s.start = 7, s.end = 4
+smasher loop 10=f,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fsdf, start = 7, end = 10
+~cat~
+~<<~
+~fsdf~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~49~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=s,flag=s, s.start = 7, s.end = 4
+smasher loop 9=d,flag=s, s.start = 7, s.end = 4
+smasher loop 10=f,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fsdf, start = 7, end = 10
+~cat~
+~<<~
+~fsdf~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~49~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=d,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fd, start = 7, end = 8
+~cat~
+~<<~
+~fd~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~49~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=d,flag=s, s.start = 7, s.end = 4
+smasher loop 9=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fds, start = 7, end = 9
+~cat~
+~<<~
+~fds~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~3~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=d,flag=s, s.start = 7, s.end = 4
+smasher loop 9=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fds, start = 7, end = 9
+~cat~
+~<<~
+~fds~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~3~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=d,flag=s, s.start = 7, s.end = 4
+smasher loop 9=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fds, start = 7, end = 9
+~cat~
+~<<~
+~fds~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~3~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=d,flag=s, s.start = 7, s.end = 4
+smasher loop 9=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fds, start = 7, end = 9
+~cat~
+~<<~
+~fds~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=h,flag=s, s.start = 5, s.end = 3
+smasher loop 6=i,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = hi, start = 5, end = 6
+~echo~
+~hi~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=d,flag=s, s.start = 7, s.end = 4
+smasher loop 9=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fds, start = 7, end = 9
+~cat~
+~<<~
+~fds~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=h,flag=s, s.start = 5, s.end = 3
+smasher loop 6=i,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = hi, start = 5, end = 6
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=d,flag=s, s.start = 7, s.end = 4
+smasher loop 9=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fds, start = 7, end = 9
+~cat~
+~<<~
+~fds~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~49~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=d,flag=s, s.start = 7, s.end = 4
+smasher loop 9=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fds, start = 7, end = 9
+~cat~
+~<<~
+~fds~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~49~
+joining env 
+smasher loop 0=u,flag=i, s.start = 0, s.end = 0
+smasher loop 1=n,flag=s, s.start = 0, s.end = 0
+smasher loop 2=s,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+smasher loop 4=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = unset, start = 0, end = 4
+smasher loop 5= ,flag=i, s.start = 0, s.end = 4
+smasher loop 6=^,flag=s, s.start = 6, s.end = 4
+smasher loop 7=$,flag=s, s.start = 6, s.end = 4
+smasher loop 8=%,flag=s, s.start = 6, s.end = 4
+space_smash, smashed_arg = ^$%, start = 6, end = 8
+~unset~
+~^$%~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~1~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6=v,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 6, s.end = 4
+smasher loop 8=s,flag=s, s.start = 6, s.end = 4
+smasher loop 9=d,flag=s, s.start = 6, s.end = 4
+space_smash, smashed_arg = vfsd, start = 6, end = 9
+~cat~
+~<<~
+~vfsd~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~4~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=s,flag=s, s.start = 7, s.end = 4
+smasher loop 8=d,flag=s, s.start = 7, s.end = 4
+smasher loop 9=f,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = sdf, start = 7, end = 9
+~cat~
+~<<~
+~sdf~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~4~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6=s,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 6, s.end = 4
+space_smash, smashed_arg = sf, start = 6, end = 7
+smasher loop 8= ,flag=i, s.start = 6, s.end = 7
+smasher loop 9=d,flag=s, s.start = 9, s.end = 7
+smasher loop 10=f,flag=s, s.start = 9, s.end = 7
+smasher loop 11=s,flag=s, s.start = 9, s.end = 7
+smasher loop 12=d,flag=s, s.start = 9, s.end = 7
+smasher loop 13=a,flag=s, s.start = 9, s.end = 7
+space_smash, smashed_arg = dfsda, start = 9, end = 13
+~cat~
+~<<~
+~sf~
+~dfsda~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=/,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $/, start = 5, end = 6
+~echo~
+~$/~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6=s,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 6, s.end = 4
+space_smash, smashed_arg = sf, start = 6, end = 7
+smasher loop 8= ,flag=i, s.start = 6, s.end = 7
+smasher loop 9=d,flag=s, s.start = 9, s.end = 7
+smasher loop 10=f,flag=s, s.start = 9, s.end = 7
+smasher loop 11=s,flag=s, s.start = 9, s.end = 7
+smasher loop 12=d,flag=s, s.start = 9, s.end = 7
+smasher loop 13=a,flag=s, s.start = 9, s.end = 7
+space_smash, smashed_arg = dfsda, start = 9, end = 13
+~cat~
+~<<~
+~sf~
+~dfsda~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~29~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6=s,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 6, s.end = 4
+space_smash, smashed_arg = sf, start = 6, end = 7
+smasher loop 8= ,flag=i, s.start = 6, s.end = 7
+smasher loop 9=d,flag=s, s.start = 9, s.end = 7
+smasher loop 10=f,flag=s, s.start = 9, s.end = 7
+smasher loop 11=s,flag=s, s.start = 9, s.end = 7
+smasher loop 12=d,flag=s, s.start = 9, s.end = 7
+smasher loop 13=a,flag=s, s.start = 9, s.end = 7
+space_smash, smashed_arg = dfsda, start = 9, end = 13
+~cat~
+~<<~
+~sf~
+~dfsda~
+count_outliar_redire i = -1, ? i == -1 ok:error
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=s,flag=s, s.start = 7, s.end = 4
+smasher loop 8=a,flag=s, s.start = 7, s.end = 4
+smasher loop 9=d,flag=s, s.start = 7, s.end = 4
+smasher loop 10=f,flag=s, s.start = 7, s.end = 4
+smasher loop 11=s,flag=s, s.start = 7, s.end = 4
+smasher loop 12=d,flag=s, s.start = 7, s.end = 4
+smasher loop 13=a,flag=s, s.start = 7, s.end = 4
+smasher loop 14=f,flag=s, s.start = 7, s.end = 4
+smasher loop 15=n,flag=s, s.start = 7, s.end = 4
+smasher loop 16=j,flag=s, s.start = 7, s.end = 4
+smasher loop 17=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = sadfsdafnjs, start = 7, end = 17
+~cat~
+~<<~
+~sadfsdafnjs~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 1=/,flag=s, s.start = 0, s.end = 0
+smasher loop 2=m,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+smasher loop 4=m,flag=s, s.start = 0, s.end = 0
+smasher loop 5=_,flag=s, s.start = 0, s.end = 0
+smasher loop 6=c,flag=s, s.start = 0, s.end = 0
+smasher loop 7=h,flag=s, s.start = 0, s.end = 0
+smasher loop 8=e,flag=s, s.start = 0, s.end = 0
+smasher loop 9=c,flag=s, s.start = 0, s.end = 0
+smasher loop 10=k,flag=s, s.start = 0, s.end = 0
+smasher loop 11=.,flag=s, s.start = 0, s.end = 0
+smasher loop 12=s,flag=s, s.start = 0, s.end = 0
+smasher loop 13=h,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ./mem_check.sh, start = 0, end = 13
+smasher loop 14= ,flag=i, s.start = 0, s.end = 13
+~./mem_check.sh~
+joining env 
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=l,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+smasher loop 4=a,flag=s, s.start = 0, s.end = 0
+smasher loop 5=r,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cclear, start = 0, end = 5
+~cclear~
+joining env 
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=h,flag=s, s.start = 5, s.end = 3
+smasher loop 6=i,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = hi, start = 5, end = 6
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=h,flag=s, s.start = 5, s.end = 3
+smasher loop 6=i,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = hi, start = 5, end = 6
+~echo~
+~hi~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+smasher loop 2=d,flag=s, s.start = 0, s.end = 0
+smasher loop 3=m,flag=s, s.start = 0, s.end = 0
+smasher loop 4=l,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = csdml, start = 0, end = 4
+~csdml~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=l,flag=s, s.start = 0, s.end = 0
+smasher loop 2=e,flag=s, s.start = 0, s.end = 0
+smasher loop 3=a,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = clear, start = 0, end = 4
+~clear~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=d,flag=s, s.start = 7, s.end = 4
+smasher loop 8=f,flag=s, s.start = 7, s.end = 4
+smasher loop 9=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = dfs, start = 7, end = 9
+~cat~
+~<<~
+~dfs~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=a,flag=i, s.start = 0, s.end = 0
+smasher loop 1=m,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = amke, start = 0, end = 3
+~amke~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+~ls~
+joining env 
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=f,flag=s, s.start = 7, s.end = 4
+smasher loop 8=s,flag=s, s.start = 7, s.end = 4
+smasher loop 9=d,flag=s, s.start = 7, s.end = 4
+smasher loop 10=f,flag=s, s.start = 7, s.end = 4
+smasher loop 11=s,flag=s, s.start = 7, s.end = 4
+smasher loop 12=d,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = fsdfsd, start = 7, end = 12
+~cat~
+~<<~
+~fsdfsd~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=l,flag=s, s.start = 0, s.end = 0
+smasher loop 2=e,flag=s, s.start = 0, s.end = 0
+smasher loop 3=a,flag=s, s.start = 0, s.end = 0
+smasher loop 4=r,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = clear, start = 0, end = 4
+~clear~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=d,flag=s, s.start = 7, s.end = 4
+smasher loop 8=f,flag=s, s.start = 7, s.end = 4
+smasher loop 9=s,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = dfs, start = 7, end = 9
+~cat~
+~<<~
+~dfs~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=m,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=k,flag=s, s.start = 0, s.end = 0
+smasher loop 3=e,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = make, start = 0, end = 3
+~make~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=h,flag=s, s.start = 5, s.end = 3
+smasher loop 6=i,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = hi, start = 5, end = 6
+~echo~
+~hi~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=d,flag=s, s.start = 7, s.end = 4
+smasher loop 8=c,flag=s, s.start = 7, s.end = 4
+smasher loop 9=f,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = dcf, start = 7, end = 9
+~cat~
+~<<~
+~dcf~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~
+
+
+
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=h,flag=s, s.start = 5, s.end = 3
+smasher loop 6=i,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = hi, start = 5, end = 6
+~echo~
+~hi~
+joining env 
+smasher loop 0=c,flag=i, s.start = 0, s.end = 0
+smasher loop 1=a,flag=s, s.start = 0, s.end = 0
+smasher loop 2=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = cat, start = 0, end = 2
+smasher loop 3= ,flag=i, s.start = 0, s.end = 2
+smasher loop 4=<,flag=i, s.start = 4, s.end = 3
+smasher loop 6= ,flag=i, s.start = 4, s.end = 4
+smasher loop 7=2,flag=s, s.start = 7, s.end = 4
+space_smash, smashed_arg = 2, start = 7, end = 7
+~cat~
+~<<~
+~2~
+count_outliar_redire i = -1, ? i == -1 ok:error
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~130~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=c,flag=s, s.start = 0, s.end = 0
+smasher loop 2=h,flag=s, s.start = 0, s.end = 0
+smasher loop 3=o,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = echo, start = 0, end = 3
+smasher loop 4= ,flag=i, s.start = 0, s.end = 3
+smasher loop 5=$,flag=s, s.start = 5, s.end = 3
+smasher loop 6=?,flag=s, s.start = 5, s.end = 3
+space_smash, smashed_arg = $?, start = 5, end = 6
+~echo~
+~0~
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+~ls~
+joining env 
+smasher loop 0=l,flag=i, s.start = 0, s.end = 0
+smasher loop 1=s,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = ls, start = 0, end = 1
+~ls~
+joining env 
+smasher loop 0=e,flag=i, s.start = 0, s.end = 0
+smasher loop 1=x,flag=s, s.start = 0, s.end = 0
+smasher loop 2=i,flag=s, s.start = 0, s.end = 0
+smasher loop 3=t,flag=s, s.start = 0, s.end = 0
+space_smash, smashed_arg = exit, start = 0, end = 3
+~exit~

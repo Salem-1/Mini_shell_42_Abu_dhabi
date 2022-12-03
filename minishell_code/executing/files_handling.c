@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 22:21:29 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 13:39:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 11:02:33 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,16 @@ void	close_files(int **fd, int npipes)
 	}
 }
 
-void	close_files_and_wait(int **fd, struct t_pipes *t, int *exit_satus)
+void	close_files_and_wait(
+		int **fd, struct t_pipes *t, int *exit_satus, int return_or_continue)
 {
 	int	forwait;
 	int	i;
 
 	i = 0;
 	close_files(fd, t->npipes);
+	if (return_or_continue == 3)
+		return ;
 	while (i < t->npipes)
 	{
 		wait(&forwait);

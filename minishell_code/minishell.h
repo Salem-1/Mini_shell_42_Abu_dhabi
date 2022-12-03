@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 10:25:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 11:03:43 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,8 +236,8 @@ int					init_exec_multiple_pipes_args(
 						t_pipes *t, t_list *env);
 int					exec_loop(t_pipes *t,
 						int *i, int *parent_exit_status);
-void				close_files_and_wait(int **fd,
-						struct t_pipes *t, int *exit_status);
+void				close_files_and_wait(int **fd, struct t_pipes *t,
+						int *exit_status, int return_or_continue);
 void				piping_and_redirections(
 						int i, int **fd, struct t_pipes *t, t_list *env);
 void				case_input_file_cat(
@@ -251,8 +251,11 @@ char				*ft_low(char *cmd);
 int					local_exec_cmd_spec(t_pipes *t);
 int					was_exec_in_parent(int i, int *exit_status, t_pipes *t);
 int					update_i_in_case_of_redirection(t_pipes *t, int *i);
-void				close_clean_update_execution_args(
-						t_pipes *t, int *exit_status, int *parent_exit_status);
+int					clean_update_execution_args(t_pipes *t,
+						int exit_status,
+						int *parent_exit_status,
+						int return_or_continue
+						);
 //heredoc
 int					if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
 void				fill_heredoced_cmd(t_pipes *t, t_list *env, int i);

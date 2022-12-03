@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 10:07:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 11:01:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@ void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 			break ;
 		i++;
 	}
-	close_clean_update_execution_args(t, exit_status, &parent_exit_status);
+	close_files_and_wait(t->fd, t, exit_status, return_or_continue);
+	*exit_status = clean_update_execution_args(
+			t, *exit_status, &parent_exit_status, return_or_continue);
 }
 
-void	close_clean_update_execution_args(
-		t_pipes *t, int *exit_status, int *parent_exit_status)
+int	clean_update_execution_args(t_pipes *t,
+	int exit_status, int *parent_exit_status, int return_or_continue)
 {
-	close_files_and_wait(t->fd, t, exit_status);
-	if (*parent_exit_status != 0)
-		*exit_status = *parent_exit_status;
 	flush_pipes(t);
+	if (return_or_continue == 3)
+		return (130);
+	else if (*parent_exit_status != 0)
+		return (*parent_exit_status);
+	return (exit_status);
 }
 
 int	update_i_in_case_of_redirection(t_pipes *t, int *i)
@@ -81,7 +85,7 @@ int	was_exec_in_parent(int i, int *exit_status, t_pipes *t)
 	}
 	if (*exit_status != 0)
 		i = *exit_status;
-	close_files_and_wait(t->fd, t, exit_status);
+	close_files_and_wait(t->fd, t, exit_status, 0);
 	if (i != 0)
 		*exit_status = i;
 	return (1);

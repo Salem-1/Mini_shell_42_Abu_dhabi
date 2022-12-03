@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:11:01 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 18:06:45 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 10:48:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	fill_redirec_outliar_cmd_hard_coded(
 	t->single_cmd[*i + 1]->before_sep = smashed_cmd->flag;
 	if (t->single_cmd[*i + 1]->args)
 		free(t->single_cmd[*i + 1]->args);
-	t->single_cmd[*i + 1]->args = calloc(sizeof(char *), 2);
+	t->single_cmd[*i + 1]->args = ft_calloc(sizeof(char *), 2);
 	if (!t->single_cmd[*i + 1]->args)
 		return ;
 	t->single_cmd[*i + 1]->args[0]
