@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 07:15:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 10:19:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	static int			exit_status;
-	char				*cmd;
-	t_list				*t_env;
+	int		exit_status;
+	char	*cmd;
+	t_list	*t_env;
 
 	g_inside_heredoc = 0;
 	forens_printf("\n\n\n");

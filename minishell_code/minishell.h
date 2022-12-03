@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 07:50:20 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 10:25:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,8 @@ char				*ft_low(char *cmd);
 int					local_exec_cmd_spec(t_pipes *t);
 int					was_exec_in_parent(int i, int *exit_status, t_pipes *t);
 int					update_i_in_case_of_redirection(t_pipes *t, int *i);
+void				close_clean_update_execution_args(
+						t_pipes *t, int *exit_status, int *parent_exit_status);
 //heredoc
 int					if_there_is_heredoc_fill_it(t_pipes *t, t_list *env);
 void				fill_heredoced_cmd(t_pipes *t, t_list *env, int i);
@@ -269,6 +271,8 @@ void				save_heredoc_in_file_and_free_line(
 						char *line, int i, t_pipes *t, char *filled_heredoc);
 int					check_delim_end(char *line,
 						t_smash_kit	*s, char *delim);
+char				*append_to_heredoc_buffer(char *filled_heredoc, char *line);
+int					reached_delimeter(char *line, char *delim);
 //Executables
 int					is_in_our_executable(struct t_parsed_command *t,
 						t_list *env, struct t_pipes *all_cmds, char **envp);
@@ -361,7 +365,9 @@ int					errord_t_piped(t_pipes *t, int *exit_status);
 //signals handling
 void				handle_signals(int sig);
 void				init_signals(void);
-
+int					ctr_c_in_heredoc(
+						t_pipes *t, char *filled_heredoc, char *line, int i);
+int					ctr_d_in_heredoc(char *line);
 //testing functions,
 void				vis_split(char **arr);
 void				visualize_cmd(t_parsed_command *t);
