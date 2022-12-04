@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:53:28 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 15:59:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 21:49:04 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	output_append_execution(t_pipes *t, int i, int **fd)
 			local_fd = open(t->single_cmd[i + 1]->cmd,
 					O_CREAT | O_APPEND | O_WRONLY, 0644);
 		if (local_fd == -1)
-			pipes_redirec_errors(t, i + 1, local_fd, fd);
+			output_error_handle(t, i + 1, local_fd, fd);
 		close(local_fd);
 		i++;
 	}
@@ -44,7 +44,7 @@ int	exec_to_output_operations(t_pipes *t,
 	local_i = local_fd;
 	local_fd = opening_out_file(t, local_fd);
 	if (local_fd == -1)
-		pipes_redirec_errors(t, local_fd + 1, local_fd, t->fd);
+		output_error_handle(t, local_fd + 1, local_fd, t->fd);
 	if (dup2(local_fd, STDOUT_FILENO) == -1)
 		perror("dup2");
 	close(local_fd);

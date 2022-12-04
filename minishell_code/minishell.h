@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:58 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 21:38:40 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 17:40:54 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,8 @@ int					case_start_3_edge_conditions(
 						char *cmd, t_smash_kit *s, int fetch_end);
 int					middle_case_check(
 						char *cmd, t_smash_kit *s, int fetch_end);
+int					midddle_head_cases_internal_conditions(
+						char *cmd, int tmp_check);
 //Execution
 int					exec_to_output_operations(t_pipes *t,
 						t_list *env, int i, int case_in);
@@ -360,6 +362,7 @@ void				fill_errored_pipe(
 void				cd_exit_with_code(t_pipes *t);
 void				pipes_redirec_errors(
 						t_pipes *t, int i, int local_fd, int **fd);
+void				output_error_handle(t_pipes *t, int i, int local_fd, int **fd);
 void				intake_errors(
 						t_pipes *t, int i, int local_fd, int **fd);
 void				normal_execution_error(struct t_parsed_command *t,

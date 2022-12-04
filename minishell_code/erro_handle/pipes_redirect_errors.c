@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 03:09:35 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 14:49:31 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 21:50:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ void	pipes_redirec_errors(t_pipes *t, int i, int local_fd, int **fd)
 	close_files(fd, t->npipes);
 	err_printf("minishell: %s: No such file or directory\n",
 		t->single_cmd[i]->cmd);
+	exit(1);
+}
+
+void	output_error_handle(t_pipes *t, int i, int local_fd, int **fd)
+{
+	close(local_fd);
+	close_files(fd, t->npipes);
+	err_printf("minishell: %s: Permission denied\n",
+		t->single_cmd[i]->cmd);
+	clean_env(t->env);
+	flush_pipes(t);
 	exit(1);
 }
 

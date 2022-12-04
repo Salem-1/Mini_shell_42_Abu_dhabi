@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 10:39:12 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 17:26:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 17:40:54 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,18 @@ int	middle_case_check(
 {
 	int	tmp_check;
 
-	forens_printf("inside middle_csase\n");
 	tmp_check = s->i + fetch_end;
+	forens_printf("inside middle_csase cmd[%d + %d] = <%c> f= %c\n",
+		s->i, fetch_end, cmd[tmp_check], s->flag);
+	forens_printf("inside middle_csase cmd[%d + %d + 1] = <%c> f= %c\n",
+		s->i, fetch_end, cmd[tmp_check + 1], s->flag);
 	if (cmd[tmp_check] == '\0')
 	{
 		forens_printf("middle case returned (0), reached end of str\n");
 		return (0);
 	}
 	if (!check_redirection(cmd, tmp_check)
-		&& (cmd[tmp_check + 1] != '\'')
-		&& (cmd[tmp_check + 1] != '"' || (cmd[tmp_check + 1] == '"'
-				&& cmd[tmp_check + 2] != ' '))
-		&& ((cmd[tmp_check + 1] != ' ')
-			&& ((cmd[tmp_check] != ' '))))
+		&& midddle_head_cases_internal_conditions(cmd, tmp_check))
 	{
 		forens_printf("middle case returned (1)\n");
 		return (1);
@@ -91,6 +90,19 @@ int	middle_case_check(
 		forens_printf("middle case returned (0)\n");
 		return (0);
 	}
+}
+
+int	midddle_head_cases_internal_conditions(
+	char *cmd, int tmp_check)
+{
+	if ((cmd[tmp_check + 1] != '\'')
+		&& (cmd[tmp_check + 1] != '"' || (cmd[tmp_check + 1] == '"'
+				&& cmd[tmp_check + 2] != ' '))
+		&& ((cmd[tmp_check + 1] != ' ')
+			&& ((cmd[tmp_check] != ' '))))
+		return (1);
+	else
+		return (0);
 }
 
 int	case_start_3_edge_conditions(

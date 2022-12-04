@@ -6,22 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 23:46:12 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 21:38:40 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 20:28:10 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_sig_heredoc(int sig)
-{
-	if (sig == SIGINT)
-	{
-		rl_on_new_line();
-		rl_redisplay();
-		printf("\n");
-		exit(130);
-	}
-}
 
 int	ctr_d_in_heredoc(char *line)
 {
@@ -70,4 +59,15 @@ void	init_signals(void)
 {
 	signal(SIGINT, &handle_signals);
 	signal(SIGQUIT, SIG_IGN);
+}
+
+int	signal_update_exit_status(int *exit_status)
+{
+	if (g_ctr_c.exit_ctr_c == 1)
+	{
+		g_ctr_c.exit_ctr_c = 0;
+		if (*exit_status == 0)
+			return (1);
+	}
+	return (*exit_status);
 }

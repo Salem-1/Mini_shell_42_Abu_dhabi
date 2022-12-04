@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:58:33 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 14:39:53 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 21:41:03 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	exec_to_take_operations(t_pipes *t,
 	while (t->single_cmd[local_i]->after_sep == 't')
 		local_fd = local_fd_with_multiple_intakes(t, &local_i, i, local_fd);
 	local_fd = open(t->single_cmd[local_i]->cmd, O_RDONLY);
+	if (local_fd == -1)
+		intake_errors(t, i + 1, local_fd, t->fd);
 	if (dup2(local_fd, STDIN_FILENO) == -1)
 		perror("dup2");
 	if (local_i != t->npipes - 1)
