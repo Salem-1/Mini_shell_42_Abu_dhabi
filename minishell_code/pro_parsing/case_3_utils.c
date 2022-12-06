@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 10:39:12 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/04 17:40:54 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:46:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,44 +20,26 @@
 */
 int	not_reched_end_3(char *cmd, t_smash_kit *s, int fetch_end)
 {
-	forens_printf("fetching end cmd[%d + %d] = <%c>, flag = %c\n",
-		s->i, fetch_end, cmd[s->i + fetch_end], s->flag);
 	if (is_not_end_quote_case_3(cmd, s, fetch_end))
-	{
-		forens_printf("not end cmd[%d + %d] = <%c>, flag = %c\n",
-			s->i, fetch_end, cmd[s->i + fetch_end], s->flag);
 		return (1);
-	}
 	else
 	{
 		if (fixing_start_quote_case_3_edge_case(cmd, s, fetch_end))
 			return (1);
 		else
-		{
-			forens_printf("\nreached end cmd[%d + %d] = <%c>, flag = %c",
-				s->i, fetch_end, cmd[s->i + fetch_end], s->flag);
-			forens_printf(" start = %d\n\n", s-> start);
 			return (0);
-		}
 	}
 }
 
 int	fixing_start_quote_case_3_edge_case(
 	char *cmd, t_smash_kit *s, int fetch_end)
 {
-	forens_printf("fixing start qutoe 3\n");
 	if ((middle_case_check(cmd, s, fetch_end)
 			&& check_redirection(cmd, s->last_end))
 		|| case_start_3_edge_conditions(cmd, s, fetch_end))
-	{
-		forens_printf("fix said 1 (not end)\n");
 		return (1);
-	}
 	else
-	{
-		forens_printf("fix said 0 (end)\n");
 		return (0);
-	}
 }
 
 /*
@@ -70,26 +52,13 @@ int	middle_case_check(
 	int	tmp_check;
 
 	tmp_check = s->i + fetch_end;
-	forens_printf("inside middle_csase cmd[%d + %d] = <%c> f= %c\n",
-		s->i, fetch_end, cmd[tmp_check], s->flag);
-	forens_printf("inside middle_csase cmd[%d + %d + 1] = <%c> f= %c\n",
-		s->i, fetch_end, cmd[tmp_check + 1], s->flag);
 	if (cmd[tmp_check] == '\0')
-	{
-		forens_printf("middle case returned (0), reached end of str\n");
 		return (0);
-	}
 	if (!check_redirection(cmd, tmp_check)
 		&& midddle_head_cases_internal_conditions(cmd, tmp_check))
-	{
-		forens_printf("middle case returned (1)\n");
 		return (1);
-	}
 	else
-	{
-		forens_printf("middle case returned (0)\n");
 		return (0);
-	}
 }
 
 int	midddle_head_cases_internal_conditions(
@@ -115,20 +84,6 @@ int	case_start_3_edge_conditions(
 			&& (cmd[s->i + fetch_end + 1] != '"')
 			&& ((cmd[s->i + fetch_end + 1] != ' ')
 				&& ((cmd[s->i + fetch_end] != ' ')))))
-		return (1);
-	else
-		return (0);
-}
-
-int	is_not_end_quote_case_3(
-	char *cmd, t_smash_kit *s, int fetch_end)
-{
-	if (cmd[s->i + fetch_end] != '\0'
-		&& !check_redirection(cmd, s->i + fetch_end)
-		&& (cmd[s->i + fetch_end] != '\'')
-		&& (cmd[s->i + fetch_end] != '"')
-		&& !((s->start == 0 || check_redirection(cmd, s->last_end))
-			&& cmd[s->i + fetch_end] == ' '))
 		return (1);
 	else
 		return (0);

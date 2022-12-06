@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 08:11:01 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 10:48:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:01:40 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ void	fill_outliar_redirected_cmd(
 	after_red = count_outliar_redire(smashed_cmd, -1);
 	if (after_red <= 0)
 		return ;
-	forens_printf("inside fill outliar redirect cmd, after_redirec = %d\n",
-		after_red);
 	smashed_cmd = smashed_cmd->next;
 	while (j < after_red)
 	{
@@ -108,7 +106,6 @@ int	count_outliar_redire(t_list *cmd, int i)
 {
 	t_list	*tmp;
 
-	forens_printf("count_outliar_redire i = %d, ? i == -1 ok:error\n", i);
 	if (i < -1)
 		i = -1;
 	tmp = cmd;
@@ -125,7 +122,6 @@ int	count_outliar_redire(t_list *cmd, int i)
 				break ;
 			tmp = tmp->next;
 		}
-		forens_printf("\nOutliar redirects cmds %d\n", i);
 		return (i);
 	}
 	return (0);
@@ -135,7 +131,6 @@ int	count_outliar_redire(t_list *cmd, int i)
 void	fill_redirec_outliar_cmd_hard_coded(
 	t_pipes *t, int *i, t_list *smashed_cmd)
 {
-	forens_printf("inside fill redirec hard coded\n");
 	t->single_cmd[*i + 1]->before_sep = smashed_cmd->flag;
 	if (t->single_cmd[*i + 1]->args)
 		free(t->single_cmd[*i + 1]->args);

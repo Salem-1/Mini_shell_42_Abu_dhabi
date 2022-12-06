@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:40:50 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 21:38:40 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:52:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	lets_heredoc(t_pipes *t, t_list *env, int i)
 		filled_heredoc = append_to_heredoc_buffer(filled_heredoc, line);
 	}
 	save_heredoc_in_file_and_free_line(line, i, t, filled_heredoc);
+	g_ctr_c.g_inside_heredoc = 0;
 	return (0);
 }
 

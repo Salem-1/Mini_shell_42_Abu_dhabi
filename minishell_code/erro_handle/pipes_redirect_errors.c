@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 03:09:35 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 21:50:48 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:47:13 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,4 @@ int	is_parse_error_inside_smached_cmd(t_scan_parse_error *e)
 		return (1);
 	else
 		return (0);
-}
-
-int	errord_t_piped(t_pipes *t, int *exit_status)
-{
-	if (!t)
-	{
-		throw_parser_error(t, exit_status);
-		return (1);
-	}
-	if (t->parse_error != 0)
-	{
-		throw_parser_error(t, exit_status);
-		return (1);
-	}
-	return (0);
 }

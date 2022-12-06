@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:07:52 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 14:49:23 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:47:26 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,19 @@ void	set_flag_start_end_for_error_check(char *cmd, t_smash_kit *s)
 		s->start = 1;
 		s->end = 1;
 	}
+}
+
+int	errord_t_piped(t_pipes *t, int *exit_status)
+{
+	if (!t)
+	{
+		throw_parser_error(t, exit_status);
+		return (1);
+	}
+	if (t->parse_error != 0)
+	{
+		throw_parser_error(t, exit_status);
+		return (1);
+	}
+	return (0);
 }

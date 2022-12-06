@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 23:22:05 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 19:40:51 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 21:55:35 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	filling_normal_spaced_word(
 {
 	s->end = s->i;
 	smashed_arg = ft_substr(s->cmd, s->start, s->end - s->start + 1);
-	forens_printf("space_smash, smashed_arg = %s, start = %d, end = %d\n",
-		smashed_arg, s->start, s->end);
 	smashed_arg = expand_var(s, smashed_arg, exit_status);
 	if (!(!smashed_arg[0] && s->cmd[0]))
 	{
@@ -63,23 +61,17 @@ void	double_qoute_smash(t_smash_kit *s, char *cmd,
 {
 	char	*smashed_arg;
 
-	forens_printf("\" \" arg = <%s>,cmd[%d] = %c,  start = %d i = %d, flag = %c\n",
-		cmd, s->i, cmd[s->i], s->start, s->i, s->flag);
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
 	if (cmd[s->i] != '"' && ((s->i + 1) >= s->cmd_len))
 	{
-		forens_printf("Unclose \" double quote, throwing an error\n");
 		s->parse_error_code = 2;
 	}
 	else if (cmd[s->i] == '"')
 	{
-		forens_printf("before cleaning arg = <%s>, start = %d i = %d\n",
-			cmd, s->start, s->i);
 		smashed_arg = multiple_single_and_double_quotes(
 				s, cmd, '"', exit_status);
-		forens_printf("filling node with ~%s~\n", smashed_arg);
 		s->tmp = fill_cmd_node(smashed_arg, 'c');
 		ft_lstadd_back(head, s->tmp);
 		s->flag = 'i';
@@ -93,22 +85,18 @@ void	single_qoute_smach(t_smash_kit *s, char *cmd,
 	int		exit_code;
 
 	exit_code = 0;
-	forens_printf("check for single quote <%c>\n", cmd[s->i]);
 	smashed_arg = NULL;
 	if (s->i == s->start)
 		s->i++;
 	if (cmd[s->i] != '\'' && ((s->i + 1) >= s->cmd_len))
 	{
-		forens_printf("Unclose ' single quote, throwing an error\n");
 		s->parse_error_code = 2;
 	}
 	if (cmd[s->i] == '\'' || ((cmd[s->i] != '\''
 				&& ((s->i + 1) >= s->cmd_len))))
 	{
-		forens_printf("before clean <%s>,start=%d,i=%d\n", cmd, s->start, s->i);
 		smashed_arg = multiple_single_and_double_quotes(
 				s, cmd, '\'', &exit_code);
-		forens_printf("filling node with ~%s~\n", smashed_arg);
 		tmp = fill_cmd_node(smashed_arg, 'c');
 		ft_lstadd_back(head, tmp);
 		s->flag = 'i';

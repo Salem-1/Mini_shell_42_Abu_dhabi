@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 15:27:18 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:46:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 	s.cmd_len = (int)ft_strlen(cmd);
 	while (s.i < s.cmd_len)
 	{
-		forens_printf("smasher loop %d=%c,flag=%c, s.start = %d, s.end = %d\n",
-			s.i, cmd[s.i], s.flag, s.start, s.end);
 		if (cmd_classifier(&s, cmd) == 'r')
 		{
 			fill_redirection(&s, cmd, head, s.i);
@@ -102,4 +100,18 @@ t_list	*fill_cmd_node(char *arg, char type)
 	new_node->content = (void *)arg;
 	new_node->flag = type;
 	return (new_node);
+}
+
+int	is_not_end_quote_case_3(
+	char *cmd, t_smash_kit *s, int fetch_end)
+{
+	if (cmd[s->i + fetch_end] != '\0'
+		&& !check_redirection(cmd, s->i + fetch_end)
+		&& (cmd[s->i + fetch_end] != '\'')
+		&& (cmd[s->i + fetch_end] != '"')
+		&& !((s->start == 0 || check_redirection(cmd, s->last_end))
+			&& cmd[s->i + fetch_end] == ' '))
+		return (1);
+	else
+		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:54:37 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/02 11:29:13 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 21:51:22 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	**join_env(t_list *t_env)
 
 	tmp = t_env;
 	tmp_join = NULL;
-	forens_printf("joining env \n");
 	while (tmp != NULL)
 	{
 		tmp_join = env_strjoin(tmp_join, tmp->key_val[0],

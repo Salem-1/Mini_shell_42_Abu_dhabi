@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 23:46:12 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/04 20:28:10 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:54:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ void	handle_signals(int sig)
 		{
 			g_ctr_c.g_inside_heredoc = 2;
 			rl_replace_line("", 0);
-			printf("\nPress Enter to go back to minishell!");
+			printf("\n");
+			rl_on_new_line ();
+			rl_redisplay();
 		}
 		g_ctr_c.exit_ctr_c = 1;
 	}
@@ -57,6 +59,8 @@ void	handle_signals(int sig)
 
 void	init_signals(void)
 {
+	g_ctr_c.g_inside_heredoc = 0;
+	g_ctr_c.exit_ctr_c = 0;
 	signal(SIGINT, &handle_signals);
 	signal(SIGQUIT, SIG_IGN);
 }

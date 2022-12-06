@@ -6,18 +6,11 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 14:27:23 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/03 07:09:47 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 21:50:53 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-/*
-	I am sorry to say that, but this is a totally trash file
-	first function's condition is never to be satisfied
-	second function executa in a way diffrent than bash
-	
-*/
 
 void	parsing_laundry(t_pipes *t, t_list *smashed_head, char *cmd, int i)
 {
@@ -32,10 +25,8 @@ void	parsing_laundry(t_pipes *t, t_list *smashed_head, char *cmd, int i)
 	{
 		if (t->single_cmd[1]->args[1])
 		{
-			forens_printf("if 2\n");
 			if (t->single_cmd[1]->args[2])
 			{
-				forens_printf("we are gonna miss with this command \n");
 				case_take_f1_cat_f2_f3_etc(t);
 			}
 		}

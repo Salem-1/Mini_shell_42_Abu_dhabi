@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 08:38:00 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 08:40:36 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:06:57 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ void	stick_error_code_if_it__exists(char *cmd, t_list *head, t_smash_kit *s)
 	{
 		if (s->parse_error_code != 0)
 			head->flag = s->parse_error_code;
-		vis_smached_cmd(&head);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/26 14:10:43 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:03:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_parsed_command	*parse_one_cmd(char *command)
 	t->args = split_command;
 	t->env = NULL;
 	t->splitted_cmd = split_command;
-	visualize_cmd(t);
 	return (t);
 }
 

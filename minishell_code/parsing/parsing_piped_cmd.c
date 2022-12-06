@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 08:10:46 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 20:17:26 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 21:52:06 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,3 @@ t_list	*fill_cmd(t_list *smashed_cmd, t_pipes *t, int i)
 	decide_rel_abs_fill_cmd_null_arg(smashed_cmd, t, i, local_i);
 	return (smashed_cmd);
 }
-
-/*
-this line belongs to line 83
-		// forens_printf("fill_cmd i= %d,local_i=%d, smashed_arg = %s, flag = \n",
-		// 	i, local_i, smashed_cmd->content, smashed_cmd->flag);
-*/

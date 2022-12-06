@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/12/01 07:11:15 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 21:48:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 	flag usage:
 	t     Throw an error
 	s     Silent the error
+	//max path length refrence: 
+	https://www.ibm.com/docs/en/spectrum-protect/
+	8.1.9?topic=parameters-file-specification-syntax
 */
 
 int	exec_cd(struct t_parsed_command *t,
@@ -23,10 +26,10 @@ int	exec_cd(struct t_parsed_command *t,
 {
 	char	*current_path;
 	char	*old_path;
-	char	buff[4089];
+	char	buff[4096];
 	char	*destination;
 
-	ft_bzero(buff, 4089);
+	ft_bzero(buff, 4096);
 	destination = t->args[1];
 	current_path = NULL;
 	old_path = NULL;
@@ -34,7 +37,7 @@ int	exec_cd(struct t_parsed_command *t,
 		destination = search_list(*env, "HOME", 'p');
 	else if (cd_has_second_arg(t, all_cmds, flag))
 		return (1);
-	old_path = ft_strdup(getcwd(buff, 4089));
+	old_path = ft_strdup(getcwd(buff, 4096));
 	if (chdir(destination) != 0)
 	{
 		if (flag == 't')
@@ -42,7 +45,7 @@ int	exec_cd(struct t_parsed_command *t,
 		free(old_path);
 		return (1);
 	}
-	current_path = ft_strdup(getcwd(buff, 4089));
+	current_path = ft_strdup(getcwd(buff, 4096));
 	fill_old_and_current_pwd(env, old_path, current_path);
 	return (0);
 }
