@@ -176,3 +176,22 @@ Giving command without delimiter throw an error
 
 	cat <<
 	zsh: parse error near `\n'
+
+
+when do cd,  export arg, unset    execute and when they dont
+
+	Do execute 				|			Dont execute
+	export a > create_file	|  export a < invalid file
+	export b << deli		|  export c > f1 >f2 < invalid_f
+	export d				| export d > f | command 
+
+#Summary:
+
+executed:
+
+	1-Alone
+	2-in output mode, successful
+	3-in invalid input
+not execute:
+	1-pipes
+	2-Unsuccesful redirections

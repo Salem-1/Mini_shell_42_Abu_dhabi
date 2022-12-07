@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:07:36 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/17 15:30:00 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:46:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 	will fill the first flag with parser error code, 
 	check if there is an error if the flag value less than 30
 */
+
 t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 {
 	t_smash_kit	s;
 
-	init_smash_kit(&s, head, env);
-	while (cmd[s.i])
+	init_smash_kit(&s, head, env, cmd);
+	s.cmd_len = (int)ft_strlen(cmd);
+	while (s.i < s.cmd_len)
 	{
 		if (cmd_classifier(&s, cmd) == 'r')
 		{
-		forens_printf("redirection smasher cmd[%d] = (%c)\n", s.i, cmd[s.i]);
 			fill_redirection(&s, cmd, head, s.i);
 		}
 		else if (cmd_classifier(&s, cmd) == '\'')
@@ -33,15 +34,12 @@ t_list	*cmd_smasher(char *cmd, t_list **head, t_list *env, int *exit_status)
 		else if (cmd_classifier(&s, cmd) == '"')
 			double_qoute_smash(&s, cmd, head, exit_status);
 		else
-			spaces_smash(&s, cmd,  head, exit_status);
+			spaces_smash(&s, cmd, head, exit_status);
 		if (s.parse_error_code != 0)
 			break ;
 		s.i++;
 	}
-	// free(s);
-	if (s.parse_error_code != 0)
-		(*head)->flag = s.parse_error_code;
-	vis_smached_cmd(head);
+	stick_error_code_if_it__exists(cmd, *head, &s);
 	return (*head);
 }
 
@@ -80,19 +78,18 @@ char	cmd_classifier(t_smash_kit *s, char *cmd)
 			= g give
 			= t take
 */
-void	init_smash_kit(t_smash_kit *s, t_list **head, t_list *env)
+void	init_smash_kit(t_smash_kit *s, t_list **head, t_list *env, char *cmd)
 {
-	// s = malloc(sizeof(t_smash_kit) * 1);
-	// if (!s)
-	// 	return (NULL);
 	s->start = 0;
-	s->end  = 0;
+	s->end = 0;
+	s->last_end = 0;
 	s->i = 0;
 	s->tmp = *head;
 	s->flag = 'i';
 	s->env = env;
 	s->parse_error_code = 0;
-	// return (s);
+	s->cmd_len = 0;
+	s->cmd = cmd;
 }
 
 t_list	*fill_cmd_node(char *arg, char type)
@@ -103,4 +100,18 @@ t_list	*fill_cmd_node(char *arg, char type)
 	new_node->content = (void *)arg;
 	new_node->flag = type;
 	return (new_node);
+}
+
+int	is_not_end_quote_case_3(
+	char *cmd, t_smash_kit *s, int fetch_end)
+{
+	if (cmd[s->i + fetch_end] != '\0'
+		&& !check_redirection(cmd, s->i + fetch_end)
+		&& (cmd[s->i + fetch_end] != '\'')
+		&& (cmd[s->i + fetch_end] != '"')
+		&& !((s->start == 0 || check_redirection(cmd, s->last_end))
+			&& cmd[s->i + fetch_end] == ' '))
+		return (1);
+	else
+		return (0);
 }

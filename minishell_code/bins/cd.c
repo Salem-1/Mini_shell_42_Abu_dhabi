@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 05:55:31 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 00:38:28 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 21:48:48 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,56 +16,55 @@
 	flag usage:
 	t     Throw an error
 	s     Silent the error
+	//max path length refrence: 
+	https://www.ibm.com/docs/en/spectrum-protect/
+	8.1.9?topic=parameters-file-specification-syntax
 */
-void	exec_cd(struct t_parsed_command *t, t_list **env, t_pipes * all_cmds, int flag)
+
+int	exec_cd(struct t_parsed_command *t,
+		t_list **env, t_pipes *all_cmds, int flag)
 {
 	char	*current_path;
 	char	*old_path;
-	char	*buff;
+	char	buff[4096];
+	char	*destination;
 
+	ft_bzero(buff, 4096);
+	destination = t->args[1];
 	current_path = NULL;
 	old_path = NULL;
-	//replace all_cmds with flags to show errors inside children only
-	(void) all_cmds;
-	buff = malloc(sizeof(char) * 4089);
-	if (!buff)
-		return ;
-	if (!t->args[1])
+	if (!destination)
+		destination = search_list(*env, "HOME", 'p');
+	else if (cd_has_second_arg(t, all_cmds, flag))
+		return (1);
+	old_path = ft_strdup(getcwd(buff, 4096));
+	if (chdir(destination) != 0)
 	{
-		forens_printf("home path = %s\n", t->args[1]);
-		t->args[1] = ft_strdup(search_list(*env, ft_strdup("HOME"), 'p'));
-		forens_printf("home path = %s\n", t->args[1]);
-	}
-	else if (t->args[2])
-	{
-		forens_printf("is this error triggered\n");
 		if (flag == 't')
-			cd_error(t->args[1], 'p');
-		free(buff);
-		return ;
-	}
-	old_path = ft_strdup(getcwd(buff, 4089));
-	forens_printf("changing directory = %s\n", t->args[1]);
-	if (chdir(t->args[1]) != 0)
-	{
-		forens_printf("error in executing chdir, will kill this child\n");
-		if (flag == 't')
-			cd_error(t->args[1], 'n');
-		free(buff);
+			cd_error(all_cmds, destination, 'n');
 		free(old_path);
-		return ;
+		return (1);
 	}
-	// exec_local_export(current_path, env, 'o');
-	current_path = ft_strdup(getcwd(buff, 4089));
-	forens_printf("OLDPWD=%s\nPWD=%s\n", old_path, current_path);
+	current_path = ft_strdup(getcwd(buff, 4096));
 	fill_old_and_current_pwd(env, old_path, current_path);
-	// forens_printf("cd is under maintainance for solving local exporting issues\n");
-	// exec_local_export(current_path, env, 'c');
-	free(buff);
+	return (0);
+}
+
+int	cd_has_second_arg(
+	struct t_parsed_command *t, t_pipes *all_cmds, int flag)
+{
+	if (t->args[2])
+	{
+		if (flag == 't')
+			cd_error(all_cmds, t->args[1], 'a');
+		return (1);
+	}
+	else
+		return (0);
 }
 
 void	fill_old_and_current_pwd(
-		t_list **env, char *old_path, char *current_path)
+		t_list **env, char *current_path, char *old_path)
 {
 	t_list	*old_node;
 	t_list	*current_node;
@@ -84,21 +83,6 @@ void	fill_old_and_current_pwd(
 	}
 }
 
-
-void	cd_error(char *error_path, char flag)
-{
-	if (flag == 'p')
-	{
-		err_printf("cd: string not in pwd: %s\n", error_path);
-		forens_printf("remeber to set the exit code to 1\n");
-	}
-	else
-	{
-		err_printf("bash: cd: %s: No such file or directory\n", error_path);
-		forens_printf("remeber to set the exit code to 1\n");
-	}
-}
-
 //update old and new pwd
 //pass it to the exection function as outside handmade command
 void	exec_local_export(char *local_var, t_list **env, char flag)
@@ -110,8 +94,5 @@ void	exec_local_export(char *local_var, t_list **env, char flag)
 	else
 		local_cmd = ft_strjoin("export ", "OLDPWD=");
 	local_cmd = ft_strjoin(local_cmd, local_var);
-	// exec_multiple_pipes(local_cmd, *env, 0);
-
-	//end of new code
 	execute_one_cmd(local_cmd, *env, 0);
 }

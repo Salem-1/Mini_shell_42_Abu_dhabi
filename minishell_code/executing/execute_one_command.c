@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/20 16:47:15 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:06:02 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 	struct t_parsed_command	*t;
 	int						pid;
 	int						len;
+
 	t = parse_one_cmd(command);
 	if (!t)
 		return (0);
@@ -45,65 +46,84 @@ int	execute_one_cmd(char *command, t_list *t_env, int exit_shell)
 	return (0);
 }
 
-void	just_execve(struct t_parsed_command *t, t_list *t_env, struct t_pipes *all_cmds)
+void	just_execve(struct t_parsed_command *t,
+			t_list *t_env, struct t_pipes *all_cmds)
 {
-	char	**envp;
-	char	*old_cmd;
+	char		**envp;
+	char		*old_cmd;
 
 	old_cmd = NULL;
 	envp = NULL;
-	envp = join_env(t_env);
-	if (!t->cmd)
-		exec_exit(all_cmds, 0);
-	if (is_in_our_executable(t, t_env, all_cmds))
+	if (t_env)
 	{
-		exec_exit(all_cmds, 0);
-		return ;
+		envp = join_env(t_env);
+		t->env = envp;
 	}
+	if (!t->cmd)
+		exit_and_free_env(all_cmds, envp, 0);
+	if (is_in_our_executable(t, t_env, all_cmds, envp))
+		exit_and_free_env(all_cmds, envp, 0);
 	else if (t->path == 'r')
 	{
 		old_cmd = t->cmd;
-		t->cmd = search_path_for_bin(t->cmd, t_env);
+		t->cmd = search_path_for_bin(ft_low(t->cmd), t_env);
 	}
+	executing_non_builtin(all_cmds, t, envp, old_cmd);
+	exec_exit(all_cmds, 0);
+}
+
+void	exit_and_free_env(t_pipes *all_cmds, char **envp, int exit_status)
+{
+	free_split((void **)envp);
+	exec_exit(all_cmds, exit_status);
+}
+
+void	executing_non_builtin(t_pipes *all_cmds,
+		struct t_parsed_command *t, char **envp, char *old_cmd)
+{
+	extern int	errno ;
+	int			error;
+
+	error = 0;
 	if (!t->cmd)
 	{
-		err_printf("minishell: %s: command not found\n", old_cmd);
+		err_printf("minishell: %s: No such file or directory\n", old_cmd);
+		free_split((void **)envp);
 		exec_exit(all_cmds, 127);
-		return ;
 	}
 	else
 	{
 		if (execve(t->cmd, t->args, envp) == -1)
-		;// perror("execve");;
+		{
+			error = errno;
+			normal_execution_error(t, all_cmds, envp, error);
+		}
 	}
-	exec_exit(all_cmds, 0);
 }
 
 char	*search_path_for_bin(char *split_command_0, t_list *t_env)
 {
 	char	**pathes;
 	char	*searched_path;
-	char	*add_slash;
 	int		i;
 
 	i = -1;
 	searched_path = NULL;
-	add_slash = NULL;
 	pathes = get_path(t_env);
 	if (!pathes)
 		return (NULL);
 	while (pathes[++i])
 	{
-		add_slash = ft_strjoin(pathes[i], "/");
-		searched_path = ft_strjoin(add_slash, split_command_0);
-		free(add_slash);
+		searched_path = refractor_searched_path(
+				searched_path, pathes, split_command_0, i);
 		if (access(searched_path, X_OK) == 0)
 		{
 			free_split((void **)pathes);
 			return (searched_path);
 		}
 	}
-	free(searched_path);
+	if (searched_path)
+		free(searched_path);
 	free_split((void **)pathes);
 	return (NULL);
 }

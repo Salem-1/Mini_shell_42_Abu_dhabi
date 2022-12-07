@@ -6,86 +6,78 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 11:05:21 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/20 17:57:02 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 15:51:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //remeber to throw erro for error
-void	throw_parser_error(t_pipes *t,int * exit_status)
+void	throw_parser_error(t_pipes *t, int *exit_status)
 {
+	if (!t)
+	{
+		throw_error_exit_code(
+			"minishell: parser error \n", exit_status, 258);
+		return ;
+	}
 	if (t->parse_error == 2)
-	{
-		err_printf("minishell: syntax error near unexpected token \n");
-		*exit_status = 258;
-	}
+		throw_error_exit_code(
+			"minishell: syntax error near unexpected token\n", exit_status, 2);
 	else if (t->parse_error == 1)
-	{
-		err_printf("minishell: parser error \n");
-		*exit_status = 258;
-	}
+		throw_error_exit_code(
+			"minishell: parser error \n", exit_status, 258);
 	else if (t->parse_error == 3)
-	{
-		err_printf("minishell: syntax error near unexpected token \n");
-		*exit_status = 258;
-	}
-	else if (t->parse_error == 1)
-	{
-		err_printf("minishell: exit: too many arguments");
-		*exit_status = 1;
-	}
-forens_printf("Exit with exit code %d\n", *exit_status);
-forens_printf("-------------------------------------------\n");
-forens_printf("-------------------------------------------\n");
-forens_printf("-------------------------------------------\n");
-forens_printf("-------------------------------------------\n");
+		throw_error_exit_code(
+			"minishell: exit: numeric argument required \n", exit_status, 258);
+	else if (t->parse_error == 4)
+		throw_error_exit_code(
+			"minishell: exit: too many arguments\n", exit_status, 1);
+	else if (t->parse_error == 5)
+		throw_error_exit_code(
+			"exit: fd: numeric argument required\n", exit_status, 255);
+	flush_pipes(t);
 }
 
-/*
-	take car while flushing errod piped make it as simple as possible
-*/
-void	fill_errored_pipe(t_pipes *t, int error, t_list *smashed_cmd)
+void	throw_error_exit_code(
+			char *message, int *exit_status, int exit_code)
 {
-	t->npipes = 1;
-	t->parse_error = error;
-	t->single_cmd = NULL;
-	ft_lstclear(&smashed_cmd, del);
-	smashed_cmd = NULL;
+	err_printf("%s", message);
+	*exit_status = exit_code;
 }
 
 int	scan_cmd_for_parsing_errors(t_list *smashed_cmd)
 {
-	t_list	*tmp;
-	char	current_flag;
-	char	next_flag;
+	t_scan_parse_error	e;
 
-	current_flag = '\0';
-	next_flag = '\0';
-	tmp = smashed_cmd;
-	while (tmp)
+	init_e_args(&e, smashed_cmd);
+	if (smashed_cmd->flag == 'p')
+		return (2);
+	while (e.tmp)
 	{
-		current_flag = tmp->flag;
-		if (tmp->next)
-			next_flag = tmp->next->flag;
-		else
-			next_flag = '\0';
-		if ((is_r_flag(current_flag) && !next_flag) || (next_flag && (
-					is_r_flag(current_flag) && is_r_flag(next_flag))))
+		update_e_args(&e);
+		if (is_parse_error_inside_smached_cmd(&e))
 		{
 			smashed_cmd->flag = 2;
-forens_printf("Parsing error in repetitve or solo redirection\n");
 			return (2);
 		}
-		tmp = tmp->next;
+		e.tmp = e.tmp->next;
 	}
 	return (0);
 }
 
-int	is_r_flag(char flag)
+void	update_e_args(t_scan_parse_error *e)
 {
-	if (flag == 'p' || flag == 'g' || flag == 't'
-		|| flag == 'a' || flag == 'h' )
-		return (1);
-	return (0);
+	e->current_flag = e->tmp->flag;
+	if (e->tmp->next)
+	{	
+		e->next_flag = e->tmp->next->flag;
+		if (e->tmp->next->next)
+			e->next_next_flag = e->tmp->next->next->flag;
+		else
+			e->next_next_flag = '\0';
+	}
+	else
+		e->next_flag = '\0';
+	e->i++;
 }

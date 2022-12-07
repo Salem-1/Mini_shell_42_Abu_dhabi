@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 08:23:57 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/18 00:06:30 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:21:28 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*ft_strdup(const char *s1)
 	size_t	len;
 
 	i = 0;
-	if(!s1)
+	if (!s1)
 		return (NULL);
 	len = ft_strlen(s1);
-	cpy = (char *)malloc(sizeof(*s1) * (len + 1));
+	cpy = ft_calloc(sizeof(*s1), (len + 1));
 	if (!cpy)
 		return (NULL);
 	while (s1[i])

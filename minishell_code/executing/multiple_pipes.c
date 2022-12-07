@@ -6,185 +6,110 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:33:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/20 16:58:14 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/03 11:01:59 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //t->npipes is number of pipes + 1 just for sake of simplicity
+//the exit code of the staff executed inside the child is missed up
 
 void	exec_multiple_pipes(char *cmd, t_list *env, int *exit_status)
 {
 	struct t_pipes	*t;
-	int				**fd;
-	int				pid;
 	int				i;
+	int				parent_exit_status;
+	int				return_or_continue;
 
-forens_printf("Inside exec_multiple_pipes \n");
-	fd = NULL;
+	return_or_continue = 0;
+	parent_exit_status = 0;
 	t = parsing_piped_cmd(cmd, env, exit_status);
-	if (!t)
+	if (errord_t_piped(t, exit_status))
 		return ;
-	if (t->parse_error != 0)
-	{
-		forens_printf("Throwing parsing errorr, t->parse_error = %d\n", t->parse_error);
-		throw_parser_error(t, exit_status);
-		return ;
-	}
-	forens_printf("\nt->parse_error = %d\n", t->parse_error);
-	i = 0;
-	pid = 0;
-	visualized_piped_cmd(t);
-	if_there_is_heredoc_fill_it(t, env);
-	forens_printf("opening %d pipes\n", t->npipes);
-	fd = open_pipes(t->npipes, fd);
-	//remeber to check for the null cmd
+	i = init_exec_multiple_pipes_args(t, env);
 	while (i < t->npipes)
 	{
-		forens_printf("Multiple_cmd line 45 Current cmd = %s\n", t->single_cmd[i]->cmd);
-		if (t->single_cmd[i]->after_sep == 'h')
-			i = skip_multiple_heredocs(t, i);
-		// forens_printf("after_heredoc checkpoint\n");
-		forens_printf("Multiple_cmd line 49 Current cmd = %s\n", t->single_cmd[i]->cmd);
-		if (t->single_cmd[i]->before_sep == 'g'
-			|| t->single_cmd[i]->before_sep == 'a' || t->single_cmd[i]->before_sep == 'h' )
-		{
-			i++;
-			continue ;
-		}
-		forens_printf("Multiple_cmd line 56 Current cmd = %s\n", t->single_cmd[i]->cmd);
-		exec_export_unset_cd_in_parent(i,  t, env);
-		pid = fork();
-		if (pid == 0)
-		{
-			piping_and_redirections(i, fd, t, env);
+		return_or_continue = exec_loop(t, &i, &parent_exit_status);
+		if (return_or_continue == 1)
 			return ;
-		}
-		if (t->single_cmd[i]->after_sep == 't')
-			i++;
+		else if (return_or_continue == 2)
+			continue ;
+		else if (return_or_continue == 3)
+			break ;
 		i++;
 	}
-	close_files_and_wait(fd, t, exit_status);
-		// flush_pipes(t);
-	return ;
+	close_files_and_wait(t->fd, t, exit_status, return_or_continue);
+	*exit_status = clean_update_execution_args(
+			t, *exit_status, &parent_exit_status, return_or_continue);
 }
 
-void	exec_export_unset_cd_in_parent(
-		int i,  struct t_pipes *t, t_list *env)
+int	clean_update_execution_args(t_pipes *t,
+	int exit_status, int *parent_exit_status, int return_or_continue)
+{
+	flush_pipes(t);
+	if (return_or_continue == 3)
+		return (130);
+	else if (*parent_exit_status != 0)
+		return (*parent_exit_status);
+	return (exit_status);
+}
+
+int	update_i_in_case_of_redirection(t_pipes *t, int *i)
+{
+	char	redir;
+
+	redir = t->single_cmd[*i]->before_sep;
+	if (redir == 'g' || redir == 'a' || redir == 'h' || redir == 't')
+	{
+		if (*i == 0)
+			return (0);
+		*i = *i + 1;
+		return (1);
+	}
+	return (0);
+}
+
+//I created this function to update the exit status for the locals
+int	was_exec_in_parent(int i, int *exit_status, t_pipes *t)
 {
 	int	redirec;
 
 	redirec = 0;
-	if (!t->single_cmd[i] || !t->single_cmd[i]->cmd)
-		return ;
 	while (t->single_cmd[redirec] && redirec < t->npipes)
 	{
 		if (t->single_cmd[redirec]->after_sep == 'p'
-			|| t->single_cmd[redirec]->after_sep == 'g'
-			|| t->single_cmd[redirec]->after_sep == 'a')
-			return ;
+			|| t->single_cmd[redirec]->before_sep == 'p' )
+			return (0);
 		redirec++;
 	}
-	if (!ft_strncmp(t->single_cmd[i]->cmd, "cd", 3))
-		exec_cd(t->single_cmd[i], &env, t, 's');
-	else if (!ft_strncmp(t->single_cmd[i]->cmd, "export", 7))
-		exec_export(t->single_cmd[i], &env, 's');
-	else if (!ft_strncmp(t->single_cmd[i]->cmd, "unset", 6))
-		exec_unset(t->single_cmd[i], &env, 1, 's');
+	if (*exit_status != 0)
+		i = *exit_status;
+	close_files_and_wait(t->fd, t, exit_status, 0);
+	if (i != 0)
+		*exit_status = i;
+	return (1);
 }
+
+//lat 5 lines setting the exit code of the bins executed in parent
 
 void	piping_and_redirections(int i, int **fd, struct t_pipes *t, t_list *env)
 {
-	if (t->npipes == 1 || t->single_cmd[i]->after_sep == 't' )
+	if (t->npipes == 1 || t->single_cmd[i]->after_sep == 't')
 	{
 		if (t->single_cmd[i]->after_sep == 't')
-			input_execution(t, fd, i);
+			exec_to_take_operations(t, env, i, 0);
 		else
 			close_files(fd, t->npipes);
 		just_execve(t->single_cmd[i], env, t);
 	}
 	if (t->single_cmd[i]->after_sep == 'g'
 		|| t->single_cmd[i]->after_sep == 'a')
-		output_append_execution(t, fd, i);
+		exec_to_output_operations(t, env, i, 0);
 	else if (t->single_cmd[i]->after_sep == 'h')
-	{	
-		write(fd[i][1], t->single_cmd[i + 1]->args[0],
-			ft_strlen(t->single_cmd[i + 1]->args[0]));
-		dup2(fd[i][0], STDIN_FILENO);
-		close_files(fd, t->npipes);
-		free(t->single_cmd[i + 1]->args[0]);
-		just_execve(t->single_cmd[i], env, t);
+	{
+		exec_heredoc(t, i, env, 0);
 	}
-	if (i == 0 )
-		dup2(fd[i][1], STDOUT_FILENO);
-	else if (i == t->npipes -1)
-		dup2(fd[i -1][0], STDIN_FILENO);
 	else
-	{
-		dup2(fd[i][1], STDOUT_FILENO);
-		dup2(fd[i -1][0], STDIN_FILENO);
-	}
-	close_files(fd, t->npipes);
-	just_execve(t->single_cmd[i], env, t);
-}
-
-void	close_files_and_wait(int **fd, struct t_pipes	*t, int *exit_satus)
-{
-	int	forwait;
-	int	i;
-
-	i = 0;
-	close_files(fd, t->npipes);
-	while (i < t->npipes)
-	{
-		wait(&forwait);
-		*exit_satus = WEXITSTATUS(forwait);
-		// *exit_satus = WIFSIGNALED(forwait);
-		forens_printf("cmd %d exection end exit status %d\n", i, *exit_satus);
-		i++;
-	}
-	forens_printf("\n------------------------------------------\n");
-	forens_printf("------------------------------------------\n");
-	forens_printf("------------------------------------------\n");
-	forens_printf("------------------------------------------\n\n\n");
-}
-
-int	**open_pipes(int n, int **fd)
-{
-	int	i;
-	i = 0;
-	fd = malloc(sizeof(int *) * n);
-	if (!fd)
-		return (NULL);
-	while (i < n)
-	{
-		fd[i] = malloc(sizeof(int) * 2);
-		if (!fd[i])
-		{
-			free_split((void **)fd);
-			return (NULL);
-		}
-		if (pipe(fd[i]) == -1)
-		{
-			perror("pipe");
-			free_split((void **)fd);
-			return (NULL);
-		}
-		i++;
-	}
-	return (fd);
-}
-
-void	close_files(int **fd, int npipes)
-{
-	int	i;
-
-	i = 0;
-	while (i < npipes )
-	{
-		close(fd[i][0]);
-		close(fd[i][1]);
-		i++;
-	}
+		execute_in_pipe(t, env, fd, i);
 }

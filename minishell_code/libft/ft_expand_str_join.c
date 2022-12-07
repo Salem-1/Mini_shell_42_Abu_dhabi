@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 06:49:24 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/13 17:13:56 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:23:11 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ char	*ft_expand_strjoin(char *s1, char *s2)
 		return (NULL);
 	ft_strlcpy(joined, s1, total_len);
 	ft_strlcpy(&joined[ft_strlen(s1)], s2, total_len - ft_strlen(s1) + 1);
-	if (ft_strlen(s1) > 0)
+	if (s1)
 		free(s1);
-	if(ft_strlen(s2) > 0)
+	if (s2)
 		free(s2);
 	return (joined);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 06:35:51 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 05:58:27 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 22:03:30 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_parsed_command	*parse_one_cmd(char *command)
 	t->args = split_command;
 	t->env = NULL;
 	t->splitted_cmd = split_command;
-	visualize_cmd(t);
 	return (t);
 }
 
@@ -46,6 +45,8 @@ char	**get_path(t_list *t_env)
 	char	*bins_path;
 
 	bins_path = search_list(t_env, "PATH", 'p');
+	if (!bins_path)
+		return (NULL);
 	split_pathes = ft_split(bins_path, ':');
 	return (split_pathes);
 }
@@ -70,7 +71,7 @@ char	decide_rel_or_abs_path(char *cmd)
 {
 	char	decision;
 
-	if (cmd[0] == '/')
+	if (ft_strnchr(cmd, '/') != -1 || cmd[0] == '\0')
 		decision = 'a';
 	else
 		decision = 'r';

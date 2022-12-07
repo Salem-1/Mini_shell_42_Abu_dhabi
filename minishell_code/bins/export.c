@@ -6,41 +6,43 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 17:44:30 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/20 07:41:39 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/02 19:13:44 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/*
-	flags
-	t    throw an error
-	s    silent the error
-*/
-void	exec_export(struct t_parsed_command *t, t_list **env, int flag)
+int	exec_export(t_pipes *all_cmds,
+				struct t_parsed_command *t, t_list **env, int flag)
 {
-	int		i;
 	t_list	*tmp;
+	int		i;
 
 	i = 1;
 	tmp = NULL;
 	while (t->args[i])
 	{
-		if (valid_export_arg(t->args[i]))
+		if (valid_export_arg(t->args[i], 'e'))
 		{
 			tmp = parsed_exp_arg(t->args[i], env, tmp, t);
 			if (tmp)
 				ft_lstadd_back(env, tmp);
 		}
-		else if (flag == 't')
-			raise_export_error(t->args[i]);
+		else
+			raise_export_error(all_cmds, t->args[i], 'p');
 		i++;
 	}
 	if (t->args[1] == NULL)
-		vis_list(env, 'x');
+		vis_export(env, 'x');
+	if (flag == 'c' && all_cmds->parse_error == 30)
+		raise_export_error(all_cmds, t->args[i], 'c');
+	if (all_cmds->parse_error == 30)
+		return (1);
+	return (0);
 }
 
-t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_command *t)
+t_list	*parsed_exp_arg(
+	char *cmd, t_list **env, t_list *tmp, struct t_parsed_command *t)
 {
 	char	**exp_item;
 	int		m_size;
@@ -61,102 +63,56 @@ t_list	*parsed_exp_arg(char *cmd, t_list **env, t_list *tmp, struct t_parsed_com
 	exp_item[m_size - 1] = NULL;
 	tmp = fill_new_export_node(tmp, exp_item, m_size);
 	if (is_repeated(exp_item[0], env))
-	{
-		t->args[1] = ft_strdup(exp_item[0]);
-		exec_unset(t, env, 1, 't');
-	}
+		handling_repeated_export_item(t, exp_item, env);
 	return (tmp);
 }
 
-char	**fill_export_with_key_only(char **exp_item, int m_size, char *cmd)
+void	handling_repeated_export_item(
+	struct t_parsed_command *t, char	**exp_item, t_list **env)
 {
-	exp_item = malloc(sizeof(char *) * m_size);
-	if (!exp_item)
-		return (NULL);
-	exp_item[0] = ft_strdup(cmd);
-	return (exp_item);
+	if (t->args[1])
+		free(t->args[1]);
+	t->args[1] = ft_strdup(exp_item[0]);
+	exec_unset(t, env, 1, 's');
 }
 
-//test this befor deployment
-char	**fill_export_with_key_val_variables(char *cmd,
-			t_list *env,t_list *tmp, char **exp_item)
+int	valid_export_arg(char *str, char flag)
 {
-	int	equal_location;
+	int	i;
 
-	(void)tmp;
-	(void)env;
-	equal_location = ft_strnchr(cmd, '=');
-	if (equal_location == -1)
+	i = 1;
+	flag++;
+	if (!str)
+		return (0);
+	if (!(ft_isalpha(str[0]) || str[0] == '_'))
+		return (0);
+	while (str[i])
 	{
-		err_printf("Inside export parsingThis should never be triggered\n");
-		return (NULL);
-	}
-	exp_item = malloc(sizeof(char *) * 3);
-	if (!exp_item)
-		return (NULL);
-	exp_item[0] = ft_substr(cmd,0,  equal_location);
-	exp_item[1] = ft_substr(cmd, equal_location + 1,
-			ft_strlen(cmd) - equal_location);
-	if (ft_strnchr(exp_item[1], '"') != -1 || ft_strnchr(exp_item[1], '\'') != -1)
-	{
-		if (ft_strnchr(exp_item[1], '"') < ft_strnchr(exp_item[1], '\'') || ft_strnchr(exp_item[1], '\'') == -1)
-			exp_item[1] = clean_export_var_from_quotes(exp_item[1], '"');
-		else
-			exp_item[1] = clean_export_var_from_quotes(exp_item[1], '\'');
-	}
-	forens_printf("exported val = ~%s~\n", exp_item[1]);
-	return (exp_item);
-}
-
-char	*clean_export_var_from_quotes(char *val, char quote)
-{
-	char	*new_arg;
-	char	*result;
-	int		i;
-
-	new_arg = NULL;
-	i = 0;
-	if (!strrchr(val, quote))
-		return (val);
-	if (val[i] == quote && val[i+ 1] == quote)
-	{
-		free(val);
-		return (ft_expand_strjoin(new_arg, ft_strdup("\0")));
-	}
-	else
-		new_arg = ft_strjoin(new_arg, strchr(val, quote) + 1);
-	while (new_arg[i])
-	{
-		if (new_arg[i] == quote)
+		if (str[i] == '=')
 			break ;
+		if (!(ft_isalpha(str[i]) || ft_isdigit(str[i])
+				|| str[i] == '_' || str[i] == '='))
+			return (0);
 		i++;
 	}
-	result = ft_strjoin(ft_substr(new_arg, 0, i), &new_arg[i + 1]);
-	free(new_arg);
-	return (result);
+	return (1);
 }
 
-t_list	*fill_new_export_node(t_list *tmp, char **exp_item, int m_size)
+int	find_msize(char *cmd)
 {
-	tmp = ft_lstnew(exp_item);
-	if (m_size == 2)
-		tmp->flag = 'x';
-	return (tmp);
+	int	m_size;
+	int	i;
+
+	m_size = 2;
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '=')
+		{
+			m_size = 3;
+			break ;
+		}
+		i++;
+	}
+	return (m_size);
 }
-//set the last exit, if succeessful it's 0,
-//  if not make 127 for command not found
-//126 permission denied, CTR-C 130, exit code of wait
-//check the exit code of the builtins
-//last minishelll inside wait() ==-1 no schild to wait upon CTR-c
-
-
-/*
-export specs:
-if var with no value:
-	-if not there Add var export list
-	-if var is repeated do nothing
-if var has value:
-	-if exists update the value
-	-else add the var=vlaue to env list
-
-*/

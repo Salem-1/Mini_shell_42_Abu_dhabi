@@ -6,7 +6,7 @@
 /*   By: ahsalem <ahsalem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:54:37 by ahsalem           #+#    #+#             */
-/*   Updated: 2022/10/10 05:57:07 by ahsalem          ###   ########.fr       */
+/*   Updated: 2022/12/04 21:51:22 by ahsalem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,27 @@ t_list	*parse_env(char **envp, t_list *head)
 	head = NULL;
 	if (!envp)
 		return (NULL);
-	head = ft_lstnew((char **)ft_split(envp[i], '='));
 	while (envp[i])
 	{
-		tmp_node = ft_lstnew((char **)ft_split(envp[i], '='));
+		tmp_node = ft_lstnew(get_env_key_val(envp[i]));
 		ft_lstadd_back(&head, tmp_node);
 		i++;
 	}
 	return (head);
+}
+
+char	**get_env_key_val(char *var)
+{
+	char	**key_val;
+	int		locate_equal;
+
+	key_val = malloc(sizeof(char *) * 3);
+	locate_equal = ft_strnchr(var, '=');
+	key_val[0] = ft_substr(var, 0, locate_equal);
+	key_val[1] = ft_substr(var,
+			locate_equal + 1, ft_strlen(var) - locate_equal);
+	key_val[2] = NULL;
+	return (key_val);
 }
 
 char	**join_env(t_list *t_env)
@@ -53,4 +66,3 @@ char	**join_env(t_list *t_env)
 	free(tmp_join);
 	return (envp);
 }
-
